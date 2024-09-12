@@ -1,4 +1,9 @@
 { config, pkgs, ... }: {
+  imports = [
+    ../modules/privacy
+  ];
+
+  modules.privacy.blocky.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   
