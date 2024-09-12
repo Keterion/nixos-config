@@ -73,7 +73,7 @@
             noscript
 	    libredirect
             darkreader
-            dictionaries
+            #dictionaries
 	    sidebery
             #buildFirefoxXpiAddon { #TODO
             #  pname = "imagus-mod";
