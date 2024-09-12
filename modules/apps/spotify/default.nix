@@ -1,30 +1,61 @@
-{ config, lib, pkgs, inputs, ...}: {
+{ config, lib, pkgs, inputs, osConfig, ...}: {
   imports = [
     inputs.spicetify-nix.homeManagerModules.default
   ];
 
-  options.modules.apps.spotify = {
-    enable = lib.mkEnableOption "the spotify desktop app";
+  options.modules.apps = {
+    spotify.enable = lib.mkEnableOption "the spotify desktop app";
     spicetify = {
-      enable = lib.mkEnableOption "spicetify spotify theming";
+      enable = lib.mkEnableOption "the spotify desktop app with theming";
       cli = lib.mkEnableOption "the spicetify cli app, imperative";
     };
   };
   
-  config = lib.mkIf config.modules.apps.spotify.enable {
+  config = {
     nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "spotify" ];
-      home.packages = with pkgs; [
-	unstable.spotify
-      ];
+    home.packages = with pkgs; lib.optionals config.modules.apps.spotify.enable [
+      unstable.spotify
+    ] ++ lib.optionals config.modules.apps.spicetify.cli [
+      unstable.spicetify-cli
+    ];
     programs.spicetify =
     let
       spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
     in
-    lib.mkIf config.modules.apps.spotify.spicetify.enable {
+    lib.mkIf config.modules.apps.spicetify.enable {
       enable = true;
+      spotifyPackage = pkgs.unstable.spotify;
       spicetifyPackage = pkgs.unstable.spicetify-cli;
-      theme = spicePkgs.themes.catppuccin;
-      colorScheme = "mocha";
+
+      theme = spicePkgs.themes.dribbblish;
+
+      colorScheme = "custom";
+      customColorScheme = with osConfig.vars.theming.colors; {
+	text = "${fg}";
+	subtext = "${fg_dark}";
+	sidebar-text = "${fg_dark}";
+	main = "${bg}";
+	sidebar = "${bg_dark}";
+	player = "${bg}";
+	card = "${bg}";
+	shadow = "${bg_dark}";
+	selected-row = "${bg_dark}";
+	button = "${purple}";
+	button-active = "${purple}";
+	button-disabled = "${red1}";
+	tab-active = "${magenta}";
+	notification = "${green}";
+	notification-error = "${red2}";
+	misc = "${fg_dark}";
+      };
+      enabledExtensions = with spicePkgs.extensions; [
+	fullAppDisplay
+	shuffle
+	#adblock #doesn't seem to work
+	adblockify
+	playlistIcons
+	beautifulLyrics
+      ];
     };
   };
 }

@@ -1,4 +1,4 @@
-{ config, lib, inputs, pkgs, ... }: {
+{ config, lib, inputs, pkgs, vars, ... }: {
   imports = [
     ../../modules/system/runner.nix
     ../../modules/system/bar/waybar.nix
@@ -66,9 +66,14 @@
     enable = true;
     arkenfox = true;
   };
-  modules.apps.spotify = {
-    enable = true;
-    spicetify.enable = true;
+  modules.apps = {
+    spotify = {
+      enable = false;
+    };
+    spicetify = {
+      enable = true;
+      cli = false;
+    };
   };
 
   shells.zsh = {
