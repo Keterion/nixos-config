@@ -28,14 +28,14 @@ in
 	};
 	color = with osConfig.vars.theming; {
 	  gradient = 1;
-	  gradient_color_1 = "#${colors.red1}";
-	  gradient_color_2 = "#${colors.yellow}";
-	  gradient_color_3 = "#${colors.green}";
-	  gradient_color_4 = "#${colors.teal}";
-	  gradient_color_5 = "#${colors.cyan}";
-	  gradient_color_6 = "#${colors.blue1}";
-	  gradient_color_7 = "#${colors.purple}";
-	  gradient_color_8 = "#${colors.magenta}";
+	  gradient_color_1 = "'#${colors.red1}'";
+	  gradient_color_2 = "'#${colors.yellow}'";
+	  gradient_color_3 = "'#${colors.green}'";
+	  gradient_color_4 = "'#${colors.teal}'";
+	  gradient_color_5 = "'#${colors.cyan}'";
+	  gradient_color_6 = "'#${colors.blue1}'";
+	  gradient_color_7 = "'#${colors.purple}'";
+	  gradient_color_8 = "'#${colors.magenta}'";
 	};
 	smoothing = {
 	  
