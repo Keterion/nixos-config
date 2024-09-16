@@ -14,8 +14,11 @@ in
 	  "9.9.9.9"
 	];
 	blocking = {
-	  blacklists = {
-	    ads = [ "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts" "https://gist.githubusercontent.com/anthony-wang/943e08bc83759e1dbb8745819f4b3eca/raw/52d8958277f0737e29048034ccff2cea6fde93d9/spotify-hosts.txt" ];
+	  denylists = {
+	    ads = [ 
+	      "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
+	      "https://gist.githubusercontent.com/anthony-wang/943e08bc83759e1dbb8745819f4b3eca/raw/52d8958277f0737e29048034ccff2cea6fde93d9/spotify-hosts.txt"
+	    ];
 	  };
 	  clientGroupsBlock = {
 	    default = [ "ads" ];
