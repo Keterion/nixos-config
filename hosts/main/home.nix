@@ -60,7 +60,6 @@
     zathura
     unstable.osu-lazer-bin
   ];
-  #programs.steam.enable = true; doesn't work, put elsewhere
   
   modules.apps.firefox = {
     enable = true;
@@ -74,6 +73,7 @@
       enable = true;
       cli = false;
     };
+    cava.enable = true;
   };
 
   shells.zsh = {
