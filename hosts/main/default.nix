@@ -13,6 +13,7 @@
       ../../vars/theming
       ../../modules/system/terminal
       ../../modules/apps/base.nix
+      ../../modules/privacy
     ];
 
   networking.hostName = "nixos"; # Define your hostname.
@@ -128,6 +129,8 @@
   modules.apps.git = {
     enable = true;
   };
+
+  modules.privacy.vpn.enable = true; # Enable mullvad-vpn
 
   programs.zsh.enable = true;
 

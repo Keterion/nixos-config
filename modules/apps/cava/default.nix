@@ -17,10 +17,10 @@ in
 
 	  sensitivity = 100;
 
-	  bars = 0; # autofill bars based on terminal
+	  bars = 0; # autofill bars based on terminal width
 	};
 	input = {
-	  method = "alsa";
+	  method = "pipewire";
 	  source = "auto";
 	};
 	output = {

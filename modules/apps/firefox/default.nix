@@ -9,6 +9,7 @@
   config = {
     programs.firefox = {
       enable = config.modules.apps.firefox.enable;
+
       arkenfox = {
 	enable = config.modules.apps.firefox.arkenfox;
 	version = "128.0";
@@ -75,6 +76,7 @@
             darkreader
             #dictionaries
 	    sidebery
+	    #lexicon
             #buildFirefoxXpiAddon { #TODO
             #  pname = "imagus-mod";
             #  version = "0.10.15";
@@ -92,7 +94,6 @@
             #    platforms = platforms.all;
             #  };
             #}
-
           ];
         };
 	"SchizoMode" = mkIf config.modules.apps.firefox.arkenfox {
