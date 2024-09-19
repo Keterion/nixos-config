@@ -64,6 +64,7 @@
   modules.apps.firefox = {
     enable = true;
     arkenfox = true;
+    devEdition = true;
   };
   modules.apps = {
     spotify = {

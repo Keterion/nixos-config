@@ -6,9 +6,9 @@
     arkenfox = mkEnableOption "an arkenfox profile";
   };
 
-  config = {
+  config = lib.mkIf config.modules.apps.firefox.enable {
     programs.firefox = {
-      enable = config.modules.apps.firefox.enable;
+      enable = true;
 
       arkenfox = {
 	enable = config.modules.apps.firefox.arkenfox;
@@ -76,6 +76,7 @@
             darkreader
             #dictionaries
 	    sidebery
+	    omnivore
 	    #lexicon
             #buildFirefoxXpiAddon { #TODO
             #  pname = "imagus-mod";
