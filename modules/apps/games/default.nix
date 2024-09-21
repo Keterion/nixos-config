@@ -12,14 +12,16 @@ in
   options.modules.apps.games.enable = lib.mkEnableOption "all gaming modules";
 
   config = lib.mkIf cfg.enable {
-    modules.apps.games.steam = {
-      enable = true;
-      compat = true;
-      remotePlay.openFirewall = false;
-      dedicatedServer.openFirewall = true;
-      gamescopeSession.enable = true;
+    modules.apps.games = {
+      steam = {
+        enable = true;
+	compat = true;
+	remotePlay.openFirewall = false;
+	dedicatedServer.openFirewall = true;
+	gamescopeSession.enable = true;
+      };
+      minecraft.enable = true;
+      osu.enable = true;
     };
-    modules.apps.games.minecraft.enable = true;
-    modules.apps.games.osu.enable = true;
   };
 }
