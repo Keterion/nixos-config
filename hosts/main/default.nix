@@ -130,6 +130,7 @@
   modules.apps.git = {
     enable = true;
   };
+  modules.apps.cli.network.enable = true;
 
   modules.privacy.vpn.enable = true; # Enable mullvad-vpn
 

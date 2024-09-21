@@ -4,5 +4,6 @@
     ./git
     ./games
     ./office/libreoffice.nix
+    ./cli
   ];
 }
