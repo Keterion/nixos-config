@@ -18,7 +18,7 @@
     spotdl
     yt-dlp
     git
-    obsidian
+    unstable.obsidian
     qimgv
     #aseprite
     #wluma
@@ -46,6 +46,8 @@
     nmap
     ipcalc
 
+    obs-studio #TODO
+
     #misc
     tree
 
@@ -58,7 +60,7 @@
     gpodder
     signal-desktop
     zathura
-    unstable.osu-lazer-bin
+    #unstable.osu-lazer-bin
   ];
   
   modules.apps.firefox = {

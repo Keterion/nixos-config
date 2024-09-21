@@ -123,6 +123,7 @@
       gamescopeSession.enable = true;
     };
     minecraft.enable = true;
+    osu.enable = true;
   };
   modules.apps.office.enable = true;
 

@@ -7,6 +7,7 @@
     home-manager.users."etherion" = {
       home.packages = [
         pkgs.prismlauncher
+	pkgs.jdk17
       ];
     };
   };
