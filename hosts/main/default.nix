@@ -138,9 +138,16 @@
 
   services.syncthing.enable = true;
 
+  programs.nix-ld.enable = true; #TODO
+
   fileSystems."/mnt/Games" = {
     device = "dev/disk/by-uuid/3212add8-8af3-46c6-a739-cfc018bd72ac";
     fsType = "ext4";
   };
+
   boot.initrd.luks.devices.HDD.device = "/dev/disk/by-uuid/0161cbc2-6ac8-42b4-874e-74c95c494aa9";
+  fileSystems."/mnt/HDD" = {
+    device = "/dev/mapper/HDD";
+  };
+  networking.firewall.allowedTCPPorts = [ 45869 ];
 }

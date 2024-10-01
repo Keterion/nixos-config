@@ -21,7 +21,7 @@ in
 	dedicatedServer.openFirewall = cfg.dedicatedServer.openFirewall;
 	gamescopeSession.enable = cfg.gamescopeSession.enable;
 	extraCompatPackages = lib.mkIf cfg.compat [
-	  pkgs.proton-ge-bin
+	  pkgs.unstable.proton-ge-bin
 	];
       };
       gamescope.enable = cfg.compat;

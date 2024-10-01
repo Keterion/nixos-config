@@ -46,6 +46,8 @@
     nmap
     ipcalc
 
+    encfs
+
     obs-studio #TODO
 
     #misc
@@ -60,7 +62,6 @@
     gpodder
     signal-desktop
     zathura
-    #unstable.osu-lazer-bin
   ];
   
   modules.apps.firefox = {
@@ -77,6 +78,10 @@
       cli = false;
     };
     cava.enable = true;
+
+    neovim = {
+      enable = true;
+    };
   };
 
   shells.zsh = {

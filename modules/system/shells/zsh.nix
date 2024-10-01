@@ -26,6 +26,7 @@ in {
       enableCompletion = true;
       shellAliases = cfg.aliases;
       history.ignoreDups = true;
+      history.ignoreSpace = true;
       historySubstringSearch = {
         enable = true;
 	searchDownKey = "\\eOB";

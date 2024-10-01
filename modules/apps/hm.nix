@@ -4,5 +4,6 @@
     ./firefox
     ./spotify
     ./cava
+    ./neovim
   ];
 }

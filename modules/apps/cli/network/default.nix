@@ -15,7 +15,7 @@ let
 in
 {
   imports = [
-  ]
+  ];
   
   options.modules.apps.cli.network = {
     enable = lib.mkEnableOption "network tools";
@@ -23,7 +23,7 @@ in
   };
 
   config = lib.mkIf cfg.network.enable {
-    system.environmentPackages = lib.mkIf cfg.network.root pkgs_to_install;
+    environment.systemPackages = lib.mkIf cfg.network.root pkgs_to_install;
     home-manager.users."etherion" = {
       home.packages = pkgs_to_install;
     };
