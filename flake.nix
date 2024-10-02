@@ -2,8 +2,8 @@
   description = "NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
@@ -44,7 +44,7 @@
       main = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
 	modules = [
-	  { nixpkgs.overlays = [ nur.overlay overlays.unstable-packages ]; }
+	  { nixpkgs.overlays = [ nur.overlay overlays.stable-packages ]; }
 	  ./hosts/common.nix
 	  ./hosts/main/default.nix
 	  

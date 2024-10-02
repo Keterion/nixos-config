@@ -52,7 +52,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    neovim
+    vim
     kitty
     tofi
     firefox

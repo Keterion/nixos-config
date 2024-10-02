@@ -18,7 +18,7 @@
     spotdl
     yt-dlp
     git
-    unstable.obsidian
+    obsidian
     qimgv
     #aseprite
     #wluma
@@ -28,7 +28,7 @@
     exiftool
     mediainfo
     ffmpeg
-    busybox
+    #unstable.busybox
     bat
     #filter
     #fastfetch

@@ -21,16 +21,16 @@ in
 	dedicatedServer.openFirewall = cfg.dedicatedServer.openFirewall;
 	gamescopeSession.enable = cfg.gamescopeSession.enable;
 	extraCompatPackages = lib.mkIf cfg.compat [
-	  pkgs.unstable.proton-ge-bin
+	  pkgs.proton-ge-bin
 	];
       };
       gamescope.enable = cfg.compat;
       gamemode.enable = cfg.compat;
     };
     environment.systemPackages = lib.optionals cfg.compat [
-      pkgs.unstable.protontricks
-      pkgs.unstable.wine64
-      pkgs.unstable.winetricks
+      pkgs.protontricks
+      pkgs.wine64
+      pkgs.winetricks
     ] ++ lib.optionals cfg.backup [
       pkgs.ludusavi
     ];

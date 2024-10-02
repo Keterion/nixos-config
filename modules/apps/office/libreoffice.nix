@@ -3,7 +3,7 @@
   config = lib.mkIf config.modules.apps.office.enable {
     home-manager.users."etherion" = {
       home.packages = [
-        pkgs.libreoffice
+        pkgs.stable.libreoffice
       ];
     };
   };

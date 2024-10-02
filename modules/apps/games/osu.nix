@@ -8,7 +8,7 @@ in
   };
 
   config = lib.mkIf cfg.osu.enable {
-    home-manager.users."etherion".home.packages = [ pkgs.unstable.osu-lazer-bin ];
+    home-manager.users."etherion".home.packages = [ pkgs.osu-lazer-bin ];
   };
 }
     

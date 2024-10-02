@@ -8,7 +8,12 @@ in
   };
 
   config = lib.mkIf cfg.neovim.enable {
-    programs.neovim = {
+    programs.neovim = 
+    let
+      toLua = str: "lua << EOF\n${str}\nEOF\n";
+      toLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
+    in
+    {
       enable = true;
 
       viAlias = true;
@@ -16,19 +21,56 @@ in
       vimdiffAlias = true;
 
       plugins = with pkgs.vimPlugins; [
-	vimplugin-chadtree
-	vimplugin-lualine.nvim
+	{
+	  plugin = chadtree;
+	  config = toLua ''
+	    vim.g.loaded_netrw = 1
+	    vim.g.loaded_netrwPlugin = 1
+	    vim.keymap.set('n', '<c-n>', ':CHADopen<CR>')
+	  '';
+	}
+	{
+	  plugin = lualine-nvim;
+	  config = toLua ''
+	    require('lualine').setup {
+	      options = {
+	        icons_enabled = true,
+	      },
+	      sections = {
+	        lualine_a = {{
+	          'filename',
+	          path = 1,
+	        }}
+	      }
+	    }
+	  '';
+	}
 	nvim-colorizer-lua
 	(nvim-treesitter.withPlugins (p: [
 	  p.tree-sitter-nix
 	  p.tree-sitter-bash
-	  p.tree-sitter-
-	])); #TODO
+	])) #TODO
 
-	aerial-nvim
-	#outline-nvim
+	#aerial-nvim # TODO
+	{
+	  plugin = outline-nvim;
+	  config = toLua ''
+	    require("outline").setup({
+	      outline_window = {
+	       position = 'right',
+	       width = 15,
+	       relative_width = true,
+	       auto_close = true,
+	      },
+	      outline_items = { show_symbol_lineno = false, },
+	      guides = { enabled = true, },
+	      symbol_folding = { autofold_depth = 2, },
+	    })
+	    vim.keymap.set('n', '<c-o>', ':Outline<CR>')
+	  '';
+	}
 
-	#vimplugin-autoclose.nvim
+	#autoclose.nvim
 	vim-closer
 	
 	nvim-lspconfig
@@ -43,6 +85,9 @@ in
 	
 	#conform-nvim
       ];
+
+      extraLuaConfig = ''
+      '';
     };
-  }
+  };
 }

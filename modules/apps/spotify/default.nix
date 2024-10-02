@@ -14,9 +14,9 @@
   config = {
     nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "spotify" ];
     home.packages = with pkgs; lib.optionals config.modules.apps.spotify.enable [
-      unstable.spotify
+      spotify
     ] ++ lib.optionals config.modules.apps.spicetify.cli [
-      unstable.spicetify-cli
+      spicetify-cli
     ];
     programs.spicetify =
     let
@@ -24,8 +24,8 @@
     in
     lib.mkIf config.modules.apps.spicetify.enable {
       enable = true;
-      spotifyPackage = pkgs.unstable.spotify;
-      spicetifyPackage = pkgs.unstable.spicetify-cli;
+      spotifyPackage = pkgs.spotify;
+      spicetifyPackage = pkgs.spicetify-cli;
 
       theme = spicePkgs.themes.dribbblish;
 
