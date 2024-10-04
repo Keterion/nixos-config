@@ -58,15 +58,18 @@
     firefox
     ffmpeg
     mpv
+    nh
   ];
 
   fonts.packages = with pkgs; [
-    nerdfonts
+    (nerdfonts.override { fonts = [ "Hack" "HeavyData" "JetBrainsMono" ]; })
   ];
   
   programs.bash.shellAliases = {
     nixconf = "sudo nvim /etc/nixos";
   };
+  networking.firewall.allowedTCPPorts = [ 1000 ];
+  #networking.firewall.allowedUDPPorts = [ 22000 21027 ];
 
   system.stateVersion = "24.05";
 }

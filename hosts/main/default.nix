@@ -14,6 +14,7 @@
       ../../modules/system/terminal
       ../../modules/apps/base.nix
       ../../modules/privacy
+      ../../modules/hosting
     ];
 
   nix.settings.trusted-users = [
@@ -98,46 +99,32 @@
     enable = true;
     daemon.enable = true;
   };
-
-  #programs.gamescope.enable = true;
-  #programs.gamemode.enable = true;
-
-  #programs.steam = { #TODO
-  #  enable = true;
-  #  extraCompatPackages = [
-  #    pkgs.proton-ge-bin
-  #  ];
-  #  remotePlay.openFirewall = false;
-  #  dedicatedServer.openFirewall = true;
-  #  gamescopeSession = {
-  #    enable = true;
-  #    args = [
-  #    ];
-  #  };
-  #};
-  #programs.protontricks.enable = true;
-
-  modules.apps.games = {
-    steam = {
-      enable = true;
-      compat = true;
-      backup = true;
-      remotePlay.openFirewall = false;
-      dedicatedServer.openFirewall = true;
-      gamescopeSession.enable = true;
+  modules = {
+    apps = {
+      games = {
+        steam = {
+         enable = true;
+         compat = true;
+         backup = true;
+         remotePlay.openFirewall = false;
+         dedicatedServer.openFirewall = true;
+         gamescopeSession.enable = true;
+       };
+       minecraft.enable = true;
+       osu.enable = true;
+      };
+      office.enable = true;
+      git.enable = true;
+      cli.network.enable = true;
     };
-    minecraft.enable = true;
-    osu.enable = true;
+    privacy.vpn.enable = true;
+
+    hosting = {
+      netfligs.enable = true;
+      openFirewall = false;
+    };
   };
-  modules.apps.office.enable = true;
-
-  modules.apps.git = {
-    enable = true;
-  };
-  modules.apps.cli.network.enable = true;
-
-  modules.privacy.vpn.enable = true; # Enable mullvad-vpn
-
+  
   programs.zsh.enable = true;
 
   services.syncthing.enable = true;

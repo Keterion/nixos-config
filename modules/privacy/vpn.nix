@@ -10,7 +10,7 @@ in
   config = lib.mkIf cfg.vpn.enable {
     services.mullvad-vpn = {
       enable = true;
-      package = pkgs.unstable.mullvad-vpn;
+      package = pkgs.mullvad-vpn;
       enableExcludeWrapper = true;
     };
   };
