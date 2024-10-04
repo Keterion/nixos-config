@@ -74,7 +74,7 @@
 
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -122,6 +122,10 @@
     hosting = {
       netfligs.enable = true;
       openFirewall = false;
+      commonGroup = {
+	enable = true;
+	name = "server";
+      };
     };
   };
   

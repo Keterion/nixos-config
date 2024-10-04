@@ -12,9 +12,22 @@ in {
   options.modules.hosting = {
     netfligs.enable = lib.mkEnableOption "the full netfligs suite";
     openFirewall = lib.mkEnableOption "the open firewall for remote access";
+    commonGroup = {
+      enable = lib.mkOption {
+	type = lib.types.bool;
+	default = false;
+	description = "Whether to use a common group for the servers";
+      };
+      name = lib.mkOption {
+	type = lib.types.str;
+	default = "server";
+	description = "The group name to use for the shared group";
+      };
+    };
   };
-  config = lib.mkIf cfg.enable {
-    modules.services = {
+  config = {
+    users.groups.${cfg.commonGroup.name} = {};
+    modules.services = lib.mkIf cfg.netfligs.enable {
       bazarr.enable = true;
       sonarr = {
         enable = true;

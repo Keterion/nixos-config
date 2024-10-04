@@ -22,7 +22,7 @@ in {
     services.calibre-web = lib.mkIf cfg.web.enable {
       enable = true;
       openFirewall = config.modules.hosting.openFirewall;
-      group = "server";
+      group = lib.mkIf config.modules.hosting.commonGroup.enable config.modules.hosting.commonGroup.name;
       user = "calibre-web";
       options = {
 	calibreLibrary = cfg.web.libraryPath;

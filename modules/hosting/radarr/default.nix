@@ -8,8 +8,9 @@ in {
   config = lib.mkIf cfg.enable {
     services.radarr = {
       enable = true;
-      group = "server";
+      group = lib.mkIf config.modules.hosting.commonGroup.enable config.modules.hosting.commonGroup.name;
       openFirewall = config.modules.hosting.openFirewall;
       user = "radarr";
+    };
   };
 }

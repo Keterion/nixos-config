@@ -8,9 +8,10 @@ in {
   config = lib.mkIf cfg.enable {
     services.bazarr = {
       enable = true;
-      group = "server";
+      group = lib.mkIf config.modules.hosting.commonGroup.enable config.modules.hosting.commonGroup.name;
       listenPort = 6767;
       openFirewall = config.modules.hosting.openFirewall;
       user = "bazarr";
+    };
   };
 }
