@@ -13,7 +13,11 @@ in {
 	];
 	description = "Libraries for the server, each one has to be initialized";
       };
-      openFirewall = lib.mkEnableOption "the firewall rule for calibre-server";
+      openFirewall = lib.mkOption {
+        type = lib.types.bool;
+	default = config.modules.hosting.openFirewall;
+	description = "the firewall rule for calibre-server";
+      };
     };
     web = {
       enable = lib.mkEnableOption "the calibre-web service";

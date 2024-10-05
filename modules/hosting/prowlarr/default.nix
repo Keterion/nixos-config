@@ -8,7 +8,7 @@ in {
   config = lib.mkIf cfg.enable {
     services.prowlarr = {
       enable = true;
-      openFirewall = config.modules.hosting.openFirewall;
+      openFirewall = lib.mkDefault config.modules.hosting.openFirewall;
     };
   };
 }

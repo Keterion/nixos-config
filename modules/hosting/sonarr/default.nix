@@ -15,7 +15,7 @@ in {
       enable = true;
       dataDir = cfg.dataDir;
       group = lib.mkIf config.modules.hosting.commonGroup.enable config.modules.hosting.commonGroup.name;
-      openFirewall = config.modules.hosting.openFirewall;
+      openFirewall = lib.mkDefault config.modules.hosting.openFirewall;
       user = "sonarr";
     };
   };
