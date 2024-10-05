@@ -83,6 +83,8 @@
 	  "$windowMod, 9, movetoworkspace, 9"
 	  "$windowMod, 0, movetoworkspace, 10"
 
+	  "$windowMod, Space, togglefloating, active"
+
 	  ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+ -l 1.5"
 	  ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05- -l 1.5"
 	  ", XF86AudioMute, exec, pamixer -t"

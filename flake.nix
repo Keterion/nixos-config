@@ -23,7 +23,7 @@
   in
   {
   # TODO:
-  # Hosted services bookmarks
+  # Hosted services bookmarks -> global main user because firefox is homemanager not global
   # Hosted services webserver automatic
     nixosConfigurations = {
       laptop = nixpkgs.lib.nixosSystem {

@@ -138,7 +138,7 @@
 	libraryPath = "/mnt/priv/Media/Library";
       };
       server = {
-        libraryes = [ "/mnt/priv/Media/Library" ];
+        libraries = [ "/mnt/priv/Media/Library" ];
 	openFirewall = true;
       };
     };

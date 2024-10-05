@@ -5,5 +5,6 @@
     ./spotify
     ./cava
     ./neovim
+    ./nixvim
   ];
 }

@@ -80,8 +80,9 @@
     cava.enable = true;
 
     neovim = {
-      enable = true;
+      enable = false;
     };
+    nixvim.enable = true;
   };
 
   shells.zsh = {
