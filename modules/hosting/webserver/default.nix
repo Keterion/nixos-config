@@ -27,6 +27,6 @@ in {
       root = cfg.root;
       #configuration = {};
     };
-    networking.firewall.allowedTCPPorts = lib.optionals cfg.openFirewall [ ${cfg.port} ];
+    networking.firewall.allowedTCPPorts = lib.optionals cfg.openFirewall [ cfg.port ];
   };
 }
