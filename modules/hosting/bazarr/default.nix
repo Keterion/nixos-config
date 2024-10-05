@@ -10,7 +10,7 @@ in {
       enable = true;
       group = lib.mkIf config.modules.hosting.commonGroup.enable config.modules.hosting.commonGroup.name;
       listenPort = 6767;
-      openFirewall = config.modules.hosting.openFirewall;
+      openFirewall = lib.mkDefault config.modules.hosting.openFirewall;
       user = "bazarr";
     };
   };

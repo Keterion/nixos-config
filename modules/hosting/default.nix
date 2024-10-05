@@ -37,10 +37,13 @@ in {
       calibre = {
         enable = true;
 	web = {
-	  enable = true;
-	  libraryPath = null;
+	  enable = lib.mkDefault true;
 	  allowUploads = true;
 	  enableBookConversion = true;
+	};
+	server = {
+	  enable = lib.mkDefault true;
+	  openFirewall = lib.mkDefault cfg.openFirewall; # need to add this here because the calibre-server module doesn't have the setting
 	};
       };
     };

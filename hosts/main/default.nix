@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports =
@@ -89,7 +89,7 @@
   users.users.etherion = {
     isNormalUser = true;
     description = "Etherion";
-    extraGroups = [ "networkmanager" "wheel" "audio" ];
+    extraGroups = [ "networkmanager" "wheel" "audio" ] ++ lib.optionals config.modules.hosting.commonGroup.enable [ config.modules.hosting.commonGroup.name ];
     packages = with pkgs; [
       webcord-vencord
     ];
@@ -127,6 +127,15 @@
 	name = "server";
       };
     };
+
+    services.calibre.web = {
+      enable = true;
+      libraryPath = "/mnt/priv/Media/Library";
+    };
+    services.calibre.server.libraries = [
+      "/mnt/priv/Media/Library"
+    ];
+    services.calibre.server.openFirewall = true;
   };
   
   programs.zsh.enable = true;
@@ -143,6 +152,11 @@
   boot.initrd.luks.devices.HDD.device = "/dev/disk/by-uuid/0161cbc2-6ac8-42b4-874e-74c95c494aa9";
   fileSystems."/mnt/HDD" = {
     device = "/dev/mapper/HDD";
+  };
+
+  boot.initrd.luks.devices.Priv.device = "/dev/disk/by-uuid/ef533879-a0c5-456a-8a91-db761e21ed63";
+  fileSystems."/mnt/priv" = {
+    device = "/dev/mapper/Priv";
   };
   networking.firewall.allowedTCPPorts = [ 45869 ];
 }
