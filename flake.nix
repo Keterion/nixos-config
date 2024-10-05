@@ -22,6 +22,9 @@
     overlays = import ./overlays.nix {inherit inputs;};
   in
   {
+  # TODO:
+  # Hosted services bookmarks
+  # Hosted services webserver automatic
     nixosConfigurations = {
       laptop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";

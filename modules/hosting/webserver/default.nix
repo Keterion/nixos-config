@@ -23,10 +23,12 @@ in {
   config = lib.mkIf cfg.enable {
     services.static-web-server = {
       enable = true;
-      listen = "[::]:${cfg.port}";
+      listen = lib.strings.concatStrings ["[::]:" "${toString cfg.port}"];
       root = cfg.root;
       #configuration = {};
     };
-    networking.firewall.allowedTCPPorts = lib.optionals cfg.openFirewall [ cfg.port ];
+    networking.firewall.allowedTCPPorts = lib.optionals cfg.openFirewall [ 
+      "${cfg.port}"
+    ];
   };
 }

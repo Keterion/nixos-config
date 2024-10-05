@@ -126,16 +126,22 @@
 	enable = true;
 	name = "server";
       };
+      webserver = {
+        enable = false;
+	root = "/home/etherion/Documents/dev/html/selfhosted"; #TODO
+      };
     };
-
-    services.calibre.web = {
-      enable = true;
-      libraryPath = "/mnt/priv/Media/Library";
+    
+    services.calibre = {
+      web = {
+        enable = true;
+	libraryPath = "/mnt/priv/Media/Library";
+      };
+      server = {
+        libraryes = [ "/mnt/priv/Media/Library" ];
+	openFirewall = true;
+      };
     };
-    services.calibre.server.libraries = [
-      "/mnt/priv/Media/Library"
-    ];
-    services.calibre.server.openFirewall = true;
   };
   
   programs.zsh.enable = true;
