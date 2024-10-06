@@ -15,6 +15,11 @@
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, nur, nixpkgs-stable, arkenfox, spicetify-nix, ... }@inputs: 
@@ -25,6 +30,7 @@
   # TODO:
   # Hosted services bookmarks -> global main user because firefox is homemanager not global
   # Hosted services webserver automatic
+  # Programming language toggle -> nixvim lsp installation and stuff
     nixosConfigurations = {
       laptop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";

@@ -5,6 +5,7 @@
     ../../modules/system/shells/zsh.nix
     ../../modules/apps/hm.nix
     inputs.arkenfox.hmModules.arkenfox
+    inputs.nixvim.homeManagerModules.nixvim
   ];
   home.username = "etherion";
   home.homeDirectory = lib.mkForce "/home/etherion/";
