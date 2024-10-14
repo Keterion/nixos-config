@@ -1,8 +1,11 @@
-{ config, pkgs, lib, modulesPath, ... }: {
+{ config, pkgs, lib, inputs, ... }: {
   imports = [
     ../../modules/system/runner.nix
     ../../modules/system/bar/waybar.nix
     ../../modules/system/shells/zsh.nix
+    ../../modules/apps/hm.nix
+    inputs.arkenfox.hmModules.arkenfox
+    inputs.nixvim.homeManagerModules.nixvim
   ];
   home.username = "etherion";
   home.homeDirectory = lib.mkForce "/home/etherion/";
@@ -20,7 +23,7 @@
     git
     obsidian
     qimgv
-    aseprite
+    #aseprite
     wluma
     strawberry-qt6
     krita
@@ -73,6 +76,21 @@
 
   system.runner.tofi.enable = true;
 
+  modules.apps.firefox = {
+    enable = true;
+    arkenfox = false;
+    devEdition = false;
+  };
+  
+  modules.apps = {
+    spotify = {
+      enable = false;
+    };
+    spicetify.enable = false;
+    cava.enable = true;
+    neovim.enable = false;
+    nixvim.enable = true;
+  };  
 
   home.stateVersion = "24.05";
   programs.home-manager.enable = true;

@@ -26,6 +26,10 @@
 	    "ELECTRON_OZONE_PLATFORM_HINT,auto" # Flickering Electron/CEF apps
           ];
         };
+	input = {
+	  kb_layout = osConfig.vars.globals.keyboard.layout;
+	  kb_variant = osConfig.vars.globals.keyboard.variant;
+	};
 	decoration = {
 	};
 	cursor.no_hardware_cursors = true;

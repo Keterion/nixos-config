@@ -1,12 +1,13 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, lib, ... }: {
   imports = [
     ../modules/privacy
+    ../vars/globals
   ];
 
-  modules.privacy.blocky.enable = true;
+  modules.privacy.blocky.enable = lib.mkDefault true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nix.gc = {
+  nix.gc = lib.mkDefault {
     automatic = true;
     dates = "weekly";
     options = "--delete-older-than 7d";
@@ -29,9 +30,9 @@
     LC_TIME = "de_DE.UTF-8";
   };
 
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
+  services.xserver = {
+    xkb.layout = config.vars.globals.keyboard.layout;
+    xkbVariant = config.vars.globals.keyboard.variant;
   };
 
   services.printing.enable = true;

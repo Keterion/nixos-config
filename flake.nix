@@ -35,6 +35,7 @@
       laptop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
 	modules = [
+	  { nixpkgs.overlays = [ nur.overlay overlays.stable-packages ]; }
 	  ./hosts/common.nix
 	  ./hosts/laptop/default.nix
 
