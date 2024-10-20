@@ -112,6 +112,7 @@
        };
        minecraft.enable = true;
        osu.enable = true;
+       lutris.enable = true;
       };
       office.enable = true;
       git.enable = true;
