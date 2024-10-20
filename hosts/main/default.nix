@@ -112,7 +112,8 @@
        };
        minecraft.enable = true;
        osu.enable = true;
-       lutris.enable = true;
+       lutris.enable = false;
+       epicgames.enable = true;
       };
       office.enable = true;
       git.enable = true;

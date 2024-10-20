@@ -8,6 +8,7 @@ in
     ./minecraft.nix
     ./osu.nix
     ./lutris.nix
+    ./epicgames.nix
   ];
 
   options.modules.apps.games.enable = lib.mkEnableOption "all gaming modules";
@@ -24,6 +25,7 @@ in
       minecraft.enable = true;
       osu.enable = true;
       lutris.enable = true;
+      epicgames.enable = true;
     };
   };
 }
