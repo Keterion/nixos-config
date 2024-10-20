@@ -28,6 +28,11 @@ in {
       };
       allowUploads = lib.mkEnableOption "allow books to be uploaded via Calibre-Web UI";
       enableBookConversion = lib.mkEnableOption "configure path to the calibre's exook-convert in the DB";
+      openFirewall = lib.mkOption {
+        type = lib.types.bool;
+	default = config.modules.hosting.openFirewall;
+	description = "Whether to open ports for calibre-web";
+      };
     };
   };
   config = {
@@ -36,7 +41,8 @@ in {
     ];
     services.calibre-web = lib.mkIf cfg.web.enable {
       enable = true;
-      openFirewall = lib.mkDefault config.modules.hosting.openFirewall;
+      #openFirewall = lib.mkDefault cfg.web.openFirewall;
+      openFirewall = true;
       group = lib.mkIf config.modules.hosting.commonGroup.enable config.modules.hosting.commonGroup.name;
       user = "calibre-web";
       options = {
@@ -51,8 +57,8 @@ in {
       user = "calibre-server";
       libraries = cfg.server.libraries;
     };
-    networking.firewall = lib.mkIf cfg.server.openFirewall {
-      allowedTCPPorts = [ config.services.calibre-server.port ];
+    networking.firewall = {
+      allowedTCPPorts = lib.optionals cfg.server.openFirewall [ config.services.calibre-server.port ] ++ [ 8083 ]; # calibre-server doesn't have an openFirewall setting
     };
   };
 }

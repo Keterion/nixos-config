@@ -136,6 +136,7 @@
       web = {
         enable = true;
 	libraryPath = "/mnt/priv/Media/Library";
+	openFirewall = true;
       };
       server = {
         libraries = [ "/mnt/priv/Media/Library" ];
