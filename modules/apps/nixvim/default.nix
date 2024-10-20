@@ -26,26 +26,33 @@ in {
 	  mode = "n";
 	}
 	{
-	  action = "cmp.mapping.scroll_docs(-4)";
-	  key = "<C-b>";
+	  key = "<C-j>";
+	  action = "cmp.mapping.select_next_item()";
 	}
-	{
-	  action = "cmp.mapping.scroll_docs(4)";
-	  key = "<C-f>";
+        {
+	  key = "<C-k>";
+	  action = "cmp.mapping.select_prev_item()";
 	}
-	{
-	  action = "cmp.mapping.complete()";
-	  key = "<C-a>";
-	}
-	{
-	  action = "cmp.mapping.abort()";
+        {
 	  key = "<C-e>";
+	  action = "cmp.mapping.abort()";
 	}
-	{
-	  action = "cmp.mapping.confirm({select = true})";
+        {
+	  key = "<C-b>";
+	  action = "cmp.mapping.scroll_docs(-4)";
+	}
+        {
+	  key = "<C-f>";
+	  action = "cmp.mapping.scroll_docs(4)";
+	}
+        {
+	  key = "<C-Space>";
+	  action = "cmp.mapping.complete()";
+	}
+        {
 	  key = "<CR>";
+	  action = "cmp.mapping.confirm({ select = true })";
 	}
-
 	{
 	  action = "vim.lsp.buf.rename";
 	  key = "<leader>rn";
@@ -148,6 +155,11 @@ in {
 	    ];
 	  };
 	};
+
+	luasnip = {
+	  enable = true;
+	};
+
 	cmp = {
 	  enable = true;
 	  autoEnableSources = true;

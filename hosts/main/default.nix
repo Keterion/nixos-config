@@ -25,6 +25,16 @@
   #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   
   vars.theming.colorscheme = "tokyonight-moon";
+  vars.globals = {
+    defaultUser = {
+      name = "etherion";
+      extraGroups = [] ++ lib.optionals config.modules.hosting.commonGroup.enable [ config.modules.hosting.commonGroup.name ];
+    };
+    keyboard = {
+      layout = "us";
+      variant = "";
+    };
+  };
 
   #hardware.bluetooth = {
   #  enable = true; # enable Bluetooth support
@@ -85,16 +95,6 @@
   };
   services.printing.drivers = [pkgs.hplip];
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.etherion = {
-    isNormalUser = true;
-    description = "Etherion";
-    extraGroups = [ "networkmanager" "wheel" "audio" ] ++ lib.optionals config.modules.hosting.commonGroup.enable [ config.modules.hosting.commonGroup.name ];
-    packages = with pkgs; [
-      webcord-vencord
-    ];
-    shell = pkgs.zsh;
-  };
   hardware.opentabletdriver = {
     enable = true;
     daemon.enable = true;

@@ -17,7 +17,10 @@
 
   vars.theming.colorscheme = "gruvbox-dark";
   vars.globals = {
-    defaultUser = "etherion";
+    defaultUser = {
+      name = "etherion";
+      extraGroups = [ "adbusers" ];
+    };
     keyboard = {
       layout = "us";
       variant = "dvorak,";
@@ -60,8 +63,6 @@
   programs.zsh.enable = true;
   #programs.adb.enable = true;
 
-  services.xserver.xkbVariant = "";
-
   services.printing.enable = true;
   services.avahi = {
     enable = true;
@@ -70,14 +71,6 @@
   };
   services.printing.drivers = [ pkgs.hplip ];
 
-  users.users.${config.vars.globals.defaultUser} = {
-    isNormalUser = true;
-    description = "Etherion";
-    extraGroups = [ "networkmanager" "wheel" "audio" "adbusers" ];
-    packages = with pkgs; [];
-    shell = pkgs.zsh;
-  };
-  
   modules = {
     apps = {
       office.enable = true;

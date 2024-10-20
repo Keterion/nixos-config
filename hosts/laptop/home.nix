@@ -12,7 +12,7 @@
 
   home.packages = with pkgs; [
     android-tools
-
+    webcord-vencord
     #unciv
     keepassxc
     #rustup

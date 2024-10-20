@@ -4,7 +4,7 @@
   };
 
   config = lib.mkIf config.modules.apps.games.minecraft.enable {
-    home-manager.users."etherion" = {
+    home-manager.users.${config.vars.globals.defaultUser.name} = {
       home.packages = [
         pkgs.prismlauncher
 	pkgs.jdk17

@@ -32,9 +32,15 @@
 
   services.xserver = {
     xkb.layout = config.vars.globals.keyboard.layout;
-    xkbVariant = config.vars.globals.keyboard.variant;
+    xkb.variant = config.vars.globals.keyboard.variant;
   };
-
+  users.users.${config.vars.globals.defaultUser.name} = {
+    isNormalUser = true;
+    description = "Etherion";
+    extraGroups = [ "networkmanager" "wheel" "audio" ] ++ config.vars.globals.defaultUser.extraGroups;
+    packages = with pkgs; [];
+    shell = pkgs.zsh;
+  };
   services.printing.enable = true;
 
   hardware.pulseaudio.enable = false;
