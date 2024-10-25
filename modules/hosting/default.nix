@@ -36,7 +36,7 @@ in {
       radarr.enable = true;
       prowlarr.enable = true;
       calibre = {
-        enable = true;
+        enable = lib.mkDefault true;
 	web = {
 	  enable = lib.mkDefault true;
 	  allowUploads = true;

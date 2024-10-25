@@ -112,8 +112,8 @@
        };
        minecraft.enable = true;
        osu.enable = true;
-       lutris.enable = false;
-       epicgames.enable = true;
+       lutris.enable = true;
+       epicgames.enable = false;
       };
       office.enable = true;
       git.enable = true;
@@ -135,12 +135,14 @@
     };
     
     services.calibre = {
+      enable = false;
       web = {
-        enable = true;
+        enable = false;
 	libraryPath = "/mnt/priv/Media/Library";
 	openFirewall = true;
       };
       server = {
+        enable = false;
         libraries = [ "/mnt/priv/Media/Library" ];
 	openFirewall = true;
       };
@@ -157,7 +159,8 @@
     device = "dev/disk/by-uuid/3212add8-8af3-46c6-a739-cfc018bd72ac";
     fsType = "ext4";
   };
-
+	
+  boot.initrd.systemd.enable = true;
   boot.initrd.luks.devices.HDD.device = "/dev/disk/by-uuid/0161cbc2-6ac8-42b4-874e-74c95c494aa9";
   fileSystems."/mnt/HDD" = {
     device = "/dev/mapper/HDD";
