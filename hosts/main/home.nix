@@ -11,18 +11,15 @@
   home.homeDirectory = lib.mkForce "/home/etherion/";
   home.packages = with pkgs; [
     #android-tools
-
+    blender
+    webcord-vencord
     keepassxc
-    #rustup
-    #cargo
-    #rust-analyzer
     spotdl
     yt-dlp
     git
     obsidian
     qimgv
     #aseprite
-    #wluma
     strawberry-qt6
     krita
     qbittorrent
@@ -36,6 +33,7 @@
     zip
     xz
     unzip
+
     ripgrep
     #network
     mtr

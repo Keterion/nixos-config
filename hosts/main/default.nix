@@ -10,6 +10,7 @@
       ./hardware-configuration.nix
       ../../modules/preconf/syncthing.nix
       ../../modules/system/wm
+      ../../modules/system/tools
       ../../vars/theming
       ../../modules/system/terminal
       ../../modules/apps/base.nix
@@ -35,6 +36,7 @@
       variant = "";
     };
   };
+
 
   #hardware.bluetooth = {
   #  enable = true; # enable Bluetooth support
@@ -67,6 +69,10 @@
   };
 
   modules.system.terminal.kitty.enable = true;
+  modules.system.tools.nh = {
+    enable = true;
+    clean = true;
+  };
 
   services.xserver.videoDrivers = ["nvidia"];
 

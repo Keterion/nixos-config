@@ -24,7 +24,7 @@ in {
 	highlight = "underline";
       };
       enableCompletion = true;
-      shellAliases = cfg.aliases;
+      shellAliases = cfg.aliases // lib.attrsets.optionalAttrs cfg.zoxide.enable { "cd" = "z"; };
       history.ignoreDups = true;
       history.ignoreSpace = true;
       historySubstringSearch = {

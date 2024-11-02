@@ -7,11 +7,11 @@
   modules.privacy.blocky.enable = lib.mkDefault true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nix.gc = lib.mkDefault {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 7d";
-  };
+  #nix.gc = lib.mkDefault {
+  #  automatic = true;
+  #  dates = "weekly";
+  #  options = "--delete-older-than 7d";
+  #};
   
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -36,9 +36,9 @@
   };
   users.users.${config.vars.globals.defaultUser.name} = {
     isNormalUser = true;
-    description = "Etherion";
+    description = "Default user";
     extraGroups = [ "networkmanager" "wheel" "audio" ] ++ config.vars.globals.defaultUser.extraGroups;
-    packages = with pkgs; [];
+    packages = [];
     shell = pkgs.zsh;
   };
   services.printing.enable = true;

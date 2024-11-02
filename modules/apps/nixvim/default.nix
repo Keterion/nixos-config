@@ -6,6 +6,9 @@ in {
     enable = lib.mkEnableOption "the nixvim editor";
   };
   config = lib.mkIf cfg.enable {
+    home.packages = [
+      pkgs.nixd
+    ];
     programs.nixvim = {
       enable = true;
 
@@ -102,8 +105,9 @@ in {
 	lsp = {
 	  enable = true;
 	  servers = {
-	    typst-lsp.enable = true;
-	    rust-analyzer.enable = true;
+	    typst_lsp.enable = true;
+	    rust_analyzer.enable = true;
+	    nixd.enable = true;
 	  };
 	};
 
@@ -168,6 +172,7 @@ in {
 	    { name = "path"; }
 	    { name = "buffer"; }
 	    { name = "luasnip"; }
+	    { name = "nixd"; }
 	  ];
 	  settings.snippet.expand = ''
 	    function(args)
