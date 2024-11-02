@@ -31,6 +31,7 @@
   # Hosted services bookmarks -> global main user because firefox is homemanager not global
   # Hosted services webserver automatic
   # Programming language toggle -> nixvim lsp installation and stuff
+  # global variable for the modules basepath
     nixosConfigurations = {
       laptop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";

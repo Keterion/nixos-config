@@ -11,7 +11,7 @@ in {
       enable = true;
       clean.enable = cfg.clean;
       clean.extraArgs = "--keep-since 7d --keep 5";
-      flake = "${config.vars.globals.defaultUser}/etc/nixos";
+      flake = "${config.users.users.${config.vars.globals.defaultUser.name}.home}/etc/nixos";
     };
   };
 }
