@@ -1,8 +1,8 @@
 { config, lib, inputs, pkgs, vars, ... }: {
   imports = [
-    ../../modules/system/runner.nix
+    ../../modules/system/runner
     ../../modules/system/bar/waybar.nix
-    ../../modules/system/shells/zsh.nix
+    ../../modules/system/shells
     ../../modules/apps/hm.nix
     inputs.arkenfox.hmModules.arkenfox
     inputs.nixvim.homeManagerModules.nixvim
@@ -84,7 +84,7 @@
     nixvim.enable = true;
   };
 
-  shells.zsh = {
+  modules.system.shell.zsh = {
     enable = true;
     aliases = {
       ll = "eza -lao --time-style '+%Y%m%d %H:%M:%S' --icons=auto --color=always";

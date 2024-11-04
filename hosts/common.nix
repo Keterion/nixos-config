@@ -36,7 +36,7 @@
   };
   users.users.${config.vars.globals.defaultUser.name} = {
     isNormalUser = true;
-    description = "Default user";
+    description = "${config.vars.globals.defaultUser.name}";
     extraGroups = [ "networkmanager" "wheel" "audio" ] ++ config.vars.globals.defaultUser.extraGroups;
     packages = [];
     shell = pkgs.zsh;

@@ -4,7 +4,7 @@ let
   cfg = config.system.runner;
 in {
   imports = [
-    ./runners/tofi_settings.nix
+    ./tofi_settings.nix
   ];
   options.system.runner = {
     tofi = {

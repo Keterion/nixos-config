@@ -1,7 +1,7 @@
 { lib, config, pkgs, ... }: 
 with lib;
 let
-  cfg = config.shells.zsh;
+  cfg = config.modules.system.shell.zsh;
 in {
   options.shells.zsh = {
     enable = mkEnableOption "base zsh";
@@ -11,9 +11,6 @@ in {
       example = {ll = "ls -la";};
       description = "aliases for the zsh shell";
     };
-    eza.enable = mkEnableOption "eza";
-    fzf.enable = mkEnableOption "fzf";
-    zoxide.enable = mkEnableOption "zoxide";
   };
 
   config = mkIf cfg.enable {
@@ -24,7 +21,7 @@ in {
 	highlight = "underline";
       };
       enableCompletion = true;
-      shellAliases = cfg.aliases // lib.attrsets.optionalAttrs cfg.zoxide.enable { "cd" = "z"; };
+      shellAliases = cfg.aliases;
       history.ignoreDups = true;
       history.ignoreSpace = true;
       historySubstringSearch = {
@@ -32,19 +29,6 @@ in {
 	searchDownKey = "\\eOB";
 	searchUpKey = "\\eOA";
       };
-    };
-
-    programs.eza = mkIf cfg.eza.enable {
-      enable = true;
-      enableZshIntegration = true;
-    };
-    programs.fzf = mkIf cfg.fzf.enable {
-      enable = true;
-      enableZshIntegration = true;
-    };
-    programs.zoxide = mkIf cfg.zoxide.enable {
-      enable = true;
-      enableZshIntegration = true;
     };
   };
 }

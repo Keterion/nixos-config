@@ -13,5 +13,8 @@ in {
       clean.extraArgs = "--keep-since 7d --keep 5";
       flake = "${config.users.users.${config.vars.globals.defaultUser.name}.home}/etc/nixos";
     };
+    environment.sessionVariables = {
+      FLAKE = "${config.users.users.${config.vars.globals.defaultUser.name}.home}/etc/nixos";
+    };
   };
 }

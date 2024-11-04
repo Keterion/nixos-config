@@ -22,7 +22,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, nur, nixpkgs-stable, arkenfox, spicetify-nix, ... }@inputs: 
+  outputs = { nixpkgs, home-manager, nur, ... }@inputs: 
   let
     overlays = import ./overlays.nix {inherit inputs;};
   in
