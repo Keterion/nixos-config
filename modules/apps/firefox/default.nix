@@ -1,17 +1,25 @@
-{ pkgs, config, lib, ... }: with lib;
+{ pkgs, config, lib, ... }: let
+  cfg = config.modules.apps.firefox;
+in
+with lib;
 { 
   options.modules.apps.firefox = {
     enable = mkEnableOption "the firefox browser";
-    devEdition = mkEnableOption "the developer edition";
+    package = lib.mkOption {
+      type = lib.types.package;
+      default = pkgs.firefox;
+      description = "Package to use for firefox";
+    };
     arkenfox = mkEnableOption "an arkenfox profile";
   };
 
-  config = lib.mkIf config.modules.apps.firefox.enable {
+  config = lib.mkIf cfg.enable {
     programs.firefox = {
       enable = true;
+      package = cfg.package;
 
       arkenfox = {
-	enable = config.modules.apps.firefox.arkenfox;
+	enable = cfg.arkenfox;
 	version = "128.0";
       };
       profiles = {

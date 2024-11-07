@@ -29,7 +29,7 @@ in {
   config = {
     users.groups.${cfg.commonGroup.name} = {};
     modules.services = lib.mkIf cfg.netfligs.enable {
-      bazarr.enable = true;
+      bazarr.enable = lib.mkDefault true;
       sonarr = {
         enable = true;
       };

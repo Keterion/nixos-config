@@ -2,7 +2,7 @@
   imports = [
     ../../modules/system/runner
     ../../modules/system/bar/waybar.nix
-    ../../modules/system/shells
+    ../../modules/system/shell
     ../../modules/apps/hm.nix
     inputs.arkenfox.hmModules.arkenfox
     inputs.nixvim.homeManagerModules.nixvim
@@ -53,7 +53,7 @@
     tree
 
     #nix
-    nix-output-monitor #nom
+    #nix-output-monitor #nom
     #productivity
     bottom
     iotop
@@ -66,7 +66,7 @@
   modules.apps.firefox = {
     enable = true;
     arkenfox = true;
-    devEdition = true;
+    package = pkgs.firefox;
   };
   modules.apps = {
     spotify = {
@@ -84,16 +84,20 @@
     nixvim.enable = true;
   };
 
-  modules.system.shell.zsh = {
-    enable = true;
-    aliases = {
-      ll = "eza -lao --time-style '+%Y%m%d %H:%M:%S' --icons=auto --color=always";
-      rotate = "sudo nixos-rebuild switch --show-trace --print-build-logs --verbose --flake /etc/nixos\#main";
-      nixconf = "sudo nvim /etc/nixos";
+  system.shell = {
+    zsh = {
+      enable = true;
+      aliases = {
+	ll = "eza -lao --time-style '+%Y%m%d %H:%M:%S' --icons=auto --color=always";
+	rotate = "sudo nixos-rebuild switch --show-trace --print-build-logs --verbose --flake /etc/nixos\#main";
+	nixconf = "sudo nvim /etc/nixos";
+      };
     };
+    nushell.enable = true;
     eza.enable = true;
     fzf.enable = true;
     zoxide.enable = true;
+    prompt.starship.enable = true;
   };
 
   system.runner.tofi.enable = true;

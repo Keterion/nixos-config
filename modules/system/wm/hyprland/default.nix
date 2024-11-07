@@ -1,12 +1,12 @@
 { pkgs, config, lib, ...}:
 {
-  options.modules.system.wm.hyprland = {
+  options.system.wm.hyprland = {
     enable = lib.mkEnableOption "hyprland and utils";
     autologin = lib.mkEnableOption "automatic login into hyprland";
   };
 
-  config = lib.mkIf config.modules.system.wm.hyprland.enable {
-    services.displayManager = lib.mkIf config.modules.system.wm.hyprland.autologin {
+  config = lib.mkIf config.system.wm.hyprland.enable {
+    services.displayManager = lib.mkIf config.system.wm.hyprland.autologin {
       autoLogin = {
         enable = true;
         user = "etherion";

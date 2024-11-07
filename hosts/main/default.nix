@@ -61,15 +61,15 @@
   #};
   services.xserver.displayManager.lightdm.enable = true;
   #services.desktopManager.plasma6.enable = true;
-  modules.system.wm.plasma.enable = true;
+  system.wm.plasma.enable = true;
 
-  modules.system.wm.hyprland = {
+  system.wm.hyprland = {
     enable = true;
     autologin = true;
   };
 
-  modules.system.terminal.kitty.enable = true;
-  modules.system.tools.nh = {
+  system.terminal.kitty.enable = true;
+  system.tools.nh = {
     enable = true;
     clean = true;
   };
@@ -153,6 +153,7 @@
 	openFirewall = true;
       };
     };
+    services.bazarr.enable = false;
   };
   
   programs.zsh.enable = true;

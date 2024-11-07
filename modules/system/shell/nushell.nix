@@ -1,8 +1,8 @@
 { lib, pkgs, config, ...}:
 let
-  cfg = config.modules.system.shell.nu;
+  cfg = config.system.shell.nushell;
 in {
-  options.modules.system.shell.nu = {
+  options.system.shell.nushell = {
     enable = lib.mkEnableOption "the nu shell";
     eza.enable = lib.mkEnableOption "eza";
     fzf.enable = lib.mkEnableOption "fzf";

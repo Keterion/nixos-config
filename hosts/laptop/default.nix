@@ -33,11 +33,12 @@
   #  wayland.enable = true;
   #};
   services.xserver.displayManager.lightdm.enable = true;
-  modules.system.wm.plasma.enable = true;
-  modules.system.wm.hyprland = {
+  system.wm.plasma.enable = true;
+  system.wm.hyprland = {
     enable = true;
     autologin = true;
   };
+  system.terminal.kitty.enable = true;
 
   services.power-profiles-daemon.enable = false;
   services.thermald.enable = true;

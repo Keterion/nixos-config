@@ -1,9 +1,9 @@
 { lib, config, pkgs, ... }: 
 with lib;
 let
-  cfg = config.modules.system.shell.zsh;
+  cfg = config.system.shell.zsh;
 in {
-  options.shells.zsh = {
+  options.system.shell.zsh = {
     enable = mkEnableOption "base zsh";
     aliases = mkOption {
       type = types.attrsOf types.str;

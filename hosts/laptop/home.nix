@@ -62,16 +62,13 @@
   ];
   #programs.steam.enable = true; doesn't work, put elsewhere
 
-  shells.zsh = {
+  modules.system.shell.zsh = {
     enable = true;
     aliases = {
       ll = "eza -lao --time-style '+%Y%m%d %H:%M:%S' --icons=auto --color=always";
       rotate = "sudo nixos-rebuild switch --show-trace --print-build-logs --verbose --flake /etc/nixos\#laptop";
       nixconf = "sudo nvim /etc/nixos";
     };
-    eza.enable = true;
-    fzf.enable = true;
-    zoxide.enable = true;
   };
 
   system.runner.tofi.enable = true;

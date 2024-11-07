@@ -1,12 +1,13 @@
 { lib, config, ...}:
 let
-  cfg = config.modules.system.shell;
+  cfg = config.system.shell;
 in {
   imports = [
     ./zsh.nix
     ./nushell.nix
+    ./prompt
   ];
-  options.modules.system.shell = {
+  options.system.shell = {
     eza.enable = lib.mkEnableOption "eza integration for enabled shells";
     fzf.enable = lib.mkEnableOption "fzf integration for enabled shells";
     zoxide.enable = lib.mkEnableOption "zoxide integration for enabled shells";

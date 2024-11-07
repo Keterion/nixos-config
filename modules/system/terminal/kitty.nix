@@ -1,14 +1,14 @@
 { lib, pkgs, config, ...}:
 with lib;
 let
-  cfg = config.modules.system.terminal;
+  cfg = config.system.terminal;
 in {
-  options.modules.system.terminal = {
+  options.system.terminal = {
     kitty.enable = mkEnableOption "the Kitty terminal";
   };
 
   config = {
-    home-manager.users."etherion" = {
+    home-manager.users.${config.vars.globals.defaultUser.name} = {
       programs.kitty = mkIf cfg.kitty.enable {
         enable = true;
         keybindings = {

@@ -1,8 +1,8 @@
 { lib, config, ...}:
 let
-  cfg = config.modules.system.tools.nh;
+  cfg = config.system.tools.nh;
 in {
-  options.modules.system.tools.nh = {
+  options.system.tools.nh = {
     enable = lib.mkEnableOption "the nh tool";
     clean = lib.mkEnableOption "automatic removal of older versions";
   };
