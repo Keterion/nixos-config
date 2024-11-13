@@ -7,7 +7,9 @@
       example = false;
     };
     extensions = lib.mkOption {
-      type = lib.types.listOf lib.types.enum["fakenews" "gambling" "porn" "social"];
+      type = lib.types.listOf (
+	lib.types.enum["fakenews" "gambling" "porn" "social"]
+      );
       description = "Additional sites to block";
       default = [];
     };
