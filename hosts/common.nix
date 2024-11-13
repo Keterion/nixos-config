@@ -4,8 +4,6 @@
     ../vars/globals
   ];
 
-  modules.privacy.blocky.enable = lib.mkDefault true;
-
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   #nix.gc = lib.mkDefault {
   #  automatic = true;

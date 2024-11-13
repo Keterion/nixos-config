@@ -9,6 +9,7 @@ in {
     ./prowlarr
     ./calibre
     ./webserver
+    ./dns
   ];
   options.modules.hosting = {
     netfligs.enable = lib.mkEnableOption "the full netfligs suite";

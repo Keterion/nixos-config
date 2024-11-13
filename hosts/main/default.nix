@@ -22,6 +22,7 @@
     "@wheel"
   ];
 
+
   networking.hostName = "main"; # Define your hostname.
   #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   
@@ -125,7 +126,9 @@
       git.enable = true;
       cli.network.enable = true;
     };
-    privacy.vpn.enable = true;
+    privacy = {
+      vpn.enable = true;
+    };
 
     hosting = {
       netfligs.enable = true;
@@ -141,14 +144,14 @@
     };
     
     services.calibre = {
-      enable = false;
+      enable = true;
       web = {
         enable = false;
 	libraryPath = "/mnt/priv/Media/Library";
 	openFirewall = true;
       };
       server = {
-        enable = false;
+        enable = true;
         libraries = [ "/mnt/priv/Media/Library" ];
 	openFirewall = true;
       };

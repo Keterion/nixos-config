@@ -1,9 +1,9 @@
 { lib, pkgs, config, ... }:
 let
-  cfg = config.modules.privacy;
+  cfg = config.modules.services;
 in
 {
-  options.modules.privacy.blocky = {
+  options.modules.services.blocky = {
     enable = lib.mkEnableOption "blocky, a fast and lightweight DNS proxy as ad-blocker for local network with many features";
   };
   config = lib.mkIf cfg.blocky.enable {
@@ -13,6 +13,8 @@ in
       settings = {
         upstreams.groups.default = [
 	  "9.9.9.9"
+	  "149.112.112.112"
+	  "https://one.one.one.one/dns-query"
 	];
 	blocking = {
 	  blackLists = {
