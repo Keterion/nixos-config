@@ -2,6 +2,7 @@
   imports = [
     ../modules/privacy
     ../vars/globals
+    ../modules/development
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
