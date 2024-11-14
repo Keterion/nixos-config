@@ -16,6 +16,7 @@
       ../../modules/apps/base.nix
       ../../modules/privacy
       ../../modules/hosting
+      ../../modules/development
     ];
 
   nix.settings.trusted-users = [
@@ -126,6 +127,13 @@
       git.enable = true;
       cli.network.enable = true;
     };
+  
+    development = {
+      rust.enable = true;
+      nix.enable = true;
+      typst.enable = true;
+    };
+
     privacy = {
       vpn.enable = true;
     };

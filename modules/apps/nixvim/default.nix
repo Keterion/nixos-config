@@ -104,11 +104,6 @@ in {
       plugins = {
 	lsp = {
 	  enable = true;
-	  servers = {
-	    typst_lsp.enable = true;
-	    rust_analyzer.enable = true;
-	    nixd.enable = true;
-	  };
 	};
 
 
@@ -140,8 +135,6 @@ in {
 	  grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
 	    bash
 	    markdown
-	    nix
-	    rust
 	  ];
 	  folding = false;
 
@@ -172,7 +165,6 @@ in {
 	    { name = "path"; }
 	    { name = "buffer"; }
 	    { name = "luasnip"; }
-	    { name = "nixd"; }
 	  ];
 	  settings.snippet.expand = ''
 	    function(args)

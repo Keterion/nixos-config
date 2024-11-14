@@ -6,15 +6,26 @@ in {
     enable = lib.mkEnableOption "nix development";
   };
   config = lib.mkIf cfg.nix.enable {
-    environment.systemPackages = lib.optionals cfg.influences.systemPackages.enable [
-      pkgs.nixd
+    environment.systemPackages = lib.optionals (cfg.influences.installPackages.enable && cfg.influences.editor.lsp.enable) [
+      pkgs.nixd # required for nix lsp to work
     ];
-
-    home-manager.users.${config.vars.globals.defaultUser.name}.home.programs.nixvim = lib.mkIf config.modules.apps.nixvim.enable {
-      plugins = {
-        lsp.servers.nixd.enable = true;
-	treesitter.grammarPackages = [pkgs.vimPlugins.nvim-treesitter.builtGrammars.bash];
-	cmp.settings.sources = [{name="nixd";}];
+    
+    # installPackages x
+    # editor:
+    # - lsp x
+    # - highlight x
+    # - formatting 
+    # - autocomplete x
+    home-manager.users.${config.vars.globals.defaultUser.name}.home.programs = {
+      nixvim = lib.mkIf cfg.influences.editor.enable {
+        plugins = {
+          lsp.servers.nixd.enable = cfg.influences.editor.lsp.enable;
+	  lsp-format.enable = cfg.influences.editor.formatting.enable;
+          treesitter.grammarPackages = lib.optionals cfg.influences.editor.highlight.enable [
+	    pkgs.vimPlugins.nvim-treesitter.builtGrammars.nix
+	  ];
+          cmp.settings.sources = lib.optionals cfg.influences.editor.autocomplete.enable [{name="nixd";}];
+        };
       };
     };
   };

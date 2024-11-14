@@ -2,34 +2,31 @@
 let
   cfg = config.modules.development;
 in {
-  options.modules.development.rust = {
+  options.modules.development.typst = {
     enable = lib.mkEnableOption "rust development";
   };
-  config = lib.mkIf cfg.rust.enable {
+  config = lib.mkIf cfg.typst.enable {
     environment.systemPackages = lib.optionals (cfg.influences.installPackages.enable && cfg.influences.editor.lsp.enable) [
-      pkgs.rust-analyzer# required for nix lsp to work
+      pkgs.typst-lsp# required for nix lsp to work
     ] ++ lib.optionals cfg.influences.installPackages [
-      pkgs.rustup
-      pkgs.cargo
-      pkgs.clippy
-      pkgs.bacon
+      pkgs.typst
     ];
     
-    # installPackages x
+    # installPackages 
     # editor:
-    # - lsp x
-    # - highlight x
+    # - lsp 
+    # - highlight 
     # - formatting 
-    # - autocomplete x
+    # - autocomplete 
     home-manager.users.${config.vars.globals.defaultUser.name}.home.programs = {
       nixvim = lib.mkIf cfg.influences.editor.enable {
         plugins = {
-          lsp.servers.rust_analyzer.enable = cfg.influences.editor.lsp.enable;
+          lsp.servers.typst_lsp.enable = cfg.influences.editor.lsp.enable;
 	  lsp-format.enable = cfg.influences.editor.formatting.enable;
 	  treesitter.grammarPackages = lib.optionals cfg.influences.editor.highlight.enable [
-	    pkgs.vimPlugins.nvim-treesitter.builtGrammars.rust
+	    pkgs.vimPlugins.nvim-treesitter.builtGrammars.typst
 	  ];
-          cmp.settings.sources = lib.optionals cfg.influences.editor.autocomplete.enable [{name="rust_analyzer";}];
+          #cmp.settings.sources = lib.optionals cfg.influences.editor.autocomplete.enable [{name="rust_analyzer";}];
         };
       };
     };
