@@ -6,19 +6,19 @@ in {
     enable = lib.mkEnableOption "rust development";
   };
   config = lib.mkIf cfg.typst.enable {
-    environment.systemPackages = lib.optionals (cfg.influences.installPackages.enable && cfg.influences.editor.lsp.enable) [
-      pkgs.typst-lsp# required for nix lsp to work
-    ] ++ lib.optionals cfg.influences.installPackages [
+    environment.systemPackages = lib.optionals (cfg.influences.packageInstall && cfg.influences.editor.lsp.enable) [
+      pkgs.typst-lsp # required for nix lsp to work
+    ] ++ lib.optionals cfg.influences.packageInstall [
       pkgs.typst
     ];
     
-    # installPackages 
+    # packageInstall 
     # editor:
     # - lsp 
     # - highlight 
     # - formatting 
     # - autocomplete 
-    home-manager.users.${config.vars.globals.defaultUser.name}.home.programs = {
+    home-manager.users.${config.vars.globals.defaultUser.name}.programs = {
       nixvim = lib.mkIf cfg.influences.editor.enable {
         plugins = {
           lsp.servers.typst_lsp.enable = cfg.influences.editor.lsp.enable;

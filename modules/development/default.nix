@@ -1,5 +1,7 @@
-{ lib, ...}:
-{
+{ lib, config, ...}:
+let
+  cfg = config.modules.development;
+in {
   imports = [
     ./nix.nix
     ./rust.nix
@@ -7,7 +9,7 @@
   ];
   options.modules.development = {
     influences = {
-      packageInstall.enable = lib.mkEnableOption "adding systemwide packages (compilers, dependency managers, ...)";
+      packageInstall = lib.mkEnableOption "adding systemwide packages (compilers, dependency managers, ...)";
       editor = {
         enable = lib.mkEnableOption "adding configuration to the editors (lsp, syntax highlighting, ...)";
 	lsp.enable = lib.mkOption {
@@ -33,4 +35,9 @@
       };
     };
   };
+  config = {
+    warnings = (
+      lib.optionals (cfg.influences.editor.lsp.enable && !cfg.influences.packageInstall) "Can't install lsp without enabling modules.development.influences.packageInstall"
+    );
+  }; 
 }

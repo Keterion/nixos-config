@@ -6,22 +6,22 @@ in {
     enable = lib.mkEnableOption "rust development";
   };
   config = lib.mkIf cfg.rust.enable {
-    environment.systemPackages = lib.optionals (cfg.influences.installPackages.enable && cfg.influences.editor.lsp.enable) [
+    environment.systemPackages = lib.optionals (cfg.influences.packageInstall && cfg.influences.editor.lsp.enable) [
       pkgs.rust-analyzer# required for nix lsp to work
-    ] ++ lib.optionals cfg.influences.installPackages [
+    ] ++ lib.optionals cfg.influences.packageInstall[
       pkgs.rustup
       pkgs.cargo
       pkgs.clippy
       pkgs.bacon
     ];
     
-    # installPackages x
+    # packageInstall x
     # editor:
     # - lsp x
     # - highlight x
     # - formatting 
     # - autocomplete x
-    home-manager.users.${config.vars.globals.defaultUser.name}.home.programs = {
+    home-manager.users.${config.vars.globals.defaultUser.name}.programs = {
       nixvim = lib.mkIf cfg.influences.editor.enable {
         plugins = {
           lsp.servers.rust_analyzer.enable = cfg.influences.editor.lsp.enable;

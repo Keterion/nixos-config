@@ -129,6 +129,10 @@
     };
   
     development = {
+      influences = {
+	editor.enable = true;
+	packageInstall = true;
+      }; 
       rust.enable = true;
       nix.enable = true;
       typst.enable = true;
