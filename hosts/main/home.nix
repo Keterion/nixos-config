@@ -11,6 +11,7 @@
   home.homeDirectory = lib.mkForce "/home/etherion/";
   home.packages = with pkgs; [
     #android-tools
+    gnome.gnome-calendar
     blender
     webcord-vencord
     keepassxc
@@ -62,7 +63,7 @@
     signal-desktop
     zathura
   ];
-  
+
   modules.apps.firefox = {
     enable = true;
     arkenfox = true;

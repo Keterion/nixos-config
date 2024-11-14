@@ -4,6 +4,12 @@ let
 in {
   options.modules.services.radicale = {
     enable = lib.mkEnableOption "the radicale WebDav and CalDav server";
+    openFirewall = lib.mkEnableOption "open firewall ports";
+    port = lib.mkOption {
+      type = lib.types.ints.u32;
+      default = 5232;
+      description = "Port to use for the radicale server";
+    };
   };
   config = lib.mkIf cfg.enable {
     environment.etc = {
@@ -11,7 +17,7 @@ in {
     };
     services.radicale = {
       enable = true;
-      #settings.server.hosts = [ "0.0.0.0:5232" ];
+      settings.server.hosts = [ "0.0.0.0:${toString cfg.port}" ];
       rights = {
         root = {
           user = ".+";
@@ -37,5 +43,6 @@ in {
         };
       };
     };
+    networking.firewall.allowedTCPPorts = [ cfg.port ];
   };
 }
