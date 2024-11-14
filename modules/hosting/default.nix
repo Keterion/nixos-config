@@ -10,6 +10,7 @@ in {
     ./calibre
     ./webserver
     ./dns
+    ./radicale
   ];
   options.modules.hosting = {
     netfligs.enable = lib.mkEnableOption "the full netfligs suite";
@@ -48,6 +49,8 @@ in {
 	  openFirewall = lib.mkDefault cfg.openFirewall; # need to add this here because the calibre-server module doesn't have the setting
 	};
       };
+      radicale.enable = lib.mkDefault true;
+      blocky.enable = lib.mkDefault true;
     };
   };
 }

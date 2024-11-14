@@ -143,7 +143,6 @@
     };
 
     hosting = {
-      netfligs.enable = true;
       openFirewall = false;
       commonGroup = {
 	enable = true;
@@ -161,6 +160,8 @@
         enable = false;
 	libraryPath = "/mnt/priv/Media/Library";
 	openFirewall = true;
+	allowUploads = true;
+	enableBookConversion = true;
       };
       server = {
         enable = true;
@@ -168,7 +169,13 @@
 	openFirewall = true;
       };
     };
-    services.bazarr.enable = false;
+    services = {
+      bazarr.enable = false;
+      sonarr.enable = true; 
+      radarr.enable = true;
+      prowlarr.enable = true;
+      radicale.enable = true;
+    };
   };
   
   programs.zsh.enable = true;
