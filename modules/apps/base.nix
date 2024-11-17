@@ -5,5 +5,6 @@
     ./games
     ./office/libreoffice.nix
     ./cli
+    ./thunderbird
   ];
 }

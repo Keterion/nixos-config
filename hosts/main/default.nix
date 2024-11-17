@@ -126,6 +126,10 @@
       office.enable = true;
       git.enable = true;
       cli.network.enable = true;
+      thunderbird = {
+	enable = true;
+	protonmail.enable = true;
+      };
     };
   
     development = {
