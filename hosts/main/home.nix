@@ -1,4 +1,4 @@
-{ config, lib, inputs, pkgs, vars, ... }: {
+{ osConfig, config, lib, inputs, pkgs, vars, ... }: {
   imports = [
     ../../modules/system/runner
     ../../modules/system/bar/waybar.nix
@@ -7,10 +7,10 @@
     inputs.arkenfox.hmModules.arkenfox
     inputs.nixvim.homeManagerModules.nixvim
   ];
-  home.username = "etherion";
-  home.homeDirectory = lib.mkForce "/home/etherion/";
+  home.username = "${osConfig.vars.globals.defaultUser.name}";
   home.packages = with pkgs; [
     #android-tools
+    speedcrunch
     gnome.gnome-calendar
     blender
     webcord-vencord
@@ -63,7 +63,23 @@
     signal-desktop
     zathura
   ];
-
+  
+  accounts = {
+    calendar = {
+      basePath = "~/Documents/.calendar";
+      accounts = {
+	"${osConfig.vars.globals.defaultUser.name}" = {
+	  primary = true;
+	  remote = {
+	    type = "caldav";
+	    url = "http://localhost:5232/etherion/1dc56c74-3149-0561-3e47-d346a9c5a331/";
+	    userName = "etherion";
+	  };
+	};
+      };
+    };
+    
+  };
   modules.apps.firefox = {
     enable = true;
     arkenfox = true;

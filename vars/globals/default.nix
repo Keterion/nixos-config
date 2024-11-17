@@ -16,6 +16,11 @@ in {
 	default = [];
 	example = [ "adbusers" ];
       };
+      homeDirectory = lib.mkOption {
+        type = lib.types.path;
+	description = "The path to the user home directory";
+	default = /home/${cfg.defaultUser.name};
+      };
     };
     keyboard = {
       layout = lib.mkOption {

@@ -25,55 +25,34 @@ in {
       keymaps = [
         {
 	  action = ":CHADopen<CR>";
-	  key = "<c-n>";
+	  key = "<C-n>";
 	  mode = "n";
 	}
-	{
-	  key = "<C-j>";
-	  action = "cmp.mapping.select_next_item()";
-	}
-        {
-	  key = "<C-k>";
-	  action = "cmp.mapping.select_prev_item()";
-	}
-        {
-	  key = "<C-e>";
-	  action = "cmp.mapping.abort()";
-	}
-        {
-	  key = "<C-b>";
-	  action = "cmp.mapping.scroll_docs(-4)";
-	}
-        {
-	  key = "<C-f>";
-	  action = "cmp.mapping.scroll_docs(4)";
-	}
-        {
-	  key = "<C-Space>";
-	  action = "cmp.mapping.complete()";
-	}
-        {
-	  key = "<CR>";
-	  action = "cmp.mapping.confirm({ select = true })";
-	}
+	
 	{
 	  action = "vim.lsp.buf.rename";
 	  key = "<leader>rn";
+	  mode = "n";
 	}{
 	  action = "vim.lsp.buf.code_action";
 	  key = "<leader>ca";
+	  mode = "n";
 	}{
 	  action = "vim.lsp.buf.definition";
 	  key = "gd";
+	  mode = "n";
 	}{
 	  action = "vim.lsp.buf.implementation";
 	  key = "gi";
+	  mode = "n";
 	}{
 	  action = "require('telescope.builtin').lsp_references";
 	  key = "gr";
+	  mode = "n";
 	}{
 	  action = "vim.lsp.buf.hover";
 	  key = "K";
+	  mode = "n";
 	}
 
 	{
@@ -142,16 +121,21 @@ in {
 	    highlight.enable = true;
 	  };
 	};
-	autoclose = {
-	  enable = true;
-	  options = {
-	    disabledFiletypes = [
-	      "text"
-	      "markdown"
-	      "typst"
-	    ];
+	nvim-autopairs = {
+	  settings = {
+	    map_cr = true;
 	  };
 	};
+	#autoclose = {
+	#  enable = false;
+	#  options = {
+	#    disabledFiletypes = [
+	#      "text"
+	#      "markdown"
+	#      "typst"
+	#    ];
+	#  };
+	#};
 
 	luasnip = {
 	  enable = true;
@@ -160,17 +144,28 @@ in {
 	cmp = {
 	  enable = true;
 	  autoEnableSources = true;
-	  settings.sources = [
-	    { name = "nvim_lsp"; }
-	    { name = "path"; }
-	    { name = "buffer"; }
-	    { name = "luasnip"; }
-	  ];
-	  settings.snippet.expand = ''
-	    function(args)
-	      require('luasnip').lsp_expand(args.body)
-	    end
-	  '';
+	  settings = {
+	    mapping = {
+	      "<C-j>" = "cmp.mapping.select_next_item()";
+	      "<C-k>" = "cmp.mapping.select_prev_item()";
+	      "<C-e>" = "cmp.mapping.abort()";
+	      "<C-b>" = "cmp.mapping.scroll_docs(-4)";
+	      "<C-f>" = "cmp.mapping.scroll_docs(4)";
+	      "<C-Space>" = "cmp.mapping.complete()";
+	      "<C-CR>" = "cmp.mapping.confirm({ select = true })";
+	    };
+	    sources = [
+	      { name = "luasnip"; }
+	      { name = "nvim_lsp"; }
+	      { name = "path"; }
+	      { name = "buffer"; }
+	    ];
+	    snippet.expand = ''
+	      function(args)
+	        require('luasnip').lsp_expand(args.body)
+	      end
+	    '';
+	  };
 	};
 	telescope = {
 	  enable = true;
