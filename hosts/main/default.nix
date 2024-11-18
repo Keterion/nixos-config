@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
 {
   imports =
@@ -17,8 +17,12 @@
       ../../modules/privacy
       ../../modules/hosting
       ../../modules/development
-    ];
 
+      #inputs.sops-nix.nixosModules.sops
+    ];
+  
+  #sops.defaultSopsFile = ./secrets/secrets.yaml;
+  
   nix.settings.trusted-users = [
     "@wheel"
   ];
@@ -153,7 +157,8 @@
 	name = "server";
       };
       webserver = {
-        enable = false;
+        enable = true;
+
 	root = "/home/etherion/Documents/dev/html/selfhosted"; #TODO
       };
     };

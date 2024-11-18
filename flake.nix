@@ -9,6 +9,9 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    
+    #sops-nix.url = "github:Mic92/sops-nix";
+
     nur.url = "github:nix-community/nur";
     arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
     spicetify-nix = {
@@ -53,6 +56,7 @@
       };
       main = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+	#specialArgs = { inherit inputs; };
 	modules = [
 	  { nixpkgs.overlays = [ nur.overlay overlays.stable-packages ]; }
 	  ./hosts/common.nix
