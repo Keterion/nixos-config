@@ -103,14 +103,28 @@
   services.avahi = {
     enable = true;
     nssmdns4 = true;
+    nssmdns = true;
     openFirewall = true;
+    publish = {
+      enable = true;
+      addresses = true;
+      userServices = true;
+    };
   };
   services.printing.drivers = [pkgs.hplip];
+  hardware.sane = {
+    enable = true;
+    extraBackends = [ pkgs.hplipWithPlugin ];
+  };
 
   hardware.opentabletdriver = {
     enable = true;
     daemon.enable = true;
   };
+
+  hardware.bluetooth.enable = true;
+  #services.blueman.enable = true;
+
   modules = {
     apps = {
       games = {
@@ -151,22 +165,21 @@
     };
 
     hosting = {
-      openFirewall = false;
+      openFirewall = true;
       commonGroup = {
 	enable = true;
 	name = "server";
       };
       webserver = {
-        enable = true;
-
-	root = "/home/etherion/Documents/dev/html/selfhosted"; #TODO
+        enable = false;
+	servicesPage.enable = true;
       };
     };
     
     services.calibre = {
       enable = true;
       web = {
-        enable = false;
+        enable = true;
 	libraryPath = "/mnt/priv/Media/Library";
 	openFirewall = true;
 	allowUploads = true;
@@ -184,6 +197,7 @@
       radarr.enable = true;
       prowlarr.enable = true;
       radicale.enable = true;
+      jellyfin.enable = true;
     };
   };
   

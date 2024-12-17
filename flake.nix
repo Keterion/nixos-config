@@ -39,7 +39,7 @@
       laptop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
 	modules = [
-	  { nixpkgs.overlays = [ nur.overlay overlays.stable-packages ]; }
+	  { nixpkgs.overlays = [ nur.overlays.default overlays.stable-packages ]; }
 	  ./hosts/common.nix
 	  ./hosts/laptop/default.nix
 
@@ -58,7 +58,7 @@
         system = "x86_64-linux";
 	#specialArgs = { inherit inputs; };
 	modules = [
-	  { nixpkgs.overlays = [ nur.overlay overlays.stable-packages ]; }
+	  { nixpkgs.overlays = [ nur.overlays.default overlays.stable-packages ]; }
 	  ./hosts/common.nix
 	  ./hosts/main/default.nix
 	  

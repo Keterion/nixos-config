@@ -1,7 +1,6 @@
-{ lib, pkgs, config, ... }:
+{ lib, config, ... }:
 let
   cfg = config.modules.hosting.webserver;
-  toml = pkgs.formats.toml {};
 in {
   options.modules.hosting.webserver = {
     enable = lib.mkEnableOption "the static-web-server service";
@@ -23,7 +22,7 @@ in {
     servicesPage = {
       enable = lib.mkEnableOption "auto-generated page for services";
       name = lib.mkOption {
-	type = lib.types.string;
+	type = lib.types.str;
 	default = "services.html";
 	description = "Name of the file";
       };
@@ -31,12 +30,12 @@ in {
   };
   config = lib.mkIf cfg.enable {
     environment.etc = lib.mkIf cfg.servicesPage.enable {
-      ${cfg.servicesPage.name} = lib.readFile ./servicesPageBase.html;
+      "webserver/${cfg.servicesPage.name}".text = lib.readFile ./servicesPageBase.html; # TODO
     };
     services.static-web-server = {
       enable = true;
-      listen = "[::]:${lib.toString cfg.port}";
-      root = /etc/webserver;
+      listen = "[::]:${toString cfg.port}";
+      root = "/etc/webserver";
       configuration = {
 	general = {
 	log-level = "error";

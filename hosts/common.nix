@@ -50,6 +50,7 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    jack.enable = true;
   };
 
   nixpkgs.config = {
@@ -68,7 +69,9 @@
   ];
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "Hack" "HeavyData" "JetBrainsMono" ]; })
+    nerd-fonts.hack
+    nerd-fonts.heavy-data
+    nerd-fonts.jetbrains-mono
   ];
   
   programs.bash.shellAliases = {

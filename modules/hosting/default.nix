@@ -11,6 +11,7 @@ in {
     ./webserver
     ./dns
     ./radicale
+    ./jellyfin
   ];
   options.modules.hosting = {
     netfligs.enable = lib.mkEnableOption "the full netfligs suite";

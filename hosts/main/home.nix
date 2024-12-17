@@ -11,7 +11,7 @@
   home.packages = with pkgs; [
     #android-tools
     speedcrunch
-    gnome.gnome-calendar
+    gnome-calendar
     blender
     webcord-vencord
     keepassxc

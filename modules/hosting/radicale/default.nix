@@ -4,7 +4,11 @@ let
 in {
   options.modules.services.radicale = {
     enable = lib.mkEnableOption "the radicale WebDav and CalDav server";
-    openFirewall = lib.mkEnableOption "open firewall ports";
+    openFirewall = lib.mkOption {
+      type = lib.types.bool;
+      default = config.modules.hosting.openFirewall;
+      description = "the firewall rules for radicale";
+    };
     port = lib.mkOption {
       type = lib.types.ints.u32;
       default = 5232;

@@ -14,6 +14,7 @@ in {
     services.sonarr = {
       enable = true;
       dataDir = cfg.dataDir;
+      package = pkgs.stable.sonarr;
       group = lib.mkIf config.modules.hosting.commonGroup.enable config.modules.hosting.commonGroup.name;
       openFirewall = lib.mkDefault config.modules.hosting.openFirewall;
       user = "sonarr";

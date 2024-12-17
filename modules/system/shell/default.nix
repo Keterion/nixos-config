@@ -20,7 +20,7 @@ in {
     programs.eza = lib.mkIf cfg.eza.enable {
       enable = true;
       enableZshIntegration = cfg.zsh.enable;
-      enableNushellIntegration = cfg.nushell.enable;
+      #enableNushellIntegration = cfg.nushell.enable;
     };
     programs.zoxide = lib.mkIf cfg.zoxide.enable {
       enable = true;
