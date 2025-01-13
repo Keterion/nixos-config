@@ -61,30 +61,30 @@ in {
 	  mode = "n";
 	}
 	
-	{
-	  action = "telescope.builtin.find_files";
-	  key = "<c-p>";
-	  mode = "n";
-	}{
-	  action = "telescope.builtin.oldfiles";
-	  key = "<Space><Space>";
-	  mode = "n";
-	}{
-	  action = "telescope.builtin.live_grep";
-	  key = "<Space>fg";
-	  mode = "n";
-	}{
-	  action = "telescope.builtin.help_tags";
-	  key = "<Space>fh";
-	  mode = "n";
-	}
+	#{
+	#  action = "telescope.builtin.find_files";
+	#  key = "<c-p>";
+	#  mode = "n";
+	#}{
+	#  action = "telescope.builtin.oldfiles";
+	#  key = "<Space><Space>";
+	#  mode = "n";
+	#}{
+	#  action = "telescope.builtin.live_grep";
+	#  key = "<Space>fg";
+	#  mode = "n";
+	#}{
+	#  action = "telescope.builtin.help_tags";
+	#  key = "<Space>fh";
+	#  mode = "n";
+	#}
       ];
 
       plugins = {
 	lsp = {
 	  enable = true;
 	};
-
+	lsp-format.enable = true;
 
         web-devicons.enable = true;
 	chadtree = {
@@ -105,7 +105,7 @@ in {
 	    };
 	  };
 	};
-	nvim-colorizer = {
+	colorizer = {
 	  enable = true;
 	};
 	treesitter = {
@@ -146,13 +146,13 @@ in {
 	  autoEnableSources = true;
 	  settings = {
 	    mapping = {
-	      "<C-j>" = "cmp.mapping.select_next_item()";
-	      "<C-k>" = "cmp.mapping.select_prev_item()";
-	      "<C-e>" = "cmp.mapping.abort()";
-	      "<C-b>" = "cmp.mapping.scroll_docs(-4)";
-	      "<C-f>" = "cmp.mapping.scroll_docs(4)";
-	      "<C-Space>" = "cmp.mapping.complete()";
-	      "<C-CR>" = "cmp.mapping.confirm({ select = true })";
+	      "<Down>" = "cmp.mapping.select_next_item()";
+	      "<Up>" = "cmp.mapping.select_prev_item()";
+	      #"<C-e>" = "cmp.mapping.abort()";
+	      #"<C-b>" = "cmp.mapping.scroll_docs(-4)";
+	      #"<C-f>" = "cmp.mapping.scroll_docs(4)";
+	      #"<C-Space>" = "cmp.mapping.complete()";
+	      "<CR>" = "cmp.mapping.confirm({ select = true })";
 	    };
 	    sources = [
 	      { name = "luasnip"; }
@@ -167,16 +167,22 @@ in {
 	    '';
 	  };
 	};
-	telescope = {
+	#telescope = {
+	#  enable = true;
+	#};
+
+	aerial = {
 	  enable = true;
+	  settings = {
+	    autojump = true;
+	    close_on_select = true;
+	    keymaps = {
+	      "<C-o>" = "actions.tree_open";
+	    };
+	    manage_folds = true;
+	  };
 	};
       };
-      extraPlugins = with pkgs.vimPlugins; [
-	aerial-nvim
-      ];
-      extraConfigLua = ''require('aerial').setup({
-	backends = { "treesitter", "lsp" }
-      })'';
     };
   };
 }

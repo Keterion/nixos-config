@@ -21,7 +21,7 @@ in {
     home-manager.users.${config.vars.globals.defaultUser.name}.programs = {
       nixvim = lib.mkIf cfg.influences.editor.enable {
         plugins = {
-          lsp.servers.typst_lsp.enable = cfg.influences.editor.lsp.enable;
+          lsp.servers.tinymist.enable = cfg.influences.editor.lsp.enable;
 	  lsp-format.enable = cfg.influences.editor.formatting.enable;
 	  treesitter.grammarPackages = lib.optionals cfg.influences.editor.highlight.enable [
 	    pkgs.vimPlugins.nvim-treesitter.builtGrammars.typst

@@ -35,13 +35,15 @@
   vars.globals = {
     defaultUser = {
       name = "etherion";
-      extraGroups = [] ++ lib.optionals config.modules.hosting.commonGroup.enable [ config.modules.hosting.commonGroup.name ];
+      extraGroups = [ "adbusers" ] ++ lib.optionals config.modules.hosting.commonGroup.enable [ config.modules.hosting.commonGroup.name ];
     };
     keyboard = {
       layout = "us";
       variant = "";
     };
   };
+
+  programs.adb.enable = true;
 
 
   #hardware.bluetooth = {
@@ -71,7 +73,7 @@
 
   system.wm.hyprland = {
     enable = true;
-    autologin = true;
+    autologin = false;
   };
 
   system.terminal.kitty.enable = true;
@@ -103,7 +105,6 @@
   services.avahi = {
     enable = true;
     nssmdns4 = true;
-    nssmdns = true;
     openFirewall = true;
     publish = {
       enable = true;

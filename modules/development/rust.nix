@@ -13,6 +13,7 @@ in {
       pkgs.cargo
       pkgs.clippy
       pkgs.bacon
+      pkgs.rustc
     ];
     
     # packageInstall x
@@ -24,7 +25,11 @@ in {
     home-manager.users.${config.vars.globals.defaultUser.name}.programs = {
       nixvim = lib.mkIf cfg.influences.editor.enable {
         plugins = {
-          lsp.servers.rust_analyzer.enable = cfg.influences.editor.lsp.enable;
+          lsp.servers.rust_analyzer = {
+	    enable = cfg.influences.editor.lsp.enable;
+	    installCargo = false;
+	    installRustc = false;
+	  };
 	  lsp-format.enable = cfg.influences.editor.formatting.enable;
 	  treesitter.grammarPackages = lib.optionals cfg.influences.editor.highlight.enable [
 	    pkgs.vimPlugins.nvim-treesitter.builtGrammars.rust

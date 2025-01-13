@@ -10,7 +10,11 @@
   home.username = "${osConfig.vars.globals.defaultUser.name}";
   home.packages = with pkgs; [
     #android-tools
+    brave
+    freecad
+    dualsensectl
     speedcrunch
+    jellyfin-media-player
     gnome-calendar
     blender
     webcord-vencord

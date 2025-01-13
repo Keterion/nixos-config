@@ -68,6 +68,10 @@
     nh
   ];
 
+  services.udev.packages = with pkgs; [
+    android-udev-rules
+  ];
+
   fonts.packages = with pkgs; [
     nerd-fonts.hack
     nerd-fonts.heavy-data
