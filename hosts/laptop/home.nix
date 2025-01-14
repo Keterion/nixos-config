@@ -1,17 +1,18 @@
-{ config, pkgs, lib, inputs, ... }: {
+{ osConfig, config, pkgs, lib, inputs, ... }: {
   imports = [
-    ../../modules/system/runner.nix
+    ../../modules/system/runner
     ../../modules/system/bar/waybar.nix
-    ../../modules/system/shells/zsh.nix
+    ../../modules/system/shell
     ../../modules/apps/hm.nix
     inputs.arkenfox.hmModules.arkenfox
     inputs.nixvim.homeManagerModules.nixvim
   ];
-  home.username = "etherion";
+  home.username = "${osConfig.vars.globals.defaultUser.name}";
   home.homeDirectory = lib.mkForce "/home/etherion/";
 
   home.packages = with pkgs; [
-    android-tools
+    #android-tools
+    jellyfin-media-player
     webcord-vencord
     #unciv
     keepassxc
@@ -62,32 +63,45 @@
   ];
   #programs.steam.enable = true; doesn't work, put elsewhere
 
-  modules.system.shell.zsh = {
-    enable = true;
-    aliases = {
-      ll = "eza -lao --time-style '+%Y%m%d %H:%M:%S' --icons=auto --color=always";
-      rotate = "sudo nixos-rebuild switch --show-trace --print-build-logs --verbose --flake /etc/nixos\#laptop";
-      nixconf = "sudo nvim /etc/nixos";
-    };
-  };
-
-  system.runner.tofi.enable = true;
-
   modules.apps.firefox = {
     enable = true;
-    arkenfox = false;
-    devEdition = false;
+    arkenfox = true;
+    package = pkgs.firefox;
   };
-  
   modules.apps = {
     spotify = {
       enable = false;
     };
-    spicetify.enable = false;
+    spicetify = {
+      enable = true;
+      cli = false;
+    };
     cava.enable = true;
-    neovim.enable = false;
+
+    neovim = {
+      enable = false;
+    };
     nixvim.enable = true;
-  };  
+  };
+
+  system.shell = {
+    zsh = {
+      enable = true;
+      aliases = {
+	ll = "eza -lao --time-style '+%Y%m%d %H:%M:%S' --icons=auto --color=always";
+	rotate = "sudo nixos-rebuild switch --show-trace --print-build-logs --verbose --flake /etc/nixos\#main";
+	nixconf = "sudo nvim /etc/nixos";
+      };
+    };
+    nushell.enable = true;
+    eza.enable = true;
+    fzf.enable = true;
+    zoxide.enable = true;
+    prompt.starship.enable = true;
+  };
+
+  system.runner.tofi.enable = true;
+
 
   home.stateVersion = "24.05";
   programs.home-manager.enable = true;

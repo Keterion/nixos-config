@@ -7,8 +7,8 @@
     inputs.arkenfox.hmModules.arkenfox
     inputs.nixvim.homeManagerModules.nixvim
   ];
-  home.username = "${osConfig.vars.globals.defaultUser.name}";
   home.packages = with pkgs; [
+  home.username = "${osConfig.vars.globals.defaultUser.name}";
     #android-tools
     brave
     freecad

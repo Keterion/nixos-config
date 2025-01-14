@@ -5,17 +5,19 @@
     ../../modules/system/wm
     ../../vars/theming
     ../../modules/system/terminal
+    ../../modules/system/tools
     ../../modules/apps/base.nix
     ../../modules/privacy
+    ../../modules/development
   ];
   nix.settings.trusted-users = [ "@wheel" ];
 
   programs.adb.enable = true;
 
-  networking.hostName = "nyx";
+  networking.hostName = "laptop";
   networking.networkmanager.enable = true;
 
-  vars.theming.colorscheme = "gruvbox-dark";
+  vars.theming.colorscheme = "tokyonight-moon";
   vars.globals = {
     defaultUser = {
       name = "etherion";
@@ -23,7 +25,7 @@
     };
     keyboard = {
       layout = "us";
-      variant = "dvorak,";
+      variant = "dvorak";
     };
   };
 
@@ -39,7 +41,10 @@
     autologin = true;
   };
   system.terminal.kitty.enable = true;
-
+  system.tools.nh = {
+    enable = true;
+    clean = true;
+  };
   services.power-profiles-daemon.enable = false;
   services.thermald.enable = true;
   services.tlp = {
@@ -79,5 +84,15 @@
       cli.network.enable = true;
       games.minecraft.enable = true;
     };
+    development = {
+      influences = {
+	editor.enable = true;
+	packageInstall = true;
+      }; 
+      rust.enable = true;
+      nix.enable = true;
+      typst.enable = true;
+    };
   };
+  
 }
