@@ -189,7 +189,7 @@
       server = {
         enable = true;
         libraries = [ "/mnt/priv/Media/Library" ];
-	openFirewall = true;
+	openFirewall = true ;
       };
     };
     services = {
