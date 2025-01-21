@@ -2,15 +2,14 @@
   imports = [	
     ./audio
     ./bar
-    ./de
+#    ./de
     ./firewall
     ./fonts
-    ./lockscreen
-    ./runner
-    ./security
-    ./shell
-    ./timezone
-    ./tools
-    ./wm
+#    ./lockscreen
+#    ./runner
+#    ./security
+#    ./shell
+#    ./tools
+#    ./wm
   ];
 }

@@ -1,4 +1,5 @@
 { pkgs, ... }: {
+  imports = [./hardware-configuration.nix];
   system.audio.pipewire = {
     enable = true;
     rtkit.enable = true;
