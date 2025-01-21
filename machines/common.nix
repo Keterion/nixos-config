@@ -1,5 +1,8 @@
 { ... }: {
-  imports = [ ../users ../modules/system ];
+  imports = [ 
+    ../modules/system
+    ../variables
+  ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
