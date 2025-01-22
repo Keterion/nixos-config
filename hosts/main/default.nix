@@ -199,6 +199,7 @@
       prowlarr.enable = true;
       radicale.enable = true;
       jellyfin.enable = true;
+      grocy.enable = true;
     };
   };
   

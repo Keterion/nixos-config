@@ -12,6 +12,7 @@ in {
     ./dns
     ./radicale
     ./jellyfin
+    ./grocy
   ];
   options.modules.hosting = {
     netfligs.enable = lib.mkEnableOption "the full netfligs suite";
@@ -52,6 +53,7 @@ in {
       };
       radicale.enable = lib.mkDefault true;
       blocky.enable = lib.mkDefault true;
+      grocy.enable = lib.mkDefault true;
     };
   };
 }
