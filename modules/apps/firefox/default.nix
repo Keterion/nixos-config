@@ -62,9 +62,25 @@ with lib;
 	      name = "Nix sites";
 	      toolbar = false;
 	      bookmarks = [
-	        {
-		  name = "myNix";
-		  url = "https://mynixos.com";
+	        #{
+		#  name = "myNix";
+		#  url = "https://mynixos.com";
+		#}
+		{
+		  name = "Noogle";
+		  url = "https://noogle.dev";
+		}
+		{
+		  name = "Home Manager - Option Search";
+		  url = "https://home-manager-options.extranix.com";
+		}
+		{
+		  name = "NueschOS Search";
+		  url = "https://search.nüschtos.de";
+		}
+		{
+		  name = "Searchix";
+		  url = "https://searchix.alanpearce.eu";
 		}
 		{
 		  name = "pkgs search";
