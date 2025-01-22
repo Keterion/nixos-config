@@ -199,7 +199,11 @@
       prowlarr.enable = true;
       radicale.enable = true;
       jellyfin.enable = true;
-      grocy.enable = true;
+      grocy = {
+	enable = true;
+	port = 8275;
+	address = "192.168.178.69";
+      };
     };
   };
   
