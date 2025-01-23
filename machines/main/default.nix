@@ -14,4 +14,8 @@
     nerd-fonts.heavy-data
     nerd-fonts.jetbrains-mono
   ];
+  system.keyboard = {
+    layout = "us";
+    variant = "";
+  };
 }

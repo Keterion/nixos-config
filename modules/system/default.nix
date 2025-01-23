@@ -3,6 +3,7 @@
     ./audio
     ./bar
 #    ./de
+#    ./dm
     ./firewall
     ./fonts
 #    ./lockscreen
@@ -10,6 +11,6 @@
 #    ./security
 #    ./shell
 #    ./tools
-#    ./wm
+    ./wm
   ];
 }
