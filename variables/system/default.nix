@@ -1,6 +1,7 @@
 { config, lib, ... }: {
   imports = [
     ./users
+    ./colors
   ];
   options.system.keyboard = {
     layout = lib.mkOption {

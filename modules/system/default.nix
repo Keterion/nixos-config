@@ -6,9 +6,10 @@
 #    ./dm
     ./firewall
     ./fonts
+    ./fs
 #    ./lockscreen
 #    ./runner
-#    ./security
+    ./security
 #    ./shell
 #    ./tools
     ./wm
