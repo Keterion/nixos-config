@@ -5,7 +5,7 @@ in {
   options.modules.services.grocy = {
     enable = lib.mkEnableOption " grocy";
     port = lib.mkOption {
-      type = lib.types.ints.u16;
+      type = lib.types.port;
       default = 80;
       description = "Port for the nginx vHost to run on";
     };

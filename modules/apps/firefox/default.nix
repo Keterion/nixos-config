@@ -28,8 +28,13 @@ with lib;
           settings = {
             "extensions.autoDisableScopes" = 0;
 	    "browser.startup.page" = 3;
+	    "browser.search.region" = "US";
 	    "browser.eme.ui.enabled" = true;
 	    "browser.eme.enabled" = true;
+	    
+	    "privacy.sanitize.sanitizeOnShutdown" = true; # perform Clear Private Data on exit
+	    "privacy.item.cookies" = true; # Clear Private Data deletes cookies
+	    "privacy.item.history" = false; # Clear Private Data deletes history
           };
 	  search = {
 	    default = "Brave";
@@ -100,7 +105,7 @@ with lib;
             darkreader
             #dictionaries
 	    sidebery
-	    omnivore
+	    #omnivore
 	    #lexicon
             #buildFirefoxXpiAddon { #TODO
             #  pname = "imagus-mod";
