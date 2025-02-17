@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  imports = [./hardware-configuration.nix];
+  imports = [ ./hardware-configuration.nix ];
   system.audio.pipewire = {
     enable = true;
     rtkit.enable = true;
@@ -17,5 +17,9 @@
   system.keyboard = {
     layout = "us";
     variant = "";
+  };
+
+  system.users.default = {
+    name = "etherion";
   };
 }

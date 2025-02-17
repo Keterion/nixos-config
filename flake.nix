@@ -19,20 +19,19 @@
     arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
   };
 
-  outputs = { nixpkgs, home-manager, nur, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let 
       overlays = import ./overlays.nix { inherit inputs; };
-      utils = import ./utils.nix { inherit inputs; };
     in {
       nixosConfigurations = {
 	main = nixpkgs.lib.nixosSystem {
 	  system = "x86_64-linux";
+	  specialArgs = { myUtils = import ./utils.nix { inherit inputs; }; };
 	  modules = [
-	    { nixpkgs.overlays = [ nur.overlays.default overlays.stable-packages ]; }
+	    { nixpkgs.overlays = [ overlays.nur overlays.stable-packages ]; }
 	    ./machines/common.nix
 	    ./machines/main
 	    
-	    utils
 	    home-manager.nixosModules.home-manager
 	  ];
 	};

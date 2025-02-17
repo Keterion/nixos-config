@@ -6,8 +6,8 @@ in {
     gnupg.enableSSH = lib.mkEnableOption "ssh support for gnupg";
   };
   config = {
-    services.polkit.enable = true;
-    gnupg.agent = {
+    security.polkit.enable = true;
+    programs.gnupg.agent = {
       enable = true;
       enableSSHSupport = cfg.gnupg.enableSSH;
     };

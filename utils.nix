@@ -1,7 +1,11 @@
-{ lib, ... }: {
-  mkDisableOption = description: lib.mkOption {
-    description = "Whether to disable ${description}";
+{ inputs, ... }: 
+let
+  lib = inputs.nixpkgs.lib;
+in {
+  mkEnabledOption = name: lib.mkOption {
     default = true;
+    example = false;
+    description = "Whether to enable ${name}.";
     type = lib.types.bool;
   };
 }

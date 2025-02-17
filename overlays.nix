@@ -11,4 +11,16 @@
       config.allowUnfree = true;
     };
   };
+  nur = final: _prev: {
+    nur = inputs.nur.overlays.default;
+  };
+  #lib = final: prev: prev.lib // {
+  #  ketherion = {
+  #    mkEnabledOption = desc: inputs.nixpkgs.lib.mkOption {
+  #      description = "Whether to enable ${desc}";
+  #      default = true;
+  #      type = inputs.nixpkgs.lib.types.bool;
+  #    };
+  #  };
+  #};
 }
