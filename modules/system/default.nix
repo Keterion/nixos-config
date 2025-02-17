@@ -3,7 +3,7 @@
     ./audio
     ./bar
 #    ./de
-#    ./dm
+    ./dm
     ./firewall
     ./fonts
     ./fs
