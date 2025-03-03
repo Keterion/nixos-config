@@ -67,7 +67,7 @@
   # enable = true;
   # #wayland.enable = true;
   #};
-  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.displayManager.sddm.enable = true;
   #services.desktopManager.plasma6.enable = true;
   system.wm.plasma.enable = true;
 
@@ -96,7 +96,7 @@
 
     nvidiaSettings = true;
 
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = pkgs.linuxPackages.nvidiaPackages.beta;
   };
   hardware.graphics.enable = true;
 

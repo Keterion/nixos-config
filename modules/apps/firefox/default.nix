@@ -4,7 +4,7 @@ in
 with lib;
 { 
   options.modules.apps.firefox = {
-    enable = mkEnableOption "the firefox browser";
+    enable = pkgs.lib.mkEnableOption "the firefox browser";
     package = lib.mkOption {
       type = lib.types.package;
       default = pkgs.firefox;
@@ -32,7 +32,7 @@ with lib;
 	    "browser.eme.ui.enabled" = true;
 	    "browser.eme.enabled" = true;
 	    
-	    "privacy.sanitize.sanitizeOnShutdown" = true; # perform Clear Private Data on exit
+	    "privacy.sanitize.sanitizeOnShutdown" = true; # perform Clear Private Data on exit # you stole all my history and tabs even with disabled history clear??
 	    "privacy.item.cookies" = true; # Clear Private Data deletes cookies
 	    "privacy.item.history" = false; # Clear Private Data deletes history
           };

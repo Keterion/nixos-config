@@ -123,6 +123,19 @@
 
   system.runner.tofi.enable = true;
 
+  programs.mpv = {
+    enable = true;
+    scripts = with pkgs.mpvScripts; [
+      thumbfast
+      mpv-notify-send
+      mpris
+
+      uosc
+      #modernx
+      #modernz
+    ];
+  };
+
 
   home.stateVersion = "24.05";
   programs.home-manager.enable = true;

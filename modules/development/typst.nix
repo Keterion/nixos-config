@@ -7,7 +7,7 @@ in {
   };
   config = lib.mkIf cfg.typst.enable {
     environment.systemPackages = lib.optionals (cfg.influences.packageInstall && cfg.influences.editor.lsp.enable) [
-      pkgs.typst-lsp # required for nix lsp to work
+      pkgs.tinymist
     ] ++ lib.optionals cfg.influences.packageInstall [
       pkgs.typst
     ];
