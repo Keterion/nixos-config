@@ -7,7 +7,7 @@
     ./firewall
     ./fonts
     ./fs
-#    ./lockscreen
+    ./lockscreen
 #    ./runner
     ./security
 #    ./shell

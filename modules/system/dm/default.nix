@@ -2,7 +2,7 @@
   imports = [
     ./gdm.nix
     ./ly.nix
-    #./sddm.nix
+    ./sddm.nix
   ];
 
   #options.system.dm = {
