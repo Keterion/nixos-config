@@ -2,6 +2,7 @@
   imports = [
     ./users
     ./colors
+#    ./fonts
   ];
   options.system.keyboard = {
     layout = lib.mkOption {
