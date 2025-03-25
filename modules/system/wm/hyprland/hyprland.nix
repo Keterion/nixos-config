@@ -113,6 +113,12 @@
 	  "9, monitor:DP-1"
 	  "10, monitor:HDMI-A-1"
 	];
+	bezier = [
+	  "workspace_slide, 0.4, -0.05, 0.43, 0.96"
+	];
+	animation = [
+	  "workspaces, 1, 3, workspace_slide, slidevert"
+	];
 	windowrule = [
 	  "workspace 2, ^(firefox)"
 	  "workspace 2, (cord)$"

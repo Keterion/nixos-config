@@ -17,7 +17,9 @@
     jellyfin-media-player
     gnome-calendar
     blender
-    webcord-vencord
+    #webcord-vencord
+    vesktop
+    #discord-canary
     keepassxc
     spotdl
     yt-dlp

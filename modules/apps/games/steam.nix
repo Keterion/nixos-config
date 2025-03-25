@@ -23,9 +23,11 @@ in
 	extraCompatPackages = lib.mkIf cfg.compat [
 	  pkgs.proton-ge-bin
 	];
+	extraPackages = with pkgs; lib.mkIf cfg.compat [
+	  gamescope
+	  gamemode
+	];
       };
-      gamescope.enable = cfg.compat;
-      gamemode.enable = cfg.compat;
     };
     environment.systemPackages = lib.optionals cfg.compat [
       pkgs.protontricks

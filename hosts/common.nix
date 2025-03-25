@@ -66,6 +66,9 @@
     ffmpeg
     mpv
     nh
+    (discord-canary.override {
+      withVencord = true;
+    })
   ];
 
   services.udev.packages = with pkgs; [

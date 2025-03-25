@@ -2,37 +2,33 @@
 let
   cfg = config.modules.development;
 in {
-  options.modules.development.typst = {
-    enable = lib.mkEnableOption "rust development";
+  options.modules.development.python = {
+    enable = lib.mkEnableOption "python development";
   };
-  config = lib.mkIf cfg.typst.enable {
+  config = lib.mkIf cfg.rust.enable {
     environment.systemPackages = lib.optionals (cfg.influences.packageInstall && cfg.influences.editor.lsp.enable) [
-      pkgs.tinymist
-    ] ++ lib.optionals cfg.influences.packageInstall [
-      pkgs.typst
+    ] ++ lib.optionals cfg.influences.packageInstall[
+      pkgs.python
+      pkgs.black
     ];
     
-    # packageInstall 
+    # packageInstall x
     # editor:
-    # - lsp 
-    # - highlight 
+    # - lsp x
+    # - highlight x
     # - formatting 
-    # - autocomplete 
+    # - autocomplete x
     home-manager.users.${config.vars.globals.defaultUser.name}.programs = {
       nixvim = lib.mkIf cfg.influences.editor.enable {
         plugins = {
-          lsp.servers.tinymist = {
+          lsp.servers.pyright = {
 	    enable = cfg.influences.editor.lsp.enable;
-	    settings.completion = {
-	      postfix = true;
-	      postfixUfcs = true;
-	    };
 	  };
 	  lsp-format.enable = cfg.influences.editor.formatting.enable;
 	  treesitter.grammarPackages = lib.optionals cfg.influences.editor.highlight.enable [
-	    pkgs.vimPlugins.nvim-treesitter.builtGrammars.typst
+	    pkgs.vimPlugins.nvim-treesitter.builtGrammars.python
 	  ];
-          #cmp.settings.sources = lib.optionals cfg.influences.editor.autocomplete.enable [{name="tinymist";}];
+          #cmp.settings.sources = lib.optionals cfg.influences.editor.autocomplete.enable [{name="";}];
         };
       };
     };

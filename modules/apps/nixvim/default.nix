@@ -157,6 +157,7 @@ in {
 	    sources = [
 	      { name = "luasnip"; }
 	      { name = "nvim_lsp"; }
+	      { name = "dictionary"; }
 	      { name = "path"; }
 	      { name = "buffer"; }
 	    ];
