@@ -6,6 +6,7 @@ in {
     ./nix.nix
     ./rust.nix
     ./typst.nix
+    ./python.nix
   ];
   options.modules.development = {
     influences = {

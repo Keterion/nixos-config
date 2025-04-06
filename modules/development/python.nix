@@ -8,8 +8,9 @@ in {
   config = lib.mkIf cfg.rust.enable {
     environment.systemPackages = lib.optionals (cfg.influences.packageInstall && cfg.influences.editor.lsp.enable) [
     ] ++ lib.optionals cfg.influences.packageInstall[
-      pkgs.python
+      pkgs.python3
       pkgs.black
+      pkgs.poetry
     ];
     
     # packageInstall x

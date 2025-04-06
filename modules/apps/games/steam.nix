@@ -33,8 +33,13 @@ in
       pkgs.protontricks
       pkgs.wine64
       pkgs.winetricks
+      pkgs.r2mod_cli
     ] ++ lib.optionals cfg.backup [
       pkgs.ludusavi
     ];
+    environment.variables = {
+      R2MOD_INSTALL_DIR = "/mnt/Games/Platforms/Steam/steamapps/common/Risk of Rain 2";
+      R2MOD_COMPAT_DIR = "/mnt/Games/Platforms/Steam/steamapps/compatdata/632360";
+    };
   };
 }

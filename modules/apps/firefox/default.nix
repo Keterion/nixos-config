@@ -45,6 +45,7 @@ with lib;
 		definedAliases = [ "@br" ];
 	      };
 	    };
+	    force = true; # fixes the search.json.mozlz4 bug
 	  };
 	  bookmarks = [
 	    {
@@ -137,6 +138,7 @@ with lib;
 		definedAliases = [ "@br" ];
 	      };
 	    };
+	    force = true; # fixes the search.json.mozlz4 bug
 	  };
 	  arkenfox = {
 	    enable = true;

@@ -11,6 +11,7 @@ in {
     ./webserver
     ./dns
     ./radicale
+    ./readarr
     ./jellyfin
     ./grocy
   ];
@@ -52,6 +53,7 @@ in {
 	};
       };
       radicale.enable = lib.mkDefault true;
+      readarr.enable = lib.mkDefault true;
       blocky.enable = lib.mkDefault true;
       grocy.enable = lib.mkDefault true;
     };
