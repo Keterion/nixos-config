@@ -131,11 +131,17 @@
       thumbfast
       mpv-notify-send
       mpris
+      mpv-image-viewer.minimap
 
       uosc
       #modernx
       #modernz
     ];
+    config = {
+      autofit-larger = "100%x100%";
+      hwdec="yes";
+      keep-open="yes";
+    };
   };
 
 

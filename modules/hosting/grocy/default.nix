@@ -13,6 +13,11 @@ in {
       type = lib.types.str;
       default = "localhost";
     };
+    openFirewall = lib.mkOption {
+      type = lib.types.bool;
+      description = "Whether to open the grocy port in the firewall";
+      default = config.modules.hosting.openFirewall;
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -30,6 +35,7 @@ in {
       addr = cfg.address;
       port = cfg.port;
     }];
-
+    
+    networking.firewall.allowedTCPPorts = lib.mkIf cfg.openFirewall [ cfg.port ];
   };
 }

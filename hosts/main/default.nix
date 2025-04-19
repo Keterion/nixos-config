@@ -44,6 +44,9 @@
   };
 
   programs.adb.enable = true;
+  services.udev.packages = [
+    pkgs.android-udev-rules
+  ];
 
 
   #hardware.bluetooth = {
@@ -202,10 +205,11 @@
       jellyfin.enable = true;
       readarr.enable = true;
       grocy = {
-	enable = true;
+	enable = false;
 	port = 8275;
 	address = "192.168.178.69";
       };
+      tandoor.enable = true;
     };
   };
   

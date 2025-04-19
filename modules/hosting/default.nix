@@ -14,6 +14,7 @@ in {
     ./readarr
     ./jellyfin
     ./grocy
+    ./tandoor
   ];
   options.modules.hosting = {
     netfligs.enable = lib.mkEnableOption "the full netfligs suite";
@@ -56,6 +57,7 @@ in {
       readarr.enable = lib.mkDefault true;
       blocky.enable = lib.mkDefault true;
       grocy.enable = lib.mkDefault true;
+      tandoor.enable = lib.mkDefault true;
     };
   };
 }
