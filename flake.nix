@@ -19,7 +19,7 @@
     arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
     nvf = {
       url = "github:notashelf/nvf";
-      inputs.nixpkgs.follows = "nipkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
