@@ -1,4 +1,4 @@
-{ config, lib, utils }:
+{ config, lib, myUtils }:
 let
   cfg = config.system.shell.zsh;
 in {
@@ -30,7 +30,7 @@ in {
 	description = "Aliases available at user level";
       };
       history = {
-	ignoreDups = utils.mkEnabledOption "not saving repetitions of the same command to history.";
+	ignoreDups = myUtils.mkEnabledOption "not saving repetitions of the same command to history.";
 	ignoreSpace = lib.mkEnableOption "not saving commands with a Space character prepended";
 	substringSearch = {
 	  enable = lib.mkEnableOption "history substring search";

@@ -16,6 +16,31 @@ in {
       default = "etherion";
       description = "The settings profile to use";
     };
+    hypridle = {
+      enable = lib.mkEnableOption "hypridle";
+      settings = lib.mkOption {
+	type = lib.types.attrsOf lib.types.anything;
+	description = "Hypridle settings";
+	default = {
+	  general = {
+	    after_sleep_cmd = "hyprctl dispatch dpms on";
+	    ignore_dbus_inhibit = false;
+	    lock_cmd = "${config.system.screenlocker.command}";
+	  };
+	  listener = [
+	    {
+	      timeout = 900;
+	      on-timeout = "${config.system.screenlocker.command}";
+	    }
+	    {
+	      timeout = 300;
+	      on-timeout = "hyprctl dispatch dpms off";
+	      on-resume = "hyprctl dispatch dpms on";
+	    }
+	  ];
+	};
+      };
+    };
   };
 
   config = lib.mkIf cfg.enable {

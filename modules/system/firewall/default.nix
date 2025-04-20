@@ -1,10 +1,6 @@
-{ config, lib, ... }: {
+{ config, lib, myUtils, ... }: {
   options.system.firewall = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = true;
-      description = "Whether to enable a firewall";
-    };
+    enable = myUtils.mkEnabledOption "the firewall";
     allowedTCPPorts = lib.mkOption {
       type = lib.types.listOf lib.types.ints.u32;
       default = [];

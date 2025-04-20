@@ -7,6 +7,11 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    system.screenlocker= {
+      name = "swaylock";
+      command = lib.mkDefault "swaylock";
+    };
+
     home-manager.users.${config.system.users.default.name} = {
       programs.swaylock = {
 	enable = true;
