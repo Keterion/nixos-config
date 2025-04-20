@@ -14,10 +14,10 @@ in {
   config = lib.mkIf cfg.enable {
     system.runner.command = "tofi-run";
     home-manager.users.${config.system.users.default.name} = {
-      programs.tofi = {
-	enable = true;
-	settings = import ./tofi/${cfg.styleProfile}.nix;
-      };
+      programs.tofi.enable = true;
+      imports = [
+	./tofi/${cfg.styleProfile}.nix
+      ];
     };	
   };
 }

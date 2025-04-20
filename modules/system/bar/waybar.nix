@@ -11,7 +11,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    home-manager.users.${config.vars.system.users.default.name} = {
+    home-manager.users.${config.system.users.default.name} = {
       programs.waybar.enable = true;
       programs.waybar.settings = import ./waybar/${cfg.styleProfile}.nix;
     };

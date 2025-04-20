@@ -1,84 +1,82 @@
 { pkgs, ... }: {
   imports = [ ./hardware-configuration.nix ];
   system.users.default.name = "etherion";
-#  system = {
-#    colorscheme = "tokyonight-moon";
-#
-#    audio.pipewire = {
-#      enable = true;
-#      rtkit.enable = true;
-#      compatibility.pulse.enable = true;
-#      compatibility.jack.enable = true;
-#    };
-#    firewall.enable = true;
-#    fonts = with pkgs; [
-#      nerd-fonts.hack
-#      nerd-fonts.heavy-data
-#      nerd-fonts.jetbrains-mono
-#    ];
-#
-#    keyboard = {
-#      layout = "us";
-#      variant = "";
-#    };
-#    
-#    users.default.name = "etherion";
-#
-#    bar.waybar = {
-#      enable = true;
-#      styleProfile = "haides002";
-#    };
-#
-#    de = {
-#      hyprland = {
-#        enable = true;
-#        autologin = false;
-#        utils.enable = true;
-#        styleProfile = "etherion";
-#        hypridle.enable = true;
-#      };
-#      plasma.enable = true;
-#    };
-#
-#    dm.sddm.enable = true;
-#
-#    runner = {
-#      tofi = {
-#        enable = true;
-#        styleProfile = "etherion";
-#      };
-#    };
-#
-#    shell = {
-#      zsh = {
-#        enable = true;
-#        global = {
-#          autosuggestions.enable = true;
-#          aliases = {
-#            ll = "ls -la";
-#            l = "ls -la";
-#          };
-#        };
-#        user = {
-#          autocd = false;
-#          autosuggestion = {
-#            enable = true;
-#            highlight = "underline";
-#          };
-#          enableCompletion = true;
-#          history = {
-#            ignoreDups = true;
-#            ignoreSpace = true;
-#            substringSearch = {
-#              enable = true;
-#            };
-#          };
-#        };
-#      };
-#    };
-#
-#    terminal.kitty.enable = true;
-#  };
+  system = {
+    colorscheme = "tokyonight-moon";
+
+    audio.pipewire = {
+      enable = true;
+      rtkit.enable = true;
+      compatibility.pulse.enable = true;
+      compatibility.jack.enable = true;
+    };
+    firewall.enable = true;
+    fonts = with pkgs; [
+      nerd-fonts.hack
+      nerd-fonts.heavy-data
+      nerd-fonts.jetbrains-mono
+    ];
+
+    keyboard = {
+      layout = "us";
+      variant = "";
+    };
+    
+    bar.waybar = {
+      enable = true;
+      styleProfile = "haides002";
+    };
+
+    de = {
+      hyprland = {
+        enable = true;
+        autologin = false;
+        utils.enable = true;
+        styleProfile = "etherion";
+        hypridle.enable = true;
+      };
+      plasma.enable = true;
+    };
+
+    dm.sddm.enable = true;
+
+    runner = {
+      tofi = {
+        enable = true;
+        styleProfile = "etherion";
+      };
+    };
+
+    shell = {
+      zsh = {
+        enable = true;
+        global = {
+          autosuggestions.enable = true;
+          aliases = {
+            ll = "ls -la";
+            l = "ls -la";
+          };
+        };
+        user = {
+          autocd = false;
+          autosuggestion = {
+            enable = true;
+            highlight = "underline";
+          };
+          enableCompletion = true;
+          history = {
+            ignoreDups = true;
+            ignoreSpace = true;
+            substringSearch = {
+              enable = true;
+            };
+          };
+        };
+      };
+    };
+
+    terminal.kitty.enable = true;
+  };
 
   fileSystems."/mnt/Games" = {
     device = "dev/disk/by-uuid/3212add8-8af3-46c6-a739-cfc018bd72ac";
