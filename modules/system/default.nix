@@ -2,15 +2,15 @@
   imports = [	
     ./audio
     ./bar
-#    ./de
+    ./de
     ./dm
     ./firewall
     ./fonts
     ./fs
     ./lockscreen
-#    ./runner
+    ./runner
     ./security
-#    ./shell
+    ./shell
 #    ./tools
     ./wm
   ];

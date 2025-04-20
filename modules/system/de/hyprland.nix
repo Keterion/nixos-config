@@ -44,6 +44,10 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    services.hypridle = lib.mkIf cfg.hypridle.enable {
+      enable = true;
+      settings = cfg.hypridle.settings;
+    };
     services.displayManager = lib.mkIf cfg.autologin {
       autologin = {
 	enable = true;

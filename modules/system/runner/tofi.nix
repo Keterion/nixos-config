@@ -12,6 +12,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    config.system.runner.command = "tofi-run";
     home-manager.users.${config.system.users.default.name} = {
       programs.tofi = {
 	enable = true;

@@ -7,7 +7,6 @@ in {
     styleProfile = lib.mkOption {
       type = lib.types.enum["haides002" "default"];
       description = "Which style profile to load for waybar";
-      # add default with globals somehow
     };
   };
 
