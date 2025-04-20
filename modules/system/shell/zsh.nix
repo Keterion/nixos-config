@@ -1,4 +1,4 @@
-{ config, lib, myUtils }:
+{ config, lib, myUtils, ... }:
 let
   cfg = config.system.shell.zsh;
 in {
@@ -54,7 +54,7 @@ in {
       enable = true;
       autosuggestions = {
 	enable = cfg.global.autosuggestions.enable;
-	highlight = "underline";
+	highlightStyle = "underline";
       };
       enableCompletion = true;
       shellAliases = cfg.global.aliases;

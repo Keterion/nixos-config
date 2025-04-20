@@ -46,10 +46,9 @@ in {
   config = lib.mkIf cfg.enable {
     services.hypridle = lib.mkIf cfg.hypridle.enable {
       enable = true;
-      settings = cfg.hypridle.settings;
     };
     services.displayManager = lib.mkIf cfg.autologin {
-      autologin = {
+      autoLogin = {
 	enable = true;
 	user = config.system.users.default.name;
       };
@@ -70,6 +69,10 @@ in {
       imports = [
 	./hyprland/${cfg.styleProfile}.nix
       ];
+      services.hypridle = lib.mkIf cfg.hypridle.enable {
+	enable = true;
+	settings = cfg.hypridle.settings;
+      };
       home.packages = with pkgs; lib.optionals cfg.utils.enable [
 	clipman
 	wl-clipboard

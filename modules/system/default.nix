@@ -11,6 +11,7 @@
     ./runner
     ./security
     ./shell
+    ./terminal
 #    ./tools
     ./wm
   ];

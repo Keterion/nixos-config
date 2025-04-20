@@ -1,6 +1,6 @@
 { ... }: {
   imports = [
-    ./games
-    ./firefox
+#    ./games
+#    ./firefox
   ];
 }
