@@ -5,6 +5,7 @@ in {
   options.apps.firefox = {
     enable = lib.mkEnableOption "the firefox browser";
     arkenfox = lib.mkEnableOption "a profile configured with arkenfox";
+    vim.enable = lib.mkEnableOption "vim navigation via tridactyl-vim";
   };
 
   config = lib.mkIf cfg.enable {
@@ -120,7 +121,9 @@ in {
             #    platforms = platforms.all;
             #  };
             #}
-          ];
+          ] ++ lib.optionals cfg.vim.enable [
+	    pkgs.nur.repos.rycee.firefox-addons.tridactyl-vim
+	  ];
         };
 	"SchizoMode" = lib.mkIf config.modules.apps.firefox.arkenfox {
 	  id = 1;

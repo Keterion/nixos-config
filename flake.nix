@@ -17,6 +17,10 @@
     nur.url = "github:nix-community/nur";
 
     arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
+    nvf = {
+      url = "github:notashelf/nvf";
+      inputs.nixpkgs.follows = "nipkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
