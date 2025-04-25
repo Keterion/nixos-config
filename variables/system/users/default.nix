@@ -13,6 +13,19 @@ in {
       default = [];
       description = "Extra groups to give to the user";
     };
+    git = {
+      email = lib.mkOption {
+	type = lib.types.str;
+	description = "Email to use for git";
+	example = "john.doe@example.com";
+      };
+      name = lib.mkOption {
+	type = lib.types.str;
+	description = "Name to use for git";
+	default = config.system.users.default.name;
+	example = "John Doe";
+      };
+    };
   };
   config = {
     users.users.${cfg.default.name} = {
