@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, config, ... }: {
   imports = [ ./hardware-configuration.nix ];
   system.users.default.name = "etherion";
   system = {
@@ -77,6 +77,15 @@
 
     terminal.kitty.enable = true;
   };
+
+  apps = {
+    firefox = {
+      enable = true;
+      arkenfox = true;
+      vim.enable = true;
+    };
+  };
+
 
   fileSystems."/mnt/Games" = {
     device = "dev/disk/by-uuid/3212add8-8af3-46c6-a739-cfc018bd72ac";

@@ -14,16 +14,18 @@
     #  inputs.nixpkgs.follows = "nixpkgs";
     #};
 
-    nur.url = "github:nix-community/nur";
+    nur = {
+      url = "github:nix-community/nur";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
     nvf = {
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { nixpkgs, home-manager, ... }@inputs:
     let 
       overlays = import ./overlays.nix { inherit inputs; };
     in {
@@ -32,10 +34,12 @@
 	  system = "x86_64-linux";
 	  specialArgs = { myUtils = import ./utils.nix { inherit inputs; }; };
 	  modules = [
-	    { nixpkgs.overlays = [ overlays.nur overlays.stable-packages ]; }
+	    { nixpkgs.overlays = [ inputs.nur.overlays.default overlays.stable-packages ]; }
 	    ./machines/common.nix
 	    ./machines/main
 	    
+	    inputs.nvf.nixosModules.default
+
 	    home-manager.nixosModules.home-manager
 	  ];
 	};

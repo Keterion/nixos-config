@@ -113,6 +113,8 @@
 	  "workspace 2, ^(firefox)"
 	  "workspace 2, (cord)$"
 	  "workspace 3, ^(steam)$"
+	  "idleinhibit focus, class:(com.github.iwalton3.jellyfin-media-player)"
+	  "suppressevent activatefocus, class:^(steam),title:^(notificationtoasts.*)"
 	];
 	exec-once = [
 	  "waybar"
