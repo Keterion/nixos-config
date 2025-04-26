@@ -5,6 +5,7 @@ in {
   options.apps.neovim = {
     enable = lib.mkEnableOption "neovim configured via nvf";
     aliases.enable = lib.mkEnableOption "aliases for vi";
+    default = lib.mkEnableOption "neovim as the default text editor";
   };
 
   config = lib.mkIf cfg.enable {
@@ -14,10 +15,16 @@ in {
       
       vim.filetree.neo-tree = {
 	enable = true;
-
       };
 
+      vim.defaultEditor = true;
+
+      vim.statusline.lualine.enable = true;
+      vim.autocomplete.nvim-cmp.enable = true;
+
       vim.languages = {
+	enableLSP = true;
+
 	rust = {
 	  enable = true;
 	  format.enable = true;

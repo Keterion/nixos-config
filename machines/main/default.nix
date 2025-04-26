@@ -1,6 +1,12 @@
 { pkgs, config, ... }: {
   imports = [ ./hardware-configuration.nix ];
-  system.users.default.name = "etherion";
+  system.users.default = {
+    name = "etherion";
+    git = {
+      name = "Keterion";
+      email = "100532848+Keterion@users.noreply.github.com";
+    };
+  };
   system = {
     colorscheme = "tokyonight-moon";
 
@@ -82,7 +88,14 @@
     firefox = {
       enable = true;
       arkenfox = true;
-      vim.enable = true;
+      vim.enable = false;
+    };
+    cava.enable = true;
+    git.enable = true;
+    neovim = {
+      enable = true;
+      aliases.enable = true;
+      default = true;
     };
   };
 
