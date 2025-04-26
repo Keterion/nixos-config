@@ -1,7 +1,5 @@
 { ... }: {
   imports = [
-    ./games
-    ./firefox
     ./cli
     ./gui
   ];

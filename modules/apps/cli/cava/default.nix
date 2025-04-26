@@ -7,7 +7,7 @@ in {
   config = lib.mkIf cfg.enable {
     home-manager.users.${config.system.users.default.name}.programs.cava = {
       enable = true;
-      settigs = {
+      settings = {
 	general = {
 	  framerate = 60;
 

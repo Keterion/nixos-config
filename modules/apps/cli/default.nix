@@ -2,5 +2,6 @@
   imports = [
     ./cava
     ./neovim
+    ./git
   ];
 }
