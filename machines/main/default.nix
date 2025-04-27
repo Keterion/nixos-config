@@ -107,6 +107,11 @@
     };
     thunderbird.enable = true; #TODO: protonmail-bridge
     mpv.enable = true;
+    speedcrunch.enable = true;
+    discord = {
+      enable = true;
+      vencord.enable = true;
+    };
   };
 
 
