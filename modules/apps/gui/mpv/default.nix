@@ -10,7 +10,7 @@ in {
   config = lib.mkIf cfg.enable {
     environment.systemPackages = [ pkgs.mpv ];
 
-    home-manager.users.${config.system.users.default.name}.home.programs.mpv = {
+    home-manager.users.${config.system.users.default.name}.programs.mpv = {
       enable = true;
       scripts = with pkgs.mpvScripts; [
 	thumbfast
