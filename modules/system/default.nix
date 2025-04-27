@@ -14,5 +14,6 @@
     ./terminal
 #    ./tools
     ./wm
+    ./printing
   ];
 }
