@@ -82,6 +82,11 @@
     };
 
     terminal.kitty.enable = true;
+
+    printing = {
+      enable = true;
+      autodiscovery.enable = true;
+    };
   };
 
   apps = {
