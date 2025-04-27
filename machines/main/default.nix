@@ -9,6 +9,8 @@
   };
   system = {
     colorscheme = "tokyonight-moon";
+    
+    hid.gamepad.dualsense.enable = true;
 
     audio.pipewire = {
       enable = true;
@@ -17,6 +19,7 @@
       compatibility.jack.enable = true;
     };
     firewall.enable = true;
+    bluetooth.enable = true;
     fonts = with pkgs; [
       nerd-fonts.hack
       nerd-fonts.heavy-data
