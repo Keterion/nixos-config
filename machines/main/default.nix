@@ -112,6 +112,12 @@
       enable = true;
       vencord.enable = true;
     };
+    freecad = {
+      enable = true;
+      fem.enable = true;
+    };
+    blender.enable = true;
+    keepassxc.enable = true;
   };
 
 
