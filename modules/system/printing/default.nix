@@ -2,7 +2,7 @@
 let
   cfg = config.system.printing;
 in {
-  options.system.priting = {
+  options.system.printing = {
     enable = lib.mkEnableOption "wireless printing support";
     autodiscovery.enable = lib.mkEnableOption "autodiscovery with avahi";
   };

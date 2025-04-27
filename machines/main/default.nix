@@ -100,7 +100,7 @@
     neovim = {
       enable = true;
       aliases.enable = true;
-      default = true;
+      defaultEditor = true;
     };
   };
 

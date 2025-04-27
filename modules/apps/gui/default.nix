@@ -3,5 +3,6 @@
     ./firefox
     ./games
     ./discord
+    ./libreoffice
   ];
 }

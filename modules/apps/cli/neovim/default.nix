@@ -5,10 +5,11 @@ in {
   options.apps.neovim = {
     enable = lib.mkEnableOption "neovim configured via nvf";
     aliases.enable = lib.mkEnableOption "aliases for vi";
-    default = lib.mkEnableOption "neovim as the default text editor";
+    defaultEditor = lib.mkEnableOption "neovim as the default text editor";
   };
 
   config = lib.mkIf cfg.enable {
+    environment.variables.EDITOR = lib.mkIf cfg.defaultEditor "nvim";
     programs.nvf = {
       enable = true;
       settings.vim = {
@@ -19,7 +20,6 @@ in {
       	  enable = true;
       	};
 
-      	defaultEditor = true;
 
       	statusline.lualine.enable = true;
       	autocomplete.nvim-cmp.enable = true;
