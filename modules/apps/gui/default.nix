@@ -4,5 +4,7 @@
     ./games
     ./discord
     ./libreoffice
+    ./thunderbird
+    ./mpv
   ];
 }

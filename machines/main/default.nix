@@ -102,6 +102,8 @@
       aliases.enable = true;
       defaultEditor = true;
     };
+    thunderbird.enable = true; #TODO: protonmail-bridge
+    mpv.enable = true;
   };
 
 
