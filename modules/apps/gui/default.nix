@@ -1,5 +1,6 @@
 { ... }: {
   imports = [
+    ./blender
     ./firefox
     ./games
     ./jellyfin-media-player
