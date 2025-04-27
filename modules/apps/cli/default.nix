@@ -3,5 +3,6 @@
     ./cava
     ./neovim
     ./git
+    ./spotdl
   ];
 }

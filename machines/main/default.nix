@@ -118,6 +118,7 @@
     };
     blender.enable = true;
     keepassxc.enable = true;
+    spotdl.enable = true;
   };
 
 
