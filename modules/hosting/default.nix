@@ -15,7 +15,7 @@ in {
     ./jellyfin
     ./grocy
     ./tandoor
-    ./qbitorrent
+    ./qbittorrent
   ];
   options.modules.hosting = {
     netfligs.enable = lib.mkEnableOption "the full netfligs suite";
