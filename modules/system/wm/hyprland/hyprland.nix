@@ -5,6 +5,29 @@
    package = pkgs.waybar;
   };
 
+  services.hypridle = {
+    enable = true;
+    settings = {
+      general = {
+	after_sleep_cmd = "hyprctl dispatch dpms on";
+	ignore_dbus_inhibit = false;
+	lock_cmd = "swaylock";
+      };
+
+      listener = [
+	{
+	  timeout = 900;
+	  on-timeout = "swaylock";
+	}
+	{
+	  timeout = 300;
+	  on-timeout = "hyprctl dispatch dpms off";
+	  on-resume = "hyprctl dispatch dpms on";
+	}
+      ];
+    };
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = true;
@@ -120,9 +143,11 @@
 	  "workspaces, 1, 3, workspace_slide, slidevert"
 	];
 	windowrule = [
-	  "workspace 2, ^(firefox)"
-	  "workspace 2, (cord)$"
-	  "workspace 3, ^(steam)$"
+	  "workspace 2, class:^(firefox)"
+	  "workspace 2, title:(cord)$"
+	  "workspace 3, class:^(steam)$"
+	  "idleinhibit fullscreen, class:(com.github.iwalton3.jellyfin-media-player)"
+	  "suppressevent activatefocus, class:^(steam),title:^(notificationtoasts.*)"
 	];
 	exec-once = [
 	  "waybar"

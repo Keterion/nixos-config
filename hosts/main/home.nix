@@ -66,7 +66,7 @@
     iotop
     iftop
     gpodder
-    signal-desktop
+    signal-desktop-bin
     zathura
   ];
   

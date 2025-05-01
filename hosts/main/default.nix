@@ -193,7 +193,7 @@
       server = {
         enable = true;
         libraries = [ "/mnt/priv/Media/Library" ];
-	openFirewall = true ;
+	openFirewall = false;
       };
     };
     services = {
@@ -209,7 +209,12 @@
 	port = 8275;
 	address = "192.168.178.69";
       };
-      tandoor.enable = true;
+      tandoor = {
+	enable = true;
+	port = 8085;
+	address = "192.168.178.69";
+      };
+      qbittorrent.enable = true;
     };
   };
   

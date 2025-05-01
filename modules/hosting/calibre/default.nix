@@ -52,6 +52,7 @@ in {
     services.calibre-web = lib.mkIf cfg.web.enable {
       enable = true;
       group = lib.mkIf config.modules.hosting.commonGroup.enable config.modules.hosting.commonGroup.name;
+      package = pkgs.stable.calibre-web;
       user = "calibre-web";
       options = {
 	calibreLibrary = cfg.web.libraryPath;
