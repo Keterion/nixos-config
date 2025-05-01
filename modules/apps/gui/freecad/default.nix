@@ -3,7 +3,11 @@ let
   cfg = config.apps.freecad;
 in {
   options.apps.freecad = {
-    enable = lib.mkEnableOption "freecad";
+    enable = lib.mkOption {
+      default = config.apps.modules.gui.all.enable;
+      type = lib.types.bool;
+      description = "Whether to enable freecad";
+    };
     fem.enable = lib.mkEnableOption "FEM tools and dependencies";
     # calculix, gmsh
   };

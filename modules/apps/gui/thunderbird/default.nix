@@ -3,7 +3,11 @@ let
   cfg = config.apps.thunderbird;
 in {
   options.apps.thunderbird = {
-    enable = lib.mkEnableOption "thunderbird";
+    enable = lib.mkOption {
+      default = config.apps.modules.gui.all.enable;
+      type = lib.types.bool;
+      description = "Whether to enable mozilla thunderbird.";
+    };
     protonmail.enable = lib.mkEnableOption "protonmail bridge"; #TODO
   };
 

@@ -93,32 +93,18 @@
   };
 
   apps = {
+    modules.all.enable = true; # Enables all apps under modules/apps
     firefox = {
-      enable = true;
       arkenfox = true;
       vim.enable = false;
     };
-    cava.enable = true;
-    git.enable = true;
     neovim = {
-      enable = true;
       aliases.enable = true;
       defaultEditor = true;
     };
-    thunderbird.enable = true; #TODO: protonmail-bridge
-    mpv.enable = true;
-    speedcrunch.enable = true;
-    discord = {
-      enable = true;
-      vencord.enable = true;
-    };
-    freecad = {
-      enable = true;
-      fem.enable = true;
-    };
-    blender.enable = true;
-    keepassxc.enable = true;
-    spotdl.enable = true;
+    #thunderbird.enable = true; #TODO: protonmail-bridge
+    discord.vencord.enable = true;
+    freecad.fem.enable = true;
   };
 
 

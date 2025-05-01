@@ -3,7 +3,11 @@ let
   cfg = config.apps.firefox;
 in {
   options.apps.firefox = {
-    enable = lib.mkEnableOption "the firefox browser";
+    enable = lib.mkOption {
+      default = config.apps.modules.gui.all.enable;
+      type = lib.types.bool;
+      description = "Whether to enable the firefox browser.";
+    };
     arkenfox = lib.mkEnableOption "a profile configured with arkenfox";
     vim.enable = lib.mkEnableOption "vim navigation via tridactyl-vim";
   };

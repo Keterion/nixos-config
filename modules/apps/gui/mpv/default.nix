@@ -3,8 +3,11 @@ let
   cfg = config.apps.mpv;
 in {
   options.apps.mpv = {
-    enable = lib.mkEnableOption "mpv";
-    #image-support.enable = lib.mkEnableOption "image display support for mpv";
+    enable = lib.mkOption {
+      default = config.apps.modules.gui.all.enable;
+      type = lib.types.bool;
+      description = "Whether to enable mpv.";
+    };    #image-support.enable = lib.mkEnableOption "image display support for mpv";
   };
 
   config = lib.mkIf cfg.enable {

@@ -3,7 +3,11 @@ let
   cfg = config.apps.games.steam;
 in {
   options.apps.games.steam = {
-    enable = lib.mkEnableOption "steam";
+    enable = lib.mkOption {
+      default = config.apps.modules.gui.all.enable;
+      type = lib.types.bool;
+      description = "Whether to enable .";
+    };
     compat = lib.mkEnableOption "compatibility tools";
     backup = lib.mkEnableOption "ludusavi as a backup tool";
     remotePlay.openFirewall = lib.mkEnableOption "open firewall for remote play";

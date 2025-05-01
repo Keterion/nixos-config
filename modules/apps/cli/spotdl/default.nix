@@ -2,8 +2,11 @@
 let
   cfg = config.apps.spotdl;
 in {
-  options.apps.spotdl.enable = lib.mkEnableOption "spotdl";
-
+  options.apps.spotdl.enable = lib.mkOption {
+    default = config.apps.modules.all.enable;
+    type = lib.types.bool;
+    description = "Whether to enable spotdl.";
+  };
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       spotdl

@@ -3,7 +3,11 @@ let
   cfg = config.apps.neovim;
 in {
   options.apps.neovim = {
-    enable = lib.mkEnableOption "neovim configured via nvf";
+    enable = lib.mkOption {
+      default = config.apps.modules.all.enable;
+      type = lib.types.bool;
+      description = "Whether to enable neovim configured via nvf.";
+    };
     aliases.enable = lib.mkEnableOption "aliases for vi";
     defaultEditor = lib.mkEnableOption "neovim as the default text editor";
   };

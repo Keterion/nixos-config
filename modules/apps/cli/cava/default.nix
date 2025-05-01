@@ -2,7 +2,11 @@
 let
   cfg = config.apps.cava;
 in {
-  options.apps.cava.enable = lib.mkEnableOption "cava";
+  options.apps.cava.enable = lib.mkOption {
+    default = config.apps.modules.all.enable;
+    type = lib.types.bool;
+    description = "Whether to enable the music visualizer cava.";
+  };
 
   config = lib.mkIf cfg.enable {
     home-manager.users.${config.system.users.default.name}.programs.cava = {

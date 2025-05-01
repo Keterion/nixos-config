@@ -3,7 +3,11 @@ let
   cfg = config.apps.git;
 in {
   options.apps.git = {
-    enable = lib.mkEnableOption "git";
+    enable = lib.mkOption {
+      default = config.apps.modules.all.enable;
+      type = lib.types.bool;
+      description = "Whether to enable .";
+    };
     defaultBranch = lib.mkOption {
       type = lib.types.str;
       default = "main";
