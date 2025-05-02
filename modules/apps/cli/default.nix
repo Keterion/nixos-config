@@ -8,6 +8,7 @@ in {
     ./cava
     ./encfs
     ./exiftool
+    ./eza
     ./ffmpeg
     ./git
     ./mediainfo

@@ -105,6 +105,7 @@
     #thunderbird.enable = true; #TODO: protonmail-bridge
     discord.vencord.enable = true;
     freecad.fem.enable = true;
+    eza.overrides.shellIntegration.nushell.enable = false;
   };
 
 
