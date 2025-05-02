@@ -2,6 +2,8 @@
   imports = [ 
     ../modules/system
     ../modules/apps
+    ../modules/services
+    ../modules/packages
     ../variables
   ];
 
