@@ -110,6 +110,7 @@
       overrides.shellIntegration.nushell.enable = false;
     };
     fzf.shellIntegration = true;
+    zoxide.shellIntegration = true;
   };
 
 

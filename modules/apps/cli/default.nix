@@ -21,6 +21,7 @@ in {
     ./testssl
     ./yt-dlp
     ./zip
+    ./zoxide
   ];
 
   options.apps.modules.cli = {
