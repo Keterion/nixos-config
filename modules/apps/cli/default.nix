@@ -10,6 +10,7 @@ in {
     ./exiftool
     ./eza
     ./ffmpeg
+    ./fzf
     ./git
     ./mediainfo
     ./neovim
