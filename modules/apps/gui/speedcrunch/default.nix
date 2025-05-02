@@ -3,7 +3,7 @@ let
   cfg = config.apps.speedcrunch;
 in {
   options.apps.speedcrunch.enable = lib.mkOption {
-    default = config.apps.modules.gui.all.enable;
+    default = config.apps.modules.gui.utils.enable;
     type = lib.types.bool;
     description = "Whether to enable speedcrunch.";
   };

@@ -3,17 +3,27 @@ let
   cfg = config.apps.modules.gui;
 in {
   imports = [
+    ./aseprite
     ./blender
+    ./discord
     ./firefox
     ./freecad
     ./games
+    ./gimp
     ./jellyfin-media-player
     ./keepassxc
-    ./discord
+    ./krita
     ./libreoffice
-    ./thunderbird
     ./mpv
+    ./obs
+    ./obsidian
+    ./qbittorrent
+    ./qimgv
+    ./signal
     ./speedcrunch
+    ./strawberry
+    ./thunderbird
+    ./zathura
   ];
 
   options.apps.modules.gui = {
@@ -28,18 +38,41 @@ in {
 	type = lib.types.bool;
 	description = "Whether to enable all art programs";
       };
+      dd.enable = lib.mkOption {
+	default = cfg.art.enable;
+	type = lib.types.bool;
+	description = "Whether to enable all 2d art programs";
+      };
+      ddd.enable = lib.mkOption {
+	default = cfg.art.enable;
+	type = lib.types.bool;
+	description = "Whether to enable all 3d art programs";
+      };
     };
     social.enable = lib.mkOption {
       default = cfg.all.enable;
       type = lib.types.bool;
       description = "Whether to enable all social programs";
     };
-  };
-
-  config.apps = {
-    blender.enable = lib.mkDefault cfg.art.enable;
-
-    discord.enable = lib.mkDefault cfg.social.enable;
-    thunderbird.enable = lib.mkDefault cfg.social.enable;
+    media.enable = lib.mkOption {
+      default = cfg.all.enable;
+      type = lib.types.bool;
+      description = "Whether to enable all media programs";
+    };
+    utils.enable = lib.mkOption {
+      default = cfg.all.enable;
+      type = lib.types.bool;
+      description = "Whether to enable all utility programs";
+    };
+    misc.enable = lib.mkOption {
+      default = cfg.all.enable;
+      type = lib.types.bool;
+      description = "Whether to enable all miscellaneous programs";
+    };
+    games.enable = lib.mkOption {
+      default = cfg.all.enable;
+      type = lib.types.bool;
+      description = "Whether to enable all gaming platforms";
+    };
   };
 }

@@ -3,7 +3,7 @@ let
   cfg = config.apps.blender;
 in {
   options.apps.blender.enable = lib.mkOption {
-    default = config.apps.modules.gui.all.enable;
+    default = config.apps.modules.gui.art.ddd.enable;
     type = lib.types.bool;
     description = "Whether to enable blender";
   };

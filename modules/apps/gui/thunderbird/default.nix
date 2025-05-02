@@ -4,7 +4,7 @@ let
 in {
   options.apps.thunderbird = {
     enable = lib.mkOption {
-      default = config.apps.modules.gui.all.enable;
+      default = config.apps.modules.gui.social.enable;
       type = lib.types.bool;
       description = "Whether to enable mozilla thunderbird.";
     };

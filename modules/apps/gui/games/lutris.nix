@@ -3,7 +3,7 @@ let
   cfg = config.apps.games.lutris;
 in {
   options.apps.games.lutris.enable = lib.mkOption {
-    default = config.apps.modules.gui.all.enable;
+    default = config.apps.modules.gui.games.enable;
     type = lib.types.bool;
     description = "Whether to enable lutris";
   };

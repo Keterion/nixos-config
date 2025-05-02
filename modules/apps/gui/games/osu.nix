@@ -3,7 +3,7 @@ let
   cfg = config.apps.games.osu;
 in {
   options.apps.games.osu.enable = lib.mkOption {
-    default = config.apps.modules.gui.all.enable;
+    default = config.apps.modules.gui.games.enable;
     type = lib.types.bool;
     description = "Whether to enable osu.";
   };

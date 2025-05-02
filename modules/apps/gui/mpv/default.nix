@@ -4,7 +4,7 @@ let
 in {
   options.apps.mpv = {
     enable = lib.mkOption {
-      default = config.apps.modules.gui.all.enable;
+      default = config.apps.modules.gui.media.enable;
       type = lib.types.bool;
       description = "Whether to enable mpv.";
     };    #image-support.enable = lib.mkEnableOption "image display support for mpv";
