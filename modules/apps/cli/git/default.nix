@@ -4,9 +4,9 @@ let
 in {
   options.apps.git = {
     enable = lib.mkOption {
-      default = config.apps.modules.all.enable;
+      default = config.apps.modules.cli.dev.enable;
       type = lib.types.bool;
-      description = "Whether to enable .";
+      description = "Whether to enable git.";
     };
     defaultBranch = lib.mkOption {
       type = lib.types.str;

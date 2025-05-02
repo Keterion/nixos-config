@@ -1,12 +1,24 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 let
   cfg = config.apps.modules.cli;
 in {
   imports = [
+    ./bat
+    ./bottom
     ./cava
-    ./neovim
+    ./encfs
+    ./exiftool
+    ./ffmpeg
     ./git
+    ./mediainfo
+    ./neovim
+    ./nmap
+    ./ripgrep
     ./spotdl
+    ./tdf
+    ./testssl
+    ./yt-dlp
+    ./zip
   ];
 
   options.apps.modules.cli = {
@@ -21,16 +33,24 @@ in {
       description = "Whether to enable dev programs";
     };
     dl.enable = lib.mkOption {
-      defalt = cfg.all.enable;
+      default = cfg.all.enable;
       type = lib.types.bool;
       description = "Whether to enable download programs";
     };
-  };
-
-  config = {
-    apps.git.enable = lib.mkDefault cfg.dev.enable;
-    apps.neovim.enable = lib.mkDefault cfg.dev.enable;
-
-    apps.spotdl.enable = lib.mkDefault cfg.dl.enable;
+    media.enable = lib.mkOption {
+      default = cfg.all.enable;
+      type = lib.types.bool;
+      description = "Whether to enable media programs";
+    };
+    misc.enable = lib.mkOption {
+      default = cfg.all.enable;
+      type = lib.types.bool;
+      description = "Whether to enable miscellaneous programs";
+    };
+    utils.enable = lib.mkOption {
+      default = cfg.all.enable;
+      type = lib.types.bool;
+      description = "Whether to enable utility programs";
+    };
   };
 }

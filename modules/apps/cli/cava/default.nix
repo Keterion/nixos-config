@@ -3,7 +3,7 @@ let
   cfg = config.apps.cava;
 in {
   options.apps.cava.enable = lib.mkOption {
-    default = config.apps.modules.all.enable;
+    default = config.apps.modules.cli.misc.enable;
     type = lib.types.bool;
     description = "Whether to enable the music visualizer cava.";
   };

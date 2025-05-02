@@ -3,7 +3,7 @@ let
   cfg = config.apps.spotdl;
 in {
   options.apps.spotdl.enable = lib.mkOption {
-    default = config.apps.modules.all.enable;
+    default = config.apps.modules.cli.dl.enable;
     type = lib.types.bool;
     description = "Whether to enable spotdl.";
   };

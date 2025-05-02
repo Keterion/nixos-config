@@ -4,7 +4,7 @@ let
 in {
   options.apps.neovim = {
     enable = lib.mkOption {
-      default = config.apps.modules.all.enable;
+      default = config.apps.modules.cli.dev.enable;
       type = lib.types.bool;
       description = "Whether to enable neovim configured via nvf.";
     };
