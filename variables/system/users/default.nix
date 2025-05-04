@@ -33,6 +33,7 @@ in {
       home = "/home/${cfg.default.name}";
       isNormalUser = lib.mkDefault true;
       name = cfg.default.name;
+      uid = 1000;
     };
     home-manager.users.${cfg.default.name}.home = {
       stateVersion = config.system.stateVersion;
