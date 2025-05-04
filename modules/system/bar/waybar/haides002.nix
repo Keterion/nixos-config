@@ -144,8 +144,13 @@ in {
       "mpris" = {
         rotate = 0;
         tooltip = false;
+        status-icons = {
+          playing = "󰐊";
+          paused = "󰏤";
+          stopped = "󰓛";
+        };
 
-        format = "{artist} - {title}";
+        format = "{status_icon} {artist} - {title}";
         title-len = 20;
       };
 

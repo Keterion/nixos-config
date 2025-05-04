@@ -1,8 +1,13 @@
-{ config, lib, ... }: {
+{
+  config,
+  lib,
+  ...
+}: {
   imports = [
-#    ./fsh.nix
+    #    ./fsh.nix
     ./zsh.nix
-#    ./bash.nix
+    #    ./bash.nix
+    ./prompt
   ];
 
   options.system.shell = {

@@ -62,6 +62,7 @@
     };
 
     shell = {
+      prompt.starship.enable = true;
       zsh = {
         enable = true;
         global = {
