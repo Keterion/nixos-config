@@ -1,5 +1,9 @@
-{ config, lib, pkgs, ... }:
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   cfg = config.apps.modules.cli;
 in {
   imports = [
@@ -14,6 +18,7 @@ in {
     ./git
     ./mediainfo
     ./neovim
+    ./nh
     ./nmap
     ./ripgrep
     ./spotdl

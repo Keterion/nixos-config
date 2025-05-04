@@ -1,5 +1,9 @@
-{ lib, pkgs, config, ... }: 
-let
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}: let
   cfg = config.apps.neovim;
 in {
   options.apps.neovim = {
@@ -17,53 +21,58 @@ in {
     programs.nvf = {
       enable = true;
       settings.vim = {
-	viAlias = cfg.aliases.enable;
-      	vimAlias = cfg.aliases.enable;
-      	
-      	filetree.neo-tree = {
-      	  enable = true;
-      	};
+        theme = {
+          enable = true;
+          name = "tokyonight";
+          style = "moon";
+        };
 
+        viAlias = cfg.aliases.enable;
+        vimAlias = cfg.aliases.enable;
 
-      	statusline.lualine.enable = true;
-      	autocomplete.nvim-cmp.enable = true;
+        filetree.neo-tree = {
+          enable = true;
+        };
 
-      	languages = {
-      	  enableLSP = true;
+        statusline.lualine.enable = true;
+        autocomplete.nvim-cmp.enable = true;
 
-      	  rust = {
-      	    enable = true;
-      	    format.enable = true;
-      	    lsp = {
-      	      enable = true;
-      	    };
-      	    treesitter.enable = true;
-      	  };
-      	  nix = {
-      	    enable = true;
-      	    format.enable = true;
-      	    lsp.enable = true;
-      	    treesitter.enable = true;
-      	  };
-      	  python = {
-      	    enable = true;
-      	    format.enable = true;
-      	    lsp.enable = true;
-      	    treesitter.enable = true;
-      	  };
-      	  typst = {
-      	    enable = true;
-      	    format.enable = true;
-      	    lsp.enable = true;
-      	    treesitter.enable = true;
-      	  };
-      	};
-      	extraPlugins = {
-      	  aerial = {
-      	    package = pkgs.vimPlugins.aerial-nvim;
-      	    setup = "require('aerial').setup {}";
-      	  };
-      	};
+        languages = {
+          enableLSP = true;
+
+          rust = {
+            enable = true;
+            format.enable = true;
+            lsp = {
+              enable = true;
+            };
+            treesitter.enable = true;
+          };
+          nix = {
+            enable = true;
+            format.enable = true;
+            lsp.enable = true;
+            treesitter.enable = true;
+          };
+          python = {
+            enable = true;
+            format.enable = true;
+            lsp.enable = true;
+            treesitter.enable = true;
+          };
+          typst = {
+            enable = true;
+            format.enable = true;
+            lsp.enable = true;
+            treesitter.enable = true;
+          };
+        };
+        extraPlugins = {
+          aerial = {
+            package = pkgs.vimPlugins.aerial-nvim;
+            setup = "require('aerial').setup {}";
+          };
+        };
       };
     };
   };
