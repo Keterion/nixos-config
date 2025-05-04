@@ -34,7 +34,7 @@ in {
       toolbar = false;
       bookmarks = [{
 	name = "qBittorrent";
-	url = "${config.hosting.ip}:${cfg.port}";
+	url = "${config.hosting.ip}:${toString cfg.port}";
       }];
     }];
   };

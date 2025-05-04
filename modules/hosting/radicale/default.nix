@@ -23,7 +23,7 @@ in {
 
     services.radicale = {
       enable = true;
-      settings.server.hosts = [ "${cfg.ip}:${cfg.port}" ];
+      settings.server.hosts = [ "${cfg.ip}:${toString cfg.port}" ];
 
       rights = {
 	root = {
@@ -55,7 +55,7 @@ in {
       toolbar = false;
       bookmarks = [{
 	name = "Radicale";
-	url = "${cfg.ip}:${cfg.port}";
+	url = "${cfg.ip}:${toString cfg.port}";
       }];
     }];
   };

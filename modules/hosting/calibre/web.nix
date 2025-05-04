@@ -51,7 +51,7 @@ in {
       toolbar = false;
       bookmarks = [{
 	name = "Calibre-Web";
-	url = "${cfg.ip}:${cfg.port}";
+	url = "${cfg.ip}:${toString cfg.port}";
       }];
     }];
   };

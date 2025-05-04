@@ -35,7 +35,7 @@ in {
       toolbar = false;
       bookmarks = [{
 	name = "Tandoor";
-	url = "${cfg.ip}:${cfg.port}";
+	url = "${cfg.ip}:${toString cfg.port}";
       }];
     }];
 

@@ -9,7 +9,7 @@ in {
   };
   config = lib.mkIf cfg.enable {
     home-manager.users.${config.system.users.default.name}.home.packages = [
-      pkgs.signal
+      pkgs.signal-desktop-bin
     ];
   };
 }

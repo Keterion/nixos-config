@@ -42,7 +42,7 @@ in {
       toolbar = false;
       bookmarks = [{
 	name = "Grocy";
-	url = "${cfg.ip}:${cfg.port}";
+	url = "${cfg.ip}:${toString cfg.port}";
       }];
     }];
   };

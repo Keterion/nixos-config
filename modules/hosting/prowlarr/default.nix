@@ -25,7 +25,7 @@ in {
       toolbar = false;
       bookmarks = [{
 	name = "Prowlarr";
-	url = "${config.hosting.ip}:${cfg.port}";
+	url = "${config.hosting.ip}:${toString cfg.port}";
       }];
     }];
   };

@@ -43,7 +43,7 @@ in {
       toolbar = false;
       bookmarks = [{
 	name = "Calibre-Server";
-	url = "${config.hosting.ip}:${cfg.port}";
+	url = "${config.hosting.ip}:${toString cfg.port}";
       }];
     }];
   };
