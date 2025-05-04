@@ -145,7 +145,7 @@ in {
         rotate = 0;
         tooltip = false;
 
-        format = "<U+F001> {artist} - {title}";
+        format = "{artist} - {title}";
         title-len = 20;
       };
 

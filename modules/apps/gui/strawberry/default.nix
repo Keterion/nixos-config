@@ -1,5 +1,9 @@
-{ lib, pkgs, config, ... }:
-let
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}: let
   cfg = config.apps.strawberry;
 in {
   options.apps.strawberry.enable = lib.mkOption {
@@ -9,7 +13,7 @@ in {
   };
   config = lib.mkIf cfg.enable {
     home-manager.users.${config.system.users.default.name}.home.packages = [
-      pkgs.strawberry
+      pkgs.strawberry-qt6
     ];
   };
 }
