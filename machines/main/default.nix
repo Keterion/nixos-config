@@ -131,7 +131,10 @@
       enable = true;
       openFirewall = false;
     };
-    qbittorrent.enable = true;
+    qbittorrent = {
+      enable = true;
+      port = 8081;
+    };
     radarr.enable = true;
     radicale.enable = true;
     sonarr.enable = true;
