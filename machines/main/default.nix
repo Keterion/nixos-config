@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: {
+{ pkgs, ... }: {
   imports = [ ./hardware-configuration.nix ];
   system.users.default = {
     name = "etherion";
@@ -111,6 +111,25 @@
     };
     fzf.shellIntegration = true;
     zoxide.shellIntegration = true;
+  };
+
+  hosting = {
+    openFirewall = true;
+    ip = "192.168.178.69";
+    defaultGroup = "server";
+
+    bazarr.enable = true;
+    calibre.web.enable = true;
+    jellyfin.enable = true;
+    prowlarr = {
+      enable = true;
+      openFirewall = false;
+    };
+    qbittorrent.enable = true;
+    radarr.enable = true;
+    radicale.enable = true;
+    sonarr.enable = true;
+    tandoor.enable = true;
   };
 
 

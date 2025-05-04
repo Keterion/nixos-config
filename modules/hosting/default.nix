@@ -1,6 +1,6 @@
-{ config, lib, ... }:
+{ lib, ... }:
 let
-  cfg = config.hosting;
+  #cfg = config.hosting;
 in {
   imports = [
     ./bazarr
