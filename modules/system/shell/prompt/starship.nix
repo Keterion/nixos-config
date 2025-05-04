@@ -47,6 +47,10 @@ in {
           trim_at = ".local";
           disabled = false;
         };
+        nix_shell = {
+          format = "via [$symbol $name \\($state\\)]($style)";
+          symbol = "󰜗";
+        };
         directory = {
           disabled = false;
           fish_style_pwd_dir_length = 3;
@@ -61,7 +65,7 @@ in {
           success_symbol = "[0](bold green)";
           error_symbol = "[1](bold red2)";
         };
-        format = "$username@$hostname\n$directory $character";
+        format = "$username@$hostname$nix_shell\n$directory $character";
       };
     };
   };
