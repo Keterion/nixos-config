@@ -6,7 +6,7 @@ in
   options.hosting.blocky = {
     enable = lib.mkEnableOption "blocky, a fast and lightweight DNS proxy as ad-blocker for local network with many features";
   };
-  config = lib.mkIf cfg.blocky.enable {
+  config = lib.mkIf cfg.enable {
     services.blocky = {
       enable = true;
       settings = {

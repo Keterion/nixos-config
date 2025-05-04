@@ -1,6 +1,6 @@
-{ lib, ... }:
+{ lib, config, ... }:
 let
-  #cfg = config.hosting;
+  cfg = config.hosting;
 in {
   imports = [
     ./bazarr
@@ -20,13 +20,20 @@ in {
     defaultGroup = lib.mkOption {
       type = lib.types.str;
       default = "server";
-      description = "Default group to use for all services";
+      description = "Default group to use for all services, shouldn't exist anywhere else";
     };
     openFirewall = lib.mkEnableOption "open Firewall for all services";
     ip = lib.mkOption {
       type = lib.types.str;
       default = "::1";
       description = "IP to use";
+    };
+  };
+
+  config = {
+    users.groups.${cfg.defaultGroup} = {
+      gid = 990;
+      name = "${cfg.defaultGroup}";
     };
   };
 }

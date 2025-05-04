@@ -14,7 +14,7 @@ in {
       default = 6767;
       description = "Port for the web interface";
     };
-    openFirewall = {
+    openFirewall = lib.mkOption {
       type = lib.types.bool;
       default = config.hosting.openFirewall;
     };
