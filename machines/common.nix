@@ -2,7 +2,7 @@
   imports = [ 
     ../modules/system
     ../modules/apps
-    ../modules/services
+    ../modules/hosting
     ../modules/packages
     ../variables
   ];

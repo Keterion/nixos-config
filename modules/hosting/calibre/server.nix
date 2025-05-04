@@ -35,7 +35,7 @@ in {
       libraries = cfg.libraries;
       port = cfg.port;
     };
-    networking.openFirewall.allowedTCPPorts = lib.optionals cfg.openFirewall [
+    networking.firewall.allowedTCPPorts = lib.optionals cfg.openFirewall [
       cfg.port
     ];
   };
