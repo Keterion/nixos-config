@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, config, pkgs, ... }:
 let
   cfg = config.system.printing;
 in {
@@ -14,5 +14,10 @@ in {
       nssmdns4 = true;
       openFirewall = true;
     };
+    hardware.sane = {
+      enable = true;
+      extraBackends = [ pkgs.hplipWithPlugin ];
+    };
+    services.printing.drivers = [pkgs.hplip];
   };
 }

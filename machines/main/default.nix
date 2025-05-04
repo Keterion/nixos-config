@@ -10,7 +10,10 @@
   system = {
     colorscheme = "tokyonight-moon";
     
-    hid.gamepad.dualsense.enable = true;
+    hid = {
+      gamepad.dualsense.enable = true;
+      tablet.enable = true;
+    };
 
     audio.pipewire = {
       enable = true;

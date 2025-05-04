@@ -11,8 +11,8 @@ in {
   config = lib.mkIf cfg.enable {
     home-manager.users.${config.system.users.default.name}.home.packages = with pkgs; [
       prismlauncher
-      jdk17
-      jdk8
+      #jdk17
+      #jdk8
     ];
   };
 }
