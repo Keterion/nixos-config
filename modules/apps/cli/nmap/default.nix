@@ -1,5 +1,9 @@
- { lib, pkgs, config, ... }:
-let
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}: let
   cfg = config.apps.nmap;
 in {
   options.apps.nmap.enable = lib.mkOption {

@@ -7,7 +7,7 @@
   cfg = config.apps.nh;
 in {
   options.apps.nh.enable = lib.mkOption {
-    default = config.apps.cli.modules.utils.enable;
+    default = config.apps.modules.cli.utils.enable;
     type = lib.types.bool;
   };
   config = lib.mkIf cfg.enable {

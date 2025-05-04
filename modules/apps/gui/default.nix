@@ -1,5 +1,8 @@
-{ config, lib, ... }:
-let
+{
+  config,
+  lib,
+  ...
+}: let
   cfg = config.apps.modules.gui;
 in {
   imports = [
@@ -15,6 +18,7 @@ in {
     ./krita
     ./libreoffice
     ./mpv
+    ./mullvad
     ./obs
     ./obsidian
     ./qbittorrent
@@ -34,19 +38,19 @@ in {
     };
     art = {
       enable = lib.mkOption {
-	default = cfg.all.enable;
-	type = lib.types.bool;
-	description = "Whether to enable all art programs";
+        default = cfg.all.enable;
+        type = lib.types.bool;
+        description = "Whether to enable all art programs";
       };
       dd.enable = lib.mkOption {
-	default = cfg.art.enable;
-	type = lib.types.bool;
-	description = "Whether to enable all 2d art programs";
+        default = cfg.art.enable;
+        type = lib.types.bool;
+        description = "Whether to enable all 2d art programs";
       };
       ddd.enable = lib.mkOption {
-	default = cfg.art.enable;
-	type = lib.types.bool;
-	description = "Whether to enable all 3d art programs";
+        default = cfg.art.enable;
+        type = lib.types.bool;
+        description = "Whether to enable all 3d art programs";
       };
     };
     social.enable = lib.mkOption {
