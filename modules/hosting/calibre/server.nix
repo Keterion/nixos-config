@@ -38,5 +38,13 @@ in {
     networking.firewall.allowedTCPPorts = lib.optionals cfg.openFirewall [
       cfg.port
     ];
+    home-manager.users.${config.system.users.default.name}.programs.firefox.profiles."default".bookmarks.settings = [{
+      name = "Hosted";
+      toolbar = false;
+      bookmarks = [{
+	name = "Calibre-Server";
+	url = "${config.hosting.ip}:${cfg.port}";
+      }];
+    }];
   };
 }

@@ -28,5 +28,14 @@ in {
       openFirewall = cfg.openFirewall;
       user = "bazarr";
     };
+
+    home-manager.users.${config.system.users.default.name}.programs.firefox.profiles."default".bookmarks.settings = [{
+      name = "Hosted";
+      toolbar = false;
+      bookmarks = [{
+	name = "Bazarr";
+	url = "${config.hosting.ip}:${cfg.port}";
+      }];
+    }];
   };
 }

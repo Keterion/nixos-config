@@ -25,5 +25,14 @@ in {
       openFirewall = cfg.openFirewall;
       settings.server.port = cfg.port;
     };
+    home-manager.users.${config.system.users.default.name}.programs.firefox.profiles."default".bookmarks.settings = [{
+      name = "Hosted";
+      toolbar = false;
+      bookmarks = [{
+	name = "Radarr";
+	url = "${config.hosting.ip}:${cfg.port}";
+      }];
+    }];
+
   };
 }

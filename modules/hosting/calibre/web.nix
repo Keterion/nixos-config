@@ -46,5 +46,13 @@ in {
       };
       openFirewall = cfg.openFirewall;
     };
+    home-manager.users.${config.system.users.default.name}.programs.firefox.profiles."default".bookmarks.settings = [{
+      name = "Hosted";
+      toolbar = false;
+      bookmarks = [{
+	name = "Calibre-Web";
+	url = "${cfg.ip}:${cfg.port}";
+      }];
+    }];
   };
 }

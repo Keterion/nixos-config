@@ -30,6 +30,14 @@ in {
       address = cfg.ip;
       port = cfg.port;
     };
+    home-manager.users.${config.system.users.default.name}.programs.firefox.profiles."default".bookmarks.settings = [{
+      name = "Hosted";
+      toolbar = false;
+      bookmarks = [{
+	name = "Tandoor";
+	url = "${cfg.ip}:${cfg.port}";
+      }];
+    }];
 
     networking.firewall.allowedTCPPorts = lib.mkIf cfg.openFirewall [ cfg.port ];
   };
