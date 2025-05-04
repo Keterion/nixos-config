@@ -30,6 +30,16 @@ in {
         viAlias = cfg.aliases.enable;
         vimAlias = cfg.aliases.enable;
 
+        options = {
+          tabstop = 4;
+          shiftwidth = 4;
+          expandtab = true;
+
+          autoindent = true;
+        };
+
+        autopairs.nvim-autopairs.enable = true;
+
         filetree.neo-tree = {
           enable = true;
         };

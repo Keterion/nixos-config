@@ -24,9 +24,9 @@
       };
       cursor.no_hardware_cursors = true;
       monitor = [
-        "DP-1, 2560x1920@144, 0x0, 1"
+        "DP-1, highres@highrr, 0x0, 1"
         "HDMI-A-1, 1920x1080@59.999, 2560x0, 1"
-        "Unknown-1, disable"
+        ", preferred, auto, 1"
       ];
 
       "$mod" = "SUPER";

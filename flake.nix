@@ -25,25 +25,27 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, ... }@inputs:
-    let 
-      overlays = import ./overlays.nix { inherit inputs; };
-    in {
-      nixosConfigurations = {
-	main = nixpkgs.lib.nixosSystem {
-	  system = "x86_64-linux";
-	  specialArgs = { myUtils = import ./utils.nix { inherit inputs; }; };
-	  modules = [
-	    { nixpkgs.overlays = [ inputs.nur.overlays.default overlays.stable-packages ]; }
-	    ./machines/common.nix
-	    ./machines/main
-	    
-	    inputs.nvf.nixosModules.default
+  outputs = {
+    nixpkgs,
+    home-manager,
+    ...
+  } @ inputs: let
+    overlays = import ./overlays.nix {inherit inputs;};
+  in {
+    nixosConfigurations = {
+      nixos = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {myUtils = import ./utils.nix {inherit inputs;};};
+        modules = [
+          {nixpkgs.overlays = [inputs.nur.overlays.default overlays.stable-packages];}
+          ./machines/common.nix
+          ./machines/main
 
-	    home-manager.nixosModules.home-manager
-	  ];
-	};
+          inputs.nvf.nixosModules.default
+
+          home-manager.nixosModules.home-manager
+        ];
       };
     };
-  }
-
+  };
+}

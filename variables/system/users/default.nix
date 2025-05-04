@@ -1,5 +1,8 @@
-{ lib, config, ... }: 
-let
+{
+  lib,
+  config,
+  ...
+}: let
   cfg = config.system.users;
 in {
   options.system.users.default = {
@@ -15,21 +18,21 @@ in {
     };
     git = {
       email = lib.mkOption {
-	type = lib.types.str;
-	description = "Email to use for git";
-	example = "john.doe@example.com";
+        type = lib.types.str;
+        description = "Email to use for git";
+        example = "john.doe@example.com";
       };
       name = lib.mkOption {
-	type = lib.types.str;
-	description = "Name to use for git";
-	default = config.system.users.default.name;
-	example = "John Doe";
+        type = lib.types.str;
+        description = "Name to use for git";
+        default = config.system.users.default.name;
+        example = "John Doe";
       };
     };
   };
   config = {
     users.users.${cfg.default.name} = {
-      extraGroups = cfg.default.extraGroups;
+      extraGroups = ["wheel"] ++ cfg.default.extraGroups;
       home = "/home/${cfg.default.name}";
       isNormalUser = lib.mkDefault true;
       name = cfg.default.name;

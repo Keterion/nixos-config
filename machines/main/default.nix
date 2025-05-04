@@ -1,5 +1,5 @@
-{ pkgs, ... }: {
-  imports = [ ./hardware-configuration.nix ];
+{pkgs, ...}: {
+  imports = [./hardware-configuration.nix];
   system.users.default = {
     name = "etherion";
     git = {
@@ -9,7 +9,7 @@
   };
   system = {
     colorscheme = "tokyonight-moon";
-    
+
     hid = {
       gamepad.dualsense.enable = true;
       tablet.enable = true;
@@ -33,7 +33,7 @@
       layout = "us";
       variant = "";
     };
-    
+
     bar.waybar = {
       enable = true;
       styleProfile = "haides002";
@@ -70,6 +70,7 @@
           };
         };
         user = {
+          default = true;
           autocd = false;
           autosuggestion = {
             enable = true;
@@ -134,7 +135,6 @@
     sonarr.enable = true;
     tandoor.enable = true;
   };
-
 
   fileSystems."/mnt/Games" = {
     device = "dev/disk/by-uuid/3212add8-8af3-46c6-a739-cfc018bd72ac";

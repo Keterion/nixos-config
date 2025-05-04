@@ -29,5 +29,4 @@
   nixpkgs.config.allowUnfree = true;
 
   system.stateVersion = "24.05";
-  programs.home-manager.enable = true;
 }
