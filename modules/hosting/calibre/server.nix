@@ -1,5 +1,8 @@
-{ lib, config, ... }:
-let
+{
+  lib,
+  config,
+  ...
+}: let
   cfg = config.hosting.calibre.server;
 in {
   options.hosting.calibre.server = {
@@ -7,7 +10,7 @@ in {
     libraries = lib.mkOption {
       type = lib.types.listOf lib.types.path;
       default = [
-	"/var/lib/calibre-server"
+        "/var/lib/calibre-server"
       ];
       description = "Libraries for the server, each one has to be initialized";
     };
@@ -38,13 +41,12 @@ in {
     networking.firewall.allowedTCPPorts = lib.optionals cfg.openFirewall [
       cfg.port
     ];
-    home-manager.users.${config.system.users.default.name}.programs.firefox.profiles."default".bookmarks.settings = [{
-      name = "Hosted";
-      toolbar = false;
-      bookmarks = [{
-	name = "Calibre-Server";
-	url = "${config.hosting.ip}:${toString cfg.port}";
-      }];
-    }];
+    #home-manager.users.${config.system.users.default.name}.programs.firefox.profiles."default".bookmarks.settings = [
+    #  {
+    #    name = "Calibre-Server";
+    #    url = "http://${config.hosting.ip}:${toString cfg.port}";
+    #    tags = ["hosted"];
+    #  }
+    #];
   };
 }

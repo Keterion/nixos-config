@@ -1,5 +1,8 @@
-{ lib, config, ... }:
-let
+{
+  lib,
+  config,
+  ...
+}: let
   cfg = config.hosting.calibre.web;
 in {
   options.hosting.calibre.web = {
@@ -36,23 +39,22 @@ in {
       group = cfg.group;
       user = "calibre-web";
       options = {
-	calibreLibrary = cfg.libraryPath;
-	enableBookConversion = true;
-	enableBookUploading = cfg.settings.allowUploads;
+        calibreLibrary = cfg.libraryPath;
+        enableBookConversion = true;
+        enableBookUploading = cfg.settings.allowUploads;
       };
       listen = {
-	port = cfg.port;
-	ip = cfg.ip;
+        port = cfg.port;
+        ip = cfg.ip;
       };
       openFirewall = cfg.openFirewall;
     };
-    home-manager.users.${config.system.users.default.name}.programs.firefox.profiles."default".bookmarks.settings = [{
-      name = "Hosted";
-      toolbar = false;
-      bookmarks = [{
-	name = "Calibre-Web";
-	url = "${cfg.ip}:${toString cfg.port}";
-      }];
-    }];
+    #home-manager.users.${config.system.users.default.name}.programs.firefox.profiles."default".bookmarks.settings = [
+    #  {
+    #    name = "Calibre-Web";
+    #    url = "http://${cfg.ip}:${toString cfg.port}";
+    #    tags = ["hosted"];
+    #  }
+    #];
   };
 }

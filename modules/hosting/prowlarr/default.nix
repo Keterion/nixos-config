@@ -1,5 +1,8 @@
-{ lib, config, ... }:
-let
+{
+  lib,
+  config,
+  ...
+}: let
   cfg = config.hosting.prowlarr;
 in {
   options.hosting.prowlarr = {
@@ -13,20 +16,19 @@ in {
       default = 9696;
     };
   };
-  
+
   config = lib.mkIf cfg.enable {
     services.prowlarr = {
       enable = true;
       openFirewall = cfg.openFirewall;
       settings.server.port = cfg.port;
     };
-    home-manager.users.${config.system.users.default.name}.programs.firefox.profiles."default".bookmarks.settings = [{
-      name = "Hosted";
-      toolbar = false;
-      bookmarks = [{
-	name = "Prowlarr";
-	url = "${config.hosting.ip}:${toString cfg.port}";
-      }];
-    }];
+    #home-manager.users.${config.system.users.default.name}.programs.firefox.profiles."default".bookmarks.settings = [
+    #  {
+    #    name = "Prowlarr";
+    #    url = "http://${config.hosting.ip}:${toString cfg.port}";
+    #    tags = ["hosted"];
+    #  }
+    #];
   };
 }

@@ -1,5 +1,8 @@
-{ lib, config, ... }:
-let
+{
+  lib,
+  config,
+  ...
+}: let
   cfg = config.hosting.tandoor;
 in {
   options.hosting.tandoor = {
@@ -30,15 +33,14 @@ in {
       address = cfg.ip;
       port = cfg.port;
     };
-    home-manager.users.${config.system.users.default.name}.programs.firefox.profiles."default".bookmarks.settings = [{
-      name = "Hosted";
-      toolbar = false;
-      bookmarks = [{
-	name = "Tandoor";
-	url = "${cfg.ip}:${toString cfg.port}";
-      }];
-    }];
+    #home-manager.users.${config.system.users.default.name}.programs.firefox.profiles."default".bookmarks.settings = [
+    #  {
+    #    name = "Tandoor";
+    #    url = "http://${cfg.ip}:${toString cfg.port}";
+    #    tags = ["hosted"];
+    #  }
+    #];
 
-    networking.firewall.allowedTCPPorts = lib.mkIf cfg.openFirewall [ cfg.port ];
+    networking.firewall.allowedTCPPorts = lib.mkIf cfg.openFirewall [cfg.port];
   };
 }

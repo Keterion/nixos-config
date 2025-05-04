@@ -50,6 +50,8 @@
       plasma.enable = true;
     };
 
+    screenlocker.swaylock.enable = true;
+
     dm.sddm.enable = true;
 
     runner = {

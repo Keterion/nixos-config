@@ -1,5 +1,8 @@
-{ lib, config, ... }: 
-let
+{
+  lib,
+  config,
+  ...
+}: let
   cfg = config.hosting.grocy;
 in {
   options.hosting.grocy = {
@@ -26,24 +29,25 @@ in {
       hostName = "grocy";
       nginx.enableSSL = false;
       settings = {
-	culture = "en";
-	currency = "EUR";
-	calendar.firstDayOfWeek = 1;
+        culture = "en";
+        currency = "EUR";
+        calendar.firstDayOfWeek = 1;
       };
     };
-    services.nginx.virtualHosts.${config.services.grocy.hostName}.listen = [{
-      addr = cfg.address;
-      port = cfg.port;
-    }];
-    
-    networking.firewall.allowedTCPPorts = lib.mkIf cfg.openFirewall [ cfg.port ];
-    home-manager.users.${config.system.users.default.name}.programs.firefox.profiles."default".bookmarks.settings = [{
-      name = "Hosted";
-      toolbar = false;
-      bookmarks = [{
-	name = "Grocy";
-	url = "${cfg.ip}:${toString cfg.port}";
-      }];
-    }];
+    services.nginx.virtualHosts.${config.services.grocy.hostName}.listen = [
+      {
+        addr = cfg.address;
+        port = cfg.port;
+      }
+    ];
+
+    networking.firewall.allowedTCPPorts = lib.mkIf cfg.openFirewall [cfg.port];
+    #home-manager.users.${config.system.users.default.name}.programs.firefox.profiles."default".bookmarks.settings = [
+    #  {
+    #    name = "Grocy";
+    #    url = "http://${cfg.ip}:${toString cfg.port}";
+    #    tags = ["hosted"];
+    #  }
+    #];
   };
 }

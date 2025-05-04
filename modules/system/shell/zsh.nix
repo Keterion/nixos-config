@@ -65,9 +65,11 @@ in {
       enableCompletion = true;
       shellAliases = cfg.global.aliases;
     };
-    users.users.${config.system.users.default.name} = lib.mkIf cfg.user.default {
+
+    users.users."${config.system.users.default.name}" = lib.mkIf cfg.user.default {
       shell = pkgs.zsh;
     };
+
     home-manager.users.${config.system.users.default.name}.programs.zsh = {
       enable = cfg.enable;
       autocd = cfg.user.autocd;

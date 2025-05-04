@@ -1,5 +1,8 @@
-{ lib, config, ... }:
-let
+{
+  lib,
+  config,
+  ...
+}: let
   cfg = config.hosting.radarr;
 in {
   options.hosting.radarr = {
@@ -25,14 +28,12 @@ in {
       openFirewall = cfg.openFirewall;
       settings.server.port = cfg.port;
     };
-    home-manager.users.${config.system.users.default.name}.programs.firefox.profiles."default".bookmarks.settings = [{
-      name = "Hosted";
-      toolbar = false;
-      bookmarks = [{
-	name = "Radarr";
-	url = "${config.hosting.ip}:${toString cfg.port}";
-      }];
-    }];
-
+    #home-manager.users.${config.system.users.default.name}.programs.firefox.profiles."default".bookmarks.settings = [
+    #  {
+    #    name = "Radarr";
+    #    url = "http://${config.hosting.ip}:${toString cfg.port}";
+    #    tags = ["hosted"];
+    #  }
+    #];
   };
 }

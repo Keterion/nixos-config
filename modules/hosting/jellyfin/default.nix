@@ -1,5 +1,8 @@
-{ lib, config, ... }:
-let 
+{
+  lib,
+  config,
+  ...
+}: let
   cfg = config.hosting.jellyfin;
 in {
   options.hosting.jellyfin = {
@@ -12,7 +15,7 @@ in {
       default = config.hosting.defaultGroup;
       type = lib.types.str;
     };
-    
+
     #port = { # no declarative :c
     #  http = lib.mkOption {
     #    default = 8096;
@@ -44,13 +47,12 @@ in {
     #    7359
     #  ];
     #};
-    home-manager.users.${config.system.users.default.name}.programs.firefox.profiles."default".bookmarks.settings = [{
-      name = "Hosted";
-      toolbar = false;
-      bookmarks = [{
-	name = "Jellyfin";
-	url = "${config.hosting.ip}:8096";
-      }];
-    }];
+    #home-manager.users.${config.system.users.default.name}.programs.firefox.profiles."default".bookmarks.settings = [
+    #  {
+    #    name = "Jellyfin";
+    #    url = "http://${config.hosting.ip}:8096";
+    #    tags = ["hosted"];
+    #  }
+    #];
   };
 }

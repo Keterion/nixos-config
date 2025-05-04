@@ -1,5 +1,8 @@
-{ lib, config, ... }:
-let
+{
+  lib,
+  config,
+  ...
+}: let
   cfg = config.hosting.radicale;
 in {
   options.hosting.radicale = {
@@ -23,40 +26,39 @@ in {
 
     services.radicale = {
       enable = true;
-      settings.server.hosts = [ "${cfg.ip}:${toString cfg.port}" ];
+      settings.server.hosts = ["${cfg.ip}:${toString cfg.port}"];
 
       rights = {
-	root = {
-	  user = ".+";
-	  collection = "";
-	  permissions = "R";
-	};
-	calendars = {
-	  user = ".+";
-	  collection = "{user}/[^/]+";
-	  permissions = "rw";
-	};
-	principal = {
-	  user = ".+";
-	  collection = "{user}";
-	  permissions = "RW";
-	};
+        root = {
+          user = ".+";
+          collection = "";
+          permissions = "R";
+        };
+        calendars = {
+          user = ".+";
+          collection = "{user}/[^/]+";
+          permissions = "rw";
+        };
+        principal = {
+          user = ".+";
+          collection = "{user}";
+          permissions = "RW";
+        };
       };
       settings.auth = {
-	type = "htpasswd";
-	htpasswd_filename = "/etc/radicale/user";
-	htpasswd_encryption = "autodetect";
+        type = "htpasswd";
+        htpasswd_filename = "/etc/radicale/user";
+        htpasswd_encryption = "autodetect";
       };
     };
 
-    networking.firewall.allowedTCPPorts = lib.optionals cfg.openFirewall [ cfg.port ];
-    home-manager.users.${config.system.users.default.name}.programs.firefox.profiles."default".bookmarks.settings = [{
-      name = "Hosted";
-      toolbar = false;
-      bookmarks = [{
-	name = "Radicale";
-	url = "${cfg.ip}:${toString cfg.port}";
-      }];
-    }];
+    networking.firewall.allowedTCPPorts = lib.optionals cfg.openFirewall [cfg.port];
+    #home-manager.users.${config.system.users.default.name}.programs.firefox.profiles."default".bookmarks.settings = [
+    #  {
+    #    name = "Radicale";
+    #    url = "http://${cfg.ip}:${toString cfg.port}";
+    #    tags = ["hosted"];
+    #  }
+    #];
   };
 }
