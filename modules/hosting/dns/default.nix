@@ -9,7 +9,6 @@ in
   config = lib.mkIf cfg.blocky.enable {
     services.blocky = {
       enable = true;
-      #package = pkgs.unstable.blocky;
       settings = {
         upstreams.groups.default = [
 	  "9.9.9.9"

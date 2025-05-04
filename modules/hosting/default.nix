@@ -5,8 +5,15 @@ in {
   imports = [
     ./bazarr
     ./calibre
+    ./dns
+    ./grocy
     ./jellyfin
     ./prowlarr
+    ./qbittorrent
+    ./radarr
+    ./radicale
+    ./sonarr
+    ./tandoor
   ];
 
   options.hosting = {
