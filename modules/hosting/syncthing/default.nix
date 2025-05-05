@@ -11,6 +11,10 @@ in {
       type = lib.types.str;
       default = config.hosting.defaultGroup;
     };
+    user = lib.mkOption {
+      type = lib.types.str;
+      default = "${config.system.users.default.name}";
+    };
     port = lib.mkOption {
       default = 8384;
       type = lib.types.ints.u16;
@@ -29,6 +33,7 @@ in {
     services.syncthing = {
       enable = true;
       group = cfg.group;
+      user = cfg.user;
       guiAddress = "${cfg.ip}:${toString cfg.port}";
       openDefaultPorts = cfg.openFirewall; # todo with settings.listenAddresses but too much work rn
       overrideDevices = true;
@@ -59,6 +64,7 @@ in {
             devices = ["SM-A715F" "Pixel 8 Pro"];
             syncXattrs = true;
             sendXattrs = true;
+            compression = "all";
           };
           "t7ez7-ezwxh" = {
             label = "Passwords";
