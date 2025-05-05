@@ -139,6 +139,7 @@
     radarr.enable = true;
     radicale.enable = true;
     sonarr.enable = true;
+    syncthing.enable = true;
     tandoor.enable = true;
   };
 

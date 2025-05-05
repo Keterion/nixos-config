@@ -16,6 +16,7 @@ in {
     ./radarr
     ./radicale
     ./sonarr
+    ./syncthing
     ./tandoor
   ];
 
@@ -115,6 +116,13 @@ in {
                 {
                   name = "Sonarr";
                   url = "http://${config.hosting.ip}:${toString cfg.sonarr.port}";
+                  tags = ["hosted"];
+                }
+              ]
+              ++ lib.optionals cfg.tandoor.enable [
+                {
+                  name = "Syncthing";
+                  url = "http://${cfg.syncthing.ip}:${toString cfg.syncthing.port}";
                   tags = ["hosted"];
                 }
               ]
