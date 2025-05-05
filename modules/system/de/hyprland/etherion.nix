@@ -65,6 +65,12 @@
         "$mod, 9, workspace, 9"
         "$mod, 0, workspace, 10"
 
+        "$windowMod, h, movefocus, l"
+        "$windowMod, l, movefocus, r"
+
+        "$windowMod, k, workspace, r-1"
+        "$windowMod, j, workspace, r+1"
+
         "$windowMod, 1, movetoworkspace, 1"
         "$windowMod, 2, movetoworkspace, 2"
         "$windowMod, 3, movetoworkspace, 3"
