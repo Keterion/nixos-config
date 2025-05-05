@@ -1,11 +1,14 @@
-{ config, lib, pkgs, ... }:
-with lib;
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
   cfg = config.services.qbittorrent;
   configDir = "${cfg.dataDir}/.config";
   openFilesLimit = 4096;
-in
-{
+in {
   options.services.qbittorrent = {
     enable = mkOption {
       type = types.bool;
@@ -64,25 +67,26 @@ in
   };
 
   config = mkIf cfg.enable {
-
-    environment.systemPackages = [ pkgs.qbittorrent-headless ];
+    environment.systemPackages = [pkgs.qbittorrent-headless];
 
     nixpkgs.overlays = [
       (final: prev: {
-        qbittorrent-headless = prev.qbittorrent.override { guiSupport = false; };
+        qbittorrent-headless = prev.qbittorrent.override {guiSupport = false;};
       })
     ];
 
     networking.firewall = mkIf cfg.openFirewall {
-      allowedTCPPorts = [ cfg.port ];
-      allowedUDPPorts = [ cfg.port ];
+      allowedTCPPorts = [cfg.port];
+      allowedUDPPorts = [cfg.port];
     };
 
     systemd.services.qbittorrent = {
-      after = [ "network.target" ];
+      after =
+        ["network.target"]
+        ++ optionals config.services.mullvad-vpn.enable ["mullvad-daemon.service"];
       description = "qBittorrent Daemon";
-      wantedBy = [ "multi-user.target" ];
-      path = [ pkgs.qbittorrent-headless ];
+      wantedBy = ["multi-user.target"];
+      path = [pkgs.qbittorrent-headless];
       serviceConfig = {
         ExecStart = ''
           ${pkgs.qbittorrent-headless}/bin/qbittorrent-nox \
@@ -105,11 +109,13 @@ in
         home = cfg.dataDir;
         createHome = true;
         description = "qBittorrent Daemon user";
-	isSystemUser = true;
+        isSystemUser = true;
       };
     };
 
     users.groups =
-      mkIf (cfg.group == "qbittorrent") { qbittorrent = { gid = null; }; };
+      mkIf (cfg.group == "qbittorrent") {qbittorrent = {gid = null;};};
   };
-} # from https://github.com/hercules-ci/nixflk/blob/template/modules/services/torrent/qbittorrent.nix
+}
+# from https://github.com/hercules-ci/nixflk/blob/template/modules/services/torrent/qbittorrent.nix
+

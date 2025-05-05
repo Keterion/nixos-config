@@ -145,13 +145,13 @@ in {
         rotate = 0;
         tooltip = false;
         status-icons = {
-          playing = "󰐊";
-          paused = "󰏤";
+          playing = "󰏤";
+          paused = "󰐊";
           stopped = "󰓛";
         };
 
         format = "{status_icon} {artist} - {title}";
-        title-len = 20;
+        title-len = 25;
       };
 
       "sway/window" = {
@@ -191,7 +191,7 @@ in {
         family = "ipv4";
 
         format-disconnected = "Disconnected";
-        format = " {ifname} rx:{bandwidthDownBytes} tx:{bandwidthUpBytes}";
+        format = " {ifname} 󰜮{bandwidthDownBytes} 󰜷{bandwidthUpBytes}";
         interval = 1;
         on-click = "$TERM nmtui";
       };
