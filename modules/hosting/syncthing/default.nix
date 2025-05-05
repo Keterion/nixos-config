@@ -8,7 +8,7 @@ in {
   options.hosting.syncthing = {
     enable = lib.mkEnableOption "syncthing";
     group = lib.mkOption {
-      type = lib.types.group;
+      type = lib.types.str;
       default = config.hosting.defaultGroup;
     };
     port = lib.mkOption {
