@@ -1,5 +1,5 @@
-{ pkgs, ... }: {
-  imports = [	
+{pkgs, ...}: {
+  imports = [
     ./audio
     ./bar
     ./bluetooth
@@ -14,13 +14,13 @@
     ./security
     ./shell
     ./terminal
-#    ./tools
+    #    ./tools
     ./wm
     ./printing
   ];
 
   config = {
-    boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
+    boot.kernelParams = ["nvidia.NVreg_PreserveVideoMemoryAllocations=1"];
     hardware.nvidia = {
       modesetting.enable = true;
       powerManagement.enable = true;
@@ -33,5 +33,12 @@
       package = pkgs.linuxPackages.nvidiaPackages.beta;
     };
     hardware.graphics.enable = true;
+
+    systemd.sleep.extraConfig = ''
+      AllowSuspend=yes
+      AllowHibernation=yes
+      AllowHybridSleep=yes
+      AllowSuspendThenHibernate=yes
+    '';
   };
 }

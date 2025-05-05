@@ -18,6 +18,7 @@
     audio.pipewire = {
       enable = true;
       rtkit.enable = true;
+      loopback.enable = true;
       compatibility.pulse.enable = true;
       compatibility.jack.enable = true;
     };

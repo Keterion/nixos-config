@@ -67,9 +67,10 @@
 
         "$windowMod, h, movefocus, l"
         "$windowMod, l, movefocus, r"
-
-        "$windowMod, k, workspace, r-1"
-        "$windowMod, j, workspace, r+1"
+        "$windowMod, j, movefocus, d"
+        "$windowMod, k, movefocus, u"
+        #"$windowMod, k, workspace, r-1"
+        #"$windowMod, j, workspace, r+1"
 
         "$windowMod, 1, movetoworkspace, 1"
         "$windowMod, 2, movetoworkspace, 2"
