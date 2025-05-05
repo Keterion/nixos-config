@@ -31,11 +31,11 @@ in {
         vimAlias = cfg.aliases.enable;
 
         options = {
-          tabstop = 4;
-          shiftwidth = 4;
+          tabstop = 2;
+          shiftwidth = 2;
           expandtab = true;
 
-          autoindent = true;
+          autoindent = false;
         };
 
         autopairs.nvim-autopairs.enable = true;
@@ -63,6 +63,7 @@ in {
             format.enable = true;
             lsp.enable = true;
             treesitter.enable = true;
+            extraDiagnostics.enable = true;
           };
           python = {
             enable = true;

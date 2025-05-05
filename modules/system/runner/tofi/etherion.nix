@@ -1,7 +1,8 @@
-{ osConfig, ... }: 
+{osConfig, ...}:
 with osConfig.system.colors; {
   programs.tofi.settings = {
     font-size = 12;
+    font = "Hack Nerd Font Mono";
     text-color = "#${fg}";
 
     prompt-background = "#${bg}";
@@ -21,7 +22,7 @@ with osConfig.system.colors; {
     default-result-background-padding = 0;
     default-result-background-corner-radius = 0;
 
-    selection-color = "#${purple}";
+    selection-color = "#${magenta}";
     selection-background = "#${bg}";
     selection-background-padding = 0;
     selection-background-corner-radius = 0;
@@ -60,7 +61,7 @@ with osConfig.system.colors; {
     #output = "";
     anchor = "center";
     exclusive-zone = -1;
-    
+
     margin-top = 0;
     margin-bottom = 0;
     margin-left = 0;

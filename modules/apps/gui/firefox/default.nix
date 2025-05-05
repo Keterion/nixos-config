@@ -86,16 +86,17 @@ in {
               force = true;
               packages = with pkgs.nur.repos.rycee.firefox-addons;
                 [
-                  privacy-badger
+                  #privacy-badger
                   fastforwardteam
                   search-by-image
                   ublock-origin
-                  tampermonkey
-                  noscript
-                  libredirect
+                  #                  tampermonkey
+                  #                  noscript
+                  #                  libredirect
                   darkreader
                   #dictionaries
                   sidebery
+                  keepassxc-browser
                   #lexicon
                   #buildFirefoxXpiAddon { #TODO
                   #  pname = "imagus-mod";
