@@ -10,6 +10,7 @@
     ./fs
     ./hid
     ./lockscreen
+    ./networking
     ./runner
     ./security
     ./shell
