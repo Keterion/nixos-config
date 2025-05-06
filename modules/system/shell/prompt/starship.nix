@@ -71,11 +71,13 @@ in {
           $directory $character
         '';
 
-        git_branch = {
+        git_metrics = {
+          disabled = false;
+          format = "with ([+$added]($added_style) )([-$deleted]($deleted_style) )";
         };
 
         right_format = ''
-          $git_branch $git_state $git_commit
+          $git_branch$git_metrics
         '';
       };
     };
