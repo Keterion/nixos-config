@@ -46,6 +46,19 @@
           home-manager.nixosModules.home-manager
         ];
       };
+      laptop = nixpkgs.lib.nixosSystem {
+	system = "x86_64-linux";
+	specialArgs = {myUtils = import ./utils.nix {inherit inputs;};};
+	modules = [
+	  {nixpkgs.overlays = [inputs.nur.overlays.default overlays.stable-packages];}
+	  ./machines/common.nix
+	  ./machines/laptop
+
+	  inputs.nvf.nixosModules.default
+
+	  home-manager.nixosModules.home-manager
+	];
+      };
     };
   };
 }
