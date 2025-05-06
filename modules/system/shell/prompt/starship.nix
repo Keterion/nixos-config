@@ -67,8 +67,15 @@ in {
         };
 
         format = ''
-          $username@$hostname$nix_shell\n
+          $username@$hostname$nix_shell
           $directory $character
+        '';
+
+        git_branch = {
+        };
+
+        right_format = ''
+          $git_branch $git_state $git_commit
         '';
       };
     };
