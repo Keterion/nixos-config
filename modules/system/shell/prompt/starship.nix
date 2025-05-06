@@ -65,7 +65,11 @@ in {
           success_symbol = "[0](bold green)";
           error_symbol = "[1](bold red2)";
         };
-        format = "$username@$hostname$nix_shell\n$directory $character";
+
+        format = ''
+          $username@$hostname$nix_shell\n
+          $directory $character
+        '';
       };
     };
   };
