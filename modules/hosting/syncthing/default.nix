@@ -50,7 +50,7 @@ in {
             id = "36BQPFN-D2MWBII-N7TYIGO-EKBAGLD-OGZWRRE-CKBKTCF-HCVHHE2-Q3D4DAF";
           };
           "Laptop" = {
-            id = "TGKDU6X-JFQAM36-VAH4LAL-IS3M7GL-6SHR3IF-HEYLII5-QDO5MH7-ZH66QAS";
+            id = "I64U44B-MRH6RCG-OINE5RT-22DHZ5O-ITXTHOU-DUN5BP2-RQTTYBE-M3QUSAJ";
           };
         };
         folders = {
