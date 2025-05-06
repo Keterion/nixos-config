@@ -134,7 +134,7 @@
 
   hosting = {
     openFirewall = true;
-    ip = "192.168.178.69";
+    ip = "localhost";
     defaultGroup = "server";
 
     syncthing.enable = true;
