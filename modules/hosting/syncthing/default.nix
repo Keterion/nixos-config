@@ -49,19 +49,22 @@ in {
           "Main" = {
             id = "36BQPFN-D2MWBII-N7TYIGO-EKBAGLD-OGZWRRE-CKBKTCF-HCVHHE2-Q3D4DAF";
           };
+	  "Laptop" = {
+	    id = "TGKDU6X-JFQAM36-VAH4LAL-IS3M7GL-6SHR3IF-HEYLII5-QDO5MH7-ZH66QAS";
+	  };
         };
         folders = {
           "ycnaw-dc4ex" = {
             label = "Music";
             path = "/home/etherion/Music/songs";
-            devices = ["SM-A715F" "Pixel 8 Pro"];
+            devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main"];
             syncXattrs = true;
             sendXattrs = true;
           };
           "rcnav-y6mqj" = {
             label = "Obsidian";
             path = "/home/etherion/Documents/Obsidian";
-            devices = ["SM-A715F" "Pixel 8 Pro"];
+            devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main"];
             syncXattrs = true;
             sendXattrs = true;
             compression = "all";
@@ -69,28 +72,28 @@ in {
           "t7ez7-ezwxh" = {
             label = "Passwords";
             path = "/home/etherion/Documents/Passwords";
-            devices = ["SM-A715F" "Pixel 8 Pro"];
+            devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main"];
             syncXattrs = true;
             sendXattrs = true;
           };
           "m3xdc-10b3a" = {
             label = "Sync";
             path = "/home/etherion/Sync";
-            devices = ["SM-A715F" "Pixel 8 Pro"];
+            devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main"];
             syncXattrs = true;
             sendXattrs = true;
           };
           "wrgiw-yeh7e" = {
             label = "DCIM";
             path = "/mnt/HDD/Bilder/DCIM";
-            devices = ["Pixel 8 Pro"];
+            devices = ["Pixel 8 Pro" "Laptop" "Main"];
             syncXattrs = true;
             sendXattrs = true;
           };
           "wrfwn-ejec3" = {
             label = "Pictures";
             path = "/mnt/HDD/Bilder/Pictures/";
-            devices = ["Pixel 8 Pro"];
+            devices = ["Pixel 8 Pro" "Laptop" "Main"];
             syncXattrs = true;
             sendXattrs = true;
           };
