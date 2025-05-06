@@ -1,23 +1,39 @@
-{ lib, pkgs, config, ... }:
-let
-  cfg = config.modules.services.sonarr;
+{
+  lib,
+  config,
+  ...
+}: let
+  cfg = config.hosting.sonarr;
 in {
-  options.modules.services.sonarr = {
-    enable = lib.mkEnableOption "the Sonarr series manager";
-    dataDir = lib.mkOption {
-      description = "The directory where Sonarr stores its data files";
-      default = "/var/lib/sonarr/.config/NzbDrone";
+  options.hosting.sonarr = {
+    enable = lib.mkEnableOption "sonarr";
+    group = lib.mkOption {
       type = lib.types.str;
+      default = config.hosting.defaultGroup;
+    };
+    openFirewall = lib.mkOption {
+      default = config.hosting.openFirewall;
+      type = lib.types.bool;
+    };
+    port = lib.mkOption {
+      type = lib.types.ints.u16;
+      default = 8989;
     };
   };
+
   config = lib.mkIf cfg.enable {
     services.sonarr = {
       enable = true;
-      dataDir = cfg.dataDir;
-      package = pkgs.stable.sonarr;
-      group = lib.mkIf config.modules.hosting.commonGroup.enable config.modules.hosting.commonGroup.name;
-      openFirewall = lib.mkDefault config.modules.hosting.openFirewall;
-      user = "sonarr";
+      group = cfg.group;
+      openFirewall = cfg.openFirewall;
+      settings.server.port = cfg.port;
     };
+    #home-manager.users.${config.system.users.default.name}.programs.firefox.profiles."default".bookmarks.settings = [
+    #  {
+    #    name = "Sonarr";
+    #    url = "http://${config.hosting.ip}:${toString cfg.port}";
+    #    tags = ["hosted"];
+    #  }
+    #];
   };
 }

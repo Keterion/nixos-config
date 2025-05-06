@@ -1,23 +1,58 @@
-{ lib, pkgs, config, ...}:
-let
-  cfg = config.modules.services.jellyfin;
+{
+  lib,
+  config,
+  ...
+}: let
+  cfg = config.hosting.jellyfin;
 in {
-  options.modules.services.jellyfin = {
-    enable = lib.mkEnableOption "The jellyfin server";
+  options.hosting.jellyfin = {
+    enable = lib.mkEnableOption "jellyfin";
     openFirewall = lib.mkOption {
+      default = config.hosting.openFirewall;
       type = lib.types.bool;
-      default = config.modules.hosting.openFirewall;
-      description = "the firewall rule for jellyfin server";
     };
+    group = lib.mkOption {
+      default = config.hosting.defaultGroup;
+      type = lib.types.str;
+    };
+
+    #port = { # no declarative :c
+    #  http = lib.mkOption {
+    #    default = 8096;
+    #    type = lib.types.ints.u16;
+    #  };
+    #  https = lib.mkOption {
+    #    default = 8920;
+    #    type = lib.types.ints.u16;
+    #  };
+    #};
   };
 
   config = lib.mkIf cfg.enable {
     services.jellyfin = {
-      dataDir = "/var/lib/jellyfin";
       enable = true;
-      group = lib.mkIf config.modules.hosting.commonGroup.enable config.modules.hosting.commonGroup.name;
+      group = cfg.group;
       openFirewall = cfg.openFirewall;
       user = "jellyfin";
     };
+
+    #networking.firewall = lib.mkIf cfg.openFirewall {
+    #  allowedTCPPorts = [
+    #    cfg.port.http
+    #    cfg.port.https
+    #  ];
+
+    #  allowedUDPPorts = [
+    #    1900
+    #    7359
+    #  ];
+    #};
+    #home-manager.users.${config.system.users.default.name}.programs.firefox.profiles."default".bookmarks.settings = [
+    #  {
+    #    name = "Jellyfin";
+    #    url = "http://${config.hosting.ip}:8096";
+    #    tags = ["hosted"];
+    #  }
+    #];
   };
 }

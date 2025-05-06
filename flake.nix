@@ -1,77 +1,50 @@
 {
-  description = "NixOS configuration";
+  description = "New NixOS Config ig";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
 
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
-    #sops-nix.url = "github:Mic92/sops-nix";
+    #sops-nix = {
+    #  url = "github:Mic92/sops-nix";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
 
-    nur.url = "github:nix-community/nur";
-    arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
-    spicetify-nix = {
-      url = "github:Gerg-L/spicetify-nix";
+    nur = {
+      url = "github:nix-community/nur";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixvim = {
-      url = "github:nix-community/nixvim";
+    nvf = {
+      url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { nixpkgs, home-manager, nur, ... }@inputs: 
-  let
+  outputs = {
+    nixpkgs,
+    home-manager,
+    ...
+  } @ inputs: let
     overlays = import ./overlays.nix {inherit inputs;};
-  in
-  {
-  # TODO:
-  # Hosted services bookmarks -> global main user because firefox is homemanager not global
-  # Hosted services webserver automatic
-  # Programming language toggle -> nixvim lsp installation and stuff
-  # global variable for the modules basepath
+  in {
     nixosConfigurations = {
-      laptop = nixpkgs.lib.nixosSystem {
+      nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-	modules = [
-	  { nixpkgs.overlays = [ nur.overlays.default overlays.stable-packages ]; }
-	  ./hosts/common.nix
-	  ./hosts/laptop/default.nix
+        specialArgs = {myUtils = import ./utils.nix {inherit inputs;};};
+        modules = [
+          {nixpkgs.overlays = [inputs.nur.overlays.default overlays.stable-packages];}
+          ./machines/common.nix
+          ./machines/main
 
-	  home-manager.nixosModules.home-manager {
-	    home-manager.extraSpecialArgs = { inherit inputs; };
-	    home-manager.useGlobalPkgs = true;
-	    home-manager.useUserPackages = true;
+          inputs.nvf.nixosModules.default
 
-	    home-manager.backupFileExtension = "bak";
-
-	    home-manager.users.etherion = import ./hosts/laptop/home.nix;
-	  }
-	];
-      };
-      main = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-	#specialArgs = { inherit inputs; };
-	modules = [
-	  { nixpkgs.overlays = [ nur.overlays.default overlays.stable-packages ]; }
-	  ./hosts/common.nix
-	  ./hosts/main/default.nix
-	  
-	  home-manager.nixosModules.home-manager {
-	    home-manager.extraSpecialArgs = { inherit inputs; };
-	    home-manager.useGlobalPkgs = true;
-	    home-manager.useUserPackages = true;
-
-	    home-manager.backupFileExtension = "bak";
-
-	    home-manager.users.etherion = import ./hosts/main/home.nix;
-	  }
-	];
+          home-manager.nixosModules.home-manager
+        ];
       };
     };
   };

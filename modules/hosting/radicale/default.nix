@@ -1,27 +1,33 @@
-{lib, pkgs, config, ...}:
-let
-  cfg = config.modules.services.radicale;
+{
+  lib,
+  config,
+  ...
+}: let
+  cfg = config.hosting.radicale;
 in {
-  options.modules.services.radicale = {
-    enable = lib.mkEnableOption "the radicale WebDav and CalDav server";
+  options.hosting.radicale = {
+    enable = lib.mkEnableOption "radicale for WebDAV and CalDAV";
     openFirewall = lib.mkOption {
       type = lib.types.bool;
-      default = config.modules.hosting.openFirewall;
-      description = "the firewall rules for radicale";
+      default = config.hosting.openFirewall;
     };
     port = lib.mkOption {
-      type = lib.types.ints.u32;
+      type = lib.types.ints.u16;
       default = 5232;
-      description = "Port to use for the radicale server";
+    };
+    ip = lib.mkOption {
+      type = lib.types.str;
+      default = config.hosting.ip;
     };
   };
+
   config = lib.mkIf cfg.enable {
-    environment.etc = {
-      "radicale/user".source = ./user;
-    };
+    environment.etc."radicale/user".source = ./user;
+
     services.radicale = {
       enable = true;
-      settings.server.hosts = [ "0.0.0.0:${toString cfg.port}" ];
+      settings.server.hosts = ["${cfg.ip}:${toString cfg.port}"];
+
       rights = {
         root = {
           user = ".+";
@@ -39,14 +45,20 @@ in {
           permissions = "RW";
         };
       };
-      settings = {
-        auth = {
-          type = "htpasswd";
-          htpasswd_filename = "/etc/radicale/user";
-          htpasswd_encryption = "autodetect";
-        };
+      settings.auth = {
+        type = "htpasswd";
+        htpasswd_filename = "/etc/radicale/user";
+        htpasswd_encryption = "autodetect";
       };
     };
-    networking.firewall.allowedTCPPorts = [ cfg.port ];
+
+    networking.firewall.allowedTCPPorts = lib.optionals cfg.openFirewall [cfg.port];
+    #home-manager.users.${config.system.users.default.name}.programs.firefox.profiles."default".bookmarks.settings = [
+    #  {
+    #    name = "Radicale";
+    #    url = "http://${cfg.ip}:${toString cfg.port}";
+    #    tags = ["hosted"];
+    #  }
+    #];
   };
 }

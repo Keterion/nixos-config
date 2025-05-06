@@ -1,34 +1,46 @@
-{ lib, config, pkgs, ... }:
-let
-  cfg = config.modules.services.tandoor;
+{
+  lib,
+  config,
+  ...
+}: let
+  cfg = config.hosting.tandoor;
 in {
-  options.modules.services.tandoor = {
-    address = lib.mkOption {
-      type = lib.types.str;
-      default = "localhost";
-      description = "Web interface address";
-    };
+  options.hosting.tandoor = {
     enable = lib.mkEnableOption "tandoor-recipes recipe manager";
     port = lib.mkOption {
       type = lib.types.ints.u16;
       default = 8080;
       description = "Web interface port";
     };
+    ip = lib.mkOption {
+      type = lib.types.str;
+      default = config.hosting.ip;
+    };
     openFirewall = lib.mkOption {
       type = lib.types.bool;
-      default = config.modules.hosting.openFirewall;
+      default = config.hosting.openFirewall;
       description = "Whether to open a port for tandoor-recipes in the firewall";
+    };
+    group = lib.mkOption {
+      type = lib.types.str;
+      default = config.hosting.defaultGroup;
     };
   };
 
   config = lib.mkIf cfg.enable {
     services.tandoor-recipes = {
       enable = true;
-      address = cfg.address;
+      address = cfg.ip;
       port = cfg.port;
-      package = pkgs.tandoor-recipes;
     };
+    #home-manager.users.${config.system.users.default.name}.programs.firefox.profiles."default".bookmarks.settings = [
+    #  {
+    #    name = "Tandoor";
+    #    url = "http://${cfg.ip}:${toString cfg.port}";
+    #    tags = ["hosted"];
+    #  }
+    #];
 
-    networking.firewall.allowedTCPPorts = lib.mkIf cfg.openFirewall [ cfg.port ];
+    networking.firewall.allowedTCPPorts = lib.mkIf cfg.openFirewall [cfg.port];
   };
 }

@@ -1,22 +1,25 @@
-{ lib, config, ... }: 
-let
-  cfg = config.modules.services.grocy;
+{
+  lib,
+  config,
+  ...
+}: let
+  cfg = config.hosting.grocy;
 in {
-  options.modules.services.grocy = {
+  options.hosting.grocy = {
     enable = lib.mkEnableOption " grocy";
     port = lib.mkOption {
       type = lib.types.port;
       default = 80;
       description = "Port for the nginx vHost to run on";
     };
-    address = lib.mkOption {
+    ip = lib.mkOption {
       type = lib.types.str;
-      default = "localhost";
+      default = config.hosting.ip;
     };
     openFirewall = lib.mkOption {
       type = lib.types.bool;
       description = "Whether to open the grocy port in the firewall";
-      default = config.modules.hosting.openFirewall;
+      default = config.hosting.openFirewall;
     };
   };
 
@@ -26,16 +29,25 @@ in {
       hostName = "grocy";
       nginx.enableSSL = false;
       settings = {
-	culture = "en";
-	currency = "EUR";
-	calendar.firstDayOfWeek = 1;
+        culture = "en";
+        currency = "EUR";
+        calendar.firstDayOfWeek = 1;
       };
     };
-    services.nginx.virtualHosts.${config.services.grocy.hostName}.listen = [{
-      addr = cfg.address;
-      port = cfg.port;
-    }];
-    
-    networking.firewall.allowedTCPPorts = lib.mkIf cfg.openFirewall [ cfg.port ];
+    services.nginx.virtualHosts.${config.services.grocy.hostName}.listen = [
+      {
+        addr = cfg.address;
+        port = cfg.port;
+      }
+    ];
+
+    networking.firewall.allowedTCPPorts = lib.mkIf cfg.openFirewall [cfg.port];
+    #home-manager.users.${config.system.users.default.name}.programs.firefox.profiles."default".bookmarks.settings = [
+    #  {
+    #    name = "Grocy";
+    #    url = "http://${cfg.ip}:${toString cfg.port}";
+    #    tags = ["hosted"];
+    #  }
+    #];
   };
 }

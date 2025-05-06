@@ -1,34 +1,43 @@
-{ lib, pkgs, config, ... }:
-let cfg = config.modules.services.qbittorrent;
+{
+  lib,
+  config,
+  ...
+}: let
+  cfg = config.hosting.qbittorrent;
 in {
   imports = [
-    ./service.nix
+    ./../../packages/qbittorrent-headless # custom qbittorrent service
   ];
 
-  options = {
-    modules.services.qbittorrent = {
-      enable = lib.mkEnableOption "qbittorrent";
-      openFirewall = lib.mkOption {
-        type = lib.types.bool;
-        default = config.modules.hosting.openFirewall;
-        description = "the firewall rule for qbittorrent";
-      };
-      port = lib.mkOption {
-        type = lib.types.ints.u32;
-        default = 8080;
-        description = "Port to use for the radicale server";
-      };
+  options.hosting.qbittorrent = {
+    enable = lib.mkEnableOption "qbittorrent as a background service";
+    group = lib.mkOption {
+      type = lib.types.str;
+      default = config.hosting.defaultGroup;
+    };
+    openFirewall = lib.mkOption {
+      default = config.hosting.openFirewall;
+      type = lib.types.bool;
+    };
+    port = lib.mkOption {
+      type = lib.types.ints.u16;
+      default = 8080;
     };
   };
 
   config = lib.mkIf cfg.enable {
     services.qbittorrent = {
       enable = true;
-      group = lib.mkIf config.modules.hosting.commonGroup.enable config.modules.hosting.commonGroup.name;
-      openFirewall = lib.mkDefault cfg.openFirewall;
-      user = "qbittorrent";
-
+      group = cfg.group;
+      openFirewall = cfg.openFirewall;
       port = cfg.port;
     };
+    #home-manager.users.${config.system.users.default.name}.programs.firefox.profiles."default".bookmarks.settings = [
+    #  {
+    #    name = "qBittorrent";
+    #    url = "http://${config.hosting.ip}:${toString cfg.port}";
+    #    tags = ["hosted"];
+    #  }
+    #];
   };
 }

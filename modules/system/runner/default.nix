@@ -1,19 +1,17 @@
-{ lib, config, pkgs, ... }:
-with lib;
-let
-  cfg = config.system.runner;
-in {
+{lib, ...}: {
   imports = [
-    ./tofi_settings.nix
+    ./tofi.nix
   ];
   options.system.runner = {
-    tofi = {
-      enable = mkEnableOption "tofi";
+    name = lib.mkOption {
+      type = lib.types.str;
+      default = "";
+      description = "Name of the runner to use, set by the system";
     };
-  };
-  config = {
-    programs.tofi = mkIf cfg.tofi.enable {
-      enable = true;
+    command = lib.mkOption {
+      type = lib.types.str;
+      default = "";
+      description = "Command for the runner, can be changed by the user";
     };
   };
 }

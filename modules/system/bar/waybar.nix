@@ -1,21 +1,24 @@
-{ config, pkgs, ... }: {
-  programs.waybar = {
-    enable = true;
-    #settings = {
-    #  mainBar = {
-    #    layer = "top";
-    #    position = "top";
-    #  
-    #    modules-left = [ "hyprland/workspaces" ];
-    #    modules-center = [ "clock" ];
-    #    modules-right = [ "backlight" "battery" "cpu" "pulseaudio" "memory" "network" "temperature"];
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
+  cfg = config.system.bar.waybar;
+in {
+  options.system.bar.waybar = {
+    enable = lib.mkEnableOption " waybar";
+    styleProfile = lib.mkOption {
+      type = lib.types.enum ["haides002" "default"];
+      description = "Which style profile to load for waybar";
+    };
+  };
 
-    #    "hyprland/workspaces" = {
-    #      "persistent-workspaces" = {
-    #        "*" = 9;
-    #      };
-    #    };
-    #  };
-    #};
+  config = lib.mkIf cfg.enable {
+    home-manager.users.${config.system.users.default.name} = {
+      programs.waybar = import ./waybar/${cfg.styleProfile}.nix;
+
+      home.packages = [pkgs.pavucontrol];
+    };
   };
 }

@@ -1,16 +1,39 @@
-{ lib, pkgs, config, ... }:
-let
-  cfg = config.modules.services.radarr;
+{
+  lib,
+  config,
+  ...
+}: let
+  cfg = config.hosting.radarr;
 in {
-  options.modules.services.radarr = {
-    enable = lib.mkEnableOption "the radarr movie manager";
+  options.hosting.radarr = {
+    enable = lib.mkEnableOption "radarr";
+    group = lib.mkOption {
+      type = lib.types.str;
+      default = config.hosting.defaultGroup;
+    };
+    openFirewall = lib.mkOption {
+      default = config.hosting.openFirewall;
+      type = lib.types.bool;
+    };
+    port = lib.mkOption {
+      type = lib.types.ints.u16;
+      default = 7878;
+    };
   };
+
   config = lib.mkIf cfg.enable {
     services.radarr = {
       enable = true;
-      group = lib.mkIf config.modules.hosting.commonGroup.enable config.modules.hosting.commonGroup.name;
-      openFirewall = lib.mkDefault config.modules.hosting.openFirewall;
-      user = "radarr";
+      group = cfg.group;
+      openFirewall = cfg.openFirewall;
+      settings.server.port = cfg.port;
     };
+    #home-manager.users.${config.system.users.default.name}.programs.firefox.profiles."default".bookmarks.settings = [
+    #  {
+    #    name = "Radarr";
+    #    url = "http://${config.hosting.ip}:${toString cfg.port}";
+    #    tags = ["hosted"];
+    #  }
+    #];
   };
 }
