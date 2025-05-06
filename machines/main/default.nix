@@ -12,7 +12,7 @@
     };
   };
   system = {
-    configDir = /home/${config.system.default.name}/etc/nixos;
+    configDir = /home/${config.system.users.default.name}/etc/nixos;
     colorscheme = "tokyonight-moon";
 
     hid = {
