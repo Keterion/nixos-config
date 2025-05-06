@@ -32,9 +32,9 @@ in {
   config = lib.mkIf cfg.enable {
     services.rustypaste = {
       enable = true;
-      port = cfg.port;
       ip = "${cfg.ip}";
       openFirewall = cfg.openFirewall;
+      port = cfg.port;
     };
   };
 }
