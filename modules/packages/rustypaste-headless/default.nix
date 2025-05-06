@@ -194,5 +194,7 @@ in {
 
     users.groups =
       lib.mkIf (cfg.group == "rustypaste") {rustypaste = {gid = null;};};
+
+    networking.firewall.allowedTCPPorts = [cfg.port];
   };
 }

@@ -34,6 +34,7 @@ in {
       enable = true;
       port = cfg.port;
       ip = "${cfg.ip}";
+      openFirewall = cfg.openFirewall;
     };
   };
 }
