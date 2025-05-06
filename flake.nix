@@ -33,7 +33,7 @@
     overlays = import ./overlays.nix {inherit inputs;};
   in {
     nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
+      main = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {myUtils = import ./utils.nix {inherit inputs;};};
         modules = [
@@ -47,17 +47,17 @@
         ];
       };
       laptop = nixpkgs.lib.nixosSystem {
-	system = "x86_64-linux";
-	specialArgs = {myUtils = import ./utils.nix {inherit inputs;};};
-	modules = [
-	  {nixpkgs.overlays = [inputs.nur.overlays.default overlays.stable-packages];}
-	  ./machines/common.nix
-	  ./machines/laptop
+        system = "x86_64-linux";
+        specialArgs = {myUtils = import ./utils.nix {inherit inputs;};};
+        modules = [
+          {nixpkgs.overlays = [inputs.nur.overlays.default overlays.stable-packages];}
+          ./machines/common.nix
+          ./machines/laptop
 
-	  inputs.nvf.nixosModules.default
+          inputs.nvf.nixosModules.default
 
-	  home-manager.nixosModules.home-manager
-	];
+          home-manager.nixosModules.home-manager
+        ];
       };
     };
   };
