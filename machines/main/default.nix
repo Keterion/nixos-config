@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   imports = [./hardware-configuration.nix];
   system.users.default = {
     name = "etherion";
@@ -8,6 +12,7 @@
     };
   };
   system = {
+    configDir = /home/${config.system.users.default.name}/etc/nixos;
     colorscheme = "tokyonight-moon";
 
     hid = {

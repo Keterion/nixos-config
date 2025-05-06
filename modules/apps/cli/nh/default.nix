@@ -21,7 +21,7 @@ in {
       enable = true;
       clean.enable = cfg.clean;
       clean.extraArgs = "--keep-since 7d";
-      flake = "/home/etherion/etc/nOwOs";
+      flake = config.system.configDir;
     };
   };
 }
