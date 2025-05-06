@@ -4,6 +4,7 @@
   ...
 }: {
   imports = [./hardware-configuration.nix];
+  networking.hostName = "main";
   system.users.default = {
     name = "etherion";
     git = {
