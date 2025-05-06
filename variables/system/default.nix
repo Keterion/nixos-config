@@ -1,20 +1,31 @@
-{ config, lib, ... }: {
+{
+  config,
+  lib,
+  ...
+}: {
   imports = [
     ./users
     ./colors
-#    ./fonts
+    #    ./fonts
   ];
-  options.system.keyboard = {
-    layout = lib.mkOption {
-      type = lib.types.str;
-      default = "us";
-      description = "Keyboard layout, or multiple layouts separated by commas";
+  options.system = {
+    configDir = lib.mkOption {
+      type = lib.types.path;
+      default = /etc/nixos;
+      example = /home/john/nixos;
     };
-    variant = lib.mkOption {
-      type = lib.types.str;
-      default = "";
-      description = "Keyboard variant";
-      example = "colemak";
+    keyboard = {
+      layout = lib.mkOption {
+        type = lib.types.str;
+        default = "us";
+        description = "Keyboard layout, or multiple layouts separated by commas";
+      };
+      variant = lib.mkOption {
+        type = lib.types.str;
+        default = "";
+        description = "Keyboard variant";
+        example = "colemak";
+      };
     };
   };
 }
