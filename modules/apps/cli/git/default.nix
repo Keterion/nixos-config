@@ -1,5 +1,9 @@
-{ config, lib, pkgs, ... }:
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   cfg = config.apps.git;
 in {
   options.apps.git = {
@@ -18,12 +22,13 @@ in {
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       git
+      gh
     ];
 
     programs.git = {
       enable = true;
       config = {
-	init.defaultBranch = cfg.defaultBranch;
+        init.defaultBranch = cfg.defaultBranch;
       };
     };
 
