@@ -1,5 +1,8 @@
-{ lib, config, ... }:
-let
+{
+  lib,
+  config,
+  ...
+}: let
   cfg = config.modules.hosting.webserver;
 in {
   options.modules.hosting.webserver = {
@@ -22,73 +25,86 @@ in {
     servicesPage = {
       enable = lib.mkEnableOption "auto-generated page for services";
       name = lib.mkOption {
-	type = lib.types.str;
-	default = "services.html";
-	description = "Name of the file";
+        type = lib.types.str;
+        default = "services.html";
+        description = "Name of the file";
       };
     };
   };
   config = lib.mkIf cfg.enable {
     environment.etc = lib.mkIf cfg.servicesPage.enable {
-      "webserver/${cfg.servicesPage.name}".text = lib.readFile ./servicesPageBase.html; # TODO
+      "webserver/${cfg.servicesPage.name}".text = ''             
+        <!DOCTYPE html>
+         <html lang="en">
+           <head>
+             <meta charset="UTF-8">
+             <meta name="viewport" content="width=device-width, initial-scale=1.0">
+             <meta http-equiv="X-UA-Compatible" content="ie=edge">
+             <title>Enabled Services</title>
+             <link rel="stylesheet" href="style.css">
+           </head>
+           <body>
+             <script src="index.js"></script>
+             $content
+           </body>
+         </html>''; # TODO
     };
     services.static-web-server = {
       enable = true;
       listen = "[::]:${toString cfg.port}";
       root = "/etc/webserver";
       configuration = {
-	general = {
-	log-level = "error";
+        general = {
+          log-level = "error";
 
-	compression = true;
-	compression-level = "default";
+          compression = true;
+          compression-level = "default";
 
-	page404 = "./404.html";
-	page50x = "./50x.html";
+          page404 = "./404.html";
+          page50x = "./50x.html";
 
-	http2 = false;
-	http2-tls-cert = "";
-	http2-tls-key = "";
-	https-redirect = false;
-	https-redirect-host = "localhost";
-	https-redirect-from-port = 80;
-	https-redirect-from-hosts = "localhost";
+          http2 = false;
+          http2-tls-cert = "";
+          http2-tls-key = "";
+          https-redirect = false;
+          https-redirect-host = "localhost";
+          https-redirect-from-port = 80;
+          https-redirect-from-hosts = "localhost";
 
-	#security-headers = true;
-	# cors-allow-origins = ""
+          #security-headers = true;
+          # cors-allow-origins = ""
 
-	directory-listing = false;
+          directory-listing = false;
 
-	directory-listing-order = 1;
+          directory-listing-order = 1;
 
-	directory-listing-format = "html";
+          directory-listing-format = "html";
 
-	# basic-auth = ""
-	# fd = ""
+          # basic-auth = ""
+          # fd = ""
 
-	threads-multiplier = 1;
+          threads-multiplier = 1;
 
-	grace-period = 0;
+          grace-period = 0;
 
-	#page-fallback = "" # page fallback for 404s
+          #page-fallback = "" # page fallback for 404s
 
-	log-remote-address = false;
+          log-remote-address = false;
 
-	redirect-trailing-slash = true;
+          redirect-trailing-slash = true;
 
-	health = true;
-	
-	compression-static = true;
+          health = true;
 
-	# Maintenance mode
-	maintenance-mode = false;
-	# maintenance-mode-status = 503;
-	# maintenance-mode-file = "./maintenance.html";
+          compression-static = true;
 
-	};
+          # Maintenance mode
+          maintenance-mode = false;
+          # maintenance-mode-status = 503;
+          # maintenance-mode-file = "./maintenance.html";
+        };
       };
     };
-    networking.firewall.allowedTCPPorts = lib.optionals cfg.openFirewall [ 
+    networking.firewall.allowedTCPPorts = lib.optionals cfg.openFirewall [
       "${cfg.port}"
     ];
   };
