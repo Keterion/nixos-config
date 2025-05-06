@@ -15,6 +15,7 @@ in {
     ./qbittorrent
     ./radarr
     ./radicale
+    ./rustypaste
     ./sonarr
     ./syncthing
     ./tandoor
