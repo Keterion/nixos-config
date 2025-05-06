@@ -137,36 +137,6 @@
     ip = "192.168.178.69";
     defaultGroup = "server";
 
-    bazarr.enable = true;
-    calibre.web.enable = true;
-    jellyfin.enable = true;
-    prowlarr = {
-      enable = true;
-      openFirewall = false;
-    };
-    qbittorrent = {
-      enable = true;
-      port = 8081;
-    };
-    radarr.enable = true;
-    radicale.enable = true;
-    sonarr.enable = true;
     syncthing.enable = true;
-    tandoor.enable = true;
-  };
-
-  fileSystems."/mnt/Games" = {
-    device = "dev/disk/by-uuid/3212add8-8af3-46c6-a739-cfc018bd72ac";
-    fsType = "ext4";
-  };
-
-  boot.initrd.luks.devices.HDD.device = "/dev/disk/by-uuid/0161cbc2-6ac8-42b4-874e-74c95c494aa9";
-  fileSystems."/mnt/HDD" = {
-    device = "/dev/mapper/HDD";
-  };
-
-  boot.initrd.luks.devices.Priv.device = "/dev/disk/by-uuid/ef533879-a0c5-456a-8a91-db761e21ed63";
-  fileSystems."/mnt/priv" = {
-    device = "/dev/mapper/Priv";
   };
 }
