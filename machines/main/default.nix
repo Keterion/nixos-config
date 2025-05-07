@@ -20,6 +20,7 @@
       gamepad.dualsense.enable = true;
       tablet.enable = true;
     };
+    graphics.nvidia.enable = true;
 
     audio.pipewire = {
       enable = true;
