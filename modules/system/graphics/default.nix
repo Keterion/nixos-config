@@ -14,11 +14,11 @@ in {
     services.xserver.videoDrivers = lib.optionals cfg.nvidia.enable ["nvidia"];
     boot.kernelParams = lib.optionals cfg.nvidia.enable ["nvidia.NVreg_PreserveVideoMemoryAllocations=1"];
     hardware.nvidia = lib.mkIf cfg.nvidia.enable {
-      modesetting.enable = false;
+      modesetting.enable = true;
       powerManagement.enable = true;
       powerManagement.finegrained = false;
 
-      open = true;
+      open = false;
 
       nvidiaSettings = true;
 
