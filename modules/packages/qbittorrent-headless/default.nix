@@ -84,6 +84,7 @@ in {
       after =
         ["network.target"]
         ++ optionals config.services.mullvad-vpn.enable ["mullvad-daemon.service"];
+      requires = optionals config.services.mullvad-vpn.enable ["mullvad-daemon.service"];
       description = "qBittorrent Daemon";
       wantedBy = ["multi-user.target"];
       path = [pkgs.qbittorrent-headless];
