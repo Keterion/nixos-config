@@ -101,5 +101,6 @@ in {
       };
     };
     networking.firewall.allowedTCPPorts = [cfg.port]; # webui also open firewall
+    hosting.boundPorts."${toString cfg.port}" = "syncthing";
   };
 }

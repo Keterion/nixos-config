@@ -42,5 +42,6 @@ in {
     #];
 
     networking.firewall.allowedTCPPorts = lib.mkIf cfg.openFirewall [cfg.port];
+    hosting.boundPorts."${toString cfg.port}" = "tandoor";
   };
 }

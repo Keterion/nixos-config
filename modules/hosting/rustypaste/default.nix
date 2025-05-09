@@ -36,5 +36,6 @@ in {
       openFirewall = cfg.openFirewall;
       port = cfg.port;
     };
+    hosting.boundPorts."${toString cfg.port}" = "rustypaste";
   };
 }

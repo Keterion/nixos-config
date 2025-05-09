@@ -42,6 +42,7 @@ in {
     ];
 
     networking.firewall.allowedTCPPorts = lib.mkIf cfg.openFirewall [cfg.port];
+    hosting.boundPorts."${toString cfg.port}" = "grocy";
     #home-manager.users.${config.system.users.default.name}.programs.firefox.profiles."default".bookmarks.settings = [
     #  {
     #    name = "Grocy";

@@ -31,6 +31,7 @@ in {
       openFirewall = cfg.openFirewall;
       user = "bazarr";
     };
+    hosting.boundPorts."${toString cfg.port}" = "bazarr";
 
     #home-manager.users.${config.system.users.default.name}.programs.firefox.profiles."default".bookmarks.settings = [
     #  {

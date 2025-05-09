@@ -32,6 +32,7 @@ in {
       openFirewall = cfg.openFirewall;
       port = cfg.port;
     };
+    hosting.boundPorts."${toString cfg.port}" = "qbittorrent";
     #home-manager.users.${config.system.users.default.name}.programs.firefox.profiles."default".bookmarks.settings = [
     #  {
     #    name = "qBittorrent";

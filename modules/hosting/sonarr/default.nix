@@ -28,12 +28,6 @@ in {
       openFirewall = cfg.openFirewall;
       settings.server.port = cfg.port;
     };
-    #home-manager.users.${config.system.users.default.name}.programs.firefox.profiles."default".bookmarks.settings = [
-    #  {
-    #    name = "Sonarr";
-    #    url = "http://${config.hosting.ip}:${toString cfg.port}";
-    #    tags = ["hosted"];
-    #  }
-    #];
+    hosting.boundPorts."${toString cfg.port}" = "sonarr";
   };
 }

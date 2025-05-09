@@ -53,12 +53,6 @@ in {
     };
 
     networking.firewall.allowedTCPPorts = lib.optionals cfg.openFirewall [cfg.port];
-    #home-manager.users.${config.system.users.default.name}.programs.firefox.profiles."default".bookmarks.settings = [
-    #  {
-    #    name = "Radicale";
-    #    url = "http://${cfg.ip}:${toString cfg.port}";
-    #    tags = ["hosted"];
-    #  }
-    #];
+    hosting.boundPorts."${toString cfg.port}" = "radicale";
   };
 }

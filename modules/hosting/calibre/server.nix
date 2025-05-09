@@ -41,6 +41,7 @@ in {
     networking.firewall.allowedTCPPorts = lib.optionals cfg.openFirewall [
       cfg.port
     ];
+    hosting.boundPorts."${toString cfg.port}" = "calibre-server";
     #home-manager.users.${config.system.users.default.name}.programs.firefox.profiles."default".bookmarks.settings = [
     #  {
     #    name = "Calibre-Server";

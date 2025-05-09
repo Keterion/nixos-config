@@ -49,12 +49,6 @@ in {
       };
       openFirewall = cfg.openFirewall;
     };
-    #home-manager.users.${config.system.users.default.name}.programs.firefox.profiles."default".bookmarks.settings = [
-    #  {
-    #    name = "Calibre-Web";
-    #    url = "http://${cfg.ip}:${toString cfg.port}";
-    #    tags = ["hosted"];
-    #  }
-    #];
+    hosting.boundPorts."${toString cfg.port}" = "calibre-web";
   };
 }

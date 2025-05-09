@@ -33,6 +33,14 @@ in {
       default = "::1";
       description = "IP to use";
     };
+    boundPorts = lib.mkOption {
+      type = lib.types.attrsOf lib.types.str;
+      default = {};
+      example = {
+        "8080" = "calibre-web";
+      };
+      description = "Ports with services bound to them";
+    };
   };
 
   config = {

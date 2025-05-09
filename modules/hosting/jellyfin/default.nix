@@ -35,6 +35,8 @@ in {
       openFirewall = cfg.openFirewall;
       user = "jellyfin";
     };
+    hosting.boundPorts."8096" = "jellyfin";
+    hosting.boundPorts."8920" = "jellyfin";
 
     #networking.firewall = lib.mkIf cfg.openFirewall {
     #  allowedTCPPorts = [
