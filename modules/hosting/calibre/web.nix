@@ -49,6 +49,5 @@ in {
       };
       openFirewall = cfg.openFirewall;
     };
-    hosting.boundPorts."${toString cfg.port}" = "calibre-web";
   };
 }

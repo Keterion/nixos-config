@@ -23,6 +23,5 @@ in {
       openFirewall = cfg.openFirewall;
       settings.server.port = cfg.port;
     };
-    hosting.boundPorts."${toString cfg.port}" = "prowlarr";
   };
 }

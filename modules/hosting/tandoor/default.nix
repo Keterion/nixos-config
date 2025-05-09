@@ -33,15 +33,7 @@ in {
       address = cfg.ip;
       port = cfg.port;
     };
-    #home-manager.users.${config.system.users.default.name}.programs.firefox.profiles."default".bookmarks.settings = [
-    #  {
-    #    name = "Tandoor";
-    #    url = "http://${cfg.ip}:${toString cfg.port}";
-    #    tags = ["hosted"];
-    #  }
-    #];
 
     networking.firewall.allowedTCPPorts = lib.mkIf cfg.openFirewall [cfg.port];
-    hosting.boundPorts."${toString cfg.port}" = "tandoor";
   };
 }

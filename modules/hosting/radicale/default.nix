@@ -53,6 +53,5 @@ in {
     };
 
     networking.firewall.allowedTCPPorts = lib.optionals cfg.openFirewall [cfg.port];
-    hosting.boundPorts."${toString cfg.port}" = "radicale";
   };
 }
