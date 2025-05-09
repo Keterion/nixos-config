@@ -32,6 +32,8 @@ in {
               "browser.eme.ui.enabled" = true;
               "browser.eme.enabled" = true;
 
+              "browser.link.open_newwindow.restriction" = 0; # Open popup windows as tabs
+
               "privacy.sanitize.sanitizeOnShutdown" = true; # perform Clear Private Data on exit # you stole all my history and tabs even with disabled history clear??
               "privacy.item.cookies" = true; # Clear Private Data deletes cookies
               "privacy.item.history" = false; # Clear Private Data deletes history
