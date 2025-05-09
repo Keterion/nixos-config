@@ -82,6 +82,26 @@ in {
                     }
                   ];
                 }
+                {
+                  name = "Programming";
+                  toolbar = false;
+                  bookmarks = [
+                    {
+                      name = "Bash";
+                      toolbar = false;
+                      bookmarks = [
+                        {
+                          name = "Pure Bash Bible";
+                          url = "https://github.com/dylanaraps/pure-bash-bible";
+                        }
+                        {
+                          name = "Pure Sh Bible";
+                          url = "https://github.com/dylanaraps/pure-sh-bible";
+                        }
+                      ];
+                    }
+                  ];
+                }
               ];
             };
             extensions = {
