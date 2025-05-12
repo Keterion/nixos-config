@@ -11,6 +11,7 @@ in {
     ./dns
     ./grocy
     ./jellyfin
+    ./jellyseer
     ./prowlarr
     ./qbittorrent
     ./radarr
