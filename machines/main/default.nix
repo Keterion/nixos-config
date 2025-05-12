@@ -136,6 +136,7 @@
     bazarr.enable = true;
     calibre.web.enable = true;
     jellyfin.enable = true;
+    jellyseerr.enable = true;
     prowlarr = {
       enable = true;
       openFirewall = false;

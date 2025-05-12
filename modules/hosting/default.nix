@@ -11,7 +11,7 @@ in {
     ./dns
     ./grocy
     ./jellyfin
-    ./jellyseer
+    ./jellyseerr
     ./prowlarr
     ./qbittorrent
     ./radarr
@@ -92,10 +92,10 @@ in {
                   tags = ["hosted"];
                 }
               ]
-              ++ lib.optionals cfg.jellyseer.enable [
+              ++ lib.optionals cfg.jellyseerr.enable [
                 {
-                  name = "Jellyseer";
-                  url = "http://${cfg.ip}:${toString cfg.jellyseer.enable}";
+                  name = "Jellyseerr";
+                  url = "http://${cfg.ip}:${toString cfg.jellyseerr.enable}";
                   tags = ["hosted"];
                 }
               ]

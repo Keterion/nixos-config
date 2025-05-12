@@ -3,10 +3,10 @@
   lib,
   ...
 }: let
-  cfg = config.hosting.jellyseer;
+  cfg = config.hosting.jellyseerr;
 in {
-  options.hosting.jellyseer = {
-    enable = lib.mkEnableOption "jellyseer";
+  options.hosting.jellyseerr = {
+    enable = lib.mkEnableOption "jellyseerr";
     openFirewall = lib.mkOption {
       default = config.hosting.openFirewall;
       type = lib.types.bool;
@@ -19,7 +19,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    serivces.jellyseer = {
+    services.jellyseerr = {
       enable = true;
       port = cfg.port;
       openFirewall = cfg.openFirewall;
