@@ -24,8 +24,8 @@
       };
       cursor.no_hardware_cursors = true;
       monitor = [
-        "DP-1, highres@highrr, 0x0, 1"
-        "HDMI-A-1, 1920x1080@59.999, 2560x0, 1"
+        "DP-1, preferred, 0x0, 1"
+        "HDMI-A-1, preferred, 2560x0, 1"
         ", preferred, auto, 1"
       ];
 
