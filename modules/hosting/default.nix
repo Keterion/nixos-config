@@ -60,21 +60,21 @@ in {
               lib.optionals cfg.bazarr.enable [
                 {
                   name = "Bazarr";
-                  url = "http://${config.hosting.ip}:${toString cfg.bazarr.port}";
+                  url = "http://${cfg.ip}:${toString cfg.bazarr.port}";
                   tags = ["hosted"];
                 }
               ]
               ++ lib.optionals cfg.calibre.server.enable [
                 {
                   name = "Calibre-Server";
-                  url = "http://${config.hosting.ip}:${toString cfg.calibre.server.port}";
+                  url = "http://${cfg.ip}:${toString cfg.calibre.server.port}";
                   tags = ["hosted"];
                 }
               ]
               ++ lib.optionals cfg.calibre.web.enable [
                 {
                   name = "Calibre-Web";
-                  url = "http://${config.hosting.ip}:${toString cfg.calibre.web.port}";
+                  url = "http://${cfg.ip}:${toString cfg.calibre.web.port}";
                   tags = ["hosted"];
                 }
               ]
@@ -88,28 +88,35 @@ in {
               ++ lib.optionals cfg.jellyfin.enable [
                 {
                   name = "Jellyfin";
-                  url = "http://${config.hosting.ip}:8096";
+                  url = "http://${cfg.ip}:8096";
+                  tags = ["hosted"];
+                }
+              ]
+              ++ lib.optionals cfg.jellyseer.enable [
+                {
+                  name = "Jellyseer";
+                  url = "http://${cfg.ip}:${toString cfg.jellyseer.enable}";
                   tags = ["hosted"];
                 }
               ]
               ++ lib.optionals cfg.prowlarr.enable [
                 {
                   name = "Prowlarr";
-                  url = "http://${config.hosting.ip}:${toString cfg.prowlarr.port}";
+                  url = "http://${cfg.ip}:${toString cfg.prowlarr.port}";
                   tags = ["hosted"];
                 }
               ]
               ++ lib.optionals cfg.qbittorrent.enable [
                 {
                   name = "qBittorrent";
-                  url = "http://${config.hosting.ip}:${toString cfg.qbittorrent.port}";
+                  url = "http://${cfg.ip}:${toString cfg.qbittorrent.port}";
                   tags = ["hosted"];
                 }
               ]
               ++ lib.optionals cfg.radarr.enable [
                 {
                   name = "Radarr";
-                  url = "http://${config.hosting.ip}:${toString cfg.radarr.port}";
+                  url = "http://${cfg.ip}:${toString cfg.radarr.port}";
                   tags = ["hosted"];
                 }
               ]
@@ -123,7 +130,7 @@ in {
               ++ lib.optionals cfg.sonarr.enable [
                 {
                   name = "Sonarr";
-                  url = "http://${config.hosting.ip}:${toString cfg.sonarr.port}";
+                  url = "http://${cfg.ip}:${toString cfg.sonarr.port}";
                   tags = ["hosted"];
                 }
               ]
