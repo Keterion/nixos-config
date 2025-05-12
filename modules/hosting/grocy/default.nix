@@ -21,6 +21,10 @@ in {
       description = "Whether to open the grocy port in the firewall";
       default = config.hosting.openFirewall;
     };
+    monitor.enable = lib.mkOption {
+      type = lib.types.bool;
+      default = config.hosting.monitor;
+    };
   };
 
   config = lib.mkIf cfg.enable {

@@ -16,6 +16,10 @@ in {
       default = 5055;
       description = "WebUI port";
     };
+    monitor.enable = lib.mkOption {
+      type = lib.types.bool;
+      default = config.hosting.monitor;
+    };
   };
 
   config = lib.mkIf cfg.enable {

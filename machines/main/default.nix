@@ -132,11 +132,13 @@
     openFirewall = true;
     ip = "192.168.178.69";
     defaultGroup = "server";
+    monitor = true;
 
     bazarr.enable = true;
     calibre.web.enable = true;
     jellyfin.enable = true;
     jellyseerr.enable = true;
+    monit.enable = true;
     prowlarr = {
       enable = true;
       openFirewall = false;

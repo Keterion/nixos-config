@@ -19,6 +19,10 @@ in {
       type = lib.types.ints.u16;
       default = 8989;
     };
+    monitor.enable = lib.mkOption {
+      type = lib.types.bool;
+      default = config.hosting.monitor;
+    };
   };
 
   config = lib.mkIf cfg.enable {

@@ -12,6 +12,7 @@ in {
     ./grocy
     ./jellyfin
     ./jellyseerr
+    ./monit
     ./prowlarr
     ./qbittorrent
     ./radarr
@@ -34,12 +35,7 @@ in {
       default = "::1";
       description = "IP to use";
     };
-    boundPorts = lib.mkOption {
-      type = lib.types.listOf lib.types.port;
-      default = [];
-      example = [8080];
-      description = "Ports with services bound to them";
-    };
+    monitor = lib.mkEnableOption "monitoring for all services";
   };
 
   config = {

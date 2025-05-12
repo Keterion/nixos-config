@@ -25,6 +25,10 @@ in {
       type = lib.types.str;
       default = config.hosting.defaultGroup;
     };
+    monitor.enable = lib.mkOption {
+      type = lib.types.bool;
+      default = config.hosting.monitor;
+    };
   };
 
   config = lib.mkIf cfg.enable {

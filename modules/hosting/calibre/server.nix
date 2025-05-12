@@ -28,6 +28,10 @@ in {
       default = config.hosting.defaultGroup;
       description = "Group for calibre-server to run under";
     };
+    monitor.enable = lib.mkOption {
+      type = lib.types.bool;
+      default = config.hosting.monitor;
+    };
   };
 
   config = lib.mkIf cfg.enable {

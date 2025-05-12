@@ -15,6 +15,10 @@ in {
       default = config.hosting.defaultGroup;
       type = lib.types.str;
     };
+    monitor.enable = lib.mkOption {
+      type = lib.types.bool;
+      default = config.hosting.monitor;
+    };
 
     #port = { # no declarative :c
     #  http = lib.mkOption {
