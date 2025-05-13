@@ -14,6 +14,7 @@ in {
     ./jellyseerr
     ./monit
     ./prowlarr
+    ./proxy
     ./qbittorrent
     ./radarr
     ./radicale
