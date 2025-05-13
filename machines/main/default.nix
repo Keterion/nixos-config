@@ -138,7 +138,15 @@
     calibre.web.enable = true;
     jellyfin.enable = true;
     jellyseerr.enable = true;
-    monit.enable = true;
+    monit = {
+      enable = true;
+      fileSystems = [
+        {
+          name = "root";
+          path = "/";
+        }
+      ];
+    };
     prowlarr = {
       enable = true;
       openFirewall = false;
