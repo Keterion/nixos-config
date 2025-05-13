@@ -60,14 +60,21 @@ in {
         }
       ];
     };
+    monitor.enable = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Monit doesn't need to monitor itself but the options are partly normed";
+    };
+    proxy.enable = lib.mkEnableOption "proxy";
   };
 
   config = lib.mkIf cfg.enable {
+    hosting.enabledServices = ["monit"];
     environment.etc."monit/user".source = ./htpasswd;
 
     services.monit = {
       enable = true;
-      config = with config.hosting;
+      config =
         ''
           SET DAEMON 5
           SET HTTPD PORT ${toString cfg.port}
@@ -75,20 +82,13 @@ in {
         ''
         + lib.concatMapStringsSep "\n" (x: x) (map (fs: "CHECK FILESYSTEM ${fs.name} PATH ${fs.path}") cfg.fileSystems)
         + lib.concatMapStringsSep "\n" (x: x) (map (dir: "\nCHECK DIRECTORY ${dir.name} PATH ${dir.path}") cfg.directories)
-        + lib.optionalString (bazarr.monitor.enable && bazarr.enable) "\nCHECK PROCESS bazarr MATCHING '${storeRegex}.*bazarr'"
-        + lib.optionalString (calibre.server.monitor.enable && calibre.server.enable) "\nCHECK PROCESS calibre-server MATCHING '${storeRegex}.*calibre-server'"
-        + lib.optionalString (calibre.web.monitor.enable && calibre.web.enable) "\nCHECK PROCESS calibre-web MATCHING '${storeRegex}.*calibre-web'"
-        + lib.optionalString (grocy.monitor.enable && grocy.enable) "\nCHECK PROCESS grocy MATCHING '${storeRegex}.*grocy'"
-        + lib.optionalString (jellyfin.monitor.enable && jellyfin.enable) "\nCHECK PROCESS jellyfin MATCHING '${storeRegex}.*jellyfin'"
-        + lib.optionalString (jellyseerr.monitor.enable && jellyseerr.enable) "\nCHECK PROCESS jellyseerr MATCHING '${storeRegex}.*jellyseerr'"
-        + lib.optionalString (prowlarr.monitor.enable && prowlarr.enable) "\nCHECK PROCESS prowlarr MATCHING '${storeRegex}.*prowlarr'"
-        + lib.optionalString (qbittorrent.monitor.enable && qbittorrent.enable) "\nCHECK PROCESS qbittorrent MATCHING '${storeRegex}.*qbittorrent'"
-        + lib.optionalString (radarr.monitor.enable && radarr.enable) "\nCHECK PROCESS radarr MATCHING '${storeRegex}.*radarr'"
-        + lib.optionalString (radicale.monitor.enable && radicale.enable) "\nCHECK PROCESS radicale MATCHING '${storeRegex}.*radicale'"
-        + lib.optionalString (rustypaste.monitor.enable && rustypaste.enable) "\nCHECK PROCESS rustypaste MATCHING '${storeRegex}.*rustypaste'"
-        + lib.optionalString (sonarr.monitor.enable && sonarr.enable) "\nCHECK PROCESS sonarr MATCHING '${storeRegex}.*sonarr'"
-        + lib.optionalString (syncthing.monitor.enable && syncthing.enable) "\nCHECK PROCESS syncthing MATCHING '${storeRegex}.*syncthing'"
-        + lib.optionalString (tandoor.monitor.enable && tandoor.enable) "\nCHECK PROCESS tandoor MATCHING '${storeRegex}.*gunicorn'";
+        + lib.concatMapStringsSep "\n" (
+          service:
+            lib.optionalString
+            (config.hosting."${service}".monitor.enable && config.hosting."${service}".enable)
+            "\nCHECK PROCESS ${service} MATCHING '${storeRegex}.*${service}'"
+        )
+        config.hosting.enabledServices;
     };
   };
 }

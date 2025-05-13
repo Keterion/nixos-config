@@ -23,9 +23,11 @@ in {
       type = lib.types.bool;
       default = config.hosting.monitor;
     };
+    proxy.enable = lib.mkEnableOption "proxy";
   };
 
   config = lib.mkIf cfg.enable {
+    hosting.enabledServices = ["sonarr"];
     services.sonarr = {
       enable = true;
       group = cfg.group;

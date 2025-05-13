@@ -19,6 +19,11 @@ in {
       type = lib.types.bool;
       default = config.hosting.monitor;
     };
+    proxy.enable = lib.mkEnableOption "proxy";
+    port = lib.mkOption {
+      type = lib.types.port;
+      default = 8096;
+    };
 
     #port = { # no declarative :c
     #  http = lib.mkOption {
@@ -33,6 +38,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    hosting.enabledServices = ["jellyfin"];
     services.jellyfin = {
       enable = true;
       group = cfg.group;

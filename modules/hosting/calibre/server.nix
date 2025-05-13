@@ -3,9 +3,9 @@
   config,
   ...
 }: let
-  cfg = config.hosting.calibre.server;
+  cfg = config.hosting.calibre-server;
 in {
-  options.hosting.calibre.server = {
+  options.hosting.calibre-server = {
     enable = lib.mkEnableOption "the calibre-server service";
     libraries = lib.mkOption {
       type = lib.types.listOf lib.types.path;
@@ -32,9 +32,11 @@ in {
       type = lib.types.bool;
       default = config.hosting.monitor;
     };
+    proxy.enable = lib.mkEnableOption "proxy";
   };
 
   config = lib.mkIf cfg.enable {
+    hosting.enabledServices = ["calibre-server"];
     services.calibre-server = {
       enable = true;
       group = cfg.group;

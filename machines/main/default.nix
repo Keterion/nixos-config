@@ -135,7 +135,7 @@
     monitor = true;
 
     bazarr.enable = true;
-    calibre.web.enable = true;
+    calibre-web.enable = true;
     jellyfin.enable = true;
     jellyseerr.enable = true;
     monit = {
@@ -163,6 +163,7 @@
       enable = true;
       openFirewall = false;
     };
+    proxy.enable = true;
     qbittorrent = {
       enable = true;
       port = 8081;
@@ -176,6 +177,7 @@
     syncthing.enable = true;
     tandoor = {
       enable = true;
+      port = 8023;
     };
   };
 

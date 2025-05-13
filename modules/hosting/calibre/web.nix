@@ -3,9 +3,9 @@
   config,
   ...
 }: let
-  cfg = config.hosting.calibre.web;
+  cfg = config.hosting.calibre-web;
 in {
-  options.hosting.calibre.web = {
+  options.hosting.calibre-web = {
     enable = lib.mkEnableOption "the calibre-web service";
     libraryPath = lib.mkOption {
       type = lib.types.nullOr lib.types.path;
@@ -35,9 +35,11 @@ in {
       type = lib.types.bool;
       default = config.hosting.monitor;
     };
+    proxy.enable = lib.mkEnableOption "proxy";
   };
 
   config = lib.mkIf cfg.enable {
+    hosting.enabledServices = ["calibre-web"];
     services.calibre-web = {
       enable = true;
       group = cfg.group;

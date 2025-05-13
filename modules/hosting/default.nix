@@ -37,6 +37,10 @@ in {
       description = "IP to use";
     };
     monitor = lib.mkEnableOption "monitoring for all services";
+    enabledServices = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      default = [];
+    };
   };
 
   config = {
@@ -53,105 +57,112 @@ in {
           {
             name = "Hosted"; # auto-add to this group
             toolbar = false;
-            bookmarks =
-              lib.optionals cfg.bazarr.enable [
-                {
-                  name = "Bazarr";
-                  url = "http://${cfg.ip}:${toString cfg.bazarr.port}";
-                  tags = ["hosted"];
-                }
-              ]
-              ++ lib.optionals cfg.calibre.server.enable [
-                {
-                  name = "Calibre-Server";
-                  url = "http://${cfg.ip}:${toString cfg.calibre.server.port}";
-                  tags = ["hosted"];
-                }
-              ]
-              ++ lib.optionals cfg.calibre.web.enable [
-                {
-                  name = "Calibre-Web";
-                  url = "http://${cfg.ip}:${toString cfg.calibre.web.port}";
-                  tags = ["hosted"];
-                }
-              ]
-              ++ lib.optionals cfg.grocy.enable [
-                {
-                  name = "Grocy";
-                  url = "http://${cfg.grocy.ip}:${toString cfg.grocy.port}";
-                  tags = ["hosted"];
-                }
-              ]
-              ++ lib.optionals cfg.jellyfin.enable [
-                {
-                  name = "Jellyfin";
-                  url = "http://${cfg.ip}:8096";
-                  tags = ["hosted"];
-                }
-              ]
-              ++ lib.optionals cfg.jellyseerr.enable [
-                {
-                  name = "Jellyseerr";
-                  url = "http://${cfg.ip}:${toString cfg.jellyseerr.port}";
-                  tags = ["hosted"];
-                }
-              ]
-              ++ lib.optionals cfg.monit.enable [
-                {
-                  name = "Jellyseerr";
-                  url = "http://${cfg.ip}:${toString cfg.monit.port}";
-                  tags = ["hosted"];
-                }
-              ]
-              ++ lib.optionals cfg.prowlarr.enable [
-                {
-                  name = "Prowlarr";
-                  url = "http://${cfg.ip}:${toString cfg.prowlarr.port}";
-                  tags = ["hosted"];
-                }
-              ]
-              ++ lib.optionals cfg.qbittorrent.enable [
-                {
-                  name = "qBittorrent";
-                  url = "http://${cfg.ip}:${toString cfg.qbittorrent.port}";
-                  tags = ["hosted"];
-                }
-              ]
-              ++ lib.optionals cfg.radarr.enable [
-                {
-                  name = "Radarr";
-                  url = "http://${cfg.ip}:${toString cfg.radarr.port}";
-                  tags = ["hosted"];
-                }
-              ]
-              ++ lib.optionals cfg.radicale.enable [
-                {
-                  name = "Radicale";
-                  url = "http://${cfg.radicale.ip}:${toString cfg.radicale.port}";
-                  tags = ["hosted"];
-                }
-              ]
-              ++ lib.optionals cfg.sonarr.enable [
-                {
-                  name = "Sonarr";
-                  url = "http://${cfg.ip}:${toString cfg.sonarr.port}";
-                  tags = ["hosted"];
-                }
-              ]
-              ++ lib.optionals cfg.tandoor.enable [
-                {
-                  name = "Syncthing";
-                  url = "http://${cfg.syncthing.ip}:${toString cfg.syncthing.port}";
-                  tags = ["hosted"];
-                }
-              ]
-              ++ lib.optionals cfg.tandoor.enable [
-                {
-                  name = "Tandoor";
-                  url = "http://${cfg.tandoor.ip}:${toString cfg.tandoor.port}";
-                  tags = ["hosted"];
-                }
-              ];
+            bookmarks = map (service:
+              lib.mkIf config.hosting.${service}.proxy.enable {
+                name = service;
+                url = "http://${config.hosting.${service}.ip ? cfg.ip}:${config.hosting.${service}.port}";
+                tags = ["hosted"];
+              })
+            cfg.enabledServices;
+            #bookmarks =
+            #  lib.optionals cfg.bazarr.enable [
+            #    {
+            #      name = "Bazarr";
+            #      url = "http://${cfg.ip}:${toString cfg.bazarr.port}";
+            #      tags = ["hosted"];
+            #    }
+            #  ]
+            #  ++ lib.optionals cfg.calibre.server.enable [
+            #    {
+            #      name = "Calibre-Server";
+            #      url = "http://${cfg.ip}:${toString cfg.calibre.server.port}";
+            #      tags = ["hosted"];
+            #    }
+            #  ]
+            #  ++ lib.optionals cfg.calibre.web.enable [
+            #    {
+            #      name = "Calibre-Web";
+            #      url = "http://${cfg.ip}:${toString cfg.calibre.web.port}";
+            #      tags = ["hosted"];
+            #    }
+            #  ]
+            #  ++ lib.optionals cfg.grocy.enable [
+            #    {
+            #      name = "Grocy";
+            #      url = "http://${cfg.grocy.ip}:${toString cfg.grocy.port}";
+            #      tags = ["hosted"];
+            #    }
+            #  ]
+            #  ++ lib.optionals cfg.jellyfin.enable [
+            #    {
+            #      name = "Jellyfin";
+            #      url = "http://${cfg.ip}:8096";
+            #      tags = ["hosted"];
+            #    }
+            #  ]
+            #  ++ lib.optionals cfg.jellyseerr.enable [
+            #    {
+            #      name = "Jellyseerr";
+            #      url = "http://${cfg.ip}:${toString cfg.jellyseerr.port}";
+            #      tags = ["hosted"];
+            #    }
+            #  ]
+            #  ++ lib.optionals cfg.monit.enable [
+            #    {
+            #      name = "Jellyseerr";
+            #      url = "http://${cfg.ip}:${toString cfg.monit.port}";
+            #      tags = ["hosted"];
+            #    }69
+            #  ]
+            #  ++ lib.optionals cfg.prowlarr.enable [
+            #    {
+            #      name = "Prowlarr";
+            #      url = "http://${cfg.ip}:${toString cfg.prowlarr.port}";
+            #      tags = ["hosted"];
+            #    }
+            #  ]
+            #  ++ lib.optionals cfg.qbittorrent.enable [
+            #    {
+            #      name = "qBittorrent";
+            #      url = "http://${cfg.ip}:${toString cfg.qbittorrent.port}";
+            #      tags = ["hosted"];
+            #    }
+            #  ]
+            #  ++ lib.optionals cfg.radarr.enable [
+            #    {
+            #      name = "Radarr";
+            #      url = "http://${cfg.ip}:${toString cfg.radarr.port}";
+            #      tags = ["hosted"];
+            #    }
+            #  ]
+            #  ++ lib.optionals cfg.radicale.enable [
+            #    {
+            #      name = "Radicale";
+            #      url = "http://${cfg.radicale.ip}:${toString cfg.radicale.port}";
+            #      tags = ["hosted"];
+            #    }
+            #  ]
+            #  ++ lib.optionals cfg.sonarr.enable [
+            #    {
+            #      name = "Sonarr";
+            #      url = "http://${cfg.ip}:${toString cfg.sonarr.port}";
+            #      tags = ["hosted"];
+            #    }
+            #  ]
+            #  ++ lib.optionals cfg.tandoor.enable [
+            #    {
+            #      name = "Syncthing";
+            #      url = "http://${cfg.syncthing.ip}:${toString cfg.syncthing.port}";
+            #      tags = ["hosted"];
+            #    }
+            #  ]
+            #  ++ lib.optionals cfg.tandoor.enable [
+            #    {
+            #      name = "Tandoor";
+            #      url = "http://${cfg.tandoor.ip}:${toString cfg.tandoor.port}";
+            #      tags = ["hosted"];
+            #    }
+            #  ];
           }
         ];
       }

@@ -27,9 +27,11 @@ in {
       type = lib.types.bool;
       default = config.hosting.monitor;
     };
+    proxy.enable = lib.mkEnableOption "proxy";
   };
 
   config = lib.mkIf cfg.enable {
+    hosting.enabledServices = ["qbittorrent"];
     services.qbittorrent = {
       enable = true;
       group = cfg.group;

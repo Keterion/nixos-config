@@ -10,12 +10,15 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    services.nginx.virtualHosts."main" = {
-      locations = {
-        "/" = {
-          proxyPass = "http://${config.hosting.ip}:8085";
+    services.nginx.enable = true;
+    services.nginx.virtualHosts = {
+      "monit" = {
+        locations = {
+          "/monit/" = {
+            proxyPass = "http://${config.hosting.ip}:${toString config.hosting.monit.port}/";
+          };
         };
-      };
+      }; # TODO: Add auto-generated virtual hosts for enabled services (basically the monit thing)
     };
   };
 }

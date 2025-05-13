@@ -29,9 +29,11 @@ in {
       type = lib.types.bool;
       default = config.hosting.monitor;
     };
+    proxy.enable = lib.mkEnableOption "proxy";
   };
 
   config = lib.mkIf cfg.enable {
+    hosting.enabledServices = ["tandoor"];
     services.tandoor-recipes = {
       enable = true;
       address = cfg.ip;
