@@ -91,7 +91,14 @@ in {
               ++ lib.optionals cfg.jellyseerr.enable [
                 {
                   name = "Jellyseerr";
-                  url = "http://${cfg.ip}:${toString cfg.jellyseerr.enable}";
+                  url = "http://${cfg.ip}:${toString cfg.jellyseerr.port}";
+                  tags = ["hosted"];
+                }
+              ]
+              ++ lib.optionals cfg.monit.enable [
+                {
+                  name = "Jellyseerr";
+                  url = "http://${cfg.ip}:${toString cfg.monit.port}";
                   tags = ["hosted"];
                 }
               ]

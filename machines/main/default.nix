@@ -142,8 +142,20 @@
       enable = true;
       fileSystems = [
         {
-          name = "root";
+          name = "Root";
           path = "/";
+        }
+        {
+          name = "Media";
+          path = "/mnt/priv/";
+        }
+        {
+          name = "Games";
+          path = "/mnt/Games/";
+        }
+        {
+          name = "HDD";
+          path = "/mnt/HDD/";
         }
       ];
     };

@@ -45,6 +45,21 @@ in {
         }
       ];
     };
+    directories = lib.mkOption {
+      type = lib.types.listOf fsType;
+      default = [];
+      description = "File systems to be monitored";
+      example = [
+        {
+          name = "Movies";
+          path = "/home/john/Videos";
+        }
+        {
+          name = "Music";
+          path = "/home/john/Music";
+        }
+      ];
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -59,6 +74,7 @@ in {
               ALLOW md5 /etc/monit/user
         ''
         + lib.concatMapStringsSep "\n" (x: x) (map (fs: "CHECK FILESYSTEM ${fs.name} PATH ${fs.path}") cfg.fileSystems)
+        + lib.concatMapStringsSep "\n" (x: x) (map (dir: "\nCHECK DIRECTORY ${dir.name} PATH ${dir.path}") cfg.directories)
         + lib.optionalString (bazarr.monitor.enable && bazarr.enable) "\nCHECK PROCESS bazarr MATCHING '${storeRegex}.*bazarr'"
         + lib.optionalString (calibre.server.monitor.enable && calibre.server.enable) "\nCHECK PROCESS calibre-server MATCHING '${storeRegex}.*calibre-server'"
         + lib.optionalString (calibre.web.monitor.enable && calibre.web.enable) "\nCHECK PROCESS calibre-web MATCHING '${storeRegex}.*calibre-web'"
