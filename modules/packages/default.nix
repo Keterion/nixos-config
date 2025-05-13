@@ -2,6 +2,6 @@
   imports = [
     ./qbittorrent-headless
     ./rustypaste-headless
-    ./tandoor-unstable.nix
+    #./tandoor-unstable.nix #TODO
   ];
 }
