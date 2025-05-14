@@ -89,9 +89,11 @@ in {
             lib.optionalString
             (config.hosting."${service}".monitor.enable && config.hosting."${service}".enable)
             ''
-                          
+                
               CHECK PROCESS ${service} MATCHING "${storeRegex}.*${service}"
-                restart program = "${pkgs.systemd}/bin/systemctl restart ${service}.service"''
+                restart program = "${pkgs.systemd}/bin/systemctl restart ${service}.service"
+                start program = "${pkgs.systemd}/bin/systemctl start ${service}.service"
+                stop program = "${pkgs.systemd}/bin/systemctl stop ${service}.service"''
         )
         config.hosting.enabledServices;
     };
