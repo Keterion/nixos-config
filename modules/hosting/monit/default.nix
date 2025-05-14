@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: let
   cfg = config.hosting.monit;
@@ -79,6 +80,7 @@ in {
           SET DAEMON 5
           SET HTTPD PORT ${toString cfg.port}
               ALLOW md5 /etc/monit/user
+
         ''
         + lib.concatMapStringsSep "\n" (x: x) (map (fs: "CHECK FILESYSTEM ${fs.name} PATH ${fs.path}") cfg.fileSystems)
         + lib.concatMapStringsSep "\n" (x: x) (map (dir: "\nCHECK DIRECTORY ${dir.name} PATH ${dir.path}") cfg.directories)
@@ -86,7 +88,10 @@ in {
           service:
             lib.optionalString
             (config.hosting."${service}".monitor.enable && config.hosting."${service}".enable)
-            "\nCHECK PROCESS ${service} MATCHING '${storeRegex}.*${service}'"
+            ''
+                          
+              CHECK PROCESS ${service} MATCHING "${storeRegex}.*${service}"
+                restart program = "${pkgs.systemd}/bin/systemctl restart ${service}.service"''
         )
         config.hosting.enabledServices;
     };

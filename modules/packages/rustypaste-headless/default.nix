@@ -173,10 +173,11 @@ in {
         # To prevent "Quit & shutdown daemon" from working; we want systemd to
         # manage it!
         WorkingDirectory = "${cfg.dataDir}";
-        Restart = "on-success";
+        Restart = "on-failure";
         User = cfg.user;
         Group = cfg.group;
         UMask = "0002";
+        FreeBind = "yes";
       };
       environment = {
         CONFIG = "/etc/${configDir}/config.toml";

@@ -178,6 +178,7 @@
     tandoor = {
       enable = true;
       port = 8023;
+      monitor.enable = false;
     };
   };
 
