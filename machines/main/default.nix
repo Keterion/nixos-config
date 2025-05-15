@@ -99,7 +99,10 @@
       };
     };
 
-    terminal.kitty.enable = true;
+    terminal.kitty = {
+      enable = true;
+      remoteControl = true;
+    };
 
     printing = {
       enable = true;

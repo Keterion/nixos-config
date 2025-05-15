@@ -9,6 +9,7 @@ in {
   options.system.terminal.kitty = {
     enable = lib.mkEnableOption "the kitty terminal";
     default = lib.mkEnableOption "kitty as default terminal";
+    remoteControl = lib.mkEnableOption "remote control for kitty";
   };
 
   config = lib.mkIf cfg.enable {
@@ -62,10 +63,12 @@ in {
 
           enabled_layouts = "splits:split_axis=splits";
 
+          allow_remote_control = lib.optionalString cfg.remoteControl "yes";
+
           # THEMING
           background = "#${colors.bg}";
           foreground = "#${colors.fg}";
-          selection_background = "#${colors.bg_dark}";
+          selection_background = "#${colors.magenta}";
           selection_foreground = "#${colors.fg}";
 
           #url_color
