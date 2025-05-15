@@ -60,7 +60,7 @@ in {
             bookmarks = map (service:
               lib.mkIf config.hosting.${service}.proxy.enable {
                 name = service;
-                url = "http://${config.hosting.${service}.ip ? cfg.ip}:${config.hosting.${service}.port}";
+                url = "http://${cfg.ip}:${toString config.hosting.${service}.port}";
                 tags = ["hosted"];
               })
             cfg.enabledServices;

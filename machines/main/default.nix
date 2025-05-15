@@ -138,11 +138,18 @@
     monitor = true;
 
     bazarr.enable = true;
-    calibre-web.enable = true;
+    calibre-web = {
+      enable = true;
+      proxy.enable = true;
+    };
     jellyfin.enable = true;
-    jellyseerr.enable = true;
+    jellyseerr = {
+      enable = true;
+      proxy.enable = true;
+    };
     monit = {
       enable = true;
+      proxy.enable = true;
       fileSystems = [
         {
           name = "Root";
@@ -174,14 +181,19 @@
     radarr.enable = true;
     radicale = {
       enable = true;
+      proxy.enable = true;
     };
-    rustypaste.enable = true;
+    rustypaste = {
+      enable = true;
+      proxy.enable = true;
+    };
     sonarr.enable = true;
     syncthing.enable = true;
     tandoor = {
       enable = true;
       port = 8023;
       monitor.enable = false;
+      proxy.enable = true;
     };
   };
 
