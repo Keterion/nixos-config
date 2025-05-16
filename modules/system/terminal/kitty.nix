@@ -54,12 +54,12 @@ in {
           window_margin_width = 1;
           window_padding_width = 2;
 
-          inactive_text_alpha = "0.8";
+          inactive_text_alpha = "1";
 
           tab_bar_style = "slant";
           tab_bar_align = "center";
           tab_bar_min_tabs = 1;
-          tab_activity_symbol = "!";
+          #tab_activity_symbol = "!";
 
           enabled_layouts = "splits:split_axis=splits";
 
