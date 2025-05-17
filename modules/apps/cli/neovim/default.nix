@@ -26,6 +26,26 @@ in {
           name = "tokyonight";
           style = "moon";
         };
+        keymaps = [
+          {
+            key = "<C-n>";
+            mode = ["n"];
+            action = ":Neotree toggle left<CR>";
+            silent = true;
+            unique = true;
+            nowait = true;
+            desc = "Toggle tree as left sidebar";
+          }
+          {
+            key = "<C-s>";
+            mode = ["n" "v"];
+            action = ":AerialToggle<CR>";
+            silent = true;
+            unique = true;
+            nowait = true;
+            desc = "Open aerial";
+          }
+        ];
 
         viAlias = cfg.aliases.enable;
         vimAlias = cfg.aliases.enable;
@@ -44,6 +64,8 @@ in {
           enable = true;
         };
 
+        ui.colorizer.enable = true;
+
         statusline.lualine.enable = true;
         autocomplete.nvim-cmp.enable = true;
 
@@ -61,7 +83,10 @@ in {
           nix = {
             enable = true;
             format.enable = true;
-            lsp.enable = true;
+            lsp = {
+              enable = true;
+              server = "nixd";
+            };
             treesitter.enable = true;
             extraDiagnostics.enable = true;
           };

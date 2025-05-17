@@ -23,6 +23,7 @@ in {
     ./spotdl
     ./tdf
     ./testssl
+    ./yazi
     ./yt-dlp
     ./zip
     ./zoxide

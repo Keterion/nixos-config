@@ -129,6 +129,10 @@
     };
     fzf.shellIntegration = true;
     zoxide.shellIntegration = true;
+    games.steam = {
+      compat = true;
+      backup = true;
+    };
   };
 
   hosting = {

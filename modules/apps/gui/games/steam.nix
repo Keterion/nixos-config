@@ -1,5 +1,9 @@
-{ pkgs, lib, config, ... }:
-let
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
   cfg = config.apps.games.steam;
 in {
   options.apps.games.steam = {
@@ -21,20 +25,27 @@ in {
       remotePlay.openFirewall = cfg.remotePlay.openFirewall;
       dedicatedServer.openFirewall = cfg.dedicatedServer.openFirewall;
       gamescopeSession.enable = cfg.gamescopeSession.enable;
-      extraCompatPackages = with pkgs; lib.mkIf cfg.compat [
-        proton-ge-bin
-      ];
-      extraPackages = with pkgs; lib.mkIf cfg.compat [
-        gamescope
-	gamemode
-      ];
+      extraCompatPackages = with pkgs;
+        lib.mkIf cfg.compat [
+          proton-ge-bin
+        ];
+      extraPackages = with pkgs;
+        lib.mkIf cfg.compat [
+          gamescope
+          gamemode
+        ];
     };
-    environment.systemPackages = with pkgs; lib.optionals cfg.compat [
-      protontricks
-      wine64
-      winetricks
-    ] ++ lib.optionals cfg.backup [
-      pkgs.ludusavi
-    ];
+    environment.systemPackages = with pkgs;
+      lib.optionals cfg.compat [
+        protontricks
+        wine64
+        winetricks
+        gamescope
+        gamemode
+        mangohud
+      ]
+      ++ lib.optionals cfg.backup [
+        pkgs.ludusavi
+      ];
   };
 }
