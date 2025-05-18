@@ -18,6 +18,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     environment.variables.EDITOR = lib.mkIf cfg.defaultEditor "nvim";
+
     programs.nvf = {
       enable = true;
       settings.vim = {
@@ -44,6 +45,15 @@ in {
             unique = true;
             nowait = true;
             desc = "Open aerial";
+          }
+          {
+            key = "<leader>tf";
+            mode = ["n"];
+            action = "vim.lsp.mappings.toggleFormatSave";
+            lua = true;
+            silent = false;
+            unique = true;
+            desc = "Toggle format on save";
           }
         ];
 

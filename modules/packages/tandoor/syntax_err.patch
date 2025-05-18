@@ -1,0 +1,13 @@
+diff --git a/lib/tandoor-recipes/cookbook/view/api.py b/lib/tandoor-recipes/cookbook/view/api.py
+index 369b238..a8b2b90 100644
+--- a/lib/tandoor-recipes/cookbook/view/api.py
++++ b/lib/tandoor-recipes/cookbook/view/api.py
+@@ -1724,7 +1724,7 @@ class RecipeUrlImportView(APIView):
+                         return Response(RecipeFromSourceResponseSerializer(context={'request': request}).to_representation(response), status=status.HTTP_200_OK)
+ 
+                 tandoor_url = None
+-                if re.match('^(.)*/recipe/[0-9]+/\?share=[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$', url):
++                if re.match('^(.)*/recipe/[0-9]+/?share=[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$', url):
+                     tandoor_url = url.replace('/recipe/', '/api/recipe/')
+                 elif re.match('^(.)*/view/recipe/[0-9]+/[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$', url):
+                     tandoor_url = (url.replace('/view/recipe/', '/api/recipe/').replace(re.split('/recipe/[0-9]+', url)[1], '') + '?share=' +

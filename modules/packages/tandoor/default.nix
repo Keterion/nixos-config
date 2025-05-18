@@ -17,6 +17,11 @@
               django-vite
               litellm
             ];
+          patches =
+            old.patches
+            ++ [
+              ./syntax_err.patch
+            ];
         });
       })
     ];
