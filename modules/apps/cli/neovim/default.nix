@@ -37,7 +37,7 @@ in {
             desc = "Toggle tree as left sidebar";
           }
           {
-            key = "<C-s>";
+            key = "<leader>s";
             mode = ["n" "v"];
             action = ":AerialToggle<CR>";
             silent = true;

@@ -73,7 +73,7 @@ in {
         config.refresh_rate = "1s";
         server = {
           address = "${cfg.ip}:${toString cfg.port}";
-          max_content_length = "10MB";
+          max_content_length = "100MB";
           upload_path = "./upload";
           timeout = "30s";
           expose_version = false;

@@ -12,7 +12,7 @@ in {
     };
   };
 
-  config = lib.mkIf {
+  config = lib.mkIf cfg.enable {
     programs.yazi = {
       enable = true;
       settings = {
@@ -44,8 +44,8 @@ in {
               gf = "#${green}";
             };
             marker_cut = {
-              fg = "#${red}";
-              bg = "#${red}";
+              fg = "#${red1}";
+              bg = "#${red1}";
             };
             marker_marked = {
               fg = "#${cyan}";
@@ -68,7 +68,7 @@ in {
             };
             count_cut = {
               fg = "#${bg}";
-              bg = "#${red}";
+              bg = "#${red1}";
             };
             count_selected = {
               fg = "#${bg}";
@@ -82,11 +82,11 @@ in {
             mode = {
               normal_main = {
                 fg = "#${bg}";
-                bg = "#${blue}";
+                bg = "#${blue1}";
                 bold = true;
               };
               normal_alt = {
-                fg = "#${blue}";
+                fg = "#${blue1}";
                 bg = "#${bg}";
               };
 
@@ -116,9 +116,9 @@ in {
             status = {
               # Permissions
               perm_sep.fg = "#${fg_dark}";
-              perm_type.fg = "#${blue}";
+              perm_type.fg = "#${blue1}";
               perm_read.fg = "#${yellow}";
-              perm_write.fg = "#${red}";
+              perm_write.fg = "#${red1}";
               perm_exec.fg = "#${green}";
 
               # Progress
@@ -127,17 +127,17 @@ in {
                 bold = true;
               };
               progress_normal = {
-                fg = "#${blue}";
+                fg = "#${blue1}";
                 bg = "#${bg}";
               };
               progress_error = {
-                fg = "#${red}";
+                fg = "#${red1}";
                 bg = "#${bg}";
               };
             };
 
             pick = {
-              border.fg = "#${blue}";
+              border.fg = "#${blue1}";
               active = {
                 fg = "#${purple}";
                 bold = true;
@@ -146,16 +146,16 @@ in {
             };
 
             input = {
-              border.fg = "#${blue}";
+              border.fg = "#${blue1}";
               title = {};
               value = {};
               selected.reversed = true;
             };
 
-            cmp.border.fg = "#${blue}";
+            cmp.border.fg = "#${blue1}";
 
             tasks = {
-              border.fg = "#${blue}";
+              border.fg = "#${blue1}";
               title = {};
               hovered = {
                 fg = "#${purple}";
@@ -174,7 +174,7 @@ in {
 
             help = {
               on.fg = "#${cyan}";
-              run.fg = "#${red}";
+              run.fg = "#${red1}";
               hovered = {
                 reversed = true;
                 bold = true;
@@ -188,7 +188,7 @@ in {
             notify = {
               title_info.fg = "#${green}";
               title_warn.fg = "#${yellow}";
-              title_error.fg = "#${red}";
+              title_error.fg = "#${red1}";
             };
           };
         };
