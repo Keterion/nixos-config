@@ -8,6 +8,7 @@ in {
   imports = [
     ./aseprite
     ./blender
+    ./cartridges
     ./discord
     ./firefox
     ./freecad
