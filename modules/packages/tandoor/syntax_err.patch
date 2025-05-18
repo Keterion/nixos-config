@@ -1,7 +1,7 @@
-diff --git a/lib/tandoor-recipes/cookbook/view/api.py b/lib/tandoor-recipes/cookbook/view/api.py
+diff --git a/cookbook/views/api.py b/cookbook/views/api.py
 index 369b238..a8b2b90 100644
---- a/lib/tandoor-recipes/cookbook/view/api.py
-+++ b/lib/tandoor-recipes/cookbook/view/api.py
+--- a/cookbook/views/api.py
++++ b/cookbook/views/api.py
 @@ -1724,7 +1724,7 @@ class RecipeUrlImportView(APIView):
                          return Response(RecipeFromSourceResponseSerializer(context={'request': request}).to_representation(response), status=status.HTTP_200_OK)
  

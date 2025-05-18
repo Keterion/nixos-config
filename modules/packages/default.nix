@@ -2,6 +2,6 @@
   imports = [
     ./qbittorrent-headless
     ./rustypaste-headless
-    ./tandoor
+    #./tandoor # Probably gonna have to repackage or something
   ];
 }
