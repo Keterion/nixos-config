@@ -7,6 +7,7 @@
 in {
   imports = [
     ./bat
+    ./beets
     ./bottom
     ./cava
     ./encfs
