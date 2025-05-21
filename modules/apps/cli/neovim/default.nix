@@ -46,15 +46,6 @@ in {
             nowait = true;
             desc = "Open aerial";
           }
-          {
-            key = "<leader>tf";
-            mode = ["n"];
-            action = "vim.lsp.mappings.toggleFormatSave";
-            lua = true;
-            silent = false;
-            unique = true;
-            desc = "Toggle format on save";
-          }
         ];
 
         viAlias = cfg.aliases.enable;
@@ -92,10 +83,12 @@ in {
           };
           nix = {
             enable = true;
-            format.enable = true;
+            format = {
+              enable = true;
+            };
             lsp = {
               enable = true;
-              server = "nixd";
+              server = "nil";
             };
             treesitter.enable = true;
             extraDiagnostics.enable = true;

@@ -121,7 +121,7 @@
       defaultEditor = true;
     };
     #thunderbird.enable = true; #TODO: protonmail-bridge
-    discord.vencord.enable = false;
+    discord.vencord.enable = true;
     freecad.fem.enable = true;
     eza = {
       shellIntegration = true;

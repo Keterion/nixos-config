@@ -38,7 +38,7 @@ in {
     environment.systemPackages = with pkgs;
       lib.optionals cfg.compat [
         protontricks
-        wine64
+        wineWowPackages.staging
         winetricks
         gamescope
         gamemode
