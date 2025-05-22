@@ -1,5 +1,9 @@
-{ lib, config, pkgs, ... }:
-let
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
   cfg = config.system.printing;
 in {
   options.system.printing = {
@@ -13,10 +17,15 @@ in {
       enable = true;
       nssmdns4 = true;
       openFirewall = true;
+      publish = {
+        enable = true;
+        addresses = true;
+        workstation = true;
+      };
     };
     hardware.sane = {
       enable = true;
-      extraBackends = [ pkgs.hplipWithPlugin ];
+      extraBackends = [pkgs.hplipWithPlugin];
     };
     services.printing.drivers = [pkgs.hplip];
   };
