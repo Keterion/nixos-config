@@ -21,6 +21,7 @@ in {
     ./nh
     ./nmap
     ./ripgrep
+    ./rpmc
     ./spotdl
     ./tdf
     ./testssl
