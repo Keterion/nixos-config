@@ -11,6 +11,7 @@
       name = "Keterion";
       email = "100532848+Keterion@users.noreply.github.com";
     };
+    extraGroups = ["${config.hosting.defaultGroup}"];
   };
   system = {
     configDir = /home/${config.system.users.default.name}/etc/nixos;
@@ -22,12 +23,15 @@
     };
     graphics.nvidia.enable = true;
 
-    audio.pipewire = {
-      enable = true;
-      rtkit.enable = true;
-      loopback.enable = true;
-      compatibility.pulse.enable = true;
-      compatibility.jack.enable = true;
+    audio = {
+      pipewire = {
+        enable = true;
+        rtkit.enable = true;
+        loopback.enable = true;
+        compatibility.pulse.enable = true;
+        compatibility.jack.enable = true;
+      };
+      mpdris.enable = true;
     };
     firewall.enable = true;
     bluetooth.enable = true;
@@ -191,7 +195,9 @@
         music = "/home/${config.system.users.default.name}/Music/songs";
         playlist = "/home/${config.system.users.default.name}/Music/songs/playlists";
       };
-      startWhenNeeded = true;
+      startWhenNeeded = false;
+      user = "etherion";
+      ip = "localhost";
     };
     prowlarr = {
       enable = true;

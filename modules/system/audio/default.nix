@@ -2,6 +2,7 @@
   config,
   lib,
   myUtils,
+  pkgs,
   ...
 }: let
   cfg = config.system.audio;
@@ -17,8 +18,13 @@ in {
       };
       loopback.enable = lib.mkEnableOption "a loopback node"; # does nothing
     };
+    mpdris.enable = lib.mkEnableOption "mpDris2 support for media control keys";
   };
   config = {
+    environment.systemPackages = with pkgs;
+      lib.optionals cfg.mpdris.enable [
+        mpdris2
+      ];
     services.pipewire = {
       enable = cfg.pipewire.enable;
       wireplumber.enable = true;

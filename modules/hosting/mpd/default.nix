@@ -9,8 +9,8 @@ in {
     enable = lib.mkEnableOption "MPD, the music player daemon";
     directories = {
       data = lib.mkOption {
-        type = lib.types.path;
-        default = /var/lib/mpd;
+        type = lib.types.str;
+        default = "/var/lib/mpd";
       };
       music = lib.mkOption {
         type = lib.types.str;
@@ -49,6 +49,7 @@ in {
       group = cfg.group;
       network.listenAddress = cfg.ip;
       network.port = cfg.port;
+      startWhenNeeded = cfg.startWhenNeeded;
     };
   };
 }

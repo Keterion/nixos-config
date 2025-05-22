@@ -71,9 +71,8 @@ in {
         autocomplete.nvim-cmp.enable = true;
         lsp.formatOnSave = true;
 
+        lsp.enable = true;
         languages = {
-          enableLSP = true;
-
           rust = {
             enable = true;
             format.enable = true;

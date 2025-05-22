@@ -81,6 +81,9 @@ in {
         enable = true;
         settings = cfg.hypridle.settings;
       };
+      wayland.windowManager.hyprland.settings.exec-once = lib.optionals config.system.audio.mpdris.enable [
+        "mpDris2 --host=${config.hosting.mpd.ip}"
+      ];
       home.packages = with pkgs;
         lib.optionals cfg.utils.enable [
           clipman
