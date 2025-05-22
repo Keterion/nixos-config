@@ -11,7 +11,7 @@
       name = "Keterion";
       email = "100532848+Keterion@users.noreply.github.com";
     };
-    extraGroups = ["${config.hosting.defaultGroup}"];
+    extraGroups = ["${config.hosting.defaultGroup}" "audio"];
   };
   system = {
     configDir = /home/${config.system.users.default.name}/etc/nixos;
@@ -195,7 +195,7 @@
         music = "/home/${config.system.users.default.name}/Music/songs/";
         playlist = "/home/${config.system.users.default.name}/Music/songs/playlists/";
       };
-      startWhenNeeded = false;
+      startWhenNeeded = true;
       user = "etherion";
       ip = "localhost";
     };

@@ -50,6 +50,14 @@ in {
       network.listenAddress = cfg.ip;
       network.port = cfg.port;
       startWhenNeeded = cfg.startWhenNeeded;
+      extraConfig = ''
+        audio_output {
+          type "pipewire"
+          name "Default"
+        }
+      '';
     };
+
+    systemd.services.mpd.environment.XDG_RUNTIME_DIR = "/run/user/${toString config.users.users.${cfg.user}.uid}";
   };
 }
