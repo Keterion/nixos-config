@@ -8,19 +8,27 @@ in {
   options.hosting.mpd = {
     enable = lib.mkEnableOption "MPD, the music player daemon";
     directories = {
+      data = lib.mkOption {
+        type = lib.types.path;
+        default = /var/lib/mpd;
+      };
       music = lib.mkOption {
         type = lib.types.str;
-        default = "${config.services.mpd.dataDir}/music";
+        default = "${cfg.directories.data}/music";
       };
       playlist = lib.mkOption {
         type = lib.types.str;
-        default = "${config.services.mpd.dataDir}/playlists";
+        default = "${cfg.directories.data}/playlists";
       };
     };
     startWhenNeeded = lib.mkEnableOption "a socket service to start mpd only on-demand";
     user = lib.mkOption {
       type = lib.types.str;
-      default = config.services.mpd.user;
+      default = "mpd";
+    };
+    group = lib.mkOption {
+      type = lib.types.str;
+      default = config.hosting.defaultGroup;
     };
     ip = lib.mkOption {
       type = lib.types.str;
@@ -28,7 +36,7 @@ in {
     };
     port = lib.mkOption {
       type = lib.types.port;
-      default = config.services.mpd.network.port;
+      default = 6600;
     };
   };
 
@@ -38,6 +46,7 @@ in {
       playlistDirectory = cfg.directories.playlist;
       musicDirectory = cfg.directories.music;
       user = cfg.user;
+      group = cfg.group;
       network.listenAddress = cfg.ip;
       network.port = cfg.port;
     };
