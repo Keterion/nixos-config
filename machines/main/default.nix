@@ -140,7 +140,7 @@
     asciify_paths = true;
     import = {
       write = true;
-      copy = true; 
+      copy = true;
       hardlink = false;
       group_albums = true;
       duplicate_verbose_prompt = true;
@@ -184,6 +184,14 @@
           path = "/mnt/HDD/";
         }
       ];
+    };
+    mpd = {
+      enable = true;
+      directories = {
+        music = "/home/${config.system.users.default.name}/Music/songs";
+        playlist = "/home/${config.system.users.default.name}/Music/songs/playlists";
+      };
+      startWhenNeeded = true;
     };
     prowlarr = {
       enable = true;
