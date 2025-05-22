@@ -135,6 +135,18 @@
     };
   };
 
+  apps.beets.config = {
+    directory = "/home/${config.system.users.default.name}/Music/songs";
+    asciify_paths = true;
+    import = {
+      write = true;
+      copy = true; 
+      hardlink = false;
+      group_albums = true;
+      duplicate_verbose_prompt = true;
+    };
+  };
+
   hosting = {
     openFirewall = true;
     ip = "192.168.178.69";
