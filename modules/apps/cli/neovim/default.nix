@@ -69,6 +69,7 @@ in {
 
         statusline.lualine.enable = true;
         autocomplete.nvim-cmp.enable = true;
+        lsp.formatOnSave = true;
 
         languages = {
           enableLSP = true;
