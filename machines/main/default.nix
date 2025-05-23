@@ -224,7 +224,6 @@
       monitor.enable = false;
       proxy.enable = true;
     };
-    whisper.enable = true;
   };
 
   fileSystems."/mnt/Games" = {

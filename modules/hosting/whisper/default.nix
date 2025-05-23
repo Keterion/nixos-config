@@ -23,7 +23,7 @@ in {
         enable = true;
         device = "auto";
         uri = "tcp://${cfg.ip}:${toString cfg.port}";
-        language = "jp";
+        language = "ja";
         model = "medium-int8";
       };
     };
