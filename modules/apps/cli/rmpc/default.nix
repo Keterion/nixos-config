@@ -169,8 +169,82 @@ in {
             enable_mouse: false,
 
             keybinds: (
+              global: {
+                "q": Quit,
+                "~": ShowHelp,
+                ":": CommandMode,
 
-            )
+                "I": ShowCurrentSongInfo,
+                "O": ShowOutputs,
+                "P": ShowDecoders,
+
+                "z": ToggleRepeat,
+                "x": ToggleRandom,
+                "c": ToggleConsume,
+                "v": ToggleSingle,
+                "p": TogglePause,
+                "s": Stop,
+
+                ".": VolumeUp,
+                ",": VolumeDown,
+
+                "f": SeekForward,
+                "b": SeekBack,
+                ">": NextTrack,
+                "<": PreviousTrack,
+
+                "<Tab>": NextTab,
+                "<Right>": NextTab,
+                "L": NextTab,
+                "<S-Tab>": PreviousTab,
+                "<Left>": PreviousTab,
+                "H": PreviousTab,
+
+              },
+              navigation: {
+                "<C-c>": Close,
+                "<Esc>": Close,
+
+                "k": Up,
+                "l": Right,
+                "j": Down,
+                "h": Left,
+
+                "<C-d>": DownHalf,
+                "<C-u>": UpHalf,
+
+                "<Space>": Select,
+                "<C-Space>": InvertSelection,
+
+                "<Enter>": Confirm,
+
+                "K": MoveUp,
+                "J": MoveDown,
+
+                "g": Top,
+                "G": Bottom,
+
+                "/": EnterSearch,
+                "<C-n>": NextResult,
+                "N": PreviousResult,
+
+                "D": Delete,
+                "r": Rename,
+                "a": Add,
+                "A": AddAll,
+
+                "i": FocusInput,
+              },
+              queue: {
+                "<C-s>": Save,
+                "D": DeleteAll,
+                "<Enter>": Play,
+                "a": AddToPlaylist,
+                "d": Delete,
+                "i": ShowInfo,
+                "C": JumpToCurrent,
+              },
+            ),
 
             artists: (
               album_display_mode: NameOnly,
