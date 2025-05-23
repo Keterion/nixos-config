@@ -45,6 +45,7 @@ in {
         };
       };
     };
+    wlsunset.enable = lib.mkEnableOption "wlsunset";
   };
 
   config = lib.mkIf cfg.enable {
@@ -81,8 +82,23 @@ in {
         enable = true;
         settings = cfg.hypridle.settings;
       };
+      services.wlsunset = lib.mkIf cfg.wlsunset.enable {
+        enable = true;
+        systemdTarget = "graphical-session.target";
+
+        latitude = 52;
+        longitude = 8.5;
+
+        gamma = 1.0;
+
+        temperature = {
+          day = 6500;
+          night = 3000;
+        };
+      };
+
       wayland.windowManager.hyprland.settings.exec-once = lib.optionals config.system.audio.mpdris.enable [
-        "mpDris2 --host=${config.hosting.mpd.ip}"
+        "mpDris2 --host=${config.hosting.mpd.ip} --port ${toString config.hosting.mpd.port}"
       ];
       home.packages = with pkgs;
         lib.optionals cfg.utils.enable [

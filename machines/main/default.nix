@@ -58,6 +58,7 @@
         utils.enable = true;
         styleProfile = "etherion";
         hypridle.enable = true;
+        wlsunset.enable = true;
       };
       plasma.enable = true;
     };
