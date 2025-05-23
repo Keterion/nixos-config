@@ -64,7 +64,7 @@ in {
               (
                 size: "100%",
                 pane: Pane(TabContent),
-                borders: "TOP | BOTTOM | LEFT | RIGHT",
+                borders: "ALL",
               ),
             ],
           ),
@@ -81,8 +81,8 @@ in {
             thumb_style: (fg: "#${fg}"),
           ),
           browser_column_widths: [20, 38, 42],
-          text_color: "#${fg_dark}",
-          background_color: "#${bg_dark}",
+          text_color: "#${fg}",
+          background_color: "#${bg}",
           header_background_color: "#${bg}",
           modal_background_color: None,
           modal_backdrop: false,
@@ -167,6 +167,10 @@ in {
             password: None,
             wrap_navigation: false,
             enable_mouse: false,
+
+            keybinds: (
+
+            )
 
             artists: (
               album_display_mode: NameOnly,
