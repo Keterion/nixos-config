@@ -23,6 +23,7 @@ in {
     ./sonarr
     ./syncthing
     ./tandoor
+    ./whisper
   ];
 
   options.hosting = {
