@@ -197,7 +197,6 @@
       };
       startWhenNeeded = true;
       user = "etherion";
-      ip = "localhost";
     };
     prowlarr = {
       enable = true;
