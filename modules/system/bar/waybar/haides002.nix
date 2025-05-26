@@ -87,6 +87,7 @@ in {
     #custom-weather,
     #clock,
     #tray,
+    #bluetooth,
     #privacy {
       color: @background;
     }
@@ -119,6 +120,7 @@ in {
 
       modules-right = [
         "wireplumber"
+        "bluetooth"
         "network"
         "tray"
         "privacy"
@@ -183,6 +185,14 @@ in {
           "󰕾"
           "󰕾"
         ];
+      };
+      "bluetooth" = {
+        format = "";
+        format-connected = "󰂯 {device_alias}";
+        format-connected-battery = "󰂯{device_alias}: {device_battery_percentage}/100%";
+
+        on-click = "bluetoothctl";
+        tooltip = false;
       };
       "network" = {
         rotate = 0;
