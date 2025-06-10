@@ -1,6 +1,5 @@
 {
   lib,
-  pkgs,
   config,
   ...
 }: let
@@ -32,7 +31,7 @@ in {
     };
   };
   config = lib.mkIf cfg.enable {
-    home-manager.users.${config.system.users.default.name}.programs.eza = {
+    home-manager.users.${config.system.users.default.name}.programs.carapace = {
       enable = true;
       enableZshIntegration = cfg.overrides.shellIntegration.zsh.enable;
       enableBashIntegration = cfg.overrides.shellIntegration.bash.enable;
