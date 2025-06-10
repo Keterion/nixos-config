@@ -1,16 +1,7 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}: let
-  cfg = config.programs.meshroom;
-in {
-  options.programs.meshroom.enable = lib.mkEnableOption "Meshroom v2023.3.0";
-
-  config = lib.mkIf cfg.enable {
+{pkgs, ...}: {
+  config = {
     nixpkgs.overlays = [
-      (final: prev: {
+      (_final: _prev: {
         meshroom = pkgs.callPackage ./meshroom.nix {};
       })
     ];

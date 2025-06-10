@@ -17,6 +17,7 @@ in {
     ./keepassxc
     ./krita
     ./libreoffice
+    ./meshroom
     ./mpv
     ./mullvad
     ./obs
