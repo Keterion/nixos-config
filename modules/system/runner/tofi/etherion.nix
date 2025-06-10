@@ -1,8 +1,12 @@
-{osConfig, ...}:
+{
+  osConfig,
+  pkgs,
+  ...
+}:
 with osConfig.system.colors; {
   programs.tofi.settings = {
     font-size = 12;
-    font = "Hack Nerd Font Mono";
+    font = "${pkgs.nerd-fonts.hack}/share/fonts/truetype/NerdFonts/Hack/HackNerdFontMono-Regular.ttf";
     text-color = "#${fg}";
 
     prompt-background = "#${bg}";
@@ -72,7 +76,7 @@ with osConfig.system.colors; {
     history = true;
 
     #matching-algorithm = "normal";
-    require-match = true;
+    require-match = false; # allow custom flags I think?
     auto-accept-single = false;
     hide-input = false;
     hidden-character = "*";

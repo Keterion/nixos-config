@@ -150,6 +150,8 @@
       group_albums = true;
       duplicate_verbose_prompt = true;
     };
+    plugins = ["chroma" "mbsync" "lyrics" "replaygain" "lastgenre" "edit" "duplicates"];
+    replaygain.backend = "ffmpeg";
   };
 
   hosting = {
