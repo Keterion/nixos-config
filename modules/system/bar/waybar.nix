@@ -18,7 +18,7 @@ in {
     home-manager.users.${config.system.users.default.name} = {
       programs.waybar = import ./waybar/${cfg.styleProfile}.nix;
 
-      home.packages = [pkgs.pavucontrol];
+      home.packages = [pkgs.pavucontrol pkgs.jq];
     };
   };
 }

@@ -85,6 +85,7 @@ in {
     #wireplumber,
     #network,
     #custom-weather,
+    #custom-vpn,
     #clock,
     #tray,
     #bluetooth,
@@ -121,6 +122,7 @@ in {
       modules-right = [
         "wireplumber"
         "bluetooth"
+        "custom/vpn"
         "network"
         "tray"
         "privacy"
@@ -152,8 +154,20 @@ in {
           stopped = "󰓛";
         };
 
-        format = "{status_icon} {artist} - {title}";
+        format = "{status_icon} {dynamic}";
         title-len = 25;
+        artist-len = 25;
+        dynamic-order = [
+          "artist"
+          "album"
+          "title"
+        ];
+        dynamic-len = 50;
+        dynamic-importance-order = [
+          "title"
+          "artist"
+          "album"
+        ];
       };
 
       "sway/window" = {
@@ -189,9 +203,9 @@ in {
       "bluetooth" = {
         format = "";
         format-connected = "󰂯 {device_alias}";
-        format-connected-battery = "󰂯{device_alias}: {device_battery_percentage}/100%";
+        format-connected-battery = "󰂯 {device_alias}: {device_battery_percentage}/100%";
 
-        on-click = "bluetoothctl";
+        on-click = "$TERM -c bluetoothctl";
         tooltip = false;
       };
       "network" = {
@@ -203,7 +217,19 @@ in {
         format-disconnected = "Disconnected";
         format = " {ifname} 󰜮{bandwidthDownBytes} 󰜷{bandwidthUpBytes}";
         interval = 1;
-        on-click = "$TERM nmtui";
+        on-click = "$TERM -c nmtui";
+      };
+      "custom/vpn" = {
+        #exec = ''mullvad status | tail -n 3 | sed 's/^/"/;s/:/":/' | sed 's/:/:"/;s/$/"/' | sed "1 s/^/{\n/" | sed "4 s/$/\n}/" | sed '2,3 s/"$/",/' | sed 's/ //g' | jq --unbuffered --compact-output '{text: .Visiblelocation}' '';
+        exec = ''
+          mullvad status -j |
+          jq --unbuffered --compact-output '{ "text": .state, "tooltip": (.details | tojson) }'
+        '';
+        on-click = ''mullvad reconnect'';
+
+        return-type = "json";
+        format = "{text}";
+        interval = 10;
       };
       tray = {
         rotate = 0;

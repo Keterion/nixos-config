@@ -107,6 +107,7 @@
     terminal.kitty = {
       enable = true;
       remoteControl = true;
+      default = true;
     };
 
     printing = {
