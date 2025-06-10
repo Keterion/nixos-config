@@ -9,6 +9,7 @@ in {
     ./bat
     ./beets
     ./bottom
+    ./carapace
     ./cava
     ./encfs
     ./exiftool

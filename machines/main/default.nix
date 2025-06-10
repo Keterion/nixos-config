@@ -134,6 +134,7 @@
     };
     fzf.shellIntegration = true;
     zoxide.shellIntegration = true;
+    carapace.shellIntegration = true;
     games.steam = {
       compat = true;
       backup = true;
