@@ -20,6 +20,7 @@ in {
     ./radarr
     ./radicale
     ./rustypaste
+    ./searxng
     ./sonarr
     ./syncthing
     ./tandoor
@@ -37,6 +38,10 @@ in {
       type = lib.types.str;
       default = "::1";
       description = "IP to use";
+    };
+    proxy_base = lib.mkOption {
+      type = lib.types.str;
+      default = cfg.ip;
     };
     monitor = lib.mkEnableOption "monitoring for all services";
     enabledServices = lib.mkOption {

@@ -221,6 +221,10 @@
       enable = true;
       proxy.enable = true;
     };
+    searxng = {
+      enable = true;
+      proxy.enable = true;
+    };
     sonarr.enable = true;
     syncthing.enable = true;
     tandoor = {
