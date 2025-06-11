@@ -48,6 +48,14 @@ in {
                   icon = "https://cdn.search.brave.com/serp/v2/_app/immutable/assets/brave-logo-small.1fMdoHsa.svg";
                   definedAliases = ["@br"];
                 };
+                "Searxng" = with config.hosting.searxng;
+                  lib.mkIf config.hosting.searxng.enable {
+                    urls = [
+                      {template = "http://${config.hosting.proxy_base}/searxng/search?q={searchTerms}";}
+                      {templat = "http://${ip}:${toString port}/search?q={searchTerms}";}
+                    ];
+                    definedAliases = ["@sr"];
+                  };
               };
               force = true; # fixes the search.json.mozlz4 bug
             };
