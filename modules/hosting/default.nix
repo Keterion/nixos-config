@@ -41,7 +41,7 @@ in {
     };
     proxy_base = lib.mkOption {
       type = lib.types.str;
-      default = cfg.ip;
+      default = "http://${cfg.ip}";
     };
     monitor = lib.mkEnableOption "monitoring for all services";
     enabledServices = lib.mkOption {

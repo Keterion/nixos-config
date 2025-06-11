@@ -17,7 +17,7 @@ in {
     };
     port = lib.mkOption {
       type = lib.types.ints.u16;
-      default = 8989;
+      default = 8888;
     };
     ip = lib.mkOption {
       type = lib.types.str;
@@ -31,6 +31,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    hosting.enabledServices = ["searxng"];
     services.searx = {
       enable = true;
       settings = {
@@ -41,7 +42,9 @@ in {
         server = {
           port = cfg.port;
           bind_address = cfg.ip;
-          base_url = lib.optionalString cfg.proxy.enable config.hosting.proxy_base;
+          #secret_key = builtins.readFile ./.secret;
+          secret_key = "abababxyzz";
+          base_url = lib.optionalString cfg.proxy.enable "${config.hosting.proxy_base}/searxng";
         };
         outgoing = {
           request_timeout = 2;

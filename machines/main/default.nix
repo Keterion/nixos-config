@@ -167,7 +167,10 @@
       enable = true;
       proxy.enable = true;
     };
-    jellyfin.enable = true;
+    jellyfin = {
+      enable = true;
+      proxy.enable = true;
+    };
     jellyseerr = {
       enable = true;
       proxy.enable = true;

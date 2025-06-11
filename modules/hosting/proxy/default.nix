@@ -16,6 +16,10 @@ in {
           name = "/${service}/";
           value = lib.mkIf config.hosting.${service}.proxy.enable {
             proxyPass = "http://${config.hosting.ip}:${toString config.hosting.${service}.port}/";
+            extraConfig = ''
+              proxy_set_header    X-Script-Name   /${service};
+              proxy_set_header    X-Scheme        $scheme;
+            '';
           };
         }
       )
