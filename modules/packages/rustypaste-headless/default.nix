@@ -76,7 +76,7 @@ in {
           max_content_length = "100MB";
           upload_path = "./upload";
           timeout = "30s";
-          expose_version = false;
+          expose_version = true;
           expose_list = false;
 
           handle_spaces = "replace";
