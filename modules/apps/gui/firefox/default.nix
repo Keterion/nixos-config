@@ -41,7 +41,7 @@ in {
               "privacy.item.history" = false; # Clear Private Data deletes history
             };
             search = {
-              default = "Brave";
+              default = "Searxng";
               engines = {
                 "Brave" = {
                   urls = [{template = "https://search.brave.com/search?q={searchTerms}";}];
@@ -51,8 +51,8 @@ in {
                 "Searxng" = with config.hosting.searxng;
                   lib.mkIf config.hosting.searxng.enable {
                     urls = [
-                      {template = "http://${config.hosting.proxy_base}/searxng/search?q={searchTerms}";}
-                      {templat = "http://${ip}:${toString port}/search?q={searchTerms}";}
+                      {template = "${config.hosting.proxy_base}/searxng/search?q={searchTerms}";}
+                      {template = "http://${ip}:${toString port}/search?q={searchTerms}";}
                     ];
                     definedAliases = ["@sr"];
                   };
@@ -118,7 +118,6 @@ in {
               force = true;
               packages = with pkgs.nur.repos.rycee.firefox-addons;
                 [
-                  #privacy-badger
                   fastforwardteam
                   search-by-image
                   ublock-origin
@@ -129,24 +128,7 @@ in {
                   #dictionaries
                   sidebery
                   keepassxc-browser
-                  #lexicon
-                  #buildFirefoxXpiAddon { #TODO
-                  #  pname = "imagus-mod";
-                  #  version = "0.10.15";
-                  #  addonId = "6833a9cb-d329-4d96-a062-76b1b663cd2c";
-                  #  url = "https://addons.mozilla.org/firefox/downloads/file/4170790/imagus_mod-0.10.15.xpi";
-                  #  meta = with lib; {
-                  #    homepage = "https://prod.outgoing.prod.webservices.mozgcp.net/v1/be14a87f1d00256c0532612c960861e8d8aa6adca6d9e62dcd35a8a30d9096fc/https%3A//github.com/TheFantasticWarrior/chrome-extension-imagus";
-                  #    description = "With a simple mouse-over you can enlarge and display images/videos from links. Now with optional permissions, more features.";
-                  #    license = licenses.bsd2;
-                  #    mozPermissions = [
-                  #      "<all_urls>"
-                  #      "history"
-                  #      "downloads"
-                  #    ];
-                  #    platforms = platforms.all;
-                  #  };
-                  #}
+                  redirector
                 ]
                 ++ lib.optionals cfg.vim.enable [
                   pkgs.nur.repos.rycee.firefox-addons.tridactyl
@@ -159,6 +141,24 @@ in {
                     "ublock-privacy"
                     "ulock-unbreak"
                     "ublock-quick-fixes"
+                  ];
+                };
+                "redirector@einaregilsson.com".settings = {
+                  redirects = [
+                    {
+                      description = "Nixos wiki with VPN";
+                      exampleUrl = "https://nixos.wiki/wiki/Bootloader";
+                      exampleResult = "https://wiki.nixos.org/wiki/Bootloader";
+                      includePattern = "https://nixos.wiki/(wiki/.*)";
+                      excludePattern = "";
+                      patternDesc = "Changes the base url to wiki.nixos.org";
+                      redirectUrl = "https://wiki.nixos.org/$1";
+                      patternType = "R";
+                      processMatches = "noProcessing";
+                      disabled = false;
+                      grouped = false;
+                      appliesTo = ["main_frame"];
+                    }
                   ];
                 };
               };
