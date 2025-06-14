@@ -72,7 +72,7 @@ in {
         '';
 
         git_metrics = {
-          disabled = false;
+          disabled = true;
           only_nonzero_diffs = false;
           format = "with ([+$added]($added_style) )([-$deleted]($deleted_style) )";
         };
