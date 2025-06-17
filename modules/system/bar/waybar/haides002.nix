@@ -147,7 +147,7 @@ in {
       };
       "mpris" = {
         rotate = 0;
-        tooltip = false;
+        tooltip = true;
         status-icons = {
           playing = "󰏤";
           paused = "󰐊";
@@ -220,7 +220,6 @@ in {
         on-click = "$TERM -c nmtui";
       };
       "custom/vpn" = {
-        #exec = ''mullvad status | tail -n 3 | sed 's/^/"/;s/:/":/' | sed 's/:/:"/;s/$/"/' | sed "1 s/^/{\n/" | sed "4 s/$/\n}/" | sed '2,3 s/"$/",/' | sed 's/ //g' | jq --unbuffered --compact-output '{text: .Visiblelocation}' '';
         exec = ''
           mullvad status -j |
           jq --unbuffered --compact-output '{ "text": .state, "tooltip": (.details | tojson) }'
@@ -229,7 +228,7 @@ in {
 
         return-type = "json";
         format = "{text}";
-        interval = 10;
+        interval = 5;
       };
       tray = {
         rotate = 0;
