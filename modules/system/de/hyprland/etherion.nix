@@ -1,4 +1,8 @@
-{osConfig, ...}: {
+{
+  osConfig,
+  lib,
+  ...
+}: {
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = true;
@@ -11,16 +15,25 @@
         border_size = 2;
         "col.active_border" = "rgb(${osConfig.system.colors.magenta})";
         "col.inactive_border" = "rgb(${osConfig.system.colors.blue1})";
-        env = [
-          "LIBVA_DRIVER_NAME,nvidia"
-          "XDG_SESSION_TYPE,wayland"
-          "GDM_BACKEND,nvidia-drm"
-          "__GLX_VENDOR_LIBRARY_NAME,nvidia"
-          "NVD_BACKEND,direct" # va-api hwaccel for nvidia
-          "ELECTRON_OZONE_PLATFORM_HINT,auto" # Flickering Electron/CEF apps
-        ];
+        env =
+          [
+            "XDG_SESSION_TYPE,wayland"
+          ]
+          ++ lib.optionals
+          osConfig.system.graphics.nvidia.enable [
+            "LIBVA_DRIVER_NAME,nvidia"
+            "GDM_BACKEND,nvidia-drm"
+            "__GLX_VENDOR_LIBRARY_NAME,nvidia"
+            "NVD_BACKEND,direct" # va-api hwaccel for nvidia
+            "ELECTRON_OZONE_PLATFORM_HINT,auto" # Flickering Electron/CEF apps
+          ];
       };
       decoration = {
+      };
+      input = {
+        kb_layout = "${osConfig.system.keyboard.layout}";
+        kb_variant = "${osConfig.system.keyboard.variant}";
+        kb_options = "compose:ralt";
       };
       cursor.no_hardware_cursors = true;
       monitor = [
