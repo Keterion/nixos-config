@@ -24,6 +24,10 @@
       compatibility.jack.enable = true;
     };
     firewall.enable = true;
+    networking = {
+      enable = true;
+      wireless.enable = false;
+    };
     bluetooth.enable = true;
     fonts = with pkgs; [
       nerd-fonts.hack
@@ -108,6 +112,7 @@
       enable = true;
       arkenfox = true;
       vim.enable = false;
+      searchEngine = "Brave";
     };
     modules.gui = {
       social.enable = true;
@@ -130,6 +135,11 @@
     };
     fzf.shellIntegration = true;
     zoxide.shellIntegration = true;
+    games.steam = {
+      enable = true;
+      compat = true;
+      backup = true;
+    };
   };
 
   hosting = {

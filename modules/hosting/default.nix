@@ -65,7 +65,7 @@ in {
             name = "Hosted"; # auto-add to this group
             toolbar = false;
             bookmarks = map (service:
-              lib.mkIf config.hosting.${service}.proxy.enable {
+              lib.mkIf config.hosting.${service}.enable {
                 name = service;
                 url = "http://${cfg.ip}:${toString config.hosting.${service}.port}";
                 tags = ["hosted"];

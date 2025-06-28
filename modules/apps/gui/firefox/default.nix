@@ -14,6 +14,10 @@ in {
     };
     arkenfox = lib.mkEnableOption "a profile configured with arkenfox";
     vim.enable = lib.mkEnableOption "vim navigation via tridactyl-vim";
+    searchEngine = lib.mkOption {
+      type = lib.types.enum ["Brave"] ++ lib.optionals config.hosting.searxng.enable ["Searxng"];
+      default = "Brave";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -41,7 +45,7 @@ in {
               "privacy.item.history" = false; # Clear Private Data deletes history
             };
             search = {
-              default = "Searxng";
+              default = "Brave";
               engines = {
                 "Brave" = {
                   urls = [{template = "https://search.brave.com/search?q={searchTerms}";}];

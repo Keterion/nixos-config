@@ -22,7 +22,6 @@
   ];
 
   config = {
-    networking.networkmanager.enable = true;
     hardware.graphics.enable = true;
 
     systemd.sleep.extraConfig = ''

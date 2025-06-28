@@ -34,6 +34,9 @@
       mpdris.enable = true;
     };
     firewall.enable = true;
+    networking = {
+      enable = true;
+    };
     bluetooth.enable = true;
     fonts = with pkgs; [
       nerd-fonts.hack
