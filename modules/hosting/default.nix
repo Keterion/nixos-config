@@ -12,6 +12,7 @@ in {
     ./grocy
     ./jellyfin
     ./jellyseerr
+    ./mealie
     ./monit
     ./mpd
     ./prowlarr
