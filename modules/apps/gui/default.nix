@@ -28,6 +28,7 @@ in {
     ./speedcrunch
     ./strawberry
     ./thunderbird
+    ./valentina
     ./zathura
   ];
 
