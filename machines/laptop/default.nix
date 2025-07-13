@@ -140,6 +140,7 @@
       compat = true;
       backup = true;
     };
+    valentina.enable = true;
   };
 
   hosting = {
