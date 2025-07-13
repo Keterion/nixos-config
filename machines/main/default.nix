@@ -178,6 +178,10 @@
       enable = true;
       proxy.enable = true;
     };
+    mealie = {
+      enable = true;
+      proxy.enable = true;
+    };
     monit = {
       enable = true;
       proxy.enable = true;
