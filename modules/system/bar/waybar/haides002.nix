@@ -210,9 +210,9 @@ in {
           warning = 30;
           critical = 15;
         };
-        format = "{capacity}% {icon}";
-        format-icons = ["" "" "" "" ""];
-        max-length = 25;
+        format = "{icon} {capacity}%";
+        format-icons = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
+        format-charging = "󱐋{icon} {capacity}%";
       };
       "bluetooth" = {
         format = "";

@@ -52,6 +52,7 @@
         utils.enable = true;
         styleProfile = "etherion";
         hypridle.enable = true;
+        wlsunset.enable = true;
       };
       plasma.enable = true;
     };
@@ -142,6 +143,26 @@
     };
     valentina.enable = true;
   };
+  apps.beets.config = {
+    directory = "/home/${config.system.users.default.name}/Music/songs/processed";
+    asciify_paths = true;
+    import = {
+      write = true;
+      copy = true;
+      hardlink = false;
+      group_albums = true;
+      duplicate_verbose_prompt = true;
+    };
+    plugins = ["chroma" "mbsync" "lyrics" "replaygain" "lastgenre" "edit" "duplicates"];
+    replaygain.backend = "ffmpeg";
+
+    paths = {
+      default = "$albumartist/$album%aunique{}_$original_year/$artist-$album-$title";
+      singleton = "$albumartist/$title_$original_year/$artist-$title";
+      comp = "Compilations/$album%aunique{}/$track-$title";
+    };
+    match.distance_weights.missing_tracks = 0.0;
+  };
 
   hosting = {
     openFirewall = true;
@@ -149,5 +170,14 @@
     defaultGroup = "server";
 
     syncthing.enable = true;
+    mpd = {
+      enable = true;
+      directories = {
+        music = "/home/${config.system.users.default.name}/Music/songs/";
+        playlist = "/home/${config.system.users.default.name}/Music/songs/playlists/";
+      };
+      startWhenNeeded = false;
+      user = "etherion";
+    };
   };
 }

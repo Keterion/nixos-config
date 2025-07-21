@@ -93,7 +93,7 @@ in {
 
         temperature = {
           day = 6500;
-          night = 3000;
+          night = 2500;
         };
       };
 
