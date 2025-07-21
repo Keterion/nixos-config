@@ -21,6 +21,7 @@ in {
     ./neovim
     ./nh
     ./nmap
+    ./pueue
     ./ripgrep
     ./rmpc
     ./spotdl
