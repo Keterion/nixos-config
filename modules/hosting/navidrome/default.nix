@@ -42,7 +42,7 @@ in {
     };
     port = lib.mkOption {
       type = lib.types.port;
-      default = 6600;
+      default = 4533;
     };
     monitor.enable = lib.mkEnableOption "monitoring of the navidrome service, disabled except if explicitly enabled";
     proxy.enable = lib.mkEnableOption "proxy";
