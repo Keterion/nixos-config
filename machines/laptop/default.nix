@@ -126,6 +126,8 @@
       aliases.enable = true;
       defaultEditor = true;
     };
+
+    freecad.enable = true;
     #thunderbird.enable = true; #TODO: protonmail-bridge
     discord = {
       enable = true;
@@ -179,6 +181,9 @@
       };
       startWhenNeeded = false;
       user = "etherion";
+    };
+    navidrome = {
+      enable = true;
     };
   };
 }
