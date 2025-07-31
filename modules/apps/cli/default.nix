@@ -9,6 +9,7 @@ in {
     ./bat
     ./beets
     ./bottom
+    ./brightnessctl
     ./carapace
     ./cava
     ./encfs

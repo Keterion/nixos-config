@@ -3,6 +3,15 @@
   lib,
   ...
 }: {
+  services.hyprpaper = lib.mkIf osConfig.system.de.hyprland.hyprpaper.enable {
+    enable = true;
+    settings = {
+      preload = ["~/Pictures/wallpaper.jpg"];
+      wallpaper = [",~/Pictures/wallpaper.jpg"];
+      ipc = "on";
+      splash = false;
+    };
+  };
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = true;
@@ -105,6 +114,9 @@
         ", XF86AudioNext, exec, playerctl next"
         ", XF86AudioPrev, exec, playerctl previous"
         ", XF86AudioMicMute, exec, wpctl set-mute 48 toggle"
+
+        ", XF86MonBrightnessUp, exec, brightnessctl set +5%"
+        ", XF86MonBrightnessDown, exec, brightnessctl set 5%-"
       ];
       bindm = [
         "$mod, mouse:272, movewindow"

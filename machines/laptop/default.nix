@@ -53,6 +53,7 @@
         styleProfile = "etherion";
         hypridle.enable = true;
         wlsunset.enable = true;
+        hyprpaper.enable = true;
       };
       plasma.enable = true;
     };

@@ -46,6 +46,9 @@ in {
       };
     };
     wlsunset.enable = lib.mkEnableOption "wlsunset";
+    hyprpaper = {
+      enable = lib.mkEnableOption "hyprpaper";
+    };
   };
 
   config = lib.mkIf cfg.enable {
