@@ -15,6 +15,7 @@ in {
     ./mealie
     ./monit
     ./mpd
+    ./navidrome
     ./prowlarr
     ./proxy
     ./qbittorrent
