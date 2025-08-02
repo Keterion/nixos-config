@@ -180,10 +180,14 @@
         playlist = "/home/${config.system.users.default.name}/Music/songs/playlists/";
       };
       startWhenNeeded = false;
-      user = "etherion";
+      user = "${config.system.users.default.name}";
     };
     navidrome = {
       enable = true;
+      directories = {
+        music = "/home/${config.system.users.default.name}/Music/songs/";
+        playlist = "/home/${config.system.users.default.name}/Music/songs/playlists/";
+      };
     };
   };
 }

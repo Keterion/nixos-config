@@ -50,6 +50,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     hosting.enabledServices = ["navidrome"];
+    systemd.services.navidrome.serviceConfig.ProtectHome = lib.mkForce "read-only";
     services.navidrome = {
       enable = true;
       group = cfg.group;
