@@ -13,6 +13,7 @@
     ./lockscreen
     ./networking
     ./runner
+    ./secrets
     ./security
     ./shell
     ./terminal
