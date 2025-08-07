@@ -23,6 +23,10 @@
       compatibility.pulse.enable = true;
       compatibility.jack.enable = true;
     };
+    graphics.intel = {
+      enable = true;
+      old.enable = true;
+    };
     firewall.enable = true;
     networking = {
       enable = true;
@@ -126,8 +130,10 @@
       aliases.enable = true;
       defaultEditor = true;
     };
+    mullvad-vpn.enable = false;
 
     freecad.enable = true;
+    gimp.enable = true;
     #thunderbird.enable = true; #TODO: protonmail-bridge
     discord = {
       enable = true;
