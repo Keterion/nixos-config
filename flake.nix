@@ -35,7 +35,10 @@
     nixosConfigurations = {
       main = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = {myUtils = import ./utils.nix {inherit inputs;};};
+        specialArgs = {
+          myUtils = import ./utils.nix {inherit inputs;};
+          inherit inputs;
+        };
         modules = [
           {nixpkgs.overlays = [inputs.nur.overlays.default overlays.stable-packages];}
           ./machines/common.nix
@@ -48,7 +51,10 @@
       };
       laptop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = {myUtils = import ./utils.nix {inherit inputs;};};
+        specialArgs = {
+          myUtils = import ./utils.nix {inherit inputs;};
+          inherit inputs;
+        };
         modules = [
           {nixpkgs.overlays = [inputs.nur.overlays.default overlays.stable-packages];}
           ./machines/common.nix
