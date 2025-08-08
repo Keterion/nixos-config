@@ -18,6 +18,10 @@ in {
       type = lib.types.enum ["Brave"] ++ lib.optionals config.hosting.searxng.enable ["Searxng"];
       default = "Brave";
     };
+    syncserver.url = lib.mkOption {
+      type = lib.types.nullOr lib.types.str;
+      default = null;
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -30,6 +34,7 @@ in {
           "default" = {
             id = 0;
             settings = {
+              "browser.aboutConfig.showWarning" = false; # Hide about:config warning
               "extensions.autoDisableScopes" = 0;
               "browser.startup.page" = 3;
               "browser.search.region" = "US";
@@ -41,8 +46,27 @@ in {
               "browser.link.open_newwindow.restriction" = 0; # Open popup windows as tabs
 
               "privacy.sanitize.sanitizeOnShutdown" = true; # perform Clear Private Data on exit # you stole all my history and tabs even with disabled history clear??
-              "privacy.item.cookies" = true; # Clear Private Data deletes cookies
-              "privacy.item.history" = false; # Clear Private Data deletes history
+              "privacy.clearOnShutdown.cookies" = true; # Clear Private Data deletes cookies
+              "privacy.clearOnShutdown.cache" = true;
+              "privacy.clearOnShutdown.downloads" = true;
+              "privacy.clearOnShutdown.history" = false; # Clear Private Data deletes history
+              "privacy.clearOnShutdown.formData" = true;
+              "privacy.clearOnShutdown.offlineApps" = false;
+              "privacy.clearOnShutdown.sessions" = true;
+              "privacy.clearOnShutdown.siteSettings" = false;
+
+              "privacy.bounceTrackingProtection.mode" = 1; # Strict
+              "privacy.trackingrotection.enabled" = true;
+              "signon.autofillForms" = false;
+              "signon.rememberSignons" = false;
+
+              "dom.forms.autocomplete.formautofill" = false;
+              "extensions.formautofill.addresses.enabled" = false;
+              "extensions.formautofill.creditCards.enabled" = false;
+
+              "dom.security.https_only_mode" = true;
+
+              "identity.sync.tokenserver.uri" = lib.mkIf (cfg.syncserver.url != null) "${cfg.syncserver.url}";
 
               "sidebar.verticalTabs" = true;
             };
@@ -132,7 +156,7 @@ in {
                   #                  libredirect
                   darkreader
                   #dictionaries
-                  sidebery
+                  #sidebery
                   keepassxc-browser
                   redirector
                 ]

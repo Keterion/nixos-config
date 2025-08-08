@@ -26,10 +26,12 @@ in {
       default = config.hosting.monitor;
     };
     proxy.enable = lib.mkEnableOption "proxy";
+    setFirefoxServer = lib.mkEnableOption "setting the sync server for firefox automatically";
   };
 
   config = lib.mkIf cfg.enable {
     hosting.enabledServices = ["firefox-syncserver"];
+    apps.firefox.syncserver.url = lib.mkIf cfg.setFirefoxServer "http://${cfg.ip}:${builtins.toString cfg.port}/token/1.0/sync/1.5";
 
     sops.secrets."service/firefox-syncserver/master" = {};
     sops.templates."firefox-syncserver.conf" = {

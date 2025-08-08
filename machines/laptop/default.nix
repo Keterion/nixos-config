@@ -179,7 +179,10 @@
     defaultGroup = "server";
 
     syncthing.enable = true;
-    firefox-syncserver.enable = true;
+    firefox-syncserver = {
+      enable = true;
+      setFirefoxServer = true;
+    };
     mpd = {
       enable = true;
       directories = {
