@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: let
   cfg = config.hosting.firefox-syncserver;
@@ -14,10 +15,6 @@ in {
     ip = lib.mkOption {
       type = lib.types.str;
       default = config.hosting.ip;
-    };
-    user = lib.mkOption {
-      type = lib.types.str;
-      default = "${config.services.firefox-syncserver.database.user}";
     };
     openFirewall = lib.mkOption {
       type = lib.types.bool;
@@ -36,7 +33,6 @@ in {
 
     sops.secrets."service/firefox-syncserver/master" = {};
     sops.templates."firefox-syncserver.conf" = {
-      owner = "${cfg.user}";
       content = ''
         SYNC_MASTER_SECRET=${config.sops.placeholder."service/firefox-syncserver/master"}
       '';
@@ -47,8 +43,7 @@ in {
       database = {
         createLocally = true;
         host = "${cfg.ip}";
-        name = "firefox-syncserver";
-        user = "${cfg.user}";
+        name = "firefox_syncserver";
       };
       settings = {
         port = cfg.port;
@@ -56,6 +51,7 @@ in {
       };
       secrets = config.sops.templates."firefox-syncserver.conf".path;
     };
-    networking.firewall.openTCPPorts = lib.optionals cfg.openFirewall [builtins.toString cfg.port];
+    services.mysql.package = pkgs.mariadb;
+    networking.firewall.allowedTCPPorts = lib.mkIf cfg.openFirewall [cfg.port];
   };
 }

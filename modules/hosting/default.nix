@@ -9,6 +9,7 @@ in {
     ./bazarr
     ./calibre
     ./dns
+    ./firefox-syncserver
     ./grocy
     ./jellyfin
     ./jellyseerr
