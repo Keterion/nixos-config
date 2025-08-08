@@ -29,6 +29,14 @@ in {
       enable = true;
       config = {
         init.defaultBranch = cfg.defaultBranch;
+        url = {
+          "https://github.com/" = {
+            insteadOf = [
+              "gh:"
+              "github:"
+            ];
+          };
+        };
       };
     };
 
