@@ -35,13 +35,6 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    sops.secrets = {
-      "SM-A715F" = {
-        owner = cfg.user;
-        group = cfg.group;
-      };
-    };
-
     hosting.enabledServices = ["syncthing"];
     services.syncthing = {
       enable = true;
@@ -54,7 +47,7 @@ in {
       settings = {
         devices = {
           "SM-A715F" = {
-            id = ''$(cat ${config.sops.secrets."syncthing/SM_A715F".path})'';
+            id = "EYGP7X5-ZWPOV75-56KHCCW-YVMQIUA-MJVRGDG-JG2JJKG-ECKDJRE-VKXI3AV";
           };
           "Pixel 8 Pro" = {
             id = "NWVM3BV-2DLYCD2-DD4WMVS-4NDX4O3-NDA2S72-23HYRAU-IASJ3O4-N2ZSUA7";
