@@ -69,6 +69,7 @@ in {
               "identity.sync.tokenserver.uri" = lib.mkIf (cfg.syncserver.url != null) "${cfg.syncserver.url}";
 
               "sidebar.verticalTabs" = true;
+              "sidebar.visibility" = "expand-on-hover";
             };
             search = {
               default = "Brave";
