@@ -1,6 +1,6 @@
 {...}: {
   imports = [
-    ./qbittorrent-headless
+    #./qbittorrent-headless
     ./rustypaste-headless
     ./meshroom
     #./tandoor # Probably gonna have to repackage or something
