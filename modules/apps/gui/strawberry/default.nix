@@ -13,7 +13,7 @@ in {
   };
   config = lib.mkIf cfg.enable {
     home-manager.users.${config.system.users.default.name}.home.packages = [
-      pkgs.strawberry-qt6
+      pkgs.strawberry
     ];
   };
 }
