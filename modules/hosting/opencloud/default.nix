@@ -22,7 +22,7 @@ in {
 
     ip = lib.mkOption {
       type = lib.types.str;
-      default = "${cfg.hosting.ip}";
+      default = "${config.hosting.ip}";
     };
     port = lib.mkOption {
       type = lib.types.port;
@@ -57,7 +57,7 @@ in {
       address = cfg.ip;
       port = cfg.port;
 
-      settings = lib.attrsets.recursiveUpdate {} cfg.settings;
+      #settings = lib.attrsets.recursiveUpdate {} cfg.settings;
     };
     networking.firewall.allowedTCPPorts = lib.optionals cfg.openFirewall [cfg.port];
   };
