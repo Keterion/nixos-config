@@ -17,6 +17,7 @@ in {
     ./monit
     ./mpd
     ./navidrome
+    ./opencloud
     ./prowlarr
     ./proxy
     ./qbittorrent
