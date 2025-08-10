@@ -1,16 +1,14 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: let
   cfg = config.hosting.qbittorrent;
 in {
-  imports = [
-    ./../../packages/qbittorrent-headless # custom qbittorrent service
-  ];
-
   options.hosting.qbittorrent = {
     enable = lib.mkEnableOption "qbittorrent as a background service";
+    vuetorrent.enable = lib.mkEnableOption "vuetorrent as webui frontend";
     group = lib.mkOption {
       type = lib.types.str;
       default = config.hosting.defaultGroup;
@@ -36,7 +34,14 @@ in {
       enable = true;
       group = cfg.group;
       openFirewall = cfg.openFirewall;
-      port = cfg.port;
+      webuiPort = cfg.port;
+      serverConfig = {
+        LegalNotice.Accepted = true;
+        WebUI = {
+          AlternativeUIEnabled = cfg.vuetorrent.enable;
+          RootFolder = lib.optionalString "${pkgs.vuetorrent}/share/vuetorrent";
+        };
+      };
     };
   };
 }
