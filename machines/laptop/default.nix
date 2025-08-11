@@ -178,7 +178,7 @@
     ip = "localhost";
     defaultGroup = "server";
 
-    opencloud.enable = false;
+    copyparty.enable = true;
     syncthing.enable = true;
     firefox-syncserver = {
       enable = true;

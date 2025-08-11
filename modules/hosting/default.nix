@@ -8,6 +8,7 @@ in {
   imports = [
     ./bazarr
     ./calibre
+    ./copyparty
     ./dns
     ./firefox-syncserver
     ./grocy
