@@ -49,6 +49,14 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    sops.secrets."service/navidrome/passwordEncryptionKey" = {
+      owner = cfg.user;
+      group = cfg.group;
+    };
+    sops.templates."navidrome.env".content = ''
+      PasswordEncryptionKey=${config.sops.placeholder."service/navidrome/passwordEncryptionKey"}
+    '';
+
     hosting.enabledServices = ["navidrome"];
     systemd.services.navidrome.serviceConfig.ProtectHome = lib.mkForce "read-only";
     services.navidrome = {
@@ -57,6 +65,7 @@ in {
       user = cfg.user;
       openFirewall = cfg.openFirewall;
 
+      environmentFile = config.sops.templates."navidrome.env".path;
       settings = {
         Address = cfg.ip;
         EnableInsightsCollector = false;
