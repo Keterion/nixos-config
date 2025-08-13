@@ -25,7 +25,7 @@
     };
     graphics.intel = {
       enable = true;
-      old.enable = true;
+      old.enable = false;
     };
     firewall.enable = true;
     networking = {
@@ -132,6 +132,7 @@
     };
     mullvad-vpn.enable = false;
 
+    betaflight.enable = false; # broken
     freecad.enable = true;
     gimp.enable = true;
     #thunderbird.enable = true; #TODO: protonmail-bridge

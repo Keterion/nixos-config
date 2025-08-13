@@ -72,7 +72,12 @@ in {
     xdg.portal = {
       enable = cfg.utils.enable;
       wlr.enable = cfg.utils.enable;
-      extraPortals = lib.optionals cfg.utils.enable [pkgs.xdg-desktop-portal-hyprland];
+      extraPortals = lib.optionals cfg.utils.enable [
+        pkgs.xdg-desktop-portal-hyprland
+        pkgs.xdg-desktop-portal-gtk
+        pkgs.kdePackages.xdg-desktop-portal-kde
+        pkgs.xdg-desktop-portal-wlr
+      ];
     };
 
     programs.hyprland.enable = true;
