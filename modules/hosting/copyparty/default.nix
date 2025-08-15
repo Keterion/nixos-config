@@ -66,6 +66,8 @@ in {
         i = cfg.ip; # ip
         p = cfg.port; # port
 
+        shr = "/shr";
+
         no-reload = true;
       };
       accounts = {
@@ -87,8 +89,7 @@ in {
             A = "admin";
           };
           flags = {
-            fk = 4;
-            scan = 120;
+            #fk = 4;
             e2d = true; # uploads database
             d2t = true; # disable multimedia parsers
           };
