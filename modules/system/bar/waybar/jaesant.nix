@@ -14,9 +14,10 @@
   };
 in {
   programs.waybar = {
+    enable = true;
     style = ''
       * {
-        font-family: "JetBrains Mono", "Font Awesome 6 Free";
+        font-family: "Hack Nerd Font Mono", "Font Awesome 6 Free";
         font-weight: 600;
         font-size: 14px;
       }
@@ -29,7 +30,7 @@ in {
         border-radius: 5px;
         border-width: 2px;
         border-style: solid;
-        border-color: alpha(#${color.fg-dark}, 1);
+        border-color: alpha(#${color.fg_dark}, 1);
       }
 
       /*all modules*/
@@ -38,41 +39,42 @@ in {
       #wireplumber,
       #network,
       #mpris,
+      #custom-vpn,
       #custom-weather,
       #clock,
       #tray,
       #privacy {
-        color: #${color.tx};
+        color: #${color.fg};
         background-color: alpha(#${color.bg}, 0.0);
 
         margin: 4px;
-        padding: 0px 20px;
+        padding: 0px 8px;
 
         border-radius: 5px;
         border-width: 2px;
         border-style: solid;
-        border-color: alpha(#${color.pu}, 1);
+        border-color: alpha(#${color.purple}, 1);
       }
 
       /*workspaces*/
       #workspaces {
-        padding-left: 0px;
+        padding: 0px;
       }
 
       #workspaces button {
-        color: #${color.tx-3};
-        padding: 0px 20px;
+        color: #${color.fg_dark};
+        padding: 0px 8px;
         margin: 0px;
       }
       #workspaces button.visible {
-        color: #${color.tx};
+        color: #${color.fg};
       }
       #workspaces button.focused,
       #workspaces button.active {
-        color: #${color.ac};
+        color: #${color.purple};
       }
       #workspaces button.urgent {
-        color: #${color.re};
+        color: #${color.red2};
       }
 
       #wokspaces button:hover {
