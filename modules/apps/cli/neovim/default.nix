@@ -61,6 +61,18 @@ in {
 
         autopairs.nvim-autopairs.enable = true;
 
+        binds.hardtime-nvim = {
+          enable = true;
+          setupOpts = {
+            # key repetition
+            max_time = 1000;
+            max_count = 3;
+
+            hint = true;
+            disable_mouse = true;
+          };
+        };
+
         filetree.neo-tree = {
           enable = true;
         };
