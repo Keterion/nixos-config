@@ -21,6 +21,12 @@ in {
       type = lib.types.ints.u16;
       default = 8080;
     };
+
+    defaultSavePath = lib.mkOption {
+      type = lib.types.str;
+      default = "/var/lib/qBittorrent/qBittorrent/downloads";
+    };
+
     monitor.enable = lib.mkOption {
       type = lib.types.bool;
       default = config.hosting.monitor;
@@ -37,9 +43,26 @@ in {
       webuiPort = cfg.port;
       serverConfig = {
         LegalNotice.Accepted = true;
-        WebUI = {
-          AlternativeUIEnabled = cfg.vuetorrent.enable;
-          RootFolder = lib.optionalString cfg.vuetorrent.enable "${pkgs.vuetorrent}/share/vuetorrent";
+        Preferences = {
+          WebUI = {
+            AlternativeUIEnabled = cfg.vuetorrent.enable;
+            RootFolder = lib.optionalString cfg.vuetorrent.enable "${pkgs.vuetorrent}/share/vuetorrent";
+
+            Password_PBKDF2 = "@ByteArray(cWg3D/tytOAVBspk0ggCpA==:IIjau2dLjx88IX7n/IajD77bKfFMymqB4Qz+O5IepS+g5LKJuYCq+tXdfiyMH7gkxu6xz+rUCSKIvsLVBL97eA==)";
+            Username = "admin";
+            Port = cfg.port;
+          };
+        };
+        BitTorrent = {
+          Session.Interface = "wg0-mulvad";
+          Session.InterfaceName = "wg0-mullvad";
+          Session.DefaultSavePath = cfg.defaultSavePath;
+          Session.Preallocation = true;
+          Session.AddExtensionToIncompleteFiles = true;
+        };
+        Application = {
+          FileLogger.Backup = true;
+          FileLogger.Enabled = false;
         };
       };
     };
