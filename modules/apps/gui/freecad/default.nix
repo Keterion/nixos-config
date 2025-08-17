@@ -1,5 +1,9 @@
-{ lib, pkgs, config, ... }:
-let
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}: let
   cfg = config.apps.freecad;
 in {
   options.apps.freecad = {
@@ -13,11 +17,14 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    home-manager.users.${config.system.users.default.name}.home.packages = [
-      pkgs.freecad
-    ] ++ lib.optionals cfg.fem.enable [
-      pkgs.calculix
-      pkgs.gmsh
-    ];
+    hardware.graphics.enable = true;
+    home-manager.users.${config.system.users.default.name}.home.packages =
+      [
+        pkgs.freecad
+      ]
+      ++ lib.optionals cfg.fem.enable [
+        pkgs.calculix
+        pkgs.gmsh
+      ];
   };
 }
