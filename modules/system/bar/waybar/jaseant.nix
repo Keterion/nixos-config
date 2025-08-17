@@ -1,8 +1,5 @@
-{
-  osConfig,
-  pkgs,
-  ...
-}: let
+{osConfig, ...}: let
+  color = osConfig.system.colors;
   workspace-icons = {
     "1" = "一";
     "2" = "二";
@@ -16,97 +13,72 @@
     "10" = "十";
   };
 in {
-  home.packages = [pkgs.pavucontrol pkgs.jq];
   programs.waybar = {
-    enable = true;
     style = ''
-      @define-color background #191724;
-      @define-color foreground #e0def4;
-      @define-color gray #6e6a86;
-      @define-color accent #31748f;
-      @define-color red #eb6f92;
-
       * {
-        border: none;
-        border-radius: 0px;
-        font-family: Hack Nerd Font Mono;
+        font-family: "JetBrains Mono", "Font Awesome 6 Free";
         font-weight: 600;
         font-size: 14px;
       }
 
-      #waybar {
-      	background-color: alpha(@background, 1.000000);
-      	/*background-color: rgba(0,0,0,0);*/
-      	padding: 0;
-      	margin: 0;
-      }
+      window#waybar {
+        background-color: alpha(#${color.bg}, 1);
+        padding: 0;
+        margin: 0;
 
+        border-radius: 5px;
+        border-width: 2px;
+        border-style: solid;
+        border-color: alpha(#${color.fg-dark}, 1);
+      }
 
       /*all modules*/
       #workspaces,
-      #workspaces button,
       #window,
       #wireplumber,
-      #battery,
       #network,
       #mpris,
       #custom-weather,
       #clock,
       #tray,
       #privacy {
-      	color: @foreground;
-      	background-color: alpha(@background, 0.0);
-      	/*background-color: alpha(#282828, 1.000000);*/
+        color: #${color.tx};
+        background-color: alpha(#${color.bg}, 0.0);
 
-      	margin: 0px 0px;
-      	padding: 0px 12px;
-        border-radius: 8px;
+        margin: 4px;
+        padding: 0px 20px;
+
+        border-radius: 5px;
+        border-width: 2px;
+        border-style: solid;
+        border-color: alpha(#${color.pu}, 1);
       }
-
 
       /*workspaces*/
       #workspaces {
         padding-left: 0px;
-        color: @gray;
       }
 
-      #workspaces button {color: @gray;}
-      #workspaces button#sway-workspace-1 {border-radius: 0px 8px 8px 0px;}
-      #workspaces button.visible {color: @foreground;}
+      #workspaces button {
+        color: #${color.tx-3};
+        padding: 0px 20px;
+        margin: 0px;
+      }
+      #workspaces button.visible {
+        color: #${color.tx};
+      }
       #workspaces button.focused,
-      #workspaces button.active {background-color: @foreground;color: @background;}
-      #workspaces button.urgent {color: @red;}
-
-
-      /*right modules*/
-      *.modules-right {
-        border-radius: 8px 0px 0px 8px;
-        background-color: @foreground;
+      #workspaces button.active {
+        color: #${color.ac};
+      }
+      #workspaces button.urgent {
+        color: #${color.re};
       }
 
-      #clock {
-        border-radius: 8px;
-        background-color: @foreground;
+      #wokspaces button:hover {
+        background: none;
+        border: none;
       }
-
-      #wireplumber,
-      #battery,
-      #network,
-      #custom-weather,
-      #custom-vpn,
-      #clock,
-      #tray,
-      #bluetooth,
-      #privacy {
-        color: @background;
-      }
-
-      /*#privacy,
-      #tray {
-        margin-left: 0;
-        margin-right: 0;
-      }
-      */
     '';
     settings = {
       mainBar = {

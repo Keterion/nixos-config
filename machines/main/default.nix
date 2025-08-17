@@ -51,7 +51,7 @@
 
     bar.waybar = {
       enable = true;
-      styleProfile = "haides002";
+      styleProfile = "jaesant";
     };
 
     de = {
@@ -62,6 +62,7 @@
         styleProfile = "etherion";
         hypridle.enable = true;
         wlsunset.enable = true;
+        hyprpaper.enable = true;
       };
       plasma.enable = true;
     };
