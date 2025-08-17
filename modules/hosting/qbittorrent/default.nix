@@ -54,7 +54,7 @@ in {
           };
         };
         BitTorrent = {
-          Session.Interface = "wg0-mulvad";
+          Session.Interface = "wg0-mullvad";
           Session.InterfaceName = "wg0-mullvad";
           Session.DefaultSavePath = cfg.defaultSavePath;
           Session.Preallocation = true;
