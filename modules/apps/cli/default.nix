@@ -21,6 +21,7 @@ in {
     ./mediainfo
     ./neovim
     ./nh
+    ./nix-alien
     ./nmap
     ./pueue
     ./ripgrep

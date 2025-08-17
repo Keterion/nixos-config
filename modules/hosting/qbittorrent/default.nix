@@ -39,7 +39,7 @@ in {
         LegalNotice.Accepted = true;
         WebUI = {
           AlternativeUIEnabled = cfg.vuetorrent.enable;
-          RootFolder = lib.optionalString "${pkgs.vuetorrent}/share/vuetorrent";
+          RootFolder = lib.optionalString cfg.vuetorrent.enable "${pkgs.vuetorrent}/share/vuetorrent";
         };
       };
     };
