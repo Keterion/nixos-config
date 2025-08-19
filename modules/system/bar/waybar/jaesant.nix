@@ -1,4 +1,8 @@
-{osConfig, ...}: let
+{
+  osConfig,
+  pkgs,
+  ...
+}: let
   color = osConfig.system.colors;
   workspace-icons = {
     "1" = "一";
@@ -13,6 +17,7 @@
     "10" = "十";
   };
 in {
+  home.packages = [pkgs.jq];
   programs.waybar = {
     enable = true;
     style = ''

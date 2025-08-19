@@ -17,7 +17,7 @@ in {
       enable = true;
       settings = {
         theme = with config.system.colors; {
-          manager = {
+          mgr = {
             cwd = {
               fg = "#${green}";
             };
@@ -197,11 +197,11 @@ in {
 
     programs.zsh.shellInit = lib.optionalString config.system.shell.zsh.enable ''
       function y() {
-	      local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	      yazi "$@" --cwd-file="$tmp"
-	      IFS= read -r -d '\' cwd < "$tmp"
-	      [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
-	      rm -f -- "$tmp"
+       local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+       yazi "$@" --cwd-file="$tmp"
+       IFS= read -r -d '\' cwd < "$tmp"
+       [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+       rm -f -- "$tmp"
       }
     '';
   };
