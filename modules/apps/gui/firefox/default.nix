@@ -110,7 +110,7 @@ in {
                       url = "https://home-manager-options.extranix.com";
                     }
                     {
-                      name = "NueschOS Search";
+                      name = "NueschtOS Search";
                       url = "https://search.nüschtos.de";
                     }
                     {
