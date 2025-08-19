@@ -248,6 +248,8 @@
     };
   };
 
+  scripts.motion_extraction.enable = true;
+
   fileSystems."/mnt/Games" = {
     device = "dev/disk/by-uuid/3212add8-8af3-46c6-a739-cfc018bd72ac";
     fsType = "ext4";
