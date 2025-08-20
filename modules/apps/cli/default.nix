@@ -18,6 +18,7 @@ in {
     ./ffmpeg
     ./fzf
     ./git
+    ./lazygit
     ./mediainfo
     ./neovim
     ./nh
