@@ -12,7 +12,14 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    services.printing.enable = true;
+    services.printing = {
+      enable = true;
+      drivers = with pkgs; [
+        cups-browsed
+        cups-filters
+        cups-brother-mfcl2750dw
+      ];
+    };
     services.avahi = lib.mkIf cfg.autodiscovery.enable {
       enable = true;
       nssmdns4 = true;
@@ -25,8 +32,22 @@ in {
     };
     hardware.sane = {
       enable = true;
-      extraBackends = [pkgs.hplipWithPlugin];
+      #extraBackends = [pkgs.hplipWithPlugin];
     };
-    services.printing.drivers = [pkgs.hplip];
+    environment.systemPackages = with pkgs; [
+      ghostscript
+    ];
+
+    hardware.printers.ensurePrinters = [
+      {
+        name = "Brother_MFC-L2827DW";
+        location = "Home";
+        deviceUri = "ipp://BRW2C9C58F3D389.local:631/ipp/print";
+        model = "everywhere";
+        ppdOptions = {
+          PageSize = "A4";
+        };
+      }
+    ];
   };
 }
