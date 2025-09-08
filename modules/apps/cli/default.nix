@@ -30,6 +30,7 @@ in {
     ./spotdl
     ./tdf
     ./testssl
+    ./typst
     ./yazi
     ./yt-dlp
     ./zip

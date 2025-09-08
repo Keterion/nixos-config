@@ -1,5 +1,9 @@
- { lib, pkgs, config, ... }:
-let
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}: let
   cfg = config.apps.zip;
 in {
   options.apps.zip.enable = lib.mkOption {

@@ -37,16 +37,12 @@ in {
             nowait = true;
             desc = "Toggle tree as left sidebar";
           }
-          {
-            key = "<leader>s";
-            mode = ["n" "v"];
-            action = ":AerialToggle<CR>";
-            silent = true;
-            unique = true;
-            nowait = true;
-            desc = "Open aerial";
-          }
         ];
+
+        utility.outline.aerial-nvim = {
+          enable = true;
+          mappings.toggle = "<leader>s";
+        };
 
         viAlias = cfg.aliases.enable;
         vimAlias = cfg.aliases.enable;
@@ -117,11 +113,11 @@ in {
             lsp.enable = true;
             treesitter.enable = true;
           };
-        };
-        extraPlugins = {
-          aerial = {
-            package = pkgs.vimPlugins.aerial-nvim;
-            setup = "require('aerial').setup {}";
+          markdown = {
+            enable = true;
+            extensions.markview-nvim = {
+              enable = true;
+            };
           };
         };
       };
