@@ -103,6 +103,14 @@ in {
             syncXattrs = true;
             sendXattrs = true;
           };
+          "o0gxy-s1rof" = {
+            label = "Whatsapp Media";
+            path = "/mnt/HDD/Bilder/Whatsapp Media/";
+            devices = ["Pixel 8 Pro" "Laptop" "Main" "SM-A715F"];
+            syncXattrs = true;
+            sendXattrs = true;
+            type = "receiveonly";
+          };
         };
       };
     };
