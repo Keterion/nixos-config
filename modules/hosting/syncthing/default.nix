@@ -111,6 +111,13 @@ in {
             sendXattrs = true;
             type = "receiveonly";
           };
+          "aci0b-orq3j" = {
+            label = "University";
+            path = "/home/etherion/Documents/School/University/";
+            devices = ["Pixel 8 Pro" "Laptop" "Main"];
+            syncXattrs = true;
+            sendXattrs = true;
+          };
         };
       };
     };
