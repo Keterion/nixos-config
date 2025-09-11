@@ -112,9 +112,12 @@ in {
             format.enable = true;
             lsp.enable = true;
             treesitter.enable = true;
+            extensions = {
+              typst-preview-nvim.enable = true;
+            };
           };
           markdown = {
-            enable = true;
+            enable = false;
             extensions.markview-nvim = {
               enable = true;
             };
