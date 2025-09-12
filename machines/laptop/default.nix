@@ -175,14 +175,14 @@
   };
 
   hosting = {
-    openFirewall = true;
-    ip = "192.168.10.115";
+    openFirewall = false;
+    ip = "localhost";
     defaultGroup = "server";
 
     copyparty.enable = true;
     syncthing.enable = true;
     firefox-syncserver = {
-      enable = true;
+      enable = false;
       setFirefoxServer = true;
     };
     mpd = {
