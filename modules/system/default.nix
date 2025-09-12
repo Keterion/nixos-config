@@ -16,6 +16,7 @@
     ./secrets
     ./security
     ./shell
+    ./ssh
     ./terminal
     #    ./tools
     ./wm

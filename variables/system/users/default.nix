@@ -37,6 +37,10 @@ in {
       isNormalUser = lib.mkDefault true;
       name = cfg.default.name;
       uid = 1000;
+
+      openssh.authorizedKeys.keys = [
+        (builtins.readFile ./id_etherion.pub)
+      ];
     };
     home-manager.users.${cfg.default.name}.home = {
       stateVersion = config.system.stateVersion;

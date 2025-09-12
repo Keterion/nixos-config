@@ -37,6 +37,11 @@
     networking = {
       enable = true;
     };
+    ssh = {
+      enable = true;
+      fail2ban = true;
+    };
+
     bluetooth.enable = true;
     fonts = with pkgs; [
       nerd-fonts.hack
