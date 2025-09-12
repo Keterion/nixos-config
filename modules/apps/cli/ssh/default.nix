@@ -7,12 +7,13 @@
   cfg = config.apps.ssh;
 in {
   options.apps.ssh.enable = lib.mkOption {
-    default = config.apps.modules.cli.media.enable;
+    default = true;
     type = lib.types.bool;
     description = "Whether to enable tdf for viewing pdfs in supported terminals.";
   };
   config = lib.mkIf cfg.enable {
     programs.ssh = {
+      enable = true;
       extraConfig = "
         Host local
           Hostname localhost
