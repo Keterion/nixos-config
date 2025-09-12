@@ -75,6 +75,19 @@ in {
 
         ui.colorizer.enable = true;
 
+        snippets.luasnip = {
+          enable = true;
+          #  customSnippets.snipmate = lib.mkIf config.programs.nvf.settings.vim.languages.typst.enable {
+          #    typst = [
+          #      {
+          #        trigger = "table";
+          #        body = "#table(columns:$1, table.header($2))";
+          #        description = "Generate a table";
+          #      }
+          #    ];
+          #  };
+        };
+
         statusline.lualine.enable = true;
         autocomplete.nvim-cmp.enable = true;
         lsp.formatOnSave = true;
@@ -109,7 +122,10 @@ in {
           };
           typst = {
             enable = true;
-            format.enable = true;
+            format = {
+              enable = true;
+              type = "typstyle";
+            };
             lsp.enable = true;
             treesitter.enable = true;
             extensions = {
