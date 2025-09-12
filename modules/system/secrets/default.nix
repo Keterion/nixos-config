@@ -19,6 +19,8 @@
       secrets = {
         "private_keys/etherion" = {
           path = "/home/etherion/.ssh/id_ed25519";
+          owner = "etherion";
+          mode = "0644";
         };
       };
     };

@@ -21,16 +21,16 @@ in {
   config = lib.mkIf cfg.enable {
     services.openssh = {
       enable = true;
-      #ports = [cfg.ssh.port];
+      ports = [cfg.port];
       settings = {
         PasswordAuthentication = false;
         KbdInteractiveAuthentication = false;
         PermitRootLogin = "no";
         AllowUsers = [config.system.users.default.name];
-        X11Forwarding = "no";
+        X11Forwarding = false;
         AllowTcpForwarding = "no";
       };
     };
-    services.fail2ban.enable = cfg.ssh.fail2ban;
+    services.fail2ban.enable = cfg.fail2ban;
   };
 }
