@@ -55,7 +55,24 @@ in {
           autoindent = false;
         };
 
-        autopairs.nvim-autopairs.enable = true;
+        mini.pairs = {
+          enable = true;
+          setupOpts = {
+            mappings = {
+              "$" = {
+                action = "closeopen";
+                pair = "$$";
+                neigh_pattern = "[^\\].";
+              };
+            };
+          };
+        };
+        #autopairs.nvim-autopairs = {
+        #  enable = true;
+        #  setupOpts = {
+
+        #  };
+        #};
 
         binds.hardtime-nvim = {
           enable = true;
