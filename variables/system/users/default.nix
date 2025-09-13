@@ -39,7 +39,8 @@ in {
       uid = 1000;
 
       openssh.authorizedKeys.keys = [
-        (builtins.readFile ./id_etherion.pub)
+        (builtins.readFile ./etherion_main.pub)
+        (builtins.readFile ./etherion_laptop.pub)
       ];
     };
     home-manager.users.${cfg.default.name}.home = {

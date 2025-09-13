@@ -73,6 +73,22 @@
           home-manager.nixosModules.home-manager
         ];
       };
+      server = nixpkgs.lib.nixosSystem {
+      	system = "x86_64-linux";
+	specialArgs = {
+	  myUtils = import ./utils.nix {inherit inputs;};
+	  inherit inputs;
+	};
+	modules = [
+	  {nixpkgs.overlays = [inputs.nur.overlays.default overlays.stable-packages];}
+	  ./machines/common.nix
+	  ./machines/server
+
+	  inputs.nvf.nixosModules.default
+
+	  home-manager.nixosModules.home-manager
+	];
+      };
     };
   };
 }
