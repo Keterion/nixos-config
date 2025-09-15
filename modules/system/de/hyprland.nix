@@ -63,9 +63,9 @@ in {
       defaultSession = "hyprland";
     };
 
-    environment.systemPackages = with pkgs; [
-      playerctl
-    ];
+    #environment.systemPackages = with pkgs; [
+    #  playerctl
+    #];
 
     services.gnome.gnome-keyring.enable = cfg.utils.enable;
 
@@ -106,7 +106,7 @@ in {
       };
 
       wayland.windowManager.hyprland.settings.exec-once = lib.optionals config.system.audio.mpdris.enable [
-        "mpDris2 --host=${config.hosting.mpd.ip} --port ${toString config.hosting.mpd.port}"
+        "${pkgs.mpdris2}/bin/mpDris2 --host=${config.hosting.mpd.ip} --port ${toString config.hosting.mpd.port}"
       ];
       home.packages = with pkgs;
         lib.optionals cfg.utils.enable [
