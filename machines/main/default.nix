@@ -138,6 +138,7 @@
     #thunderbird.enable = true; #TODO: protonmail-bridge
     discord.vencord.enable = true;
     freecad.fem.enable = true;
+    meshroom.enable = false;
     eza = {
       shellIntegration = true;
       overrides.shellIntegration.nushell.enable = false;
