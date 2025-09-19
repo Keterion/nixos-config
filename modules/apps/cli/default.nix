@@ -7,6 +7,7 @@
 in {
   imports = [
     ./bat
+    ./bc
     ./beets
     ./bottom
     ./brightnessctl
