@@ -5,8 +5,10 @@
 }: {
   imports = [./hardware-configuration.nix];
   networking.hostName = "laptop";
+  networking.networkmanager.enable = true;
   system.users.default = {
     name = "etherion";
+    extraGroups = ["networkmanager"];
     git = {
       name = "Keterion";
       email = "100532848+Keterion@users.noreply.github.com";
@@ -30,7 +32,6 @@
     firewall.enable = true;
     networking = {
       enable = true;
-      wireless.enable = false;
     };
     bluetooth.enable = true;
     fonts = with pkgs; [
@@ -103,7 +104,10 @@
       };
     };
 
-    terminal.kitty.enable = true;
+    terminal.kitty = {
+      enable = true;
+      default = true;
+    };
 
     printing = {
       enable = true;

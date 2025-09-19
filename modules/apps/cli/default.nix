@@ -24,6 +24,7 @@ in {
     ./nh
     ./nix-alien
     ./nmap
+    ./nmtui
     ./pueue
     ./ripgrep
     ./rmpc

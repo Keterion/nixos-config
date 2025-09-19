@@ -24,7 +24,7 @@ in {
   };
   config =
     lib.mkIf cfg.enable {
-      networking.networkmanager.enable = !cfg.wireless.enable;
+      networking.networkmanager.enable = true;
       networking.wireless = lib.mkIf cfg.wireless.enable {
         enable = cfg.wireless.enable;
         userControlled.enable = true;
