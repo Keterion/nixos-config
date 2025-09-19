@@ -39,15 +39,15 @@ in {
     ];
 
     hardware.printers.ensurePrinters = [
-      {
-        name = "Brother_MFC-L2827DW";
-        location = "Home";
-        deviceUri = "ipp://BRW2C9C58F3D389.local:631/ipp/print";
-        model = "everywhere";
-        ppdOptions = {
-          PageSize = "A4";
-        };
-      }
+      #{
+      #  name = "Brother_MFC-L2827DW";
+      #  location = "Home";
+      #  deviceUri = "ipp://BRW2C9C58F3D389.local:631/ipp/print";
+      #  model = "everywhere";
+      #  ppdOptions = {
+      #    PageSize = "A4";
+      #  };
+      #}
     ];
   };
 }
