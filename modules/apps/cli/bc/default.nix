@@ -9,7 +9,7 @@ in {
   options.apps.bc = {
     enable = lib.mkOption {
       type = lib.types.bool;
-      default = config.apps.cli.modules.utils.enable;
+      default = config.apps.modules.cli.utils.enable;
     };
   };
 
