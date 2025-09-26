@@ -256,7 +256,8 @@
 
   scripts = {
     motion_extraction.enable = true;
-    misc.enable = true;
+    snapchat.enable = true;
+    compatibility.enable = true;
   };
 
   fileSystems."/mnt/Games" = {
