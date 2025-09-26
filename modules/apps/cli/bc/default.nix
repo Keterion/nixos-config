@@ -9,7 +9,7 @@ in {
   options.apps.bc = {
     enable = lib.mkOption {
       type = lib.types.bool;
-      default = config.apps.cli.modules.utils.enable;
+      default = config.apps.modules.cli.utils.enable;
     };
   };
 
@@ -17,5 +17,8 @@ in {
     environment.systemPackages = with pkgs; [
       bc
     ];
+    system.shell.aliases = {
+      "bc" = "${pkgs.bc}/bin/bc -l";
+    };
   };
 }
