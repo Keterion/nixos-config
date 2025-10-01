@@ -6,6 +6,12 @@
   imports = [./hardware-configuration.nix];
   networking.hostName = "laptop";
   networking.networkmanager.enable = true;
+
+  networking.wireless.networks = {
+    eduroam = {
+    };
+  };
+
   system.users.default = {
     name = "etherion";
     extraGroups = ["networkmanager"];
