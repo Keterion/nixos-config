@@ -10,13 +10,22 @@ in {
     };
 
   mkSimpleOption = {
-    tree ? "",
+    tree,
     name,
     package,
-  }: rec {
-    options.${tree}.${name}.enable = lib.mkEnableOption "${name}";
+    config,
+  }: let
+    attrsPath =
+      (
+        lib.splitStringBy (_: curr: builtins.elem curr ["."]) false "${tree}"
+      )
+      ++ ["${name}"];
+  in {
+    options = lib.setAttrByPath attrsPath {
+      enable = lib.mkEnableOption "${name}";
+    };
 
-    config = lib.mkIf options.${tree}.${name}.enable {
+    config = lib.mkIf (lib.getAttrFromPath attrsPath config).enable {
       environment.systemPackages = [
         package
       ];

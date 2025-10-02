@@ -128,6 +128,7 @@
 
   apps = {
     modules.all.enable = true; # Enables all apps under modules/apps
+    bat.enable = true;
     firefox = {
       arkenfox = true;
       vim.enable = false;
