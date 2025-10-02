@@ -124,6 +124,7 @@
   apps = {
     modules.all.enable = false; # Enables all apps under modules/apps
     modules.cli.all.enable = true;
+    bat.enable = true;
     firefox = {
       enable = true;
       arkenfox = true;
