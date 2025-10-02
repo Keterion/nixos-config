@@ -17,11 +17,11 @@ in {
   config = {
     environment.systemPackages = lib.optionals cfg.compatibility.enable [
       (pkgs.writeShellScriptBin "compat_run" ''
-        if ${pkgs.steam-run}/bin/steam-run ./$1; then
+        if ${pkgs.steam-run}/bin/steam-run "./$1"; then
           echo "Ran using steam-run"
-        elif ${inputs.nix-alien.packages."x86_64-linux".nix-alien}/bin/nix-alien $1; then
+        elif ${inputs.nix-alien.packages."x86_64-linux".nix-alien}/bin/nix-alien "$1"; then
           echo "Ran using nix-alien"
-        elif wine $1; then
+        elif wine "$1"; then
           echo "Ran using wine."
         fi
       '')

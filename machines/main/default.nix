@@ -92,6 +92,7 @@
           aliases = {
             ll = "ls -la";
             l = "ls -la";
+            nohist = "unset HISTFILE";
           };
         };
         user = {
