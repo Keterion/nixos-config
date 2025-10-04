@@ -33,7 +33,7 @@ in {
           };
           listener = [
             {
-              timeout = 900;
+              timeout = 330;
               on-timeout = "${config.system.screenlocker.command}";
             }
             {
