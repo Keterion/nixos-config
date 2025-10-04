@@ -11,8 +11,7 @@ in {
     type = lib.types.bool;
     description = "Whether to enable jellyfin media player.";
   };
-  config = builtins.trace "jellyfin-media-player permits an unsecure package" lib.mkIf cfg.enable {
-    nixpkgs.config.permittedInsecurePackages = ["qtwebengine-5.15.19"];
+  config = lib.mkIf cfg.enable {
     home-manager.users.${config.system.users.default.name}.home.packages = [
       pkgs.stable.jellyfin-media-player
     ];
