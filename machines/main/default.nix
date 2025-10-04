@@ -155,7 +155,7 @@
   };
 
   apps.beets.config = {
-    directory = "/home/${config.system.users.default.name}/Music/songs";
+    directory = "/home/${config.system.users.default.name}/Music/songs/processed";
     asciify_paths = true;
     import = {
       write = true;
@@ -166,6 +166,13 @@
     };
     plugins = ["chroma" "mbsync" "lyrics" "replaygain" "lastgenre" "edit" "duplicates"];
     replaygain.backend = "ffmpeg";
+
+    paths = {
+      default = "$albumartist/$album%aunique{}_$original_year/$artist-$album-$title";
+      singleton = "$albumartist/$title_$original_year/$artist-$title";
+      comp = "Compilations/$album%aunique{}/$track-$title";
+    };
+    match.distance_weights.missing_tracks = 0.0;
   };
 
   hosting = {
