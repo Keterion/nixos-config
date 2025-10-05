@@ -1,5 +1,9 @@
-{ lib, pkgs, config, ... }:
-let
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}: let
   cfg = config.apps.speedcrunch;
 in {
   options.apps.speedcrunch.enable = lib.mkOption {

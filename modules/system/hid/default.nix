@@ -1,5 +1,9 @@
-{ lib, pkgs, config, ... }:
-let
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}: let
   cfg = config.system.hid;
 in {
   options.system.hid = {
@@ -12,9 +16,10 @@ in {
   };
 
   config = {
-    environment.systemPackages = with pkgs; lib.optionals cfg.gamepad.dualsense.enable [
-      dualsensectl
-    ];
+    environment.systemPackages = with pkgs;
+      lib.optionals cfg.gamepad.dualsense.enable [
+        dualsensectl
+      ];
     hardware.opentabletdriver = {
       enable = cfg.tablet.enable;
       daemon.enable = cfg.tablet.enable;

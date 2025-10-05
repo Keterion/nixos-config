@@ -1,7 +1,7 @@
-{ lib, ... }: {
+{lib, ...}: {
   options = {
     profile = lib.mkOption {
-      type = lib.types.enum[];
+      type = lib.types.enum [];
     };
   };
 }

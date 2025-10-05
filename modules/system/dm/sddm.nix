@@ -1,11 +1,14 @@
-{ lib, config, ... }:
-let
+{
+  lib,
+  config,
+  ...
+}: let
   cfg = config.system.dm.sddm;
 in {
   options.system.dm.sddm = {
     enable = lib.mkEnableOption "sddm";
     styleProfile = lib.mkOption {
-      type = lib.types.enum["default"];
+      type = lib.types.enum ["default"];
       default = "default";
       description = "Style profile to use";
     };
