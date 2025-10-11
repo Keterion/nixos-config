@@ -48,6 +48,10 @@
       layout = "us";
       variant = "dvorak";
     };
+    terminal.kitty = {
+      enable = true;
+      default = true;
+    };
     de = {
       hyprland = {
         enable = true;
@@ -111,7 +115,12 @@
     modules.all.enable = false; # Enables all apps under modules/apps
     modules.cli.all.enable = true;
     mullvad-vpn.enable = false;
-
+    firefox.enable = true;
+    games.steam = {
+      enable = true;
+      compat = true;
+      backup = true;
+    };
     eza = {
       shellIntegration = true;
       overrides.shellIntegration.nushell.enable = false;
