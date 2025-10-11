@@ -1,8 +1,13 @@
 {
   osConfig,
   lib,
+  pkgs,
   ...
-}: {
+}: let
+  wpctl = "${pkgs.wireplumber}/bin/wpctl";
+  playerctl = "${pkgs.playerctl}/bin/playerctl";
+  systemctl = "${pkgs.systemd}/bin/systemctl";
+in {
   services.hyprpaper = lib.mkIf osConfig.system.de.hyprland.hyprpaper.enable {
     enable = true;
     settings = {
@@ -46,8 +51,8 @@
       };
       cursor.no_hardware_cursors = true;
       monitor = [
-        "DP-1, 2560x1440@165, 0x0, 1"
-        "HDMI-A-1, preferred, 2560x0, 1"
+        "DP-1, 2560x1440@165, 0x0, 1.3333334"
+        "HDMI-A-1, preferred, auto-right, 1"
         ", preferred, auto, 1"
       ];
 
@@ -63,16 +68,16 @@
 
       bind = [
         "$launchMod, R, exec, exec $(${osConfig.system.runner.command})"
-        "$launchMod, E, exec, dolphin" #Filemanager thingy
-        "$launchMod, Return, exec, kitty" #terminal thingy
+        "$launchMod, E, exec, $TERMINAL -- ${pkgs.yazi}/bin/yazi" #Filemanager thingy
+        "$launchMod, Return, exec, $TERMINAL" #terminal thingy
 
         "$windowMod, C, killactive"
         "$windowMod, F, fullscreen"
 
         "$systemMod, E, exit,"
-        "$systemMod, P, exec, systemctl poweroff"
-        "$systemMod, R, exec, systemctl reboot"
-        "$systemMod, H, exec, hyprctl reload"
+        "$systemMod, P, exec, ${systemctl} poweroff"
+        "$systemMod, R, exec, ${systemctl} reboot"
+        "$systemMod, H, exec, ${pkgs.hyprland}/bin/hyprctl reload"
         "$systemMod, L, exec, ${osConfig.system.screenlocker.command}"
         "$systemMod, S, exec, ${osConfig.system.screenlocker.command} & systemctl suspend"
 
@@ -107,16 +112,16 @@
 
         "$windowMod, Space, togglefloating, active"
 
-        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+ -l 1.5"
-        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05- -l 1.5"
-        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-        ", XF86AudioPlay, exec, playerctl play-pause"
-        ", XF86AudioNext, exec, playerctl next"
-        ", XF86AudioPrev, exec, playerctl previous"
-        ", XF86AudioMicMute, exec, wpctl set-mute 48 toggle"
+        ", XF86AudioRaiseVolume, exec, ${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 0.05+ -l 1.5"
+        ", XF86AudioLowerVolume, exec, ${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 0.05- -l 1.5"
+        ", XF86AudioMute, exec, ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        ", XF86AudioPlay, exec, ${playerctl} play-pause"
+        ", XF86AudioNext, exec, ${playerctl} next"
+        ", XF86AudioPrev, exec, ${playerctl} previous"
+        ", XF86AudioMicMute, exec, ${wpctl} set-mute 48 toggle"
 
-        ", XF86MonBrightnessUp, exec, brightnessctl set +5%"
-        ", XF86MonBrightnessDown, exec, brightnessctl set 5%-"
+        ", XF86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl set +5%"
+        ", XF86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 5%-"
       ];
       bindm = [
         "$mod, mouse:272, movewindow"

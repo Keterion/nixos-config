@@ -1,4 +1,9 @@
-{ config, lib, myUtils, ... }: {
+{
+  config,
+  lib,
+  myUtils,
+  ...
+}: {
   options.system.firewall = {
     enable = myUtils.mkEnabledOption "the firewall";
     allowedTCPPorts = lib.mkOption {

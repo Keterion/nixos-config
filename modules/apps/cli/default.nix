@@ -7,6 +7,7 @@
 in {
   imports = [
     ./bat
+    ./bc
     ./beets
     ./bottom
     ./brightnessctl
@@ -24,6 +25,7 @@ in {
     ./nh
     ./nix-alien
     ./nmap
+    ./nmtui
     ./pueue
     ./ripgrep
     ./rmpc

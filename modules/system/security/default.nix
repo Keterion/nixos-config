@@ -1,5 +1,8 @@
-{ config, lib, ... }: 
-let
+{
+  config,
+  lib,
+  ...
+}: let
   cfg = config.system.security;
 in {
   options.system.security = {

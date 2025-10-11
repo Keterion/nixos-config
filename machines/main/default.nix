@@ -99,6 +99,7 @@
           aliases = {
             ll = "ls -la";
             l = "ls -la";
+            nohist = "unset HISTFILE";
           };
         };
         user = {
@@ -134,6 +135,7 @@
 
   apps = {
     modules.all.enable = true; # Enables all apps under modules/apps
+    bat.enable = true;
     firefox = {
       arkenfox = true;
       vim.enable = false;
@@ -145,6 +147,7 @@
     #thunderbird.enable = true; #TODO: protonmail-bridge
     discord.vencord.enable = true;
     freecad.fem.enable = true;
+    meshroom.enable = false;
     eza = {
       shellIntegration = true;
       overrides.shellIntegration.nushell.enable = false;
@@ -159,7 +162,7 @@
   };
 
   apps.beets.config = {
-    directory = "/home/${config.system.users.default.name}/Music/songs";
+    directory = "/home/${config.system.users.default.name}/Music/songs/processed";
     asciify_paths = true;
     import = {
       write = true;
@@ -170,6 +173,13 @@
     };
     plugins = ["chroma" "mbsync" "lyrics" "replaygain" "lastgenre" "edit" "duplicates"];
     replaygain.backend = "ffmpeg";
+
+    paths = {
+      default = "$albumartist/$album%aunique{}_$original_year/$artist-$album-$title";
+      singleton = "$albumartist/$title_$original_year/$artist-$title";
+      comp = "Compilations/$album%aunique{}/$track-$title";
+    };
+    match.distance_weights.missing_tracks = 0.0;
   };
 
   hosting = {
@@ -262,7 +272,8 @@
 
   scripts = {
     motion_extraction.enable = true;
-    misc.enable = true;
+    snapchat.enable = true;
+    compatibility.enable = true;
   };
 
   fileSystems."/mnt/Games" = {

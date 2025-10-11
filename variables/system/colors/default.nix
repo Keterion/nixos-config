@@ -1,8 +1,12 @@
-{ config, lib, ... }: {
+{
+  config,
+  lib,
+  ...
+}: {
   options.system = {
     colorscheme = lib.mkOption {
       default = "tokyonight-moon";
-      type = lib.types.enum["tokyonight-moon" "catppuccin-mocha" "gruvbox-dark"];
+      type = lib.types.enum ["tokyonight-moon" "catppuccin-mocha" "gruvbox-dark"];
       description = "Which colorscheme to use for the system";
     };
     colors = {

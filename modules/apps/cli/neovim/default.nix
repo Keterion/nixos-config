@@ -37,11 +37,27 @@ in {
             nowait = true;
             desc = "Toggle tree as left sidebar";
           }
+          {
+            key = "<leader>s";
+            mode = ["n"];
+            action = ":AerialToggle right<CR>";
+            silent = true;
+            unique = true;
+            nowait = true;
+            desc = "Open aerial on right side";
+          }
         ];
 
         utility.outline.aerial-nvim = {
           enable = true;
-          mappings.toggle = "<leader>s";
+          #mappings.toggle = "<leader>s";
+          setupOpts = {
+            autojump = true;
+
+            manage_folds = true;
+
+            close_on_select = true;
+          };
         };
 
         viAlias = cfg.aliases.enable;

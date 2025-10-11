@@ -1,5 +1,9 @@
-{ lib, pkgs, config, ... }:
-let
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}: let
   cfg = config.apps.jellyfin-media-player;
 in {
   options.apps.jellyfin-media-player.enable = lib.mkOption {
@@ -9,7 +13,7 @@ in {
   };
   config = lib.mkIf cfg.enable {
     home-manager.users.${config.system.users.default.name}.home.packages = [
-      pkgs.jellyfin-media-player
+      pkgs.stable.jellyfin-media-player
     ];
   };
 }

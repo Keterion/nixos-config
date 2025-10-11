@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: let
   cfg = config.hosting.jellyfin;
@@ -40,6 +41,7 @@ in {
   config = lib.mkIf cfg.enable {
     hosting.enabledServices = ["jellyfin"];
     services.jellyfin = {
+      package = pkgs.stable.jellyfin;
       enable = true;
       group = cfg.group;
       openFirewall = cfg.openFirewall;

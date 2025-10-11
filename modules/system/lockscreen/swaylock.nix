@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   cfg = config.system.screenlocker.swaylock;
@@ -12,7 +13,7 @@ in {
   config = lib.mkIf cfg.enable {
     system.screenlocker = {
       name = "swaylock";
-      command = lib.mkDefault "swaylock";
+      command = lib.mkDefault "${pkgs.swaylock}/bin/swaylock";
     };
 
     home-manager.users.${config.system.users.default.name} = {

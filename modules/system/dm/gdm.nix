@@ -1,5 +1,8 @@
-{ lib, config, ... }:
-let
+{
+  lib,
+  config,
+  ...
+}: let
   cfg = config.system.dm.gdm;
 in {
   options.system.dm.gdm = {
@@ -8,13 +11,13 @@ in {
       type = lib.types.str;
       default = config.system.dm.greet;
       example = ''
-	foo
-	bar
-	baz
+        foo
+        bar
+        baz
       '';
     };
     styleProfile = lib.mkOption {
-      type = lib.types.enum["default" "etherion"];
+      type = lib.types.enum ["default" "etherion"];
       default = "default";
       example = "etherion";
       description = "Style profile to use";

@@ -1,5 +1,9 @@
- { lib, pkgs, config, ... }:
-let
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}: let
   cfg = config.apps.encfs;
 in {
   options.apps.encfs.enable = lib.mkOption {

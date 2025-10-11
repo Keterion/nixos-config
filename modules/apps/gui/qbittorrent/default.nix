@@ -1,5 +1,9 @@
-{ lib, pkgs, config, ... }:
-let
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}: let
   cfg = config.apps.qbittorrent;
 in {
   options.apps.qbittorrent.enable = lib.mkOption {

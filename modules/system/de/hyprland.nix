@@ -33,7 +33,7 @@ in {
           };
           listener = [
             {
-              timeout = 900;
+              timeout = 330;
               on-timeout = "${config.system.screenlocker.command}";
             }
             {
@@ -63,24 +63,24 @@ in {
       defaultSession = "hyprland";
     };
 
-    environment.systemPackages = with pkgs; [
-      playerctl
-    ];
+    #environment.systemPackages = with pkgs; [
+    #  playerctl
+    #];
 
     services.gnome.gnome-keyring.enable = cfg.utils.enable;
 
     xdg.portal = {
       enable = cfg.utils.enable;
-      wlr.enable = cfg.utils.enable;
       extraPortals = lib.optionals cfg.utils.enable [
         pkgs.xdg-desktop-portal-hyprland
         pkgs.xdg-desktop-portal-gtk
-        pkgs.kdePackages.xdg-desktop-portal-kde
-        pkgs.xdg-desktop-portal-wlr
       ];
     };
 
-    programs.hyprland.enable = true;
+    programs.hyprland = {
+      enable = true;
+      withUWSM = true;
+    };
 
     home-manager.users.${config.system.users.default.name} = {
       imports = [
@@ -106,7 +106,7 @@ in {
       };
 
       wayland.windowManager.hyprland.settings.exec-once = lib.optionals config.system.audio.mpdris.enable [
-        "mpDris2 --host=${config.hosting.mpd.ip} --port ${toString config.hosting.mpd.port}"
+        "${pkgs.mpdris2}/bin/mpDris2 --host=${config.hosting.mpd.ip} --port ${toString config.hosting.mpd.port}"
       ];
       home.packages = with pkgs;
         lib.optionals cfg.utils.enable [

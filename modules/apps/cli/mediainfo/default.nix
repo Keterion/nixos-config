@@ -1,5 +1,9 @@
- { lib, pkgs, config, ... }:
-let
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}: let
   cfg = config.apps.mediainfo;
 in {
   options.apps.mediainfo.enable = lib.mkOption {
