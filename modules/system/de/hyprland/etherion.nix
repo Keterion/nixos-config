@@ -53,6 +53,7 @@ in {
       monitor = [
         "DP-1, 2560x1440@165, 0x0, 1.3333334"
         "HDMI-A-1, preferred, auto-right, 1"
+        "desc:Dell Inc. DELL P2217 X80N97A80G4I, preferred, auto, 1"
         ", preferred, auto, 1"
       ];
 

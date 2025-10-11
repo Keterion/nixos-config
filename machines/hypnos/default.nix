@@ -12,6 +12,14 @@
       email = "100532848+Keterion@users.noreply.github.com";
     };
   };
+
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 12 * 1024; # 12GB + 4GB RAM = 16
+    }
+  ];
+
   system = {
     configDir = /etc/nixos;
     colorscheme = "tokyonight-moon";
@@ -51,6 +59,11 @@
     terminal.kitty = {
       enable = true;
       default = true;
+    };
+
+    bar.waybar = {
+      enable = true;
+      styleProfile = "haides002";
     };
     de = {
       hyprland = {
