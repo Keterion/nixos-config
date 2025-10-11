@@ -48,6 +48,29 @@
       layout = "us";
       variant = "dvorak";
     };
+    de = {
+      hyprland = {
+        enable = true;
+        autologin = false;
+        utils.enable = true;
+        styleProfile = "etherion";
+        hypridle.enable = true;
+        wlsunset.enable = true;
+        hyprpaper.enable = true;
+      };
+      plasma.enable = true;
+    };
+
+    screenlocker.swaylock.enable = true;
+
+    dm.sddm.enable = true;
+
+    runner = {
+      tofi = {
+        enable = true;
+        styleProfile = "etherion";
+      };
+    };
 
     shell = {
       zsh = {
