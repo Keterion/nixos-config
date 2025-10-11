@@ -30,6 +30,7 @@ in {
     ./spotdl
     ./tdf
     ./testssl
+    ./tmux
     ./typst
     ./yazi
     ./yt-dlp

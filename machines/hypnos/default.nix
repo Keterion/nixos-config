@@ -4,9 +4,9 @@
   ...
 }: {
   imports = [./hardware-configuration.nix];
-  networking.hostName = "server";
+  networking.hostName = "Hypnos";
   system.users.default = {
-    name = "server";
+    name = "Hypnos";
     git = {
       name = "Keterion";
       email = "100532848+Keterion@users.noreply.github.com";
@@ -18,7 +18,7 @@
     sops.age.keyFile = "/root/.config/sops/age/.age-keys.txt";
 
     audio.pipewire = {
-      enable = false;
+      enable = true;
       rtkit.enable = true;
       loopback.enable = true;
       compatibility.pulse.enable = true;
@@ -32,6 +32,10 @@
     networking = {
       enable = true;
       wireless.enable = false;
+    };
+    ssh = {
+      enable = true;
+      fail2ban = false;
     };
     bluetooth.enable = false;
     fonts = with pkgs; [

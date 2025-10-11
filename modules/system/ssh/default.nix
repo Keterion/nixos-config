@@ -21,9 +21,10 @@ in {
   config = lib.mkIf cfg.enable {
     services.openssh = {
       enable = true;
+      openFirewall = true;
       ports = [cfg.port];
       settings = {
-        PasswordAuthentication = false;
+        PasswordAuthentication = true;
         KbdInteractiveAuthentication = false;
         PermitRootLogin = "no";
         AllowUsers = [config.system.users.default.name];

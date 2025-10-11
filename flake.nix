@@ -73,21 +73,21 @@
           home-manager.nixosModules.home-manager
         ];
       };
-      server = nixpkgs.lib.nixosSystem {
-      	system = "x86_64-linux";
-	specialArgs = {
-	  myUtils = import ./utils.nix {inherit inputs;};
-	  inherit inputs;
-	};
-	modules = [
-	  {nixpkgs.overlays = [inputs.nur.overlays.default overlays.stable-packages];}
-	  ./machines/common.nix
-	  ./machines/server
+      Hypnos = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {
+          myUtils = import ./utils.nix {inherit inputs;};
+          inherit inputs;
+        };
+        modules = [
+          {nixpkgs.overlays = [inputs.nur.overlays.default overlays.stable-packages];}
+          ./machines/common.nix
+          ./machines/hypnos
 
-	  inputs.nvf.nixosModules.default
+          inputs.nvf.nixosModules.default
 
-	  home-manager.nixosModules.home-manager
-	];
+          home-manager.nixosModules.home-manager
+        ];
       };
     };
   };
