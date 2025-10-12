@@ -130,6 +130,7 @@
     mullvad-vpn.enable = false;
     firefox.enable = true;
     bc.enable = true;
+    zathura.enable = true;
     games.steam = {
       enable = true;
       compat = true;
