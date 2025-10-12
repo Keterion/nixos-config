@@ -129,10 +129,15 @@
     modules.cli.all.enable = true;
     mullvad-vpn.enable = false;
     firefox.enable = true;
+    bc.enable = true;
     games.steam = {
       enable = true;
       compat = true;
       backup = true;
+    };
+    discord = {
+      enable = true;
+      vencord.enable = true;
     };
     eza = {
       shellIntegration = true;
@@ -146,8 +151,8 @@
     ip = "localhost";
     defaultGroup = "server";
 
-    copyparty.enable = true;
-    syncthing.enable = true;
+    #copyparty.enable = true;
+    #syncthing.enable = true;
     firefox-syncserver = {
       enable = false;
       setFirefoxServer = true;
@@ -162,7 +167,7 @@
       user = "${config.system.users.default.name}";
     };
     navidrome = {
-      enable = true;
+      enable = false;
       directories = {
         music = "/home/${config.system.users.default.name}/Music/songs/";
         playlist = "/home/${config.system.users.default.name}/Music/songs/playlists/";
