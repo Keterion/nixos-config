@@ -55,6 +55,9 @@ in {
         "HDMI-A-1, preferred, auto-right, 1"
         ", preferred, auto, 1"
       ];
+      xwayland = {
+        force_zero_scaling = true;
+      };
 
       "$mod" = "SUPER";
       "$launchMod" = "SUPER";

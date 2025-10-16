@@ -129,6 +129,7 @@
   apps = {
     modules.all.enable = true; # Enables all apps under modules/apps
     bat.enable = true;
+    audacity.enable = true;
     firefox = {
       arkenfox = true;
       vim.enable = false;
@@ -149,6 +150,7 @@
     zoxide.shellIntegration = true;
     carapace.shellIntegration = true;
     games.steam = {
+      millennium.enable = false;
       compat = true;
       backup = true;
     };
