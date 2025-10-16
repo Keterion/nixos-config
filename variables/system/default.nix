@@ -22,13 +22,13 @@
       };
       variant = lib.mkOption {
         type = lib.types.str;
-        default = "";
+        default = "us";
         description = "Keyboard variant";
         example = "colemak";
       };
     };
   };
   config = {
-    console.keyMap = config.system.keyboard.variant;
+    console.keyMap = config.system.keyboard.layout;
   };
 }
