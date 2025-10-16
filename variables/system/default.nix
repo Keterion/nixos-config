@@ -28,4 +28,7 @@
       };
     };
   };
+  config = {
+    console.keyMap = config.system.keyboard.variant;
+  };
 }

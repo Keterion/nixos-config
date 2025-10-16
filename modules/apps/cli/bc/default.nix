@@ -1,24 +1,17 @@
 {
-  lib,
-  config,
   pkgs,
+  config,
+  myUtils,
   ...
-}: let
-  cfg = config.apps.bc;
-in {
-  options.apps.bc = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = config.apps.modules.cli.utils.enable;
-    };
-  };
-
-  config = lib.mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      bc
-    ];
+}:
+myUtils.mkSimpleOption {
+  tree = "apps";
+  name = "bc";
+  package = pkgs.bc;
+  extraConfig = {
     system.shell.aliases = {
       "bc" = "${pkgs.bc}/bin/bc -l";
     };
   };
+  inherit config;
 }

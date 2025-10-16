@@ -6,7 +6,7 @@
 }:
 myUtils.mkSimpleOption {
   tree = "apps";
-  name = "nmap";
-  package = pkgs.nmap;
+  name = "tmux";
+  package = pkgs.tmux;
   inherit config;
 }

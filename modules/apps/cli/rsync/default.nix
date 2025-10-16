@@ -1,4 +1,12 @@
-{ lib, config, ... }: let
-   cfg = config.apps.rsync;in {
-
+{
+  pkgs,
+  config,
+  myUtils,
+  ...
+}:
+myUtils.mkSimpleOption {
+  tree = "apps";
+  name = "rsync";
+  package = pkgs.rsync;
+  inherit config;
 }

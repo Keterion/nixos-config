@@ -29,6 +29,7 @@ in {
       enable = true;
       config = {
         init.defaultBranch = cfg.defaultBranch;
+        #safe.directory = config.system.configDir;
         url = {
           "https://github.com/" = {
             insteadOf = [

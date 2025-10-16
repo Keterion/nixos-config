@@ -13,6 +13,7 @@ in {
     tree,
     name,
     package,
+    extraConfig ? {},
     config,
   }: let
     attrsPath =
@@ -20,15 +21,18 @@ in {
         lib.splitStringBy (_: curr: builtins.elem curr ["."]) false "${tree}"
       )
       ++ ["${name}"];
+    mkConfig = (lib.getAttrFromPath attrsPath config).enable;
   in {
     options = lib.setAttrByPath attrsPath {
       enable = lib.mkEnableOption "${name}";
     };
 
-    config = lib.mkIf (lib.getAttrFromPath attrsPath config).enable {
-      environment.systemPackages = [
-        package
-      ];
-    };
+    config =
+      lib.mkIf mkConfig {
+        environment.systemPackages = [
+          package
+        ];
+      }
+      // lib.mkIf mkConfig extraConfig;
   };
 }
