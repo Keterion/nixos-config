@@ -11,7 +11,6 @@
     };
     sops-nix = {
       url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nur = {
@@ -31,6 +30,11 @@
       url = "github:thiagokokada/nix-alien";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    millenium = {
+      #steam theming
+      url = "git+https://github.com/SteamClientHomebrew/Millennium";
+    };
   };
 
   outputs = {
@@ -38,7 +42,12 @@
     home-manager,
     ...
   } @ inputs: let
-    overlays = import ./overlays.nix {inherit inputs;};
+    custom_overlays = import ./overlays.nix {inherit inputs;};
+    overlays = [
+      inputs.nur.overlays.default
+      custom_overlays.stable-packages
+      inputs.millenium.overlays.default
+    ];
   in {
     nixosConfigurations = {
       main = nixpkgs.lib.nixosSystem {
@@ -48,7 +57,7 @@
           inherit inputs;
         };
         modules = [
-          {nixpkgs.overlays = [inputs.nur.overlays.default overlays.stable-packages];}
+          {nixpkgs.overlays = overlays;}
           ./machines/common.nix
           ./machines/main
 
@@ -64,7 +73,7 @@
           inherit inputs;
         };
         modules = [
-          {nixpkgs.overlays = [inputs.nur.overlays.default overlays.stable-packages];}
+          {nixpkgs.overlays = overlays;}
           ./machines/common.nix
           ./machines/laptop
 

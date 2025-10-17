@@ -56,6 +56,9 @@ in {
         "desc:Dell Inc. DELL P2217 X80N97A80G4I, preferred, auto, 1"
         ", preferred, auto, 1"
       ];
+      xwayland = {
+        force_zero_scaling = true;
+      };
 
       "$mod" = "SUPER";
       "$launchMod" = "SUPER";

@@ -7,6 +7,7 @@
 in {
   imports = [
     ./aseprite
+    ./audacity
     ./betaflight
     ./blender
     ./discord

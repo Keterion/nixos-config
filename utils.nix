@@ -21,18 +21,17 @@ in {
         lib.splitStringBy (_: curr: builtins.elem curr ["."]) false "${tree}"
       )
       ++ ["${name}"];
-    mkConfig = (lib.getAttrFromPath attrsPath config).enable;
+    #mkConfig = (lib.getAttrFromPath attrsPath config).enable;
   in {
     options = lib.setAttrByPath attrsPath {
       enable = lib.mkEnableOption "${name}";
     };
 
-    config =
-      lib.mkIf mkConfig {
-        environment.systemPackages = [
-          package
-        ];
-      }
-      // lib.mkIf mkConfig extraConfig;
+    config = lib.mkIf config."${tree}"."${name}".enable {
+      environment.systemPackages = [
+        package
+      ];
+    };
+    #// lib.mkIf mkConfig extraConfig;
   };
 }
