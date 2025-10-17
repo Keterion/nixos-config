@@ -147,6 +147,11 @@ in {
             treesitter.enable = true;
             extraDiagnostics.enable = true;
           };
+          java = {
+            enable = true;
+            lsp.enable = true;
+            treesitter.enable = true;
+          };
           python = {
             enable = true;
             format.enable = true;

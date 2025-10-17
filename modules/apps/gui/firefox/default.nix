@@ -143,6 +143,28 @@ in {
                     }
                   ];
                 }
+                {
+                  name = "Uni";
+                  toolbar = false;
+                  bookmarks = [
+                    {
+                      name = "PAUL";
+                      url = "https://paul.uni-paderborn.de";
+                    }
+                    {
+                      name = "PANDA";
+                      url = "https://panda.uni-paderborn.de";
+                    }
+                    {
+                      name = "Pauline";
+                      url = "https://pauline-upb.de/";
+                    }
+                    {
+                      name = "Jupyter";
+                      url = "https://prog25.cs.uni-paderborn.de";
+                    }
+                  ];
+                }
               ];
             };
             extensions = {
