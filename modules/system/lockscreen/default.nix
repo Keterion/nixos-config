@@ -1,6 +1,7 @@
 {lib, ...}: {
   imports = [
     ./swaylock.nix
+    ./hyprlock.nix
   ];
 
   options.system.screenlocker = {

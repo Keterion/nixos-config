@@ -6,6 +6,8 @@
 }: let
   cfg = config.system.de.hyprland;
 in {
+  imports = [
+  ];
   options.system.de.hyprland = {
     enable = lib.mkEnableOption "hyprland.";
     autologin = lib.mkEnableOption "automatic login into hyprland with supported dms";

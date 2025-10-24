@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }: {
   imports = [./hardware-configuration.nix];
@@ -9,6 +10,36 @@
 
   networking.wireless.networks = {
     eduroam = {
+    };
+  };
+
+  sops.secrets."eduroam/password" = {};
+  sops.secrets."eduroam/identity" = {};
+  sops.templates."uni_vpn" = {
+    content = ''
+      username=${config.sops.placeholder."eduroam/identity"}
+      password=${config.sops.placeholder."eduroam/password"}
+    '';
+  };
+
+  services.openvpn.servers = let
+    mullvad = "${pkgs.mullvad-vpn}/bin/mullvad";
+  in {
+    uni = {
+      config = ''config /home/${config.system.users.default.name}/.cert/uni/vun.ovpn '';
+      autoStart = false;
+      authUserPass = config.sops.templates."uni_vpn".path;
+      updateResolvConf = false;
+      up =
+        lib.optionalString
+        config.apps.mullvad-vpn.enable ''
+          ${mullvad} disconnect
+          ${mullvad} lockdown-mode set off
+        '';
+      down = lib.optionalString config.apps.mullvad-vpn.enable ''
+        ${mullvad} reconnect
+        ${mullvad} lockdown-mode set on
+      '';
     };
   };
 
@@ -69,7 +100,7 @@
       plasma.enable = true;
     };
 
-    screenlocker.swaylock.enable = true;
+    screenlocker.hyprlock.enable = true;
 
     dm.sddm.enable = true;
 
@@ -142,7 +173,7 @@
       aliases.enable = true;
       defaultEditor = true;
     };
-    mullvad-vpn.enable = false;
+    mullvad-vpn.enable = true;
 
     betaflight.enable = false; # broken
     freecad.enable = true;
