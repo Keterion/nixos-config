@@ -12,7 +12,7 @@ in {
       type = lib.types.bool;
       description = "Whether to enable .";
     };
-    millennium.enable = lib.mkEnableOption "millenium theming (replaces the steam package)";
+    #millennium.enable = lib.mkEnableOption "millenium theming (replaces the steam package)";
     compat = lib.mkEnableOption "compatibility tools";
     backup = lib.mkEnableOption "ludusavi as a backup tool";
     remotePlay.openFirewall = lib.mkEnableOption "open firewall for remote play";
@@ -23,10 +23,7 @@ in {
   config = lib.mkIf cfg.enable {
     programs.steam = {
       enable = true;
-      package =
-        if cfg.millennium.enable
-        then pkgs.steam-millennium
-        else pkgs.steam;
+      package = pkgs.steam;
       remotePlay.openFirewall = cfg.remotePlay.openFirewall;
       dedicatedServer.openFirewall = cfg.dedicatedServer.openFirewall;
       gamescopeSession.enable = cfg.gamescopeSession.enable;
