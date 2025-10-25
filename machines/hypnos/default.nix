@@ -75,7 +75,10 @@
         styleProfile = "etherion";
         hypridle.enable = true;
         wlsunset.enable = true;
-        hyprpaper.enable = true;
+        hyprpaper = {
+          enable = true;
+          wallhaven.enable = true;
+        };
       };
       plasma.enable = true;
     };
@@ -126,6 +129,7 @@
     };
   };
 
+  scripts.api.wallhaven.enable = true;
   apps = {
     modules.all.enable = false; # Enables all apps under modules/apps
     modules.cli.all.enable = true;
@@ -134,11 +138,15 @@
     firefox.enable = true;
     bc.enable = true;
     zathura.enable = true;
-    games.steam = {
-      enable = true;
-      compat = true;
-      backup = true;
+    games = {
+      steam = {
+        enable = true;
+        compat = true;
+        backup = true;
+      };
+      minecraft.enable = true;
     };
+
     discord = {
       enable = true;
       vencord.enable = true;

@@ -8,15 +8,9 @@
   playerctl = "${pkgs.playerctl}/bin/playerctl";
   systemctl = "${pkgs.systemd}/bin/systemctl";
 in {
-  services.hyprpaper = lib.mkIf osConfig.system.de.hyprland.hyprpaper.enable {
-    enable = true;
-    settings = {
-      preload = ["~/Pictures/wallpaper.jpg"];
-      wallpaper = [",~/Pictures/wallpaper.jpg"];
-      ipc = "on";
-      splash = false;
-    };
-  };
+  imports = [
+    ./hyprpaper.nix
+  ];
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = true;

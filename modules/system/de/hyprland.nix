@@ -7,6 +7,7 @@
   cfg = config.system.de.hyprland;
 in {
   imports = [
+    ./hyprland/hyprpaper.nix
   ];
   options.system.de.hyprland = {
     enable = lib.mkEnableOption "hyprland.";
@@ -50,6 +51,7 @@ in {
     wlsunset.enable = lib.mkEnableOption "wlsunset";
     hyprpaper = {
       enable = lib.mkEnableOption "hyprpaper";
+      wallhaven.enable = lib.mkEnableOption "wallhaven auto-wallpapers";
     };
   };
 
