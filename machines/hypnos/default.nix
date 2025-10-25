@@ -130,6 +130,7 @@
     modules.all.enable = false; # Enables all apps under modules/apps
     modules.cli.all.enable = true;
     mullvad-vpn.enable = false;
+    keepassxc.enable = true;
     firefox.enable = true;
     bc.enable = true;
     zathura.enable = true;
@@ -155,7 +156,7 @@
     defaultGroup = "server";
 
     #copyparty.enable = true;
-    #syncthing.enable = true;
+    syncthing.enable = true;
     firefox-syncserver = {
       enable = false;
       setFirefoxServer = true;

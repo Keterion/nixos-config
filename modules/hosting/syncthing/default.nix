@@ -58,34 +58,37 @@ in {
           "Laptop" = {
             id = "I64U44B-MRH6RCG-OINE5RT-22DHZ5O-ITXTHOU-DUN5BP2-RQTTYBE-M3QUSAJ";
           };
+          "Hypnos" = {
+            id = "WCKM6LO-MU3UAO5-KXXPNN6-X2JV32M-NTSFZKU-A4QULDF-D5ZPMYN-3WT7NQE";
+          };
         };
         folders = {
           "ycnaw-dc4ex" = {
             label = "Music";
-            path = "/home/etherion/Music/songs";
+            path = "/home/${config.system.users.default.name}/Music/songs";
             devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main"];
             syncXattrs = true;
             sendXattrs = true;
           };
           "rcnav-y6mqj" = {
             label = "Obsidian";
-            path = "/home/etherion/Documents/Obsidian";
-            devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main"];
+            path = "/home/${config.system.users.default.name}/Documents/Obsidian";
+            devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main" "Hypnos"];
             syncXattrs = true;
             sendXattrs = true;
             compression = "all";
           };
           "t7ez7-ezwxh" = {
             label = "Passwords";
-            path = "/home/etherion/Documents/Passwords";
-            devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main"];
+            path = "/home/${config.system.users.default.name}/Documents/Passwords";
+            devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main" "Hypnos"];
             syncXattrs = true;
             sendXattrs = true;
           };
           "m3xdc-10b3a" = {
             label = "Sync";
-            path = "/home/etherion/Sync";
-            devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main"];
+            path = "/home/${config.system.users.default.name}/Sync";
+            devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main" "Hypnos"];
             syncXattrs = true;
             sendXattrs = true;
           };
@@ -113,7 +116,7 @@ in {
           };
           "aci0b-orq3j" = {
             label = "University";
-            path = "/home/etherion/Documents/School/University/";
+            path = "/home/${config.system.users.default.name}/Documents/School/University/";
             devices = ["Pixel 8 Pro" "Laptop" "Main"];
             syncXattrs = true;
             sendXattrs = true;
