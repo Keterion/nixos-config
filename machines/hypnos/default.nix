@@ -20,6 +20,8 @@
     }
   ];
 
+  nix.package = pkgs.lixPackageSets.stable.lix;
+
   system = {
     configDir = /etc/nixos;
     colorscheme = "tokyonight-moon";
