@@ -9,6 +9,7 @@
 in {
   imports = [
     ./processing
+    ./api/wallhaven.nix
   ];
   options.scripts = {
     compatibility.enable = lib.mkEnableOption "NixOS compatibility scripts";

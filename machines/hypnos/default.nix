@@ -25,7 +25,7 @@
   system = {
     configDir = /etc/nixos;
     colorscheme = "tokyonight-moon";
-    sops.age.keyFile = "/root/.config/sops/age/.age-keys.txt";
+    #sops.age.keyFile = "/home/Hypnos/.config/sops/age/keys.txt";
 
     audio.pipewire = {
       enable = true;
