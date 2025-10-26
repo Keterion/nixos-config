@@ -7,7 +7,6 @@
   cfg = config.system.de.hyprland;
 in {
   imports = [
-    ./hyprland/hyprpaper.nix
   ];
   options.system.de.hyprland = {
     enable = lib.mkEnableOption "hyprland.";
@@ -86,9 +85,12 @@ in {
       withUWSM = true;
     };
 
+    #scripts.api.wallhaven.enable = cfg.hyprpaper.wallhaven.enable;
+
     home-manager.users.${config.system.users.default.name} = {
       imports = [
         ./hyprland/${cfg.styleProfile}.nix
+        ./hyprland/hyprpaper.nix
       ];
       services.hypridle = lib.mkIf cfg.hypridle.enable {
         enable = true;
