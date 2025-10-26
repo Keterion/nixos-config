@@ -20,7 +20,7 @@
     }
   ];
 
-  nix.package = pkgs.lixPackageSets.stable.lix;
+  #nix.package = pkgs.lixPackageSets.stable.lix;
 
   system = {
     configDir = /etc/nixos;
@@ -77,7 +77,7 @@
         wlsunset.enable = true;
         hyprpaper = {
           enable = true;
-          wallhaven.enable = true;
+          wallhaven.enable = false;
         };
       };
       plasma.enable = true;
@@ -143,6 +143,7 @@
         enable = true;
         compat = true;
         backup = true;
+        millennium.enable = true;
       };
       minecraft.enable = true;
     };
