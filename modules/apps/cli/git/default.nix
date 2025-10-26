@@ -44,8 +44,10 @@ in {
     home-manager.users.${config.system.users.default.name}.programs = {
       git = {
         enable = true;
-        userEmail = config.system.users.default.git.email;
-        userName = config.system.users.default.git.name;
+        settings.user = {
+          name = config.system.users.default.git.name;
+          email = config.system.users.default.git.email;
+        };
       };
       gh = {
         enable = true;
