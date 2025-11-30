@@ -31,7 +31,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    millenium = {
+    millennium = {
       #steam theming
       url = "git+https://github.com/SteamClientHomebrew/Millennium";
     };
@@ -46,7 +46,7 @@
     overlays = [
       inputs.nur.overlays.default
       custom_overlays.stable-packages
-      inputs.millenium.overlays.default
+      inputs.millennium.overlays.default
     ];
   in {
     nixosConfigurations = {
