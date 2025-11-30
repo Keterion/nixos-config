@@ -34,6 +34,9 @@ in {
         hwdec = "yes";
         keep-open = "yes";
       };
+      bindings = {
+        MBTN_MID = "quit";
+      };
       #scriptOpts = {
       #	detect_image = {
       #	  "command_on_image_loaded" = "enable-section enable-section";

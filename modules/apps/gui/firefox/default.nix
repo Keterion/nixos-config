@@ -95,7 +95,7 @@ in {
               settings = [
                 {
                   name = "Nix sites";
-                  toolbar = false;
+                  toolbar = true;
                   bookmarks = [
                     #{
                     #  name = "myNix";
@@ -173,7 +173,8 @@ in {
                 [
                   fastforwardteam
                   search-by-image
-                  ublock-origin
+                  #ublock-origin
+                  adnauseam
                   #                  tampermonkey
                   #                  noscript
                   #                  libredirect
