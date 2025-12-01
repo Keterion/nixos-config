@@ -6,12 +6,12 @@
   imports = [./hardware-configuration.nix];
   networking.hostName = "main";
   sops.secrets = {
-        "private_keys/etherion" = {
-          path = "/home/etherion/.ssh/id_ed25519";
-          owner = "etherion";
-          mode = "0644";
-        };
-      };
+    "private_keys/etherion" = {
+      path = "/home/etherion/.ssh/id_ed25519";
+      owner = "etherion";
+      mode = "0644";
+    };
+  };
   system.users.default = {
     name = "etherion";
     git = {
@@ -74,7 +74,7 @@
         styleProfile = "etherion";
         hypridle.enable = true;
         wlsunset.enable = true;
-        hyprpaper.enable = true;
+        wallpaper.enable = true;
       };
       plasma.enable = true;
     };
