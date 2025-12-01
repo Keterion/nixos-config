@@ -178,8 +178,8 @@ in {
                 "O": ShowOutputs,
                 "P": ShowDecoders,
 
-                "z": ToggleRepeat,
-                "x": ToggleRandom,
+                "R": ToggleRepeat,
+                "r": ToggleRandom,
                 "c": ToggleConsume,
                 "v": ToggleSingle,
                 "p": TogglePause,

@@ -9,7 +9,7 @@
     "private_keys/etherion" = {
       path = "/home/etherion/.ssh/id_ed25519";
       owner = "etherion";
-      mode = "0644";
+      mode = "0600";
     };
   };
   system.users.default = {
@@ -145,8 +145,15 @@
       aliases.enable = true;
       defaultEditor = true;
     };
+
+    aseprite.enable = true;
+
     #thunderbird.enable = true; #TODO: protonmail-bridge
-    discord.vencord.enable = true;
+    discord = {
+      vencord.enable = true;
+      moonlight.enable = false;
+      openASAR.enable = true;
+    };
     freecad.fem.enable = true;
     meshroom.enable = false;
     eza = {
@@ -161,6 +168,7 @@
       compat = true;
       backup = true;
     };
+    games.lutris.enable = false;
   };
 
   apps.beets.config = {
@@ -186,7 +194,7 @@
 
   hosting = {
     openFirewall = true;
-    ip = "192.168.178.69";
+    ip = "192.168.0.69";
     defaultGroup = "server";
     monitor = true;
 

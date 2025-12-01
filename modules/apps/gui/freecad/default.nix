@@ -23,7 +23,7 @@ in {
         pkgs.freecad
       ]
       ++ lib.optionals cfg.fem.enable [
-        pkgs.calculix
+        pkgs.calculix-ccx
         pkgs.gmsh
       ];
   };
