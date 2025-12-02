@@ -48,8 +48,12 @@ in {
       };
     };
     wlsunset.enable = lib.mkEnableOption "wlsunset";
-    hyprpaper = {
-      enable = lib.mkEnableOption "hyprpaper";
+    wallpaper = {
+      enable = lib.mkEnableOption "wallpapers";
+      path = lib.mkOption {
+        type = lib.types.str;
+        default = "/home/${config.system.users.default.name}/Pictures/wallpaper.png";
+      };
       wallhaven.enable = lib.mkEnableOption "wallhaven auto-wallpapers";
     };
   };
@@ -63,7 +67,7 @@ in {
         enable = true;
         user = config.system.users.default.name;
       };
-      defaultSession = "hyprland";
+      defaultSession = "hyprland-uwsm";
     };
 
     #environment.systemPackages = with pkgs; [

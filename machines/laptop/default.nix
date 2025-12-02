@@ -5,21 +5,33 @@
   ...
 }: {
   imports = [./hardware-configuration.nix];
-  networking.hostName = "laptop";
-  networking.networkmanager.enable = true;
+  networking = {
+    hostName = "laptop";
+    networkmanager.enable = true;
+  };
 
   networking.wireless.networks = {
     eduroam = {
     };
   };
 
-  sops.secrets."eduroam/password" = {};
-  sops.secrets."eduroam/identity" = {};
-  sops.templates."uni_vpn" = {
-    content = ''
-      username=${config.sops.placeholder."eduroam/identity"}
-      password=${config.sops.placeholder."eduroam/password"}
-    '';
+  #laptop lid stuff here
+  services.logind = {
+    lidSwitch = "hibernate";
+    lidSwitchExternalPower = "lock";
+  };
+
+  sops = {
+    secrets = {
+      "eduroam/password" = {};
+      "eduroam/identity" = {};
+    };
+    templates."uni_vpn" = {
+      content = ''
+        username=${config.sops.placeholder."eduroam/identity"}
+        password=${config.sops.placeholder."eduroam/password"}
+      '';
+    };
   };
 
   services.openvpn.servers = let
@@ -90,12 +102,12 @@
     de = {
       hyprland = {
         enable = true;
-        autologin = false;
+        autologin = true;
         utils.enable = true;
         styleProfile = "etherion";
         hypridle.enable = true;
         wlsunset.enable = true;
-        hyprpaper.enable = true;
+        wallpaper.enable = true;
       };
       plasma.enable = true;
     };

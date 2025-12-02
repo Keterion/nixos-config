@@ -45,6 +45,11 @@ in {
 
               "browser.link.open_newwindow.restriction" = 0; # Open popup windows as tabs
 
+              "geo.enabled" = true;
+              "geo.provider.network.url" = ''data:application/json,{"location": {"lat": 40.7590, "lng": -73.9845}, "accuracy": 27000.0}'';
+              "geo.provider.use_geoclue" = false;
+              "geo.prompt.testing" = true;
+
               "privacy.sanitize.sanitizeOnShutdown" = true; # perform Clear Private Data on exit # you stole all my history and tabs even with disabled history clear??
               "privacy.clearOnShutdown.cookies" = true; # Clear Private Data deletes cookies
               "privacy.clearOnShutdown.cache" = true;
