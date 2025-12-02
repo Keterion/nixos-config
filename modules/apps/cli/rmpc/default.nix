@@ -179,7 +179,7 @@ in {
                 "P": ShowDecoders,
 
                 "R": ToggleRepeat,
-                "r": ToggleRandom,
+                "x": ToggleRandom,
                 "c": ToggleConsume,
                 "v": ToggleSingle,
                 "p": TogglePause,

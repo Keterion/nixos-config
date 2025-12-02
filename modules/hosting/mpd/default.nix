@@ -61,6 +61,8 @@ in {
       '';
     };
 
-    systemd.services.mpd.environment.XDG_RUNTIME_DIR = "/run/user/${toString config.users.users.${cfg.user}.uid}";
+    systemd.services.mpd = {
+      environment.XDG_RUNTIME_DIR = "/run/user/${toString config.users.users.${cfg.user}.uid}";
+    };
   };
 }
