@@ -243,7 +243,7 @@
         music = "/home/${config.system.users.default.name}/Music/songs/";
         playlist = "/home/${config.system.users.default.name}/Music/songs/playlists/";
       };
-      startWhenNeeded = true;
+      startWhenNeeded = false;
       user = "etherion";
     };
     prowlarr = {
