@@ -23,7 +23,7 @@
   #nix.package = pkgs.lixPackageSets.stable.lix;
 
   system = {
-    configDir = /etc/nixos;
+    configDir = /home/${config.system.users.default.name}/nixos;
     colorscheme = "tokyonight-moon";
     #sops.age.keyFile = "/home/Hypnos/.config/sops/age/keys.txt";
 
@@ -75,7 +75,7 @@
         styleProfile = "etherion";
         hypridle.enable = true;
         wlsunset.enable = true;
-        hyprpaper = {
+        wallpaper = {
           enable = true;
           wallhaven.enable = false;
         };
@@ -124,7 +124,7 @@
     };
 
     printing = {
-      enable = false;
+      enable = true;
       autodiscovery.enable = true;
     };
   };
@@ -143,7 +143,7 @@
         enable = true;
         compat = true;
         backup = true;
-        millennium.enable = true;
+        millennium.enable = false;
       };
       minecraft.enable = true;
     };
