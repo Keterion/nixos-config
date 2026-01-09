@@ -11,6 +11,7 @@ in {
     ./betaflight
     ./blender
     ./discord
+    ./feishin
     ./firefox
     ./freecad
     ./games

@@ -46,7 +46,7 @@ in {
               "browser.link.open_newwindow.restriction" = 0; # Open popup windows as tabs
 
               "geo.enabled" = true;
-              "geo.provider.network.url" = ''data:application/json,{"location": {"lat": 40.7590, "lng": -73.9845}, "accuracy": 27000.0}'';
+              "geo.provider.network.url" = ''data:application/json,{"location": {"lat": 50.7753455, "lng": 6.0838868}, "accuracy": 4000.0}'';
               "geo.provider.use_geoclue" = false;
               "geo.prompt.testing" = true;
 

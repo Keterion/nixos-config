@@ -115,7 +115,7 @@ in {
         };
       };
 
-      wayland.windowManager.hyprland.settings.exec-once = lib.optionals config.system.audio.mpdris.enable [
+      wayland.windowManager.hyprland.settings.exec-once = lib.optionals config.hosting.mpd.enable [
         "${pkgs.mpdris2}/bin/mpDris2 --host=${config.hosting.mpd.ip} --port ${toString config.hosting.mpd.port}"
       ];
       home.packages = with pkgs;

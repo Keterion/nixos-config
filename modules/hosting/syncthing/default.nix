@@ -36,6 +36,10 @@ in {
 
   config = lib.mkIf cfg.enable {
     hosting.enabledServices = ["syncthing"];
+    systemd.services.syncthing = {
+      after = ["network-online.target"];
+      wants = ["network-online.target"];
+    };
     services.syncthing = {
       enable = true;
       group = cfg.group;

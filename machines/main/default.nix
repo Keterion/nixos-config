@@ -148,6 +148,7 @@
 
     aseprite.enable = true;
 
+    feishin.enable = true;
     #thunderbird.enable = true; #TODO: protonmail-bridge
     discord = {
       vencord.enable = true;
@@ -184,6 +185,12 @@
     plugins = ["chroma" "mbsync" "lyrics" "replaygain" "lastgenre" "edit" "duplicates"];
     replaygain.backend = "ffmpeg";
 
+    lyrics = {
+      sources = ["lrclib"];
+      force = true;
+      synced = true;
+    };
+
     paths = {
       default = "$albumartist/$album%aunique{}_$original_year/$artist-$album-$title";
       singleton = "$albumartist/$title_$original_year/$artist-$title";
@@ -202,6 +209,7 @@
     calibre-web = {
       enable = true;
       proxy.enable = true;
+      settings.allowUploads = true;
     };
     jellyfin = {
       enable = true;
@@ -238,7 +246,7 @@
       ];
     };
     mpd = {
-      enable = true;
+      enable = false;
       directories = {
         music = "/home/${config.system.users.default.name}/Music/songs/";
         playlist = "/home/${config.system.users.default.name}/Music/songs/playlists/";
@@ -246,11 +254,18 @@
       startWhenNeeded = false;
       user = "etherion";
     };
+    navidrome = {
+      enable = true;
+      directories = {
+        music = "/home/${config.system.users.default.name}/Music/songs/";
+        #playlist = "playlists";
+      };
+    };
     prowlarr = {
       enable = true;
       openFirewall = false;
     };
-    proxy.enable = true;
+    proxy.enable = false;
     qbittorrent = {
       enable = true;
       port = 8081;
@@ -267,8 +282,13 @@
       proxy.enable = true;
     };
     searxng = {
-      enable = true;
+      enable = false;
       proxy.enable = true;
+    };
+    shiori = {
+      enable = true;
+      port = 1625;
+      proxy.enable = false;
     };
     sonarr.enable = true;
     syncthing.enable = true;
