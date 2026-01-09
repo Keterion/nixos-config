@@ -20,7 +20,7 @@ in {
       };
       playlist = lib.mkOption {
         type = lib.types.str;
-        default = "${cfg.directories.data}/playlists";
+        default = "./playlists";
       };
     };
 
@@ -58,7 +58,11 @@ in {
     '';
 
     hosting.enabledServices = ["navidrome"];
-    systemd.services.navidrome.serviceConfig.ProtectHome = lib.mkForce "read-only";
+    systemd.services.navidrome = {
+      after = ["network-online.target"];
+      wants = ["network-online.target"];
+      serviceConfig.ProtectHome = lib.mkForce "read-only";
+    };
     services.navidrome = {
       enable = true;
       group = cfg.group;
@@ -73,7 +77,9 @@ in {
 
         MusicFolder = cfg.directories.music;
         DataFolder = cfg.directories.data;
-        PlaylistsPath = cfg.directories.playlist;
+        #PlaylistsPath = cfg.directories.playlist;
+
+        AutoImportPlaylists = true;
 
         CoverArtPriority = "embedded, cover.*, folder.*, front.*, external";
 

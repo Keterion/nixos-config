@@ -26,6 +26,7 @@ in {
     ./radicale
     ./rustypaste
     ./searxng
+    ./shiori
     ./sonarr
     ./syncthing
     ./tandoor
