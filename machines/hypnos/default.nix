@@ -133,6 +133,10 @@
   apps = {
     modules.all.enable = false; # Enables all apps under modules/apps
     modules.cli.all.enable = true;
+    neovim = {
+      enable = true;
+      defaultEditor = true;
+    };
     mullvad-vpn.enable = false;
     keepassxc.enable = true;
     firefox.enable = true;
@@ -170,6 +174,7 @@
       enable = false;
       setFirefoxServer = true;
     };
+    readeck.enable = true;
     mpd = {
       enable = false;
       directories = {

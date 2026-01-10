@@ -24,6 +24,7 @@ in {
     ./qbittorrent
     ./radarr
     ./radicale
+    ./readeck
     ./rustypaste
     ./searxng
     ./shiori
