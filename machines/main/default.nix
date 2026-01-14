@@ -285,10 +285,9 @@
       enable = false;
       proxy.enable = true;
     };
-    shiori = {
+    karakeep = {
       enable = true;
       port = 1625;
-      proxy.enable = false;
     };
     sonarr.enable = true;
     syncthing.enable = true;
