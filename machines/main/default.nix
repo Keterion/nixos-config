@@ -285,10 +285,6 @@
       enable = false;
       proxy.enable = true;
     };
-    karakeep = {
-      enable = true;
-      port = 1625;
-    };
     sonarr.enable = true;
     syncthing.enable = true;
     tandoor = {

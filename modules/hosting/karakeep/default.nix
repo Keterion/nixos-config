@@ -5,7 +5,7 @@
 }: let
   cfg = config.hosting.karakeep;
 in {
-  options.hosting.mealie = {
+  options.hosting.karakeep = {
     enable = lib.mkEnableOption "karakeep";
     openFirewall = lib.mkOption {
       default = config.hosting.openFirewall;
