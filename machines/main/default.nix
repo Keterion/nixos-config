@@ -220,7 +220,7 @@
       proxy.enable = true;
     };
     karakeep = {
-      enable = true;
+      enable = false;
       proxy.enable = true;
     };
     mealie = {
