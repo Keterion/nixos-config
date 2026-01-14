@@ -39,7 +39,7 @@ in {
         OCR_CACHE_DIR = "/tmp/";
         OCR_LANGS = "eng,deu";
 
-        OTEL_TRACING_ENABLED = false;
+        OTEL_TRACING_ENABLED = "false";
       };
     };
     networking.firewall.allowedTCPPorts = lib.optionals cfg.openFirewall [cfg.port];

@@ -219,6 +219,10 @@
       enable = true;
       proxy.enable = true;
     };
+    karakeep = {
+      enable = true;
+      proxy.enable = true;
+    };
     mealie = {
       enable = true;
       proxy.enable = true;
