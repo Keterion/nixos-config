@@ -10,15 +10,16 @@
     networkmanager.enable = true;
   };
 
-  networking.wireless.networks = {
-    eduroam = {
-    };
-  };
+  #networking.wireless.networks = {
+  #  eduroam = {
+  #  };
+  #};
 
   #laptop lid stuff here
-  services.logind = {
-    lidSwitch = "hibernate";
-    lidSwitchExternalPower = "lock";
+  services.logind.settings.Login = {
+    HandlePowerKey = "ignore";
+    HandleLidSwitch = "hibernate";
+    HandleLidSwitchExternalPower = "lock";
   };
 
   sops = {
@@ -164,6 +165,7 @@
     };
   };
 
+  scripts = {motion_extraction.enable = true;};
   apps = {
     modules.all.enable = false; # Enables all apps under modules/apps
     modules.cli.all.enable = true;
@@ -206,7 +208,7 @@
       compat = true;
       backup = true;
     };
-    valentina.enable = true;
+    valentina.enable = false;
   };
   apps.beets.config = {
     directory = "/home/${config.system.users.default.name}/Music/songs/processed";
@@ -234,14 +236,14 @@
     ip = "localhost";
     defaultGroup = "server";
 
-    copyparty.enable = true;
+    copyparty.enable = false;
     syncthing.enable = true;
     firefox-syncserver = {
       enable = false;
       setFirefoxServer = true;
     };
     mpd = {
-      enable = true;
+      enable = false;
       directories = {
         music = "/home/${config.system.users.default.name}/Music/songs/";
         playlist = "/home/${config.system.users.default.name}/Music/songs/playlists/";
@@ -250,7 +252,7 @@
       user = "${config.system.users.default.name}";
     };
     navidrome = {
-      enable = true;
+      enable = false;
       directories = {
         music = "/home/${config.system.users.default.name}/Music/songs/";
         playlist = "/home/${config.system.users.default.name}/Music/songs/playlists/";

@@ -14,6 +14,7 @@ in {
     ./grocy
     ./jellyfin
     ./jellyseerr
+    ./karakeep
     ./mealie
     ./monit
     ./mpd

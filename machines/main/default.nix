@@ -219,6 +219,10 @@
       enable = true;
       proxy.enable = true;
     };
+    karakeep = {
+      enable = false;
+      proxy.enable = true;
+    };
     mealie = {
       enable = true;
       proxy.enable = true;
@@ -284,11 +288,6 @@
     searxng = {
       enable = false;
       proxy.enable = true;
-    };
-    shiori = {
-      enable = true;
-      port = 1625;
-      proxy.enable = false;
     };
     sonarr.enable = true;
     syncthing.enable = true;
