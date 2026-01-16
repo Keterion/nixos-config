@@ -5,7 +5,7 @@
 }: let
   cfg = config.hosting.myservice;
 in {
-  options.hosting.mysercive = {
+  options.hosting.myservice = {
     enable = lib.mkEnableOption "myservice.";
     openFirewall = lib.mkOption {
       type = lib.types.bool;

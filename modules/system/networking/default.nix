@@ -4,10 +4,14 @@
   config,
   ...
 }: let
-  cfg = config.system.networking;
+  cfg = config.system.network;
 in {
-  options.system.networking = {
-    enable = myUtils.mkEnabledOption "networking";
+  options.system.network = {
+    enable = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Whether to enable network capabilities";
+    };
     wireless.enable = lib.mkEnableOption "wifi";
     ssh = {
       enable = lib.mkEnableOption "ssh";
@@ -37,25 +41,29 @@ in {
         '';
       };
 
-      networking.networkmanager.enable = true;
-      networking.wireless = lib.mkIf cfg.wireless.enable {
-        enable = cfg.wireless.enable;
-        userControlled.enable = true;
-        allowAuxillaryImperativeNetworks = true;
-        networks = {
-          eduroam = {
-            extraConfig = ''
-              ssid="eduroam"
-              key_mgmt=TLS
-            '';
-            auth = ''
-              identity=ext:eduroam_identity
-              private_key_passwd=ext:eduroam_privkey_passwd
-              domain=ext:eduroam_domain
-            '';
-          };
-        };
+      networking.hosts = builtins.trace "wowie" {
+        "${config.hosting.ip}" = ["host"];
       };
+
+      networking.networkmanager.enable = builtins.trace "wtf" true;
+      #networking.wireless = lib.mkIf cfg.wireless.enable {
+      #  enable = cfg.wireless.enable;
+      #  userControlled.enable = true;
+      #  allowAuxillaryImperativeNetworks = true;
+      #  networks = {
+      #    eduroam = {
+      #      extraConfig = ''
+      #        ssid="eduroam"
+      #        key_mgmt=TLS
+      #      '';
+      #      auth = ''
+      #        identity=ext:eduroam_identity
+      #        private_key_passwd=ext:eduroam_privkey_passwd
+      #        domain=ext:eduroam_domain
+      #      '';
+      #    };
+      #  };
+      #};
     }
     // lib.mkIf cfg.ssh.enable {
       services.openssh = {

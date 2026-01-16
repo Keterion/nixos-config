@@ -5,6 +5,9 @@
 }: {
   imports = [./hardware-configuration.nix];
   networking.hostName = "Hypnos";
+  networking.hosts = builtins.trace "wowie" {
+    "${config.hosting.ip}" = ["host"];
+  };
   system.users.default = {
     name = "Hypnos";
     git = {
@@ -39,7 +42,7 @@
       old.enable = false;
     };
     firewall.enable = true;
-    networking = {
+    network = {
       enable = true;
       wireless.enable = false;
     };
@@ -165,7 +168,7 @@
   };
   hosting = {
     openFirewall = true;
-    ip = "localhost";
+    ip = "192.168.178.191";
     defaultGroup = "server";
 
     #copyparty.enable = true;

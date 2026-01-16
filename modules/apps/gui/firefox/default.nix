@@ -176,6 +176,7 @@ in {
               force = true;
               packages = with pkgs.nur.repos.rycee.firefox-addons;
                 [
+                  readeck
                   fastforwardteam
                   search-by-image
                   #ublock-origin
@@ -201,6 +202,9 @@ in {
                     "ulock-unbreak"
                     "ublock-quick-fixes"
                   ];
+                };
+                "readeck@readeck.com".settings = lib.mkIf config.hosting.readeck.enable {
+                  serverURL = "http://${config.hosting.readeck.ip}:${toString config.hosting.readeck.port}/";
                 };
                 "redirector@einaregilsson.com".settings = {
                   redirects = [
