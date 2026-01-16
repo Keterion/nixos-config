@@ -43,17 +43,17 @@ in {
         userControlled.enable = true;
         allowAuxillaryImperativeNetworks = true;
         networks = {
-          eduroam = {
-            extraConfig = ''
-              ssid="eduroam"
-              key_mgmt=TLS
-            '';
-            auth = ''
-              identity=ext:eduroam_identity
-              private_key_passwd=ext:eduroam_privkey_passwd
-              domain=ext:eduroam_domain
-            '';
-          };
+          #eduroam = {
+          #  extraConfig = ''
+          #    ssid="eduroam"
+          #    key_mgmt=TLS
+          #  '';
+          #  auth = ''
+          #    identity=ext:eduroam_identity
+          #    private_key_passwd=ext:eduroam_privkey_passwd
+          #    domain=ext:eduroam_domain
+          #  '';
+          #};
         };
       };
     }
