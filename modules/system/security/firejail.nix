@@ -8,7 +8,10 @@
 in {
   options.system.security.firejail = {
     enable = lib.mkEnableOption "firejail for sandboxing";
-    wrappedBinaries = config.programs.firejail.wrappedBinaries.type;
+    wrappedBinaries = lib.mkOption {
+      type = config.programs.firejail.wrappedBinaries.type;
+      default = {};
+    };
     defaultWraps = {
       wine = lib.myUtils.mkEnabledOption "Wine wrapping";
     };
