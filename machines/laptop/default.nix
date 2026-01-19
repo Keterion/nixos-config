@@ -68,6 +68,8 @@
     configDir = /home/${config.system.users.default.name}/etc/nixos;
     colorscheme = "tokyonight-moon";
 
+    security.firejail.enable = true;
+
     audio.pipewire = {
       enable = true;
       rtkit.enable = true;
