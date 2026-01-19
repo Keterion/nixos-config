@@ -61,16 +61,12 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      rustypaste
-    ];
-
     environment.etc."${configDir}/config.toml" = {
       #user = "${cfg.user}";
       #group = "${cfg.group}";
       #mode = "0644";
       source = toml.generate "config" {
-        config.refresh_rate = "1s";
+        config.refresh_rate = "5s";
         server = {
           address = "${cfg.ip}:${toString cfg.port}";
           max_content_length = "100MB";
@@ -117,7 +113,7 @@ in {
             length = 8;
           };
           default_extension = "txt";
-          duplicate_files = true;
+          duplicate_files = false;
           delete_expired_files = {
             enabled = true;
             interval = "1h";

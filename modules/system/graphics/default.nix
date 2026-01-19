@@ -20,7 +20,7 @@ in {
       ++ lib.optionals (cfg.intel.enable && cfg.intel.old.enable) ["intel"]
       ++ lib.optionals (cfg.intel.enable && !cfg.intel.old.enable) ["modesetting"];
     boot.kernelParams = lib.optionals cfg.nvidia.enable ["nvidia.NVreg_PreserveVideoMemoryAllocations=1"];
-    environment.systemPackages = lib.optionals cfg.intel.old.enable [pkgs.xf86-video-intel];
+    environment.systemPackages = lib.optionals cfg.nvidia.enable [pkgs.cudatoolkit] ++ lib.optionals cfg.intel.old.enable [pkgs.xf86-video-intel];
     hardware.nvidia = lib.mkIf cfg.nvidia.enable {
       modesetting.enable = true;
       powerManagement.enable = true;

@@ -144,11 +144,11 @@ in {
         "workspaces, 1, 3, workspace_slide, slidevert"
       ];
       windowrule = [
-        "workspace 2, class:^(firefox)"
-        "workspace 2, class:(cord)$"
-        "workspace 3, class:^(steam)$"
-        "idleinhibit focus, class:(com.github.iwalton3.jellyfin-media-player)"
-        "suppressevent activatefocus, class:^(steam),title:^(notificationtoasts.*)"
+        "workspace 2, match:class ^(firefox)"
+        "workspace 2, match:class (cord)$"
+        "workspace 3, match:class ^(steam)$"
+        "idle_inhibit focus, match:class (com.github.iwalton3.jellyfin-media-player)"
+        "no_initial_focus on, match:class ^(steam), match:title ^(notificationtoasts.*)"
       ];
       exec-once = [
         "waybar"
