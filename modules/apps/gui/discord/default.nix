@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  myUtils,
   ...
 }: let
   cfg = config.apps.discord;
@@ -11,6 +12,10 @@ in {
       default = config.apps.modules.gui.social.enable;
       type = lib.types.bool;
       description = "Whether to enable discord";
+    };
+    sandbox = lib.mkOption {
+      type = lib.types.bool;
+      default = config.system.security.firejail.defaultWraps.discord;
     };
     vencord.enable = lib.mkOption {
       type = lib.types.bool;
@@ -25,13 +30,23 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
-    environment.systemPackages = with pkgs.stable; [
-      (discord.override {
-        withVencord = cfg.vencord.enable;
-        withMoonlight = cfg.moonlight.enable;
-        withOpenASAR = cfg.openASAR.enable;
-      })
-    ];
-  };
+  config = let
+    discord_package = pkgs.discord.override {
+      withVencord = cfg.vencord.enable;
+      withMoonlight = cfg.moonlight.enable;
+      withOpenASAR = cfg.openASAR.enable;
+    };
+  in
+    lib.mkIf cfg.enable {
+      programs.firejail.wrappedBinaries.discord = lib.mkIf cfg.sandbox {
+        executable = "${discord_package}/bin/Discord";
+        extraArgs = [
+          "--dbus-user.talk=org.freedesktop.StatusNotifierHost"
+          "--dbus-user.talk=org.kde.StatusNotifierWatcher"
+        ];
+      };
+      environment.systemPackages = lib.mkIf (!cfg.sandbox) [
+        discord_package
+      ];
+    };
 }

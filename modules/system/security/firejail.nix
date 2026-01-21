@@ -15,6 +15,7 @@ in {
     #};
     defaultWraps = {
       wine = myUtils.mkEnabledOption "Wine wrapping";
+      discord = myUtils.mkEnabledOption "Discord wrapping";
     };
   };
 
