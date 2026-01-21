@@ -23,6 +23,7 @@
   system = {
     configDir = /home/${config.system.users.default.name}/etc/nixos;
     colorscheme = "tokyonight-moon";
+    security.firejail.enable = true;
 
     hid = {
       gamepad.dualsense.enable = true;
@@ -41,7 +42,7 @@
       mpdris.enable = true;
     };
     firewall.enable = true;
-    networking = {
+    network = {
       enable = true;
     };
     ssh = {
