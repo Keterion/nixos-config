@@ -23,7 +23,13 @@
   system = {
     configDir = /home/${config.system.users.default.name}/etc/nixos;
     colorscheme = "tokyonight-moon";
-    security.firejail.enable = true;
+    security.firejail = {
+      enable = true;
+      defaultWraps = {
+        wine = true;
+        discord = true;
+      };
+    };
 
     hid = {
       gamepad.dualsense.enable = true;

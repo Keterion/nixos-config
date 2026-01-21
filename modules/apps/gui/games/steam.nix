@@ -20,37 +20,45 @@ in {
     gamescopeSession.enable = lib.mkEnableOption "gamescope wayland sessions";
   };
 
-  config = lib.mkIf cfg.enable {
-    programs.steam = {
-      enable = true;
-      package =
-        if !cfg.millennium.enable
-        then pkgs.steam
-        else pkgs.steam-millennium;
-      remotePlay.openFirewall = cfg.remotePlay.openFirewall;
-      dedicatedServer.openFirewall = cfg.dedicatedServer.openFirewall;
-      gamescopeSession.enable = cfg.gamescopeSession.enable;
-      extraCompatPackages = with pkgs;
-        lib.mkIf cfg.compat [
-          proton-ge-bin
-        ];
-      extraPackages = with pkgs;
-        lib.mkIf cfg.compat [
+  config = let
+    wine_package = pkgs.wineWowPackages.staging;
+  in
+    lib.mkIf cfg.enable {
+      programs.steam = {
+        enable = true;
+        package =
+          if !cfg.millennium.enable
+          then pkgs.steam
+          else pkgs.steam-millennium;
+        remotePlay.openFirewall = cfg.remotePlay.openFirewall;
+        dedicatedServer.openFirewall = cfg.dedicatedServer.openFirewall;
+        gamescopeSession.enable = cfg.gamescopeSession.enable;
+        extraCompatPackages = with pkgs;
+          lib.mkIf cfg.compat [
+            proton-ge-bin
+          ];
+        extraPackages = with pkgs;
+          lib.mkIf cfg.compat [
+            gamescope
+            gamemode
+          ];
+      };
+      environment.systemPackages = with pkgs;
+        lib.optionals cfg.compat [
+          protontricks
+          winetricks
           gamescope
           gamemode
+          mangohud
+        ]
+        ++ lib.optionals cfg.backup [
+          pkgs.ludusavi
+        ]
+        ++ lib.optionals (!config.system.security.firejail.defaultWraps.wine) [
+          wine_package
         ];
+      programs.firejail.wrappedBinaries.wine = lib.mkIf config.system.security.firejail.defaultWraps.wine {
+        executable = "${wine_package}/bin/wine";
+      };
     };
-    environment.systemPackages = with pkgs;
-      lib.optionals cfg.compat [
-        protontricks
-        wineWowPackages.staging
-        winetricks
-        gamescope
-        gamemode
-        mangohud
-      ]
-      ++ lib.optionals cfg.backup [
-        pkgs.ludusavi
-      ];
-  };
 }

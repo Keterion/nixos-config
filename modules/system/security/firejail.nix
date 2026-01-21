@@ -22,14 +22,6 @@ in {
   config = lib.mkIf cfg.enable {
     programs.firejail = {
       enable = true;
-      wrappedBinaries = lib.mkIf cfg.defaultWraps.wine {
-        wine = {
-          executable = "${lib.getBin pkgs.wine}/bin/wine";
-          extraArgs = [
-          ];
-        };
-      };
-      #// cfg.wrappedBinaries;
     };
   };
 }
