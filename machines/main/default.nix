@@ -156,6 +156,7 @@
     aseprite.enable = true;
 
     feishin.enable = true;
+    godot.enable = true;
     #thunderbird.enable = true; #TODO: protonmail-bridge
     discord = {
       vencord.enable = true;

@@ -16,6 +16,7 @@ in {
     ./freecad
     ./games
     ./gimp
+    ./godot
     ./jellyfin-media-player
     ./keepassxc
     ./krita
