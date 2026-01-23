@@ -4,9 +4,40 @@
   ...
 }: let
   cfg = config.hosting.syncthing;
+  directory = lib.types.submodule {
+    options = {
+      id = lib.mkOption {
+        type = lib.types.str;
+        description = "Folder ID used by syncthing";
+      };
+      label = lib.mkOption {
+        type = lib.types.str;
+        description = "Label to display directory by";
+      };
+      devices = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
+        default = [];
+        description = "List of devices by their ID alias to share directory with";
+      };
+      path = lib.mkOption {
+        type = lib.types.str;
+        description = "Local path to sync the directory to";
+      };
+      type = lib.mkOption {
+        type = lib.types.enum ["sendreceive" "sendonly" "receiveonly" "receiveencrypted"];
+        default = "sendreceive";
+      };
+    };
+  };
 in {
   options.hosting.syncthing = {
     enable = lib.mkEnableOption "syncthing";
+    config = {
+      directories = lib.mkOption {
+        type = lib.types.nullOr (lib.types.listOf directory);
+        default = null;
+      };
+    };
     group = lib.mkOption {
       type = lib.types.str;
       default = config.hosting.defaultGroup;
@@ -66,66 +97,81 @@ in {
             id = "WCKM6LO-MU3UAO5-KXXPNN6-X2JV32M-NTSFZKU-A4QULDF-D5ZPMYN-3WT7NQE";
           };
         };
-        folders = {
-          "ycnaw-dc4ex" = {
-            label = "Music";
-            path = "/home/${config.system.users.default.name}/Music/songs";
-            devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main"];
-            syncXattrs = true;
-            sendXattrs = true;
-          };
-          "rcnav-y6mqj" = {
-            label = "Obsidian";
-            path = "/home/${config.system.users.default.name}/Documents/Obsidian";
-            devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main" "Hypnos"];
-            syncXattrs = true;
-            sendXattrs = true;
-            compression = "all";
-          };
-          "t7ez7-ezwxh" = {
-            label = "Passwords";
-            path = "/home/${config.system.users.default.name}/Documents/Passwords";
-            devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main" "Hypnos"];
-            syncXattrs = true;
-            sendXattrs = true;
-          };
-          "m3xdc-10b3a" = {
-            label = "Sync";
-            path = "/home/${config.system.users.default.name}/Sync";
-            devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main" "Hypnos"];
-            syncXattrs = true;
-            sendXattrs = true;
-          };
-          "wrgiw-yeh7e" = {
-            label = "DCIM";
-            path = "/mnt/HDD/Bilder/DCIM";
-            devices = ["Pixel 8 Pro" "Laptop" "Main"];
-            syncXattrs = true;
-            sendXattrs = true;
-          };
-          "wrfwn-ejec3" = {
-            label = "Pictures";
-            path = "/mnt/HDD/Bilder/Pictures/";
-            devices = ["Pixel 8 Pro" "Laptop" "Main"];
-            syncXattrs = true;
-            sendXattrs = true;
-          };
-          "o0gxy-s1rof" = {
-            label = "Whatsapp Media";
-            path = "/mnt/HDD/Bilder/Whatsapp Media/";
-            devices = ["Pixel 8 Pro" "Laptop" "Main" "SM-A715F"];
-            syncXattrs = true;
-            sendXattrs = true;
-            type = "receiveonly";
-          };
-          "aci0b-orq3j" = {
-            label = "University";
-            path = "/home/${config.system.users.default.name}/Documents/School/University/";
-            devices = ["Pixel 8 Pro" "Laptop" "Main"];
-            syncXattrs = true;
-            sendXattrs = true;
-          };
-        };
+        folders =
+          lib.mkIf (cfg.config.directories
+            != null)
+          (builtins.listToAttrs
+            (lib.map (dir: {
+                name = dir.id;
+                value = {
+                  label = dir.label;
+                  path = dir.path;
+                  devices = dir.devices;
+                  syncXattrs = true;
+                  sendXattrs = true;
+                };
+              })
+              cfg.config.directories));
+        #folders = {
+        #  "ycnaw-dc4ex" = {
+        #    label = "Music";
+        #    path = "/home/${config.system.users.default.name}/Music/songs";
+        #    devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main"];
+        #    syncXattrs = true;
+        #    sendXattrs = true;
+        #  };
+        #  "rcnav-y6mqj" = {
+        #    label = "Obsidian";
+        #    path = "/home/${config.system.users.default.name}/Documents/Obsidian";
+        #    devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main" "Hypnos"];
+        #    syncXattrs = true;
+        #    sendXattrs = true;
+        #    compression = "all";
+        #  };
+        #  "t7ez7-ezwxh" = {
+        #    label = "Passwords";
+        #    path = "/home/${config.system.users.default.name}/Documents/Passwords";
+        #    devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main" "Hypnos"];
+        #    syncXattrs = true;
+        #    sendXattrs = true;
+        #  };
+        #  "m3xdc-10b3a" = {
+        #    label = "Sync";
+        #    path = "/home/${config.system.users.default.name}/Sync";
+        #    devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main" "Hypnos"];
+        #    syncXattrs = true;
+        #    sendXattrs = true;
+        #  };
+        #  "wrgiw-yeh7e" = {
+        #    label = "DCIM";
+        #    path = "/mnt/HDD/Bilder/DCIM";
+        #    devices = ["Pixel 8 Pro" "Laptop" "Main"];
+        #    syncXattrs = true;
+        #    sendXattrs = true;
+        #  };
+        #  "wrfwn-ejec3" = {
+        #    label = "Pictures";
+        #    path = "/mnt/HDD/Bilder/Pictures/";
+        #    devices = ["Pixel 8 Pro" "Laptop" "Main"];
+        #    syncXattrs = true;
+        #    sendXattrs = true;
+        #  };
+        #  "o0gxy-s1rof" = {
+        #    label = "Whatsapp Media";
+        #    path = "/mnt/HDD/Bilder/Whatsapp Media/";
+        #    devices = ["Pixel 8 Pro" "Laptop" "Main" "SM-A715F"];
+        #    syncXattrs = true;
+        #    sendXattrs = true;
+        #    type = "receiveonly";
+        #  };
+        #  "aci0b-orq3j" = {
+        #    label = "University";
+        #    path = "/home/${config.system.users.default.name}/Documents/School/University/";
+        #    devices = ["Pixel 8 Pro" "Laptop" "Main"];
+        #    syncXattrs = true;
+        #    sendXattrs = true;
+        #  };
+        #};
       };
     };
     networking.firewall.allowedTCPPorts = [cfg.port]; # webui also open firewall

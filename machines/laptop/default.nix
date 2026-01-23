@@ -239,7 +239,62 @@
     defaultGroup = "server";
 
     copyparty.enable = false;
-    syncthing.enable = true;
+    syncthing = {
+      enable = true;
+      config.directories = let
+        main_user = config.system.users.default.name;
+      in [
+        {
+          id = "ycnaw-dc4ex";
+          label = "Music";
+          devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main"];
+          path = "/home/${main_user}/Music/songs";
+        }
+        {
+          id = "rcnav-y6mqj";
+          label = "Obsidian";
+          devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main" "Hypnos"];
+          path = "/home/${main_user}/Documents/Obsidian";
+        }
+        {
+          id = "t7ez7-ezwxh";
+          label = "Passwords";
+          devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main" "Hypnos"];
+          path = "/home/${main_user}/Documents/Passwords";
+        }
+        {
+          id = "m3xdc-10b3a";
+          label = "Sync";
+          devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main" "Hypnos"];
+          path = "/home/${main_user}/Sync";
+        }
+        {
+          id = "wrgiw-yeh7e";
+          label = "DCIM";
+          devices = ["Pixel 8 Pro" "Laptop" "Main"];
+          path = "/mnt/HDD/Bilder/DCIM";
+        }
+        {
+          id = "wrfwn-ejec3";
+          label = "Pictures";
+          devices = ["Pixel 8 Pro" "Laptop" "Main"];
+          path = "/mnt/HDD/Bilder/Pictures";
+        }
+        {
+          id = "o0gxy-s1rof";
+          label = "Whatsapp Media";
+          devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main"];
+          path = "/mnt/HDD/Bilder/Whatsapp Media";
+          type = "receiveonly";
+        }
+        {
+          id = "oci0b-orq3j";
+          label = "University";
+          devices = ["Pixel 8 Pro" "Laptop" "Main" "Hypnos"];
+          path = "/home/${main_user}/Documents/School/University";
+        }
+      ];
+    };
     firefox-syncserver = {
       enable = false;
       setFirefoxServer = true;

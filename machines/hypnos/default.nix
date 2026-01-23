@@ -2,14 +2,16 @@
   pkgs,
   config,
   ...
-}: {
+}: let
+  main_user = "Hypnos";
+in {
   imports = [./hardware-configuration.nix];
-  networking.hostName = "Hypnos";
+  networking.hostName = main_user;
   networking.hosts = builtins.trace "wowie" {
     "${config.hosting.ip}" = ["host"];
   };
   system.users.default = {
-    name = "Hypnos";
+    name = main_user;
     git = {
       name = "Keterion";
       email = "100532848+Keterion@users.noreply.github.com";
@@ -26,7 +28,7 @@
   #nix.package = pkgs.lixPackageSets.stable.lix;
 
   system = {
-    configDir = /home/${config.system.users.default.name}/nixos;
+    configDir = /home/${main_user}/nixos;
     colorscheme = "tokyonight-moon";
     #sops.age.keyFile = "/home/Hypnos/.config/sops/age/keys.txt";
 
@@ -174,26 +176,55 @@
     defaultGroup = "server";
 
     #copyparty.enable = true;
-    syncthing.enable = true;
+    syncthing = {
+      enable = true;
+      config.directories = [
+        {
+          id = "rcnav-y6mqj";
+          label = "Obsidian";
+          devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main" "Hypnos"];
+          path = "/home/${main_user}/Documents/Obsidian";
+          type = "sendreceive";
+        }
+        {
+          id = "t7ez7-ezwxh";
+          label = "Passwords";
+          devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main" "Hypnos"];
+          path = "/home/${main_user}/Documents/Passwords";
+        }
+        {
+          id = "m3xdc-10b3a";
+          label = "Sync";
+          devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main" "Hypnos"];
+          path = "/home/${main_user}/Sync";
+        }
+        {
+          id = "oci0b-orq3j";
+          label = "University";
+          devices = ["Pixel 8 Pro" "Laptop" "Main" "Hypnos"];
+          path = "/home/${main_user}/Documents/School/University";
+        }
+      ];
+    };
     firefox-syncserver = {
       enable = false;
       setFirefoxServer = true;
     };
-    readeck.enable = true;
+    readeck.enable = false;
     mpd = {
       enable = false;
       directories = {
-        music = "/home/${config.system.users.default.name}/Music/songs/";
-        playlist = "/home/${config.system.users.default.name}/Music/songs/playlists/";
+        music = "/home/${main_user}/Music/songs/";
+        playlist = "/home/${main_user}/Music/songs/playlists/";
       };
       startWhenNeeded = false;
-      user = "${config.system.users.default.name}";
+      user = "${main_user}";
     };
     navidrome = {
       enable = false;
       directories = {
-        music = "/home/${config.system.users.default.name}/Music/songs/";
-        playlist = "/home/${config.system.users.default.name}/Music/songs/playlists/";
+        music = "/home/${main_user}/Music/songs/";
+        playlist = "/home/${main_user}/Music/songs/playlists/";
       };
     };
   };
