@@ -6,6 +6,9 @@
   main_user = "Hypnos";
 in {
   imports = [./hardware-configuration.nix];
+
+  nix.package = pkgs.lixPackageSets.stable.lix;
+
   networking.hostName = main_user;
   networking.hosts = builtins.trace "wowie" {
     "${config.hosting.ip}" = ["host"];
@@ -102,6 +105,7 @@ in {
     };
 
     shell = {
+      prompt.starship.enable = true;
       zsh = {
         enable = true;
         global = {
@@ -177,7 +181,7 @@ in {
 
     #copyparty.enable = true;
     syncthing = {
-      enable = true;
+      enable = false;
       config.directories = [
         {
           id = "rcnav-y6mqj";
