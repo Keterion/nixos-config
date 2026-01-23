@@ -30,6 +30,8 @@
     colorscheme = "tokyonight-moon";
     #sops.age.keyFile = "/home/Hypnos/.config/sops/age/keys.txt";
 
+    security.firejail.enable = true;
+
     audio.pipewire = {
       enable = true;
       rtkit.enable = true;
