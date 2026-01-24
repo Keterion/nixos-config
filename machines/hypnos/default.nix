@@ -207,7 +207,7 @@ in {
             path = "/home/${main_user}/Sync";
           }
           {
-            id = "oci0b-orq3j";
+            id = "aci0b-orq3j";
             label = "University";
             devices = ["Pixel 8 Pro" "Laptop" "Main"];
             path = "/home/${main_user}/Documents/School/University";

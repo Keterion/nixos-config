@@ -288,7 +288,7 @@
           type = "receiveonly";
         }
         {
-          id = "oci0b-orq3j";
+          id = "aci0b-orq3j";
           label = "University";
           devices = ["Pixel 8 Pro" "Laptop" "Main" "Hypnos"];
           path = "/home/${main_user}/Documents/School/University";
