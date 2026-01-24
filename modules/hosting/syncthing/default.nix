@@ -33,6 +33,10 @@ in {
   options.hosting.syncthing = {
     enable = lib.mkEnableOption "syncthing";
     config = {
+      dataDir = lib.mkOption {
+        type = lib.types.str;
+        default = "/var/lib/syncthing";
+      };
       directories = lib.mkOption {
         type = lib.types.nullOr (lib.types.listOf directory);
         default = null;
@@ -67,14 +71,15 @@ in {
 
   config = lib.mkIf cfg.enable {
     hosting.enabledServices = ["syncthing"];
-    systemd.services.syncthing = {
-      after = ["network-online.target"];
-      wants = ["network-online.target"];
-    };
+    #systemd.services.syncthing = {
+    #  after = ["network-online.target"];
+    #  wants = ["network-online.target"];
+    #};
     services.syncthing = {
       enable = true;
       group = cfg.group;
       user = cfg.user;
+      dataDir = cfg.config.dataDir;
       guiAddress = "${cfg.ip}:${toString cfg.port}";
       openDefaultPorts = cfg.openFirewall; # todo with settings.listenAddresses but too much work rn
       overrideDevices = true;
@@ -94,16 +99,16 @@ in {
             id = "I64U44B-MRH6RCG-OINE5RT-22DHZ5O-ITXTHOU-DUN5BP2-RQTTYBE-M3QUSAJ";
           };
           "Hypnos" = {
-            id = "WCKM6LO-MU3UAO5-KXXPNN6-X2JV32M-NTSFZKU-A4QULDF-D5ZPMYN-3WT7NQE";
+            id = "ECJ3F7I-GQNSGUE-NPZBQFI-IELDYVF-LUUW2CT-Z5Q2XRP-IWRZYBE-BJ3MZQY";
           };
         };
-        folders =
-          lib.mkIf (cfg.config.directories
+        folders = builtins.trace "generating directory config for syncthing" (lib.mkIf (cfg.config.directories
             != null)
-          (builtins.listToAttrs
+          (builtins.trace "directories are not null" builtins.listToAttrs
             (lib.map (dir: {
                 name = dir.id;
                 value = {
+                  id = dir.id;
                   label = dir.label;
                   path = dir.path;
                   devices = dir.devices;
@@ -111,7 +116,7 @@ in {
                   sendXattrs = true;
                 };
               })
-              cfg.config.directories));
+              cfg.config.directories)));
         #folders = {
         #  "ycnaw-dc4ex" = {
         #    label = "Music";

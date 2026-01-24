@@ -4,10 +4,12 @@
   ...
 }: let
   main_user = "Hypnos";
+  config_path = "/home/${main_user}/nixos";
 in {
   imports = [./hardware-configuration.nix];
 
   nix.package = pkgs.lixPackageSets.stable.lix;
+  nix.nixPath = ["nixos-config=${config_path}"];
 
   networking.hostName = main_user;
   networking.hosts = builtins.trace "wowie" {
@@ -31,7 +33,7 @@ in {
   #nix.package = pkgs.lixPackageSets.stable.lix;
 
   system = {
-    configDir = /home/${main_user}/nixos;
+    configDir = config_path;
     colorscheme = "tokyonight-moon";
     #sops.age.keyFile = "/home/Hypnos/.config/sops/age/keys.txt";
 
@@ -176,39 +178,42 @@ in {
   };
   hosting = {
     openFirewall = true;
-    ip = "192.168.178.191";
+    ip = "192.168.178.67";
     defaultGroup = "server";
 
     #copyparty.enable = true;
     syncthing = {
-      enable = false;
-      config.directories = [
-        {
-          id = "rcnav-y6mqj";
-          label = "Obsidian";
-          devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main" "Hypnos"];
-          path = "/home/${main_user}/Documents/Obsidian";
-          type = "sendreceive";
-        }
-        {
-          id = "t7ez7-ezwxh";
-          label = "Passwords";
-          devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main" "Hypnos"];
-          path = "/home/${main_user}/Documents/Passwords";
-        }
-        {
-          id = "m3xdc-10b3a";
-          label = "Sync";
-          devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main" "Hypnos"];
-          path = "/home/${main_user}/Sync";
-        }
-        {
-          id = "oci0b-orq3j";
-          label = "University";
-          devices = ["Pixel 8 Pro" "Laptop" "Main" "Hypnos"];
-          path = "/home/${main_user}/Documents/School/University";
-        }
-      ];
+      enable = true;
+      config = {
+        dataDir = "/home/${main_user}/.config/syncthing";
+        directories = [
+          {
+            id = "rcnav-y6mqj";
+            label = "Obsidian";
+            devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main"];
+            path = "/home/${main_user}/Documents/Obsidian";
+            type = "sendreceive";
+          }
+          {
+            id = "t7ez7-ezwxh";
+            label = "Passwords";
+            devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main"];
+            path = "/home/${main_user}/Documents/Passwords";
+          }
+          {
+            id = "m3xdc-10b3a";
+            label = "Sync";
+            devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main"];
+            path = "/home/${main_user}/Sync";
+          }
+          {
+            id = "oci0b-orq3j";
+            label = "University";
+            devices = ["Pixel 8 Pro" "Laptop" "Main"];
+            path = "/home/${main_user}/Documents/School/University";
+          }
+        ];
+      };
     };
     firefox-syncserver = {
       enable = false;
