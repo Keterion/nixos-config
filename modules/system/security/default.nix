@@ -7,6 +7,7 @@
 in {
   imports = [
     ./firejail.nix
+    ./secureboot.nix
   ];
   options.system.security = {
     gnupg.enableSSH = lib.mkEnableOption "ssh support for gnupg";
