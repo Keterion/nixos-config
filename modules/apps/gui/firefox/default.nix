@@ -2,9 +2,20 @@
   pkgs,
   config,
   lib,
+  myUtils,
   ...
 }: let
   cfg = config.apps.firefox;
+  ff_pkg =
+    if config.sys.security.firejail.defaultWraps.firefox
+    then
+      myUtils.wrapFirejailBinary {
+        inherit pkgs lib;
+        package = pkgs.firefox;
+        profile = "${pkgs.firejail}/etc/firejail/firefox.profile";
+        extraArgs = [];
+      }
+    else pkgs.firefox;
 in {
   options.apps.firefox = {
     enable = lib.mkOption {
@@ -28,7 +39,7 @@ in {
     home-manager.users.${config.sys.users.default.name} = {
       programs.firefox = {
         enable = true;
-        package = pkgs.firefox;
+        package = ff_pkg;
 
         profiles = {
           "default" = {
