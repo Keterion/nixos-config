@@ -4,9 +4,9 @@
   config,
   ...
 }: let
-  cfg = config.system.hid;
+  cfg = config.sys.hid;
 in {
-  options.system.hid = {
+  options.sys.hid = {
     gamepad = {
       dualsense.enable = lib.mkEnableOption "PlayStation Dualsense Controller support";
     };

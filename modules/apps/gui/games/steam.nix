@@ -54,10 +54,10 @@ in {
         ++ lib.optionals cfg.backup [
           pkgs.ludusavi
         ]
-        ++ lib.optionals (!config.system.security.firejail.defaultWraps.wine) [
+        ++ lib.optionals (!config.sys.security.firejail.defaultWraps.wine) [
           wine_package
         ];
-      programs.firejail.wrappedBinaries.wine = lib.mkIf config.system.security.firejail.defaultWraps.wine {
+      programs.firejail.wrappedBinaries.wine = lib.mkIf config.sys.security.firejail.defaultWraps.wine {
         executable = "${wine_package}/bin/wine";
       };
     };

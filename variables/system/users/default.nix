@@ -3,9 +3,9 @@
   config,
   ...
 }: let
-  cfg = config.system.users;
+  cfg = config.sys.users;
 in {
-  options.system.users.default = {
+  options.sys.users.default = {
     name = lib.mkOption {
       type = lib.types.str;
       example = "etherion";
@@ -25,7 +25,7 @@ in {
       name = lib.mkOption {
         type = lib.types.str;
         description = "Name to use for git";
-        default = config.system.users.default.name;
+        default = config.sys.users.default.name;
         example = "John Doe";
       };
     };

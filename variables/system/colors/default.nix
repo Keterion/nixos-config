@@ -3,7 +3,7 @@
   lib,
   ...
 }: {
-  options.system = {
+  options.sys = {
     colorscheme = lib.mkOption {
       default = "tokyonight-moon";
       type = lib.types.enum ["tokyonight-moon" "catppuccin-mocha" "gruvbox-dark"];
@@ -61,5 +61,5 @@
     };
   };
 
-  config.system.colors = import ./${config.system.colorscheme}.nix;
+  config.sys.colors = import ./${config.sys.colorscheme}.nix;
 }

@@ -3,13 +3,13 @@
   lib,
   ...
 }: let
-  cfg = config.system.security;
+  cfg = config.sys.security;
 in {
   imports = [
     ./firejail.nix
     ./secureboot.nix
   ];
-  options.system.security = {
+  options.sys.security = {
     gnupg.enableSSH = lib.mkEnableOption "ssh support for gnupg";
   };
   config = {

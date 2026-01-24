@@ -16,9 +16,9 @@
   #      wallpaper = [",~/Pictures/wallpaper.png"];
   #    };
   #};
-  services.swww.enable = osConfig.system.de.hyprland.wallpaper.enable;
+  services.swww.enable = osConfig.sys.de.hyprland.wallpaper.enable;
   wayland.windowManager.hyprland.settings.exec-once = [
-    "${pkgs.swww}/bin/swww img ${osConfig.system.de.hyprland.wallpaper.path}"
+    "${pkgs.swww}/bin/swww img ${osConfig.sys.de.hyprland.wallpaper.path}"
   ];
 }
 #// lib.mkIf osConfig.system.de.hyprland.hyprpaper.wallhaven.enable {

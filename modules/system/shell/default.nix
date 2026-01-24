@@ -10,7 +10,7 @@
     ./prompt
   ];
 
-  options.system.shell = {
+  options.sys.shell = {
     aliases = lib.mkOption {
       type = lib.types.attrsOf lib.types.str;
       default = {};
@@ -20,6 +20,6 @@
   };
 
   config = {
-    environment.shellAliases = config.system.shell.aliases;
+    environment.shellAliases = config.sys.shell.aliases;
   };
 }

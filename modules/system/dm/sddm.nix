@@ -3,9 +3,9 @@
   config,
   ...
 }: let
-  cfg = config.system.dm.sddm;
+  cfg = config.sys.dm.sddm;
 in {
-  options.system.dm.sddm = {
+  options.sys.dm.sddm = {
     enable = lib.mkEnableOption "sddm";
     styleProfile = lib.mkOption {
       type = lib.types.enum ["default"];

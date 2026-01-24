@@ -12,7 +12,7 @@ in {
     description = "Whether to enable jellyfin media player.";
   };
   config = lib.mkIf cfg.enable {
-    home-manager.users.${config.system.users.default.name}.home.packages = [
+    home-manager.users.${config.sys.users.default.name}.home.packages = [
       pkgs.stable.jellyfin-media-player
     ];
   };

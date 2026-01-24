@@ -14,7 +14,7 @@ in {
       mode = "0600";
     };
   };
-  system.users.default = {
+  sys.users.default = {
     name = main_user;
     git = {
       name = "Keterion";
@@ -22,7 +22,7 @@ in {
     };
     extraGroups = ["${config.hosting.defaultGroup}" "audio"];
   };
-  system = {
+  sys = {
     configDir = /home/${main_user}/etc/nixos;
     colorscheme = "tokyonight-moon";
     security.firejail = {

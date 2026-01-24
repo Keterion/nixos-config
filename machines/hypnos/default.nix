@@ -15,7 +15,7 @@ in {
   networking.hosts = builtins.trace "wowie" {
     "${config.hosting.ip}" = ["host"];
   };
-  system.users.default = {
+  sys.users.default = {
     name = main_user;
     git = {
       name = "Keterion";
@@ -32,12 +32,19 @@ in {
 
   #nix.package = pkgs.lixPackageSets.stable.lix;
 
-  system = {
+  sys = {
     configDir = config_path;
     colorscheme = "tokyonight-moon";
     #sops.age.keyFile = "/home/Hypnos/.config/sops/age/keys.txt";
 
-    security.firejail.enable = true;
+    security = {
+      secureboot = {
+        setup.utils = true;
+        setup.done = true;
+        enable = true;
+      };
+      firejail.enable = true;
+    };
 
     audio.pipewire = {
       enable = true;

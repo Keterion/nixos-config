@@ -21,14 +21,14 @@ in {
         gaps_in = 5;
         gaps_out = 20;
         border_size = 2;
-        "col.active_border" = "rgb(${osConfig.system.colors.magenta})";
-        "col.inactive_border" = "rgb(${osConfig.system.colors.blue1})";
+        "col.active_border" = "rgb(${osConfig.sys.colors.magenta})";
+        "col.inactive_border" = "rgb(${osConfig.sys.colors.blue1})";
         env =
           [
             "XDG_SESSION_TYPE,wayland"
           ]
           ++ lib.optionals
-          osConfig.system.graphics.nvidia.enable [
+          osConfig.sys.graphics.nvidia.enable [
             "LIBVA_DRIVER_NAME,nvidia"
             "GDM_BACKEND,nvidia-drm"
             "__GLX_VENDOR_LIBRARY_NAME,nvidia"
@@ -39,8 +39,8 @@ in {
       decoration = {
       };
       input = {
-        kb_layout = "${osConfig.system.keyboard.layout}";
-        kb_variant = "${osConfig.system.keyboard.variant}";
+        kb_layout = "${osConfig.sys.keyboard.layout}";
+        kb_variant = "${osConfig.sys.keyboard.variant}";
         kb_options = "compose:ralt";
       };
       cursor.no_hardware_cursors = true;
@@ -65,7 +65,7 @@ in {
       "$right" = "right";
 
       bind = [
-        "$launchMod, R, exec, exec $(${osConfig.system.runner.command})"
+        "$launchMod, R, exec, exec $(${osConfig.sys.runner.command})"
         "$launchMod, E, exec, $TERMINAL -- ${pkgs.yazi}/bin/yazi" #Filemanager thingy
         "$launchMod, Return, exec, $TERMINAL" #terminal thingy
 
@@ -76,8 +76,8 @@ in {
         "$systemMod, P, exec, ${systemctl} poweroff"
         "$systemMod, R, exec, ${systemctl} reboot"
         "$systemMod, H, exec, ${pkgs.hyprland}/bin/hyprctl reload"
-        "$systemMod, L, exec, ${osConfig.system.screenlocker.command}"
-        "$systemMod, S, exec, ${osConfig.system.screenlocker.command} & systemctl suspend"
+        "$systemMod, L, exec, ${osConfig.sys.screenlocker.command}"
+        "$systemMod, S, exec, ${osConfig.sys.screenlocker.command} & systemctl suspend"
 
         "$mod, 1, workspace, 1"
         "$mod, 2, workspace, 2"

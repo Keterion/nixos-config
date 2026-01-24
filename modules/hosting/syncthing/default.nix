@@ -48,7 +48,7 @@ in {
     };
     user = lib.mkOption {
       type = lib.types.str;
-      default = "${config.system.users.default.name}";
+      default = "${config.sys.users.default.name}";
     };
     port = lib.mkOption {
       default = 8384;

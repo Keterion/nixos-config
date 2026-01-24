@@ -9,7 +9,7 @@ myUtils.mkSimpleOption {
   name = "bc";
   package = pkgs.bc;
   extraConfig = {
-    system.shell.aliases = {
+    sys.shell.aliases = {
       "bc" = "${pkgs.bc}/bin/bc -l";
     };
   };

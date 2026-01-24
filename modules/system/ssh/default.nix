@@ -4,9 +4,9 @@
   config,
   ...
 }: let
-  cfg = config.system.ssh;
+  cfg = config.sys.ssh;
 in {
-  options.system.ssh = {
+  options.sys.ssh = {
     enable = myUtils.mkEnabledOption "networking";
     port = lib.mkOption {
       type = lib.types.port;
@@ -27,7 +27,7 @@ in {
         PasswordAuthentication = true;
         KbdInteractiveAuthentication = false;
         PermitRootLogin = "no";
-        AllowUsers = [config.system.users.default.name];
+        AllowUsers = [config.sys.users.default.name];
         X11Forwarding = false;
         AllowTcpForwarding = "no";
       };

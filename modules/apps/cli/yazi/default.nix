@@ -16,7 +16,7 @@ in {
     programs.yazi = {
       enable = true;
       settings = {
-        theme = with config.system.colors; {
+        theme = with config.sys.colors; {
           mgr = {
             cwd = {
               fg = "#${green}";
@@ -195,7 +195,7 @@ in {
       };
     };
 
-    programs.zsh.shellInit = lib.optionalString config.system.shell.zsh.enable ''
+    programs.zsh.shellInit = lib.optionalString config.sys.shell.zsh.enable ''
       function y() {
        local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
        yazi "$@" --cwd-file="$tmp"

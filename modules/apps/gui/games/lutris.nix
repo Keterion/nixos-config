@@ -1,5 +1,9 @@
-{ lib, pkgs, config, ... }:
-let 
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}: let
   cfg = config.apps.games.lutris;
 in {
   options.apps.games.lutris.enable = lib.mkOption {
@@ -8,6 +12,6 @@ in {
     description = "Whether to enable lutris";
   };
   config = lib.mkIf cfg.enable {
-    home-manager.users.${config.system.users.default.name}.home.packages = [ pkgs.lutris ];
+    home-manager.users.${config.sys.users.default.name}.home.packages = [pkgs.lutris];
   };
 }

@@ -4,9 +4,9 @@
   pkgs,
   ...
 }: let
-  cfg = config.system.terminal.kitty;
+  cfg = config.sys.terminal.kitty;
 in {
-  options.system.terminal.kitty = {
+  options.sys.terminal.kitty = {
     enable = lib.mkEnableOption "the kitty terminal";
     default = lib.mkEnableOption "kitty as default terminal";
     remoteControl = lib.mkEnableOption "remote control for kitty";
@@ -22,7 +22,7 @@ in {
         TERM = "kitty";
         TERMINAL = "kitty";
       };
-    home-manager.users.${config.system.users.default.name} = {
+    home-manager.users.${config.sys.users.default.name} = {
       programs.kitty = {
         enable = true;
         keybindings = {
@@ -47,7 +47,7 @@ in {
           "ctrl+shift+[" = "previous_tab";
           "ctrl+shift+]" = "next_tab";
         };
-        settings = with config.system; {
+        settings = with config.sys; {
           enable_audio_bell = false;
 
           draw_minimal_borders = true;

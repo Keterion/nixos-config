@@ -5,9 +5,9 @@
   config,
   ...
 }: let
-  cfg = config.system.security.firejail;
+  cfg = config.sys.security.firejail;
 in {
-  options.system.security.firejail = {
+  options.sys.security.firejail = {
     enable = lib.mkEnableOption "firejail for sandboxing";
     #wrappedBinaries = lib.mkOption {
     #  type = config.programs.firejail.wrappedBinaries.type;

@@ -3,13 +3,13 @@
   config,
   ...
 }: let
-  cfg = config.system.dm.gdm;
+  cfg = config.sys.dm.gdm;
 in {
-  options.system.dm.gdm = {
+  options.sys.dm.gdm = {
     enable = lib.mkEnableOption "gdm";
     banner = lib.mkOption {
       type = lib.types.str;
-      default = config.system.dm.greet;
+      default = config.sys.dm.greet;
       example = ''
         foo
         bar

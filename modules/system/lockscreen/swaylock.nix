@@ -4,22 +4,22 @@
   pkgs,
   ...
 }: let
-  cfg = config.system.screenlocker.swaylock;
+  cfg = config.sys.screenlocker.swaylock;
 in {
-  options.system.screenlocker.swaylock = {
+  options.sys.screenlocker.swaylock = {
     enable = lib.mkEnableOption "swaylock";
   };
 
   config = lib.mkIf cfg.enable {
-    system.screenlocker = {
+    sys.screenlocker = {
       name = "swaylock";
       command = lib.mkDefault "${pkgs.swaylock}/bin/swaylock";
     };
 
-    home-manager.users.${config.system.users.default.name} = {
+    home-manager.users.${config.sys.users.default.name} = {
       programs.swaylock = {
         enable = true;
-        settings = with config.system.colors; {
+        settings = with config.sys.colors; {
           color = "${bg}";
           indicator-idle-visible = true;
           indicator-radius = 150;

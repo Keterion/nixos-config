@@ -1,12 +1,12 @@
 {config, ...}: {
   config = {
     services.xserver.xkb = {
-      layout = config.system.keyboard.layout;
-      variant = config.system.keyboard.variant;
+      layout = config.sys.keyboard.layout;
+      variant = config.sys.keyboard.variant;
     };
-    home-manager.users.${config.system.users.default.name}.wayland.windowManager.hyprland.settings.input = {
-      kb_layout = config.system.keyboard.layout;
-      kb_variant = config.system.keyboard.variant;
+    home-manager.users.${config.sys.users.default.name}.wayland.windowManager.hyprland.settings.input = {
+      kb_layout = config.sys.keyboard.layout;
+      kb_variant = config.sys.keyboard.variant;
     };
   };
 }

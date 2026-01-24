@@ -17,7 +17,7 @@ in {
       extraConfig = "
         Host local
           Hostname localhost
-          Port ${builtins.toString config.system.ssh.port}
+          Port ${builtins.toString config.sys.ssh.port}
           User etherion
       ";
     };

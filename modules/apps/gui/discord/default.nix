@@ -15,7 +15,7 @@ in {
     };
     sandbox = lib.mkOption {
       type = lib.types.bool;
-      default = config.system.security.firejail.defaultWraps.discord;
+      default = config.sys.security.firejail.defaultWraps.discord;
     };
     vencord.enable = lib.mkOption {
       type = lib.types.bool;

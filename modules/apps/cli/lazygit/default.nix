@@ -8,7 +8,7 @@
   settingsFormat = pkgs.formats.yaml {};
   settings = {
     gui.nerdFontsVersion = "3";
-    gui.theme = with config.system; {
+    gui.theme = with config.sys; {
       lightTheme = false;
       activeBorderColor = [
         "#${colors.purple}"
@@ -44,7 +44,7 @@ in {
       enable = true;
       settings = settings;
     };
-    home-manager.users.${config.system.users.default.name}.programs.lazygit = {
+    home-manager.users.${config.sys.users.default.name}.programs.lazygit = {
       enable = true;
       settings = settings;
     };

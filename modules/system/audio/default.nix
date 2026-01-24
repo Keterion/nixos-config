@@ -5,9 +5,9 @@
   pkgs,
   ...
 }: let
-  cfg = config.system.audio;
+  cfg = config.sys.audio;
 in {
-  options.system.audio = {
+  options.sys.audio = {
     pipewire = {
       #enable = lib.mkEnableOption " the pipewire audio server";
       enable = myUtils.mkEnabledOption " the pipewire audio server";

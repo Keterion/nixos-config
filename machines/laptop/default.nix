@@ -39,7 +39,7 @@
     mullvad = "${pkgs.mullvad-vpn}/bin/mullvad";
   in {
     uni = {
-      config = ''config /home/${config.system.users.default.name}/.cert/uni/vun.ovpn '';
+      config = ''config /home/${config.sys.users.default.name}/.cert/uni/vun.ovpn '';
       autoStart = false;
       authUserPass = config.sops.templates."uni_vpn".path;
       updateResolvConf = false;
@@ -56,7 +56,7 @@
     };
   };
 
-  system.users.default = {
+  sys.users.default = {
     name = "etherion";
     extraGroups = ["networkmanager"];
     git = {
@@ -64,8 +64,8 @@
       email = "100532848+Keterion@users.noreply.github.com";
     };
   };
-  system = {
-    configDir = /home/${config.system.users.default.name}/etc/nixos;
+  sys = {
+    configDir = /home/${config.sys.users.default.name}/etc/nixos;
     colorscheme = "tokyonight-moon";
 
     security.firejail.enable = true;
@@ -213,7 +213,7 @@
     valentina.enable = false;
   };
   apps.beets.config = {
-    directory = "/home/${config.system.users.default.name}/Music/songs/processed";
+    directory = "/home/${config.sys.users.default.name}/Music/songs/processed";
     asciify_paths = true;
     import = {
       write = true;
@@ -242,7 +242,7 @@
     syncthing = {
       enable = true;
       config.directories = let
-        main_user = config.system.users.default.name;
+        main_user = config.sys.users.default.name;
       in [
         {
           id = "ycnaw-dc4ex";
@@ -302,17 +302,17 @@
     mpd = {
       enable = false;
       directories = {
-        music = "/home/${config.system.users.default.name}/Music/songs/";
-        playlist = "/home/${config.system.users.default.name}/Music/songs/playlists/";
+        music = "/home/${config.sys.users.default.name}/Music/songs/";
+        playlist = "/home/${config.sys.users.default.name}/Music/songs/playlists/";
       };
       startWhenNeeded = false;
-      user = "${config.system.users.default.name}";
+      user = "${config.sys.users.default.name}";
     };
     navidrome = {
       enable = false;
       directories = {
-        music = "/home/${config.system.users.default.name}/Music/songs/";
-        playlist = "/home/${config.system.users.default.name}/Music/songs/playlists/";
+        music = "/home/${config.sys.users.default.name}/Music/songs/";
+        playlist = "/home/${config.sys.users.default.name}/Music/songs/playlists/";
       };
     };
   };

@@ -1,5 +1,9 @@
-{ pkgs, config, lib, ... }:
-let
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: let
   cfg = config.apps.games.minecraft;
 in {
   options.apps.games.minecraft.enable = lib.mkOption {
@@ -9,7 +13,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    home-manager.users.${config.system.users.default.name}.home.packages = with pkgs; [
+    home-manager.users.${config.sys.users.default.name}.home.packages = with pkgs; [
       prismlauncher
       #jdk17
       #jdk8

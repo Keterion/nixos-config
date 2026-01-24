@@ -4,9 +4,9 @@
   config,
   ...
 }: let
-  cfg = config.system.graphics;
+  cfg = config.sys.graphics;
 in {
-  options.system.graphics = {
+  options.sys.graphics = {
     nvidia.enable = lib.mkEnableOption "nvidia configuration to work";
     intel = {
       enable = lib.mkEnableOption "intel configuration to work";

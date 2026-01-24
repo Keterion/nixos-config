@@ -3,9 +3,9 @@
   config,
   ...
 }: let
-  cfg = config.system.network;
+  cfg = config.sys.network;
 in {
-  options.system.network = {
+  options.sys.network = {
     enable = lib.mkOption {
       type = lib.types.bool;
       default = true;
@@ -88,7 +88,7 @@ in {
             PasswordAuthentication = false;
             KbdInteractiveAuthentication = false;
             PermitRootLogin = "no";
-            AllowUsers = [config.system.users.default.name];
+            AllowUsers = [config.sys.users.default.name];
             X11Forwarding = "no";
             AllowTcpForwarding = "no";
           };
