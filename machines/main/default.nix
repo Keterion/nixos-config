@@ -300,7 +300,7 @@
     sonarr.enable = true;
     syncthing.enable = true;
     tandoor = {
-      enable = true;
+      enable = false;
       port = 8023;
       monitor.enable = false;
       proxy.enable = true;
