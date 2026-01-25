@@ -1,5 +1,9 @@
-{ lib, pkgs, config, ... }:
-let
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}: let
   cfg = config.apps.games.epicgames;
 in {
   options.apps.games.epicgames.enable = lib.mkOption {
@@ -9,6 +13,6 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    home-manager.users.${config.system.users.default.name}.home.packages = [ pkgs.heroic ];
+    home-manager.users.${config.sys.users.default.name}.home.packages = [pkgs.heroic];
   };
 }

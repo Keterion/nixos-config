@@ -15,7 +15,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    home-manager.users.${config.system.users.default.name} = {
+    home-manager.users.${config.sys.users.default.name} = {
       services.pueue = {
         enable = true;
       };

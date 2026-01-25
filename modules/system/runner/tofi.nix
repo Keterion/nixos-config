@@ -3,9 +3,9 @@
   lib,
   ...
 }: let
-  cfg = config.system.runner.tofi;
+  cfg = config.sys.runner.tofi;
 in {
-  options.system.runner.tofi = {
+  options.sys.runner.tofi = {
     enable = lib.mkEnableOption "tofi";
     styleProfile = lib.mkOption {
       type = lib.types.enum ["etherion"];
@@ -15,8 +15,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    system.runner.command = "tofi-run";
-    home-manager.users.${config.system.users.default.name} = {
+    sys.runner.command = "tofi-run";
+    home-manager.users.${config.sys.users.default.name} = {
       programs.tofi.enable = true;
       imports = [
         ./tofi/${cfg.styleProfile}.nix

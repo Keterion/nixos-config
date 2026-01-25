@@ -3,7 +3,7 @@
   pkgs,
   ...
 }:
-with osConfig.system.colors; {
+with osConfig.sys.colors; {
   programs.tofi.settings = {
     font-size = 12;
     font = "${pkgs.nerd-fonts.hack}/share/fonts/truetype/NerdFonts/Hack/HackNerdFontMono-Regular.ttf";

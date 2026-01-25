@@ -4,7 +4,7 @@
   myUtils,
   ...
 }: {
-  options.system.firewall = {
+  options.sys.firewall = {
     enable = myUtils.mkEnabledOption "the firewall";
     allowedTCPPorts = lib.mkOption {
       type = lib.types.listOf lib.types.ints.u32;
@@ -20,9 +20,9 @@
 
   config = {
     networking.firewall = {
-      enable = config.system.firewall.enable;
-      allowedTCPPorts = config.system.firewall.allowedTCPPorts;
-      allowedUDPPorts = config.system.firewall.allowedUDPPorts;
+      enable = config.sys.firewall.enable;
+      allowedTCPPorts = config.sys.firewall.allowedTCPPorts;
+      allowedUDPPorts = config.sys.firewall.allowedUDPPorts;
     };
   };
 }

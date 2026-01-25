@@ -1,5 +1,9 @@
-{ lib, pkgs, config, ... }:
-let
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}: let
   cfg = config.apps.signal;
 in {
   options.apps.signal.enable = lib.mkOption {
@@ -8,7 +12,7 @@ in {
     description = "Whether to enable signal.";
   };
   config = lib.mkIf cfg.enable {
-    home-manager.users.${config.system.users.default.name}.home.packages = [
+    home-manager.users.${config.sys.users.default.name}.home.packages = [
       pkgs.signal-desktop-bin
     ];
   };

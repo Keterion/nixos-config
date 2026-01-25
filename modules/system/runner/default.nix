@@ -2,7 +2,7 @@
   imports = [
     ./tofi.nix
   ];
-  options.system.runner = {
+  options.sys.runner = {
     name = lib.mkOption {
       type = lib.types.str;
       default = "";

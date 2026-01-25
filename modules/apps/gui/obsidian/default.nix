@@ -1,5 +1,9 @@
-{ lib, pkgs, config, ... }:
-let
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}: let
   cfg = config.apps.obsidian;
 in {
   options.apps.obsidian.enable = lib.mkOption {
@@ -8,7 +12,7 @@ in {
     description = "Whether to enable obsidian.";
   };
   config = lib.mkIf cfg.enable {
-    home-manager.users.${config.system.users.default.name}.home.packages = [
+    home-manager.users.${config.sys.users.default.name}.home.packages = [
       pkgs.obsidian
     ];
   };

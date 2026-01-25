@@ -5,9 +5,9 @@
   pkgs,
   ...
 }: let
-  cfg = config.system.shell.zsh;
+  cfg = config.sys.shell.zsh;
 in {
-  options.system.shell.zsh = {
+  options.sys.shell.zsh = {
     enable = lib.mkEnableOption "zsh";
     global = {
       autosuggestions.enable = lib.mkEnableOption "autosuggestions";
@@ -66,11 +66,11 @@ in {
       shellAliases = cfg.global.aliases;
     };
 
-    users.users."${config.system.users.default.name}" = lib.mkIf cfg.user.default {
+    users.users."${config.sys.users.default.name}" = lib.mkIf cfg.user.default {
       shell = pkgs.zsh;
     };
 
-    home-manager.users.${config.system.users.default.name}.programs.zsh = {
+    home-manager.users.${config.sys.users.default.name}.programs.zsh = {
       enable = cfg.enable;
       autocd = cfg.user.autocd;
       autosuggestion = {

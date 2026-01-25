@@ -19,8 +19,8 @@ in {
       pkgs.rmpc
     ];
 
-    home-manager.users.${config.system.users.default.name} = {
-      xdg.configFile."rmpc/themes/default.ron".text = with config.system.colors; ''
+    home-manager.users.${config.sys.users.default.name} = {
+      xdg.configFile."rmpc/themes/default.ron".text = with config.sys.colors; ''
         #![enable(implicit_some)]
         #![enable(unwrap_newtypes)]
         #![enable(unwrap_variant_newtypes)]

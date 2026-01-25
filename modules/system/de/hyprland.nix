@@ -4,11 +4,11 @@
   lib,
   ...
 }: let
-  cfg = config.system.de.hyprland;
+  cfg = config.sys.de.hyprland;
 in {
   imports = [
   ];
-  options.system.de.hyprland = {
+  options.sys.de.hyprland = {
     enable = lib.mkEnableOption "hyprland.";
     autologin = lib.mkEnableOption "automatic login into hyprland with supported dms";
     utils.enable = lib.mkOption {
@@ -31,12 +31,12 @@ in {
           general = {
             after_sleep_cmd = "hyprctl dispatch dpms on";
             ignore_dbus_inhibit = false;
-            lock_cmd = "${config.system.screenlocker.command}";
+            lock_cmd = "${config.sys.screenlocker.command}";
           };
           listener = [
             {
               timeout = 330;
-              on-timeout = "${config.system.screenlocker.command}";
+              on-timeout = "${config.sys.screenlocker.command}";
             }
             {
               timeout = 300;
@@ -52,7 +52,7 @@ in {
       enable = lib.mkEnableOption "wallpapers";
       path = lib.mkOption {
         type = lib.types.str;
-        default = "/home/${config.system.users.default.name}/Pictures/wallpaper.png";
+        default = "/home/${config.sys.users.default.name}/Pictures/wallpaper.png";
       };
       wallhaven.enable = lib.mkEnableOption "wallhaven auto-wallpapers";
     };
@@ -65,7 +65,7 @@ in {
     services.displayManager = lib.mkIf cfg.autologin {
       autoLogin = {
         enable = true;
-        user = config.system.users.default.name;
+        user = config.sys.users.default.name;
       };
       defaultSession = "hyprland-uwsm";
     };
@@ -91,7 +91,7 @@ in {
 
     #scripts.api.wallhaven.enable = cfg.hyprpaper.wallhaven.enable;
 
-    home-manager.users.${config.system.users.default.name} = {
+    home-manager.users.${config.sys.users.default.name} = {
       imports = [
         ./hyprland/${cfg.styleProfile}.nix
         ./hyprland/hyprpaper.nix

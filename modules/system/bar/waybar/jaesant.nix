@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: let
-  color = osConfig.system.colors;
+  color = osConfig.sys.colors;
   workspace-icons = {
     "1" = "一";
     "2" = "二";

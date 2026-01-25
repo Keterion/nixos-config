@@ -12,6 +12,10 @@
     sops-nix = {
       url = "github:Mic92/sops-nix";
     };
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v1.0.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nur = {
       url = "github:nix-community/nur";
@@ -93,6 +97,7 @@
           ./machines/common.nix
           ./machines/hypnos
 
+          inputs.lanzaboote.nixosModules.lanzaboote
           inputs.nvf.nixosModules.default
 
           home-manager.nixosModules.home-manager

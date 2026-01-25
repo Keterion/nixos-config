@@ -18,7 +18,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     hardware.graphics.enable = true;
-    home-manager.users.${config.system.users.default.name}.home.packages =
+    home-manager.users.${config.sys.users.default.name}.home.packages =
       [
         pkgs.freecad
       ]

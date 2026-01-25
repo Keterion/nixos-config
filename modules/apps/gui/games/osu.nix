@@ -1,5 +1,9 @@
-{ pkgs, config, lib, ... }:
-let
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: let
   cfg = config.apps.games.osu;
 in {
   options.apps.games.osu.enable = lib.mkOption {
@@ -8,6 +12,6 @@ in {
     description = "Whether to enable osu.";
   };
   config = lib.mkIf cfg.enable {
-    home-manager.users.${config.system.users.default.name}.home.packages = [ pkgs.osu-lazer-bin ];
+    home-manager.users.${config.sys.users.default.name}.home.packages = [pkgs.osu-lazer-bin];
   };
 }

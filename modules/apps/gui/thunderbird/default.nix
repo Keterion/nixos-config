@@ -16,7 +16,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    home-manager.users.${config.system.users.default.name}.home.packages = [
+    home-manager.users.${config.sys.users.default.name}.home.packages = [
       pkgs.thunderbird
     ];
   };

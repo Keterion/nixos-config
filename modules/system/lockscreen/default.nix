@@ -4,7 +4,7 @@
     ./hyprlock.nix
   ];
 
-  options.system.screenlocker = {
+  options.sys.screenlocker = {
     name = lib.mkOption {
       type = lib.types.str;
       default = "";

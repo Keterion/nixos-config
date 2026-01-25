@@ -3,16 +3,16 @@
   config,
   ...
 }: let
-  cfg = config.system.shell.prompt.starship;
+  cfg = config.sys.shell.prompt.starship;
 in {
-  options.system.shell.prompt.starship = {
+  options.sys.shell.prompt.starship = {
     enable = lib.mkEnableOption "the starship prompt";
   };
   config = lib.mkIf cfg.enable {
     programs.starship = {
       enable = true;
       settings = {
-        palettes.custom = with config.system; {
+        palettes.custom = with config.sys; {
           fg = "#${colors.fg}";
           fg_dark = "#${colors.fg_dark}";
           bg = "#${colors.bg}";

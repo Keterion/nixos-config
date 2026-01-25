@@ -4,9 +4,9 @@
   pkgs,
   ...
 }: let
-  cfg = config.system.bar.waybar;
+  cfg = config.sys.bar.waybar;
 in {
-  options.system.bar.waybar = {
+  options.sys.bar.waybar = {
     enable = lib.mkEnableOption " waybar";
     styleProfile = lib.mkOption {
       type = lib.types.enum ["haides002" "default" "jaesant"];
@@ -16,7 +16,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     programs.dconf.enable = true;
-    home-manager.users.${config.system.users.default.name}.imports = [
+    home-manager.users.${config.sys.users.default.name}.imports = [
       ./waybar/${cfg.styleProfile}.nix
     ];
   };

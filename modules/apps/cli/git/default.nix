@@ -41,12 +41,12 @@ in {
       };
     };
 
-    home-manager.users.${config.system.users.default.name}.programs = {
+    home-manager.users.${config.sys.users.default.name}.programs = {
       git = {
         enable = true;
         settings.user = {
-          name = config.system.users.default.git.name;
-          email = config.system.users.default.git.email;
+          name = config.sys.users.default.git.name;
+          email = config.sys.users.default.git.email;
         };
       };
       gh = {

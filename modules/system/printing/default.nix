@@ -4,9 +4,9 @@
   pkgs,
   ...
 }: let
-  cfg = config.system.printing;
+  cfg = config.sys.printing;
 in {
-  options.system.printing = {
+  options.sys.printing = {
     enable = lib.mkEnableOption "wireless printing support";
     autodiscovery.enable = lib.mkEnableOption "autodiscovery with avahi";
   };

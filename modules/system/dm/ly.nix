@@ -3,9 +3,9 @@
   config,
   ...
 }: let
-  cfg = config.system.dm.ly;
+  cfg = config.sys.dm.ly;
 in {
-  options.system.dm.ly = {
+  options.sys.dm.ly = {
     enable = lib.mkEnableOption "ly";
     styleProfile = lib.mkOption {
       type = lib.types.enum ["default"];

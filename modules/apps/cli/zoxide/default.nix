@@ -33,7 +33,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    home-manager.users.${config.system.users.default.name}.programs.zoxide = {
+    home-manager.users.${config.sys.users.default.name}.programs.zoxide = {
       enable = true;
       enableZshIntegration = true;
       enableBashIntegration = cfg.overrides.shellIntegration.bash.enable;
@@ -41,6 +41,6 @@ in {
       enableNushellIntegration = cfg.overrides.shellIntegration.nushell.enable;
     };
 
-    system.shell.zsh.user.aliases = lib.mkIf config.system.shell.zsh.enable {"cd" = "z";};
+    sys.shell.zsh.user.aliases = lib.mkIf config.sys.shell.zsh.enable {"cd" = "z";};
   };
 }

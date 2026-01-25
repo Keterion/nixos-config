@@ -64,7 +64,7 @@ in {
       name = "${cfg.defaultGroup}";
     };
 
-    home-manager.users.${config.system.users.default.name}.programs.firefox.profiles."default".bookmarks.settings = [
+    home-manager.users.${config.sys.users.default.name}.programs.firefox.profiles."default".bookmarks.settings = [
       {
         name = "Toolbar";
         toolbar = true;

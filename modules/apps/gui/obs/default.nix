@@ -1,5 +1,9 @@
-{ lib, pkgs, config, ... }:
-let
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}: let
   cfg = config.apps.obs;
 in {
   options.apps.obs.enable = lib.mkOption {
@@ -8,7 +12,7 @@ in {
     description = "Whether to enable obs.";
   };
   config = lib.mkIf cfg.enable {
-    home-manager.users.${config.system.users.default.name}.home.packages = [
+    home-manager.users.${config.sys.users.default.name}.home.packages = [
       pkgs.obs-studio
     ];
   };

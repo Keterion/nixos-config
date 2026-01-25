@@ -2,7 +2,9 @@
   pkgs,
   config,
   ...
-}: {
+}: let
+  main_user = "etherion";
+in {
   imports = [./hardware-configuration.nix];
   networking.hostName = "main";
   sops.secrets = {
@@ -12,16 +14,16 @@
       mode = "0600";
     };
   };
-  system.users.default = {
-    name = "etherion";
+  sys.users.default = {
+    name = main_user;
     git = {
       name = "Keterion";
       email = "100532848+Keterion@users.noreply.github.com";
     };
     extraGroups = ["${config.hosting.defaultGroup}" "audio"];
   };
-  system = {
-    configDir = /home/${config.system.users.default.name}/etc/nixos;
+  sys = {
+    configDir = /home/${main_user}/etc/nixos;
     colorscheme = "tokyonight-moon";
     security.firejail = {
       enable = true;
@@ -181,7 +183,7 @@
   };
 
   apps.beets.config = {
-    directory = "/home/${config.system.users.default.name}/Music/songs/processed";
+    directory = "/home/${main_user}/Music/songs/processed";
     asciify_paths = true;
     import = {
       write = true;
@@ -260,8 +262,8 @@
     mpd = {
       enable = false;
       directories = {
-        music = "/home/${config.system.users.default.name}/Music/songs/";
-        playlist = "/home/${config.system.users.default.name}/Music/songs/playlists/";
+        music = "/home/${main_user}/Music/songs/";
+        playlist = "/home/${main_user}/Music/songs/playlists/";
       };
       startWhenNeeded = false;
       user = "etherion";
@@ -269,7 +271,7 @@
     navidrome = {
       enable = true;
       directories = {
-        music = "/home/${config.system.users.default.name}/Music/songs/";
+        music = "/home/${main_user}/Music/songs/";
         #playlist = "playlists";
       };
     };
@@ -298,7 +300,60 @@
       proxy.enable = true;
     };
     sonarr.enable = true;
-    syncthing.enable = true;
+    syncthing = {
+      enable = true;
+      config.directories = [
+        {
+          id = "ycnaw-dc4ex";
+          label = "Music";
+          devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main"];
+          path = "/home/${main_user}/Music/songs";
+        }
+        {
+          id = "rcnav-y6mqj";
+          label = "Obsidian";
+          devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main" "Hypnos"];
+          path = "/home/${main_user}/Documents/Obsidian";
+        }
+        {
+          id = "t7ez7-ezwxh";
+          label = "Passwords";
+          devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main" "Hypnos"];
+          path = "/home/${main_user}/Documents/Passwords";
+        }
+        {
+          id = "m3xdc-10b3a";
+          label = "Sync";
+          devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main" "Hypnos"];
+          path = "/home/${main_user}/Sync";
+        }
+        {
+          id = "wrgiw-yeh7e";
+          label = "DCIM";
+          devices = ["Pixel 8 Pro" "Laptop" "Main"];
+          path = "/mnt/HDD/Bilder/DCIM";
+        }
+        {
+          id = "wrfwn-ejec3";
+          label = "Pictures";
+          devices = ["Pixel 8 Pro" "Laptop" "Main"];
+          path = "/mnt/HDD/Bilder/Pictures";
+        }
+        {
+          id = "o0gxy-s1rof";
+          label = "Whatsapp Media";
+          devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main"];
+          path = "/mnt/HDD/Bilder/Whatsapp Media";
+          type = "receiveonly";
+        }
+        {
+          id = "aci0b-orq3j";
+          label = "University";
+          devices = ["Pixel 8 Pro" "Laptop" "Main" "Hypnos"];
+          path = "/home/${main_user}/Documents/School/University";
+        }
+      ];
+    };
     tandoor = {
       enable = false;
       port = 8023;

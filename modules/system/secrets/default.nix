@@ -5,12 +5,12 @@
   pkgs,
   ...
 }: let
-  cfg = config.system.sops;
+  cfg = config.sys.sops;
 in {
-  options.system.sops = {
+  options.sys.sops = {
     age.keyFile = lib.mkOption {
       type = lib.types.str;
-      default = "/home/${config.system.users.default.name}/.config/sops/age/keys.txt";
+      default = "/home/${config.sys.users.default.name}/.config/sops/age/keys.txt";
       description = "Keyfile path";
     };
   };

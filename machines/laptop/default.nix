@@ -39,7 +39,7 @@
     mullvad = "${pkgs.mullvad-vpn}/bin/mullvad";
   in {
     uni = {
-      config = ''config /home/${config.system.users.default.name}/.cert/uni/vun.ovpn '';
+      config = ''config /home/${config.sys.users.default.name}/.cert/uni/vun.ovpn '';
       autoStart = false;
       authUserPass = config.sops.templates."uni_vpn".path;
       updateResolvConf = false;
@@ -56,7 +56,7 @@
     };
   };
 
-  system.users.default = {
+  sys.users.default = {
     name = "etherion";
     extraGroups = ["networkmanager"];
     git = {
@@ -64,8 +64,8 @@
       email = "100532848+Keterion@users.noreply.github.com";
     };
   };
-  system = {
-    configDir = /home/${config.system.users.default.name}/etc/nixos;
+  sys = {
+    configDir = /home/${config.sys.users.default.name}/etc/nixos;
     colorscheme = "tokyonight-moon";
 
     security.firejail.enable = true;
@@ -213,7 +213,7 @@
     valentina.enable = false;
   };
   apps.beets.config = {
-    directory = "/home/${config.system.users.default.name}/Music/songs/processed";
+    directory = "/home/${config.sys.users.default.name}/Music/songs/processed";
     asciify_paths = true;
     import = {
       write = true;
@@ -239,7 +239,62 @@
     defaultGroup = "server";
 
     copyparty.enable = false;
-    syncthing.enable = true;
+    syncthing = {
+      enable = true;
+      config.directories = let
+        main_user = config.sys.users.default.name;
+      in [
+        {
+          id = "ycnaw-dc4ex";
+          label = "Music";
+          devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main"];
+          path = "/home/${main_user}/Music/songs";
+        }
+        {
+          id = "rcnav-y6mqj";
+          label = "Obsidian";
+          devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main" "Hypnos"];
+          path = "/home/${main_user}/Documents/Obsidian";
+        }
+        {
+          id = "t7ez7-ezwxh";
+          label = "Passwords";
+          devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main" "Hypnos"];
+          path = "/home/${main_user}/Documents/Passwords";
+        }
+        {
+          id = "m3xdc-10b3a";
+          label = "Sync";
+          devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main" "Hypnos"];
+          path = "/home/${main_user}/Sync";
+        }
+        {
+          id = "wrgiw-yeh7e";
+          label = "DCIM";
+          devices = ["Pixel 8 Pro" "Laptop" "Main"];
+          path = "/mnt/HDD/Bilder/DCIM";
+        }
+        {
+          id = "wrfwn-ejec3";
+          label = "Pictures";
+          devices = ["Pixel 8 Pro" "Laptop" "Main"];
+          path = "/mnt/HDD/Bilder/Pictures";
+        }
+        {
+          id = "o0gxy-s1rof";
+          label = "Whatsapp Media";
+          devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main"];
+          path = "/mnt/HDD/Bilder/Whatsapp Media";
+          type = "receiveonly";
+        }
+        {
+          id = "aci0b-orq3j";
+          label = "University";
+          devices = ["Pixel 8 Pro" "Laptop" "Main" "Hypnos"];
+          path = "/home/${main_user}/Documents/School/University";
+        }
+      ];
+    };
     firefox-syncserver = {
       enable = false;
       setFirefoxServer = true;
@@ -247,17 +302,17 @@
     mpd = {
       enable = false;
       directories = {
-        music = "/home/${config.system.users.default.name}/Music/songs/";
-        playlist = "/home/${config.system.users.default.name}/Music/songs/playlists/";
+        music = "/home/${config.sys.users.default.name}/Music/songs/";
+        playlist = "/home/${config.sys.users.default.name}/Music/songs/playlists/";
       };
       startWhenNeeded = false;
-      user = "${config.system.users.default.name}";
+      user = "${config.sys.users.default.name}";
     };
     navidrome = {
       enable = false;
       directories = {
-        music = "/home/${config.system.users.default.name}/Music/songs/";
-        playlist = "/home/${config.system.users.default.name}/Music/songs/playlists/";
+        music = "/home/${config.sys.users.default.name}/Music/songs/";
+        playlist = "/home/${config.sys.users.default.name}/Music/songs/playlists/";
       };
     };
   };

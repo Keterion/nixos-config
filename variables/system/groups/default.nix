@@ -3,7 +3,7 @@
   config,
   ...
 }: let
-  cfg = config.system.groups;
+  cfg = config.sys.groups;
 in {
   config = {
     users.groups.server = {

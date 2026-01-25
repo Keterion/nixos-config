@@ -8,7 +8,7 @@
     ./colors
     #    ./fonts
   ];
-  options.system = {
+  options.sys = {
     configDir = lib.mkOption {
       type = lib.types.path;
       default = /etc/nixos;
@@ -29,6 +29,6 @@
     };
   };
   config = {
-    console.keyMap = config.system.keyboard.layout;
+    console.keyMap = config.sys.keyboard.layout;
   };
 }

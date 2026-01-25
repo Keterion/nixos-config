@@ -4,9 +4,9 @@
   pkgs,
   ...
 }: let
-  cfg = config.system.de.plasma;
+  cfg = config.sys.de.plasma;
 in {
-  options.system.de.plasma.enable = lib.mkEnableOption "plasma de";
+  options.sys.de.plasma.enable = lib.mkEnableOption "plasma de";
 
   config = lib.mkIf cfg.enable {
     services.xserver.enable = true;

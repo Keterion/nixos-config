@@ -2,14 +2,21 @@
   pkgs,
   config,
   ...
-}: {
+}: let
+  main_user = "Hypnos";
+  config_path = "/home/${main_user}/nixos";
+in {
   imports = [./hardware-configuration.nix];
-  networking.hostName = "Hypnos";
+
+  nix.package = pkgs.lixPackageSets.stable.lix;
+  nix.nixPath = ["nixos-config=${config_path}"];
+
+  networking.hostName = main_user;
   networking.hosts = builtins.trace "wowie" {
     "${config.hosting.ip}" = ["host"];
   };
-  system.users.default = {
-    name = "Hypnos";
+  sys.users.default = {
+    name = main_user;
     git = {
       name = "Keterion";
       email = "100532848+Keterion@users.noreply.github.com";
@@ -25,10 +32,19 @@
 
   #nix.package = pkgs.lixPackageSets.stable.lix;
 
-  system = {
-    configDir = /home/${config.system.users.default.name}/nixos;
+  sys = {
+    configDir = config_path;
     colorscheme = "tokyonight-moon";
     #sops.age.keyFile = "/home/Hypnos/.config/sops/age/keys.txt";
+
+    security = {
+      secureboot = {
+        setup.utils = true;
+        setup.done = true;
+        enable = true;
+      };
+      firejail.enable = true;
+    };
 
     audio.pipewire = {
       enable = true;
@@ -98,6 +114,7 @@
     };
 
     shell = {
+      prompt.starship.enable = true;
       zsh = {
         enable = true;
         global = {
@@ -168,30 +185,62 @@
   };
   hosting = {
     openFirewall = true;
-    ip = "192.168.178.191";
+    ip = "192.168.178.67";
     defaultGroup = "server";
 
     #copyparty.enable = true;
-    syncthing.enable = true;
+    syncthing = {
+      enable = true;
+      config = {
+        dataDir = "/home/${main_user}/.config/syncthing";
+        directories = [
+          {
+            id = "rcnav-y6mqj";
+            label = "Obsidian";
+            devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main"];
+            path = "/home/${main_user}/Documents/Obsidian";
+            type = "sendreceive";
+          }
+          {
+            id = "t7ez7-ezwxh";
+            label = "Passwords";
+            devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main"];
+            path = "/home/${main_user}/Documents/Passwords";
+          }
+          {
+            id = "m3xdc-10b3a";
+            label = "Sync";
+            devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main"];
+            path = "/home/${main_user}/Sync";
+          }
+          {
+            id = "aci0b-orq3j";
+            label = "University";
+            devices = ["Pixel 8 Pro" "Laptop" "Main"];
+            path = "/home/${main_user}/Documents/School/University";
+          }
+        ];
+      };
+    };
     firefox-syncserver = {
       enable = false;
       setFirefoxServer = true;
     };
-    readeck.enable = true;
+    readeck.enable = false;
     mpd = {
       enable = false;
       directories = {
-        music = "/home/${config.system.users.default.name}/Music/songs/";
-        playlist = "/home/${config.system.users.default.name}/Music/songs/playlists/";
+        music = "/home/${main_user}/Music/songs/";
+        playlist = "/home/${main_user}/Music/songs/playlists/";
       };
       startWhenNeeded = false;
-      user = "${config.system.users.default.name}";
+      user = "${main_user}";
     };
     navidrome = {
       enable = false;
       directories = {
-        music = "/home/${config.system.users.default.name}/Music/songs/";
-        playlist = "/home/${config.system.users.default.name}/Music/songs/playlists/";
+        music = "/home/${main_user}/Music/songs/";
+        playlist = "/home/${main_user}/Music/songs/playlists/";
       };
     };
   };

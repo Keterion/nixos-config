@@ -17,11 +17,11 @@ in {
     environment.systemPackages = with pkgs; [
       nh
     ];
-    home-manager.users.${config.system.users.default.name}.programs.nh = {
+    home-manager.users.${config.sys.users.default.name}.programs.nh = {
       enable = true;
       clean.enable = cfg.clean;
       clean.extraArgs = "--keep-since 7d";
-      flake = config.system.configDir;
+      flake = config.sys.configDir;
     };
   };
 }

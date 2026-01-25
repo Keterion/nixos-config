@@ -4,19 +4,19 @@
   config,
   ...
 }: let
-  cfg = config.system.screenlocker.hyprlock;
+  cfg = config.sys.screenlocker.hyprlock;
 in {
-  options.system.screenlocker.hyprlock = {
+  options.sys.screenlocker.hyprlock = {
     enable = lib.mkEnableOption "hyprlock";
   };
   config = lib.mkIf cfg.enable {
     security.pam.services.hyprlock = {};
-    system.screenlocker = {
+    sys.screenlocker = {
       name = "hyprlock";
       command = lib.mkDefault "${pkgs.hyprlock}/bin/hyprlock";
     };
 
-    home-manager.users.${config.system.users.default.name} = {
+    home-manager.users.${config.sys.users.default.name} = {
       programs.hyprlock = {
         enable = true;
         settings = {
