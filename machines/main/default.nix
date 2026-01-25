@@ -25,11 +25,18 @@ in {
   sys = {
     configDir = /home/${main_user}/etc/nixos;
     colorscheme = "tokyonight-moon";
-    security.firejail = {
-      enable = true;
-      defaultWraps = {
-        wine = true;
-        discord = true;
+    security = {
+      secureboot = {
+        setup.utils = true;
+        setup.done = true;
+        enable = true;
+      };
+      firejail = {
+        enable = true;
+        defaultWraps = {
+          wine = true;
+          discord = true;
+        };
       };
     };
 
