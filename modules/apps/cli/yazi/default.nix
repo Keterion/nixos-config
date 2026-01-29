@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: let
   cfg = config.apps.yazi;
@@ -15,7 +16,30 @@ in {
   config = lib.mkIf cfg.enable {
     programs.yazi = {
       enable = true;
+      plugins = {
+        inherit (pkgs.yaziPlugins) relative-motions mediainfo; #git
+      };
       settings = {
+        yazi.plugin =
+          {
+            #prepend_fetchers = [
+            #    {
+            #      id = "git";
+            #      url = "*";
+            #      run = "git";
+            #    }
+            #    {
+            #      id = "git";
+            #      url = "*/";
+            #      run = "git";
+            #    }
+            #  ];
+          }
+          // (import ./mediainfo.nix);
+        keymap.mgr.prepend_keymap =
+          [
+          ]
+          ++ (import ./relative-motions.nix);
         theme = with config.sys.colors; {
           mgr = {
             cwd = {
