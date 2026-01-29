@@ -13,7 +13,7 @@
         inherit pkgs lib;
         package = pkgs.firefox;
         profile = "${pkgs.firejail}/etc/firejail/firefox.profile";
-        extraArgs = [];
+        extraArgs = [''--ignore='noexec ''${HOME}' '']; #sandboxing breaks drm
       }
     else pkgs.firefox;
 in {
