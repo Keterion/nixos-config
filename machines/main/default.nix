@@ -36,6 +36,7 @@ in {
         defaultWraps = {
           wine = true;
           discord = true;
+          firefox = false;
         };
       };
     };
@@ -166,6 +167,8 @@ in {
 
     feishin.enable = true;
     godot.enable = true;
+
+    restic.enable = true;
     #thunderbird.enable = true; #TODO: protonmail-bridge
     discord = {
       vencord.enable = true;
@@ -313,50 +316,50 @@ in {
         {
           id = "ycnaw-dc4ex";
           label = "Music";
-          devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main"];
-          path = "/home/${main_user}/Music/songs";
+          devices = ["SM-A715F" "Pixel 8 Pro" "Laptop"];
+          path = "/home/${main_user}/Music/";
         }
         {
           id = "rcnav-y6mqj";
           label = "Obsidian";
-          devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main" "Hypnos"];
+          devices = ["SM-A715F" "Pixel 8 Pro" "Laptop"];
           path = "/home/${main_user}/Documents/Obsidian";
         }
         {
           id = "t7ez7-ezwxh";
           label = "Passwords";
-          devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main" "Hypnos"];
+          devices = ["SM-A715F" "Pixel 8 Pro" "Laptop"];
           path = "/home/${main_user}/Documents/Passwords";
         }
         {
           id = "m3xdc-10b3a";
           label = "Sync";
-          devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main" "Hypnos"];
+          devices = ["SM-A715F" "Pixel 8 Pro" "Laptop"];
           path = "/home/${main_user}/Sync";
         }
         {
           id = "wrgiw-yeh7e";
           label = "DCIM";
-          devices = ["Pixel 8 Pro" "Laptop" "Main"];
+          devices = ["Pixel 8 Pro" "Laptop"];
           path = "/mnt/HDD/Bilder/DCIM";
         }
         {
           id = "wrfwn-ejec3";
           label = "Pictures";
-          devices = ["Pixel 8 Pro" "Laptop" "Main"];
+          devices = ["Pixel 8 Pro" "Laptop"];
           path = "/mnt/HDD/Bilder/Pictures";
         }
         {
           id = "o0gxy-s1rof";
           label = "Whatsapp Media";
-          devices = ["SM-A715F" "Pixel 8 Pro" "Laptop" "Main"];
+          devices = ["SM-A715F" "Pixel 8 Pro" "Laptop"];
           path = "/mnt/HDD/Bilder/Whatsapp Media";
           type = "receiveonly";
         }
         {
           id = "aci0b-orq3j";
           label = "University";
-          devices = ["Pixel 8 Pro" "Laptop" "Main" "Hypnos"];
+          devices = ["Pixel 8 Pro" "Laptop"];
           path = "/home/${main_user}/Documents/School/University";
         }
       ];

@@ -27,6 +27,7 @@ in {
     ./nmap
     ./nmtui
     ./pueue
+    ./restic
     ./ripgrep
     ./rmpc
     ./rsync
