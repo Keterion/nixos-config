@@ -68,7 +68,14 @@
     configDir = /home/${config.sys.users.default.name}/etc/nixos;
     colorscheme = "tokyonight-moon";
 
-    security.firejail.enable = true;
+    security = {
+      secureboot = {
+        setup.utils = true;
+        setup.done = true;
+        enable = true;
+      };
+      firejail.enable = true;
+    };
 
     audio.pipewire = {
       enable = true;
@@ -82,7 +89,7 @@
       old.enable = false;
     };
     firewall.enable = true;
-    networking = {
+    network = {
       enable = true;
     };
     bluetooth.enable = true;
@@ -206,7 +213,7 @@
     fzf.shellIntegration = true;
     zoxide.shellIntegration = true;
     games.steam = {
-      enable = true;
+      enable = false;
       compat = true;
       backup = true;
     };

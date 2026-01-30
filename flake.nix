@@ -83,6 +83,7 @@
           ./machines/laptop
 
           inputs.nvf.nixosModules.default
+          inputs.lanzaboote.nixosModules.lanzaboote
 
           home-manager.nixosModules.home-manager
         ];
