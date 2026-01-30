@@ -105,6 +105,23 @@
           home-manager.nixosModules.home-manager
         ];
       };
+      Nyx = nixpkgs.lib.nixosSystem {
+	system = "x86_64-linux";
+        specialArgs = {
+          myUtils = import ./utils.nix {inherit inputs;};
+          inherit inputs;
+        };
+        modules = [
+          {nixpkgs.overlays = overlays;}
+          ./machines/common.nix
+          ./machines/nyx
+
+          inputs.lanzaboote.nixosModules.lanzaboote
+          inputs.nvf.nixosModules.default
+
+          home-manager.nixosModules.home-manager
+        ];
+      };
     };
   };
 }
