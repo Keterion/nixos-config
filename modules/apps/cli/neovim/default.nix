@@ -142,7 +142,7 @@ in {
             };
             lsp = {
               enable = true;
-              server = "nil";
+              servers = ["nil"];
             };
             treesitter.enable = true;
             extraDiagnostics.enable = true;
@@ -162,7 +162,7 @@ in {
             enable = true;
             format = {
               enable = true;
-              type = "typstyle";
+              type = ["typstyle"];
             };
             lsp.enable = true;
             treesitter.enable = true;

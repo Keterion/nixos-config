@@ -102,21 +102,19 @@ in {
             id = "ECJ3F7I-GQNSGUE-NPZBQFI-IELDYVF-LUUW2CT-Z5Q2XRP-IWRZYBE-BJ3MZQY";
           };
         };
-        folders = builtins.trace "generating directory config for syncthing" (lib.mkIf (cfg.config.directories
+        folders =
+          lib.mkIf (cfg.config.directories
             != null)
-          (builtins.trace "directories are not null" builtins.listToAttrs
+          (builtins.listToAttrs
             (lib.map (dir: {
                 name = dir.id;
                 value = {
-                  id = dir.id;
-                  label = dir.label;
-                  path = dir.path;
-                  devices = dir.devices;
+                  inherit (dir) label devices path type;
                   syncXattrs = true;
                   sendXattrs = true;
                 };
               })
-              cfg.config.directories)));
+              cfg.config.directories));
         #folders = {
         #  "ycnaw-dc4ex" = {
         #    label = "Music";

@@ -40,7 +40,7 @@ in {
     };
 
     networking.hosts =
-      builtins.trace "wowie" {
+      {
         "${config.hosting.ip}" = ["host"];
         networking.wireless = lib.mkIf cfg.wireless.enable {
           enable = cfg.wireless.enable;
@@ -60,7 +60,7 @@ in {
             #};
           };
         };
-        networking.networkmanager.enable = builtins.trace "wtf" true;
+        networking.networkmanager.enable = true;
         #networking.wireless = lib.mkIf cfg.wireless.enable {
         #  enable = cfg.wireless.enable;
         #  userControlled.enable = true;
