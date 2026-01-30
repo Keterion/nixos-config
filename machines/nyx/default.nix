@@ -54,7 +54,7 @@ in {
     firewall.enable = true;
     network = {
       enable = true;
-      wireless.enable = false;
+      wireless.enable = true;
     };
     ssh = {
       enable = true;

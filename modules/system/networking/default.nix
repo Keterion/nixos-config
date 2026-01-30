@@ -26,40 +26,41 @@ in {
     };
   };
   config = lib.mkIf cfg.enable {
-    sops.secrets = lib.mkIf cfg.wireless.enable {
-      "eduroam/identity" = {};
-      "eduroam/password" = {};
-      "eduroam/domain" = {};
-    };
-    sops.templates."wireless_secrets" = lib.mkIf cfg.wireless.enable {
-      content = ''
-        eduroam_identity=${config.sops.placeholder."eduroam/identity"}
-        eduroam_privkey_passwd=${config.sops.placeholder."eduroam/password"}
-        eduroam_domain=${config.sops.placeholder."eduroam/domain"}
-      '';
-    };
+    #sops.secrets = lib.mkIf cfg.wireless.enable {
+    #  "eduroam/identity" = {};
+    #  "eduroam/password" = {};
+    #  "eduroam/domain" = {};
+    #};
+    #sops.templates."wireless_secrets" = lib.mkIf cfg.wireless.enable {
+    #  content = ''
+    #    eduroam_identity=${config.sops.placeholder."eduroam/identity"}
+    #    eduroam_privkey_passwd=${config.sops.placeholder."eduroam/password"}
+    #    eduroam_domain=${config.sops.placeholder."eduroam/domain"}
+    #  '';
+    #};
 
+    networking.wireless = lib.mkIf cfg.wireless.enable {
+      enable = cfg.wireless.enable;
+      userControlled = true;
+      allowAuxiliaryImperativeNetworks = true;
+      #networks = {
+      #eduroam = {
+      #  extraConfig = ''
+      #    ssid="eduroam"
+      #    key_mgmt=TLS
+      #  '';
+      #  auth = ''
+      #    identity=ext:eduroam_identity
+      #    private_key_passwd=ext:eduroam_privkey_passwd
+      #    domain=ext:eduroam_domain
+      #  '';
+      #};
+      #};
+    };
     networking.hosts =
       {
         "${config.hosting.ip}" = ["host"];
-        networking.wireless = lib.mkIf cfg.wireless.enable {
-          enable = cfg.wireless.enable;
-          userControlled.enable = true;
-          allowAuxillaryImperativeNetworks = true;
-          networks = {
-            #eduroam = {
-            #  extraConfig = ''
-            #    ssid="eduroam"
-            #    key_mgmt=TLS
-            #  '';
-            #  auth = ''
-            #    identity=ext:eduroam_identity
-            #    private_key_passwd=ext:eduroam_privkey_passwd
-            #    domain=ext:eduroam_domain
-            #  '';
-            #};
-          };
-        };
+
         networking.networkmanager.enable = true;
         #networking.wireless = lib.mkIf cfg.wireless.enable {
         #  enable = cfg.wireless.enable;
