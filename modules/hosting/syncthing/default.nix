@@ -101,6 +101,9 @@ in {
           "Hypnos" = {
             id = "ECJ3F7I-GQNSGUE-NPZBQFI-IELDYVF-LUUW2CT-Z5Q2XRP-IWRZYBE-BJ3MZQY";
           };
+          "Nyx" = {
+            id = "6STWBOZ-WEEHZIM-EGIYDP5-IHU3FJL-6ZEYK2K-GTF5DUR-6FVFARM-AX2NKA5";
+          };
         };
         folders =
           lib.mkIf (cfg.config.directories
