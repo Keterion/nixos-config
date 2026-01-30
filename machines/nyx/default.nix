@@ -128,7 +128,7 @@ in {
   };
   hosting = {
     openFirewall = true;
-    ip = "localhost";
+    ip = "192.168.0.123";
     defaultGroup = "server";
 
     #copyparty.enable = true;
