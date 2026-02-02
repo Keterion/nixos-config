@@ -12,9 +12,6 @@ in {
   nix.nixPath = ["nixos-config=${config_path}"];
 
   networking.hostName = main_user;
-  networking.hosts = builtins.trace "wowie" {
-    "${config.hosting.ip}" = ["host"];
-  };
   sys.users.default = {
     name = main_user;
     git = {
