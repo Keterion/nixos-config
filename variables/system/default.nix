@@ -29,6 +29,6 @@
     };
   };
   config = {
-    console.keyMap = config.sys.keyboard.variant;
+    console.keyMap = config.sys.keyboard.layout;
   };
 }

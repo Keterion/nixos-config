@@ -34,7 +34,7 @@ in {
       firejail = {
         enable = true;
         defaultWraps = {
-          wine = true;
+          wine = false;
           discord = true;
           firefox = false;
         };
