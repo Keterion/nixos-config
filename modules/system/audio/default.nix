@@ -9,8 +9,8 @@
 in {
   options.sys.audio = {
     pipewire = {
-      #enable = lib.mkEnableOption " the pipewire audio server";
       enable = myUtils.mkEnabledOption " the pipewire audio server";
+      headless = lib.mkEnableOption "running pipewire headlessly";
       rtkit.enable = lib.mkEnableOption " rtkit for realtime priority for pipewire";
       compatibility = {
         pulse.enable = lib.mkEnableOption " the pipewire-pulse audio server";

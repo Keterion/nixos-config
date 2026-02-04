@@ -56,6 +56,7 @@ in {
     ssh = {
       enable = true;
       fail2ban = false;
+      harden = true;
     };
     bluetooth.enable = false;
     fonts = with pkgs; [

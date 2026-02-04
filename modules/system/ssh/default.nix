@@ -8,6 +8,7 @@
 in {
   options.sys.ssh = {
     enable = myUtils.mkEnabledOption "networking";
+    harden = lib.mkEnableOption "hardened ssh";
     port = lib.mkOption {
       type = lib.types.port;
       default = 2645;
@@ -24,8 +25,8 @@ in {
       openFirewall = true;
       ports = [cfg.port];
       settings = {
-        PasswordAuthentication = true;
-        KbdInteractiveAuthentication = false;
+        PasswordAuthentication = !cfg.harden;
+        KbdInteractiveAuthentication = !cfg.harden;
         PermitRootLogin = "no";
         AllowUsers = [config.sys.users.default.name];
         X11Forwarding = false;
