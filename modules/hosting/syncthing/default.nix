@@ -27,6 +27,7 @@
         type = lib.types.enum ["sendreceive" "sendonly" "receiveonly" "receiveencrypted"];
         default = "sendreceive";
       };
+      proxy = lib.mkEnableOption "reverse-proxy";
     };
   };
 in {
