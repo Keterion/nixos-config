@@ -63,37 +63,39 @@ in {
 
       extraConfig.pipewire = {
         "20-rtp-sink" = lib.mkIf cfg.pipewire.network.client.enable {
-          context.modules = [
+          "context.modules" = [
             {
               name = "libpipewire-module-rtp-sink";
               args = {
-                destination = {inherit (cfg.pipewire.network.client.destination) ip port;};
-                stream.props = {
-                  media.class = "Audio/Sink";
-                  node.name = cfg.pipewire.network.client.name;
-                  node.description = "RTP Network Sink";
+                "destination.ip" = cfg.pipewire.network.client.destination.ip;
+                "destination.port" = cfg.pipewire.network.client.destination.port;
 
-                  audio.rate = 48000;
-                  audio.channels = 2;
+                "stream.props" = {
+                  "media.class" = "Audio/Sink";
+                  "node.name" = cfg.pipewire.network.client.name;
+                  "node.description" = "RTP Network Sink";
+
+                  "audio.rate" = 48000;
+                  "audio.channels" = 2;
                 };
               };
             }
           ];
         };
         "20-rtp-source" = lib.mkIf cfg.pipewire.network.host.enable {
-          context.modules = [
+          "context.modules" = [
             {
               name = "libpipewire-module-rtp-source";
               args = {
-                local.ip = "0.0.0.0";
-                local.port = cfg.pipewire.network.host.port;
+                "local.ip" = "0.0.0.0";
+                "local.port" = cfg.pipewire.network.host.port;
 
-                node.name = cfg.pipewire.network.host.name;
-                node.description = "RTP Network Source";
+                "node.name" = cfg.pipewire.network.host.name;
+                "node.description" = "RTP Network Source";
 
-                media.class = "Audio/Source";
-                audio.rate = 48000;
-                audio.channels = 2;
+                "media.class" = "Audio/Source";
+                "audio.rate" = 48000;
+                "audio.channels" = 2;
               };
             }
           ];
