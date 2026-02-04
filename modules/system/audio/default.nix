@@ -60,7 +60,7 @@ in {
       linger = true;
       extraGroups = ["audio"];
     };
-    networking.firewall.allowedTCPPorts = lib.optionals (cfg.pipewire.host.enable && cfg.pipewire.host.openFirewall) [cfg.pipewire.host.port];
+    networking.firewall.allowedTCPPorts = lib.optionals (cfg.pipewire.network.host.enable && cfg.pipewire.network.host.openFirewall) [cfg.pipewire.network.host.port];
 
     services.pipewire = {
       enable = cfg.pipewire.enable;
