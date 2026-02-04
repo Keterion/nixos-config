@@ -12,9 +12,6 @@ in {
   nix.nixPath = ["nixos-config=${config_path}"];
 
   networking.hostName = main_user;
-  networking.hosts = {
-    "${config.hosting.ip}" = ["host"];
-  };
   sys.users.default = {
     name = main_user;
     git = {
@@ -119,6 +116,8 @@ in {
     keepassxc.enable = true;
     bc.enable = true;
 
+    tmux.enable = true;
+
     eza = {
       shellIntegration = true;
       overrides.shellIntegration.nushell.enable = false;
@@ -131,9 +130,17 @@ in {
     ip = "192.168.0.123";
     defaultGroup = "server";
 
+    proxy.enable = true;
+
+    monit = {
+      enable = true;
+      proxy.enable = true;
+    };
     #copyparty.enable = true;
     syncthing = {
       enable = true;
+      proxy.enable = true;
+      monitor.enable = true;
       config = {
         dataDir = "/home/${main_user}/.config/syncthing";
         directories = [
