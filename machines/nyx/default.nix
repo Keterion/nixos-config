@@ -49,6 +49,7 @@ in {
       headless = true;
       network.host = {
         enable = true;
+        openFirewall = true;
         port = 46000;
       };
       rtkit.enable = true;

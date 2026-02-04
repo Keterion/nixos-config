@@ -50,6 +50,20 @@ in {
     audio = {
       pipewire = {
         enable = true;
+        network = {
+          client = {
+            enable = true;
+            name = "Nyx";
+            destination = {
+              ip = "192.168.0.123";
+              port = 46000;
+            };
+          };
+          host = {
+            enable = false;
+            port = 46000;
+          };
+        };
         rtkit.enable = true;
         loopback.enable = true;
         compatibility.pulse.enable = true;

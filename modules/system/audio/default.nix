@@ -14,6 +14,7 @@ in {
       network = {
         host = {
           enable = lib.mkEnableOption "Pipewire sink to host ip";
+          openFirewall = myUtils.mkEnabledOption "opening the port";
           name = lib.mkOption {
             type = lib.types.str;
             default = "rtp-source";
@@ -59,6 +60,7 @@ in {
       linger = true;
       extraGroups = ["audio"];
     };
+    networking.firewall.allowedTCPPorts = lib.optionals (cfg.pipewire.host.enable && cfg.pipewire.host.openFirewall) [cfg.pipewire.host.port];
 
     services.pipewire = {
       enable = cfg.pipewire.enable;
