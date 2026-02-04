@@ -33,19 +33,33 @@ in {
 
   config = lib.mkIf cfg.enable {
     hosting.enabledServices = ["home-assistant"];
-    services.home-assistant = {
-      enable = true;
-      extraComponents = [
-        # Needed to complete onboarding
-        "analytics"
-        "google_translate"
-        "met"
-        "radio_browser"
-        "shopping_list"
-        #zlib compression
-        "isal"
-      ];
-    };
+    services.home-assistant = lib.mkMerge [
+      {
+        enable = true;
+        extraComponents = [
+          # Needed to complete onboarding
+          "analytics"
+          "google_translate"
+          "met"
+          "radio_browser"
+          "shopping_list"
+          #zlib compression
+          "isal"
+          "http"
+        ];
+        config = {
+          default_config = {};
+        };
+      }
+      (lib.mkIf
+        cfg.proxy.enable
+        {
+          config.http = {
+            trusted_proxies = ["::1" config.hosting.ip];
+            use_x_forwarded_for = true;
+          };
+        })
+    ];
     networking.firewall.allowedTCPPorts = lib.optionals cfg.openFirewall [cfg.port];
   };
 }

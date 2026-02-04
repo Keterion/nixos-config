@@ -136,6 +136,10 @@ in {
       enable = true;
       proxy.enable = true;
     };
+    home-assistant = {
+      enable = true;
+      proxy.enable = true;
+    };
     #copyparty.enable = true;
     syncthing = {
       enable = true;

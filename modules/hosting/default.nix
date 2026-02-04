@@ -12,6 +12,7 @@ in {
     ./dns
     ./firefox-syncserver
     ./grocy
+    ./home-assistant
     ./jellyfin
     ./jellyseerr
     ./karakeep
