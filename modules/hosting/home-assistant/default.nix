@@ -45,7 +45,9 @@ in {
           "shopping_list"
           #zlib compression
           "isal"
+
           "http"
+          "zha"
         ];
         config = {
           default_config = {};
