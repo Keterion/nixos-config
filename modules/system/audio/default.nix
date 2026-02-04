@@ -52,9 +52,16 @@ in {
       lib.optionals cfg.mpdris.enable [
         mpdris2
       ];
+
+    services.pipewire.socketActivation = !cfg.pipewire.headless;
+    systemd.user.services.wireplumber.wantedBy = lib.optionals cfg.pipewire.headless ["default.target"];
+    users.users.${config.sys.users.default.name} = lib.mkIf cfg.pipewire.headless {
+      linger = true;
+      extraGroups = ["audio"];
+    };
+
     services.pipewire = {
       enable = cfg.pipewire.enable;
-      systemWide = cfg.pipewire.headless;
       wireplumber.enable = true;
       alsa.enable = true;
       alsa.support32Bit = true;
@@ -87,8 +94,8 @@ in {
             {
               name = "libpipewire-module-rtp-source";
               args = {
-                "local.ip" = "0.0.0.0";
-                "local.port" = cfg.pipewire.network.host.port;
+                "source.ip" = "0.0.0.0";
+                "source.port" = cfg.pipewire.network.host.port;
 
                 "node.name" = cfg.pipewire.network.host.name;
                 "node.description" = "RTP Network Source";

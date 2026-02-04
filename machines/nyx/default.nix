@@ -29,6 +29,9 @@ in {
 
   #nix.package = pkgs.lixPackageSets.stable.lix;
 
+  #TEMP
+
+  networking.firewall.allowedTCPPorts = [46000];
   sys = {
     configDir = config_path;
     colorscheme = "tokyonight-moon";
