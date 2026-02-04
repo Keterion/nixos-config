@@ -42,7 +42,12 @@ in {
     };
 
     audio.pipewire = {
-      enable = false;
+      enable = true;
+      headless = true;
+      network.host = {
+        enable = true;
+        port = 46000;
+      };
       rtkit.enable = true;
       loopback.enable = true;
       compatibility.pulse.enable = true;
