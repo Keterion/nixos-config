@@ -29,9 +29,6 @@ in {
 
   #nix.package = pkgs.lixPackageSets.stable.lix;
 
-  #TEMP
-
-  networking.firewall.allowedTCPPorts = [46000];
   sys = {
     configDir = config_path;
     colorscheme = "tokyonight-moon";
@@ -67,7 +64,7 @@ in {
       fail2ban = false;
       harden = true;
     };
-    bluetooth.enable = false;
+    bluetooth.enable = false; #need a dongle first
     fonts = with pkgs; [
       nerd-fonts.hack
       nerd-fonts.heavy-data

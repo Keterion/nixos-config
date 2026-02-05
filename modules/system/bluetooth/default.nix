@@ -11,7 +11,12 @@ in {
     hardware.bluetooth = {
       enable = true;
       powerOnBoot = true;
-      settings.General.Experimental = true;
+      settings.General = {
+        Experimental = true;
+        #Enable = "Source,Sink,Media,Socket";
+        #AlwaysPairable = true; # always allow pairing even without agents
+        #NameResolving = true; # get bt device name, takes time
+      };
     };
     services.blueman.enable = true;
   };

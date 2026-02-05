@@ -61,6 +61,7 @@ in {
       extraGroups = ["audio"];
     };
     networking.firewall.allowedTCPPorts = lib.optionals (cfg.pipewire.network.host.enable && cfg.pipewire.network.host.openFirewall) [cfg.pipewire.network.host.port];
+    networking.firewall.allowedUDPPorts = lib.optionals (cfg.pipewire.network.host.enable && cfg.pipewire.network.host.openFirewall) [cfg.pipewire.network.host.port];
 
     services.pipewire = {
       enable = cfg.pipewire.enable;
@@ -99,12 +100,15 @@ in {
                 "source.ip" = "0.0.0.0";
                 "source.port" = cfg.pipewire.network.host.port;
 
-                "node.name" = cfg.pipewire.network.host.name;
-                "node.description" = "RTP Network Source";
+                "stream.props" = {
+                  "node.name" = cfg.pipewire.network.host.name;
+                  "node.description" = "RTP Network Source";
 
-                "media.class" = "Audio/Source";
-                "audio.rate" = 48000;
-                "audio.channels" = 2;
+                  "audio.rate" = 48000;
+                  "audio.channels" = 2;
+
+                  "media.class" = "Audio/Source";
+                };
               };
             }
           ];
