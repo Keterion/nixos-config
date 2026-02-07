@@ -6,6 +6,7 @@
   cfg = config.apps.modules.gui;
 in {
   imports = [
+    ./anki
     ./aseprite
     ./audacity
     ./betaflight
