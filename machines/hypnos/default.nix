@@ -159,6 +159,7 @@ in {
     firefox.enable = true;
     bc.enable = true;
     zathura.enable = true;
+    anki.enable = true;
     games = {
       steam = {
         enable = true;
