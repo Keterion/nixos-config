@@ -43,6 +43,7 @@ in {
         extraArgs = [
           "--dbus-user.talk=org.freedesktop.StatusNotifierHost"
           "--dbus-user.talk=org.kde.StatusNotifierWatcher"
+          "--dbus-user.talk=org.freedesktop.portal.Desktop"
         ];
       };
       environment.systemPackages = lib.mkIf (!cfg.sandbox) [
