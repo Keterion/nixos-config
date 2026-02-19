@@ -237,7 +237,7 @@ in {
                       description = "Amazon tracker remover";
                       exampleUprl = "https://www.amazon.com/Just-Toys-LLC-Airship-Playset/dp/B0BNLLN6QZ?crid=3A55OYBXUOLRB&dib=eyJ2IjoiMSJ9.HxWahOIxI8_S-mRXOS1rBYgO7hDO5SXobMEYQz95sKgFfc3CkbM7y7fhymf41Fo9dTede553gM5M9xe3j-u1YFxaAlxNI2Xw9pqbrHJ-wA-S45LkWkY9xnQ_wVa96Z3Hj8gDixouolpXg2gCy-lhgyXP-az-NspAHMPUu9RA1G_iZiCbgX5QncpuvXWofwMvgQnfsE3MSyBsMMmqjAJbimcc4zVZ_VnuAL5krvBYRis.nYI5t2xOJkGjqMgU67iVNcc9RyWaW4OBSLqQqQ08raU&dib_tag=se&keywords=among+us&qid=1769686116&sprefix=among+%2Caps%2C256&sr=8-1";
                       exampleResult = "https://amazon.com/dp/B0BNLLN6QZ";
-                      includePattern = "(https://www.amazon.\w+/).*/dp/([\w\d]+)";
+                      includePattern = "(https://www.amazon.\\w+/).*/dp/([\\w\\d]+)";
                       excludePattern = "";
                       patternDesc = "Takes the base url (respecting .com or .de or whatever) and puts the ID after it";
                       redirectUrl = "$1dp/$2";
