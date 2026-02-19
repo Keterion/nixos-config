@@ -35,7 +35,7 @@ in {
         enable = true;
         defaultWraps = {
           wine = false;
-          discord = true;
+          discord = false;
           firefox = false;
         };
       };
@@ -187,7 +187,7 @@ in {
     discord = {
       vencord.enable = true;
       moonlight.enable = false;
-      openASAR.enable = true;
+      openASAR.enable = false;
     };
     freecad.fem.enable = true;
     meshroom.enable = false;
