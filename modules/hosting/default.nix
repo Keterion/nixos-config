@@ -27,6 +27,7 @@ in {
     ./radarr
     ./radicale
     ./readeck
+    ./restic
     ./rustypaste
     ./searxng
     ./shiori
