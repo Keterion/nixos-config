@@ -10,7 +10,7 @@ in {
     enable = lib.mkEnableOption "restic";
     port = lib.mkOption {
       type = lib.types.port;
-      efault = 8000;
+      default = 8000;
     };
     ip = lib.mkOption {
       type = lib.types.str;
@@ -36,9 +36,19 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    sops.secrets."nyx/restic/v1" = {
+    };
+    sops.templates."restic-passwd" = {
+      group = "restic";
+      owner = "restic";
+      mode = "0400";
+      content = ''${config.sops.placeholder."nyx/restic/v1"}'';
+    };
+
     services.restic.server = {
       enable = true;
       listenAddress = "${cfg.ip}:${toString cfg.port}";
+      htpasswd-file = config.sops.templates."restic-passwd".path;
     };
 
     networking.firewall.allowedTCPPorts = lib.optionals cfg.openFirewall [cfg.port];

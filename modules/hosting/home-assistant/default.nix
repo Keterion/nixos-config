@@ -25,7 +25,7 @@ in {
       default = config.hosting.ip;
     };
     extraConfig = lib.mkOption {
-      type = lib.types.attrsOf lib.types.any;
+      type = lib.types.attrs;
       default = {};
       description = "Config to merge into services.home-assistant.config";
     };
@@ -53,10 +53,12 @@ in {
 
           "http"
           "zha"
+
+          "default_config" # doesn't work like this in this case ig??
         ];
         config =
           {
-            default_config = {};
+            #default_config = {};
             "automation ui" = "!include automations.yaml";
             "scene ui" = "!include scenes.yaml";
             "script ui" = "!include scripts.yaml";

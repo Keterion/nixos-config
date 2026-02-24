@@ -27,6 +27,8 @@ in {
     }
   ];
 
+  sops.age.sshKeyPaths = ["/home/${main_user}/.ssh/id_ed25519"];
+
   #nix.package = pkgs.lixPackageSets.stable.lix;
 
   sys = {
@@ -146,6 +148,10 @@ in {
     home-assistant = {
       enable = true;
       proxy.enable = true;
+    };
+    restic = {
+      enable = true;
+      port = 1984;
     };
     #copyparty.enable = true;
     syncthing = {
