@@ -39,7 +39,7 @@ in {
   in
     lib.mkIf cfg.enable {
       programs.firejail.wrappedBinaries.discord = lib.mkIf cfg.sandbox {
-        executable = "${discord_package}/bin/vesktop";
+        executable = "${discord_package}/bin/discord";
         extraArgs = [
           "--dbus-user.talk=org.freedesktop.StatusNotifierHost"
           "--dbus-user.talk=org.kde.StatusNotifierWatcher"

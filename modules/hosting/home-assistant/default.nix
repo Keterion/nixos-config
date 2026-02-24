@@ -24,6 +24,11 @@ in {
       type = lib.types.str;
       default = config.hosting.ip;
     };
+    extraConfig = lib.mkOption {
+      type = lib.types.attrsOf lib.types.any;
+      default = {};
+      description = "Config to merge into services.home-assistant.config";
+    };
     monitor.enable = lib.mkOption {
       type = lib.types.bool;
       default = config.hosting.monitor;
@@ -49,9 +54,14 @@ in {
           "http"
           "zha"
         ];
-        config = {
-          default_config = {};
-        };
+        config =
+          {
+            default_config = {};
+            "automation ui" = "!include automations.yaml";
+            "scene ui" = "!include scenes.yaml";
+            "script ui" = "!include scripts.yaml";
+          }
+          // cfg.extraConfig;
       }
       (lib.mkIf
         cfg.proxy.enable

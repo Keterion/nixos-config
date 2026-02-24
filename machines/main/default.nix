@@ -35,7 +35,7 @@ in {
         enable = true;
         defaultWraps = {
           wine = false;
-          discord = false;
+          discord = true;
           firefox = false;
         };
       };

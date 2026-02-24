@@ -21,7 +21,7 @@ in {
   };
 
   config = let
-    wine_package = pkgs.wineWowPackages.staging;
+    wine_package = pkgs.wineWow64Packages.staging;
   in
     lib.mkIf cfg.enable {
       programs.steam = {
