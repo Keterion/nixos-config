@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  myUtils,
   ...
 }: let
   cfg = config.sys.network;
@@ -11,6 +12,7 @@ in {
       default = true;
       description = "Whether to enable network capabilities";
     };
+    nftables.enable = myUtils.mkEnabledOption "nftables as replacement for iptables";
     wireless.enable = lib.mkEnableOption "wifi";
   };
   config = lib.mkIf cfg.enable {
@@ -26,6 +28,8 @@ in {
     #    eduroam_domain=${config.sops.placeholder."eduroam/domain"}
     #  '';
     #};
+
+    networking.nftables.enable = cfg.nftables.enable;
 
     networking.wireless = lib.mkIf cfg.wireless.enable {
       enable = cfg.wireless.enable;
