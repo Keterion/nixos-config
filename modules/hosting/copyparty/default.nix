@@ -61,7 +61,7 @@ in {
       user = cfg.user;
       group = cfg.group;
       settings = {
-        nc = 128; # number clients
+        nc = 6; # number clients
 
         i = cfg.ip; # ip
         p = cfg.port; # port

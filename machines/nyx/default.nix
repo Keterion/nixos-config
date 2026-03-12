@@ -135,11 +135,13 @@ in {
     zoxide.shellIntegration = true;
   };
   hosting = {
-    openFirewall = true;
+    openFirewall = false;
     ip = "192.168.0.123";
     defaultGroup = "server";
 
-    proxy.enable = true;
+    tailscale.enable = true;
+
+    proxy.enable = false;
 
     monit = {
       enable = true;
@@ -153,9 +155,9 @@ in {
       enable = true;
       port = 1984;
     };
-    #copyparty.enable = true;
+    copyparty.enable = true;
     syncthing = {
-      enable = true;
+      enable = false;
       proxy.enable = true;
       monitor.enable = true;
       config = {
