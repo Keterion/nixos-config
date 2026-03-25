@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: let
   cfg = config.hosting.calibre-web;
@@ -41,7 +42,8 @@ in {
   config = lib.mkIf cfg.enable {
     hosting.enabledServices = ["calibre-web"];
     services.calibre-web = {
-      enable = true;
+      enable = builtins.trace "Calibre-web currently broken" false;
+      #package = pkgs.calibre-web;
       group = cfg.group;
       user = "calibre-web";
       options = {

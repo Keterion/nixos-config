@@ -20,7 +20,7 @@ in {
     hardware.graphics.enable = true;
     home-manager.users.${config.sys.users.default.name}.home.packages =
       [
-        pkgs.freecad
+        pkgs.stable.freecad
       ]
       ++ lib.optionals cfg.fem.enable [
         pkgs.calculix-ccx

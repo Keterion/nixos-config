@@ -13,7 +13,7 @@ in {
   };
   config = lib.mkIf cfg.enable {
     home-manager.users.${config.sys.users.default.name}.home.packages = [
-      pkgs.krita
+      pkgs.stable.krita
     ];
   };
 }

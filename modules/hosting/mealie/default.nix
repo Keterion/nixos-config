@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: let
   cfg = config.hosting.mealie;
@@ -30,7 +31,7 @@ in {
   config = lib.mkIf cfg.enable {
     hosting.enabledServices = ["mealie"];
     services.mealie = {
-      enable = true;
+      enable = builtins.trace "Mealie is currently broken" false;
       port = cfg.port;
       listenAddress = cfg.ip;
     };
