@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{...}: {
   imports = [
     ./audio
     ./bar
@@ -26,11 +26,11 @@
   config = {
     hardware.graphics.enable = true;
 
-    systemd.sleep.extraConfig = ''
-      AllowSuspend=yes
-      AllowHibernation=yes
-      AllowHybridSleep=yes
-      AllowSuspendThenHibernate=yes
-    '';
+    #systemd.sleep.settings.Sleep = ''
+    #  AllowSuspend=yes
+    #  AllowHibernation=yes
+    #  AllowHybridSleep=yes
+    #  AllowSuspendThenHibernate=yes
+    #'';
   };
 }
