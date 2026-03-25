@@ -33,6 +33,7 @@ in {
     ./shiori
     ./sonarr
     ./syncthing
+    ./tailscale
     ./tandoor
     ./whisper
   ];
