@@ -45,8 +45,9 @@ in {
       #};
       #};
     };
+    networking.resolvconf.enable = false;
+    services.resolved.enable = true;
     networking.hosts = {
-      "127.0.0.2" = ["other-localhost"];
       "192.168.0.123" = ["server"];
       #networking.wireless = lib.mkIf cfg.wireless.enable {
       #  enable = cfg.wireless.enable;
