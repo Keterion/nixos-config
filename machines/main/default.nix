@@ -35,7 +35,7 @@ in {
         enable = true;
         defaultWraps = {
           wine = false;
-          discord = true;
+          discord = false;
           firefox = false;
         };
       };
@@ -177,7 +177,7 @@ in {
       defaultEditor = true;
     };
 
-    aseprite.enable = true;
+    aseprite.enable = false;
 
     feishin.enable = true;
     godot.enable = true;
@@ -203,34 +203,44 @@ in {
       compat = true;
       backup = true;
     };
+    games.mods.ror2 = {
+      #enable = true; #broken
+      dirs = {
+        install = "/mnt/Games/Platforms/Steam/steamapps/common/Risk of Rain 2";
+        compat = "/mnt/Games/Platforms/Steam/steamapps/compatdata/632360";
+      };
+    };
     games.lutris.enable = false;
   };
 
-  apps.beets.config = {
-    directory = "/home/${main_user}/Music/songs/processed";
-    asciify_paths = true;
-    import = {
-      write = true;
-      copy = true;
-      hardlink = false;
-      group_albums = true;
-      duplicate_verbose_prompt = true;
-    };
-    plugins = ["chroma" "mbsync" "lyrics" "replaygain" "lastgenre" "edit" "duplicates"];
-    replaygain.backend = "ffmpeg";
+  apps.beets = {
+    enable = false;
+    config = {
+      directory = "/home/${main_user}/Music/songs/processed";
+      asciify_paths = true;
+      import = {
+        write = true;
+        copy = true;
+        hardlink = false;
+        group_albums = true;
+        duplicate_verbose_prompt = true;
+      };
+      plugins = ["chroma" "mbsync" "lyrics" "replaygain" "lastgenre" "edit" "duplicates"];
+      replaygain.backend = "ffmpeg";
 
-    lyrics = {
-      sources = ["lrclib"];
-      force = true;
-      synced = true;
-    };
+      lyrics = {
+        sources = ["lrclib"];
+        force = true;
+        synced = true;
+      };
 
-    paths = {
-      default = "$albumartist/$album%aunique{}_$original_year/$artist-$album-$title";
-      singleton = "$albumartist/$title_$original_year/$artist-$title";
-      comp = "Compilations/$album%aunique{}/$track-$title";
+      paths = {
+        default = "$albumartist/$album%aunique{}_$original_year/$artist-$album-$title";
+        singleton = "$albumartist/$title_$original_year/$artist-$title";
+        comp = "Compilations/$album%aunique{}/$track-$title";
+      };
+      match.distance_weights.missing_tracks = 0.0;
     };
-    match.distance_weights.missing_tracks = 0.0;
   };
 
   hosting = {
