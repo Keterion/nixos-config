@@ -44,9 +44,9 @@ in {
     home-manager.users.${config.sys.users.default.name}.programs = {
       git = {
         enable = true;
+        signing.format = null;
         settings.user = {
-          name = config.sys.users.default.git.name;
-          email = config.sys.users.default.git.email;
+          inherit (config.sys.users.default.git) name email;
         };
       };
       gh = {
