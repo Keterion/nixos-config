@@ -1,12 +1,15 @@
 {
   config,
   pkgs,
-  myUtils,
+  lib,
   ...
-}:
-myUtils.mkSimpleOption {
-  name = "anki";
-  package = pkgs.anki;
-  tree = "apps";
-  inherit config;
+}: let
+  cfg = config.apps.anki;
+in {
+  options.apps.anki.enable = lib.mkEnableOption "anki";
+  config = lib.mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [
+      anki
+    ];
+  };
 }

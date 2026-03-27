@@ -169,6 +169,7 @@ in {
       };
       minecraft.enable = true;
     };
+    blender.enable = true;
 
     discord = {
       enable = true;
