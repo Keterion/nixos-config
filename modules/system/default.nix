@@ -11,6 +11,7 @@
     ./graphics
     ./hid
     ./lockscreen
+    ./mimetypes
     ./networking
     ./runner
     ./secrets
