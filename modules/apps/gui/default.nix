@@ -18,6 +18,7 @@ in {
     ./games
     ./gimp
     ./godot
+    ./imv
     ./jellyfin-media-player
     ./keepassxc
     ./krita
