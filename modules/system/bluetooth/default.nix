@@ -13,9 +13,10 @@ in {
       powerOnBoot = true;
       settings.General = {
         Experimental = true;
-        #Enable = "Source,Sink,Media,Socket";
-        #AlwaysPairable = true; # always allow pairing even without agents
-        #NameResolving = true; # get bt device name, takes time
+        Enable = "Source,Sink,Media,Socket";
+        AlwaysPairable = true; # always allow pairing even without agents
+        FastConnectable = true;
+        NameResolving = true; # get bt device name, takes time
       };
     };
     services.blueman.enable = true;

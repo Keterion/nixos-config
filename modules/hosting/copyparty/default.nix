@@ -63,6 +63,8 @@ in {
       settings = {
         nc = 6; # number clients
 
+        xff-src = "lan";
+
         i = cfg.ip; # ip
         p = cfg.port; # port
 
@@ -92,6 +94,16 @@ in {
             #fk = 4;
             e2d = true; # uploads database
             d2t = true; # disable multimedia parsers
+          };
+        };
+        "/public" = {
+          path = "/mnt/HDD/public";
+          access = {
+            A = "*";
+          };
+          flags = {
+            e2d = true;
+            d2t = true;
           };
         };
       };

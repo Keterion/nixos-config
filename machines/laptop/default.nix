@@ -198,6 +198,7 @@
     };
     mullvad-vpn.enable = true;
 
+    imv.enable = true;
     betaflight.enable = false; # broken
     freecad.enable = true;
     gimp.enable = true;
@@ -205,6 +206,7 @@
     discord = {
       enable = true;
       vencord.enable = true;
+      openASAR.enable = false;
     };
     eza = {
       shellIntegration = true;
@@ -245,7 +247,11 @@
     ip = "localhost";
     defaultGroup = "server";
 
-    copyparty.enable = false;
+    copyparty = {
+      enable = true;
+      ip = "10.0.0.5";
+      openFirewall = true;
+    };
     syncthing = {
       enable = true;
       config.directories = let
