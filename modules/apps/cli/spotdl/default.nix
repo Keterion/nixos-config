@@ -83,9 +83,9 @@ in
   myUtils.mkSimpleOption {
     tree = "apps";
     name = "spotdl";
-    #package = pkgs.spotdl;
-    package = new_pkg.overridePythonAttrs (old: {
-      doCheck = false;
-    });
+    package = pkgs.spotdl;
+    #package = new_pkg.overridePythonAttrs (old: {
+    #  doCheck = false;
+    #});
     inherit config;
   }
