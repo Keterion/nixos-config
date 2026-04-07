@@ -39,9 +39,9 @@ in {
       decoration = {
       };
       input = {
-        kb_layout = "${osConfig.sys.keyboard.layout}";
-        kb_variant = "${osConfig.sys.keyboard.variant}";
-        kb_options = "compose:ralt";
+        kb_layout = "us,us";
+        kb_variant = "dvorak,";
+        kb_options = "compose:ralt,grp:alt_space_toggle";
       };
       cursor.no_hardware_cursors = true;
       monitor = [
