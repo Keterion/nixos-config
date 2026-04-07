@@ -154,6 +154,7 @@ in {
       enable = true;
       defaultEditor = true;
     };
+    freecad.enable = true;
     mullvad-vpn.enable = false;
     keepassxc.enable = true;
     firefox.enable = true;
