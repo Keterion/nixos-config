@@ -51,6 +51,8 @@ in {
           #zlib compression
           "isal"
 
+          "vodafone_station"
+
           "http"
           "zha"
 

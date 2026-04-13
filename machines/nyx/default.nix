@@ -60,6 +60,7 @@ in {
     network = {
       enable = true;
       wireless.enable = true;
+      nftables.enable = false;
     };
     ssh = {
       enable = true;
@@ -135,11 +136,12 @@ in {
     zoxide.shellIntegration = true;
   };
   hosting = {
-    openFirewall = false;
+    openFirewall = true;
     ip = "192.168.0.123";
+    #ip = "100.73.153.27";
     defaultGroup = "server";
 
-    tailscale.enable = true;
+    tailscale.enable = false;
 
     proxy.enable = false;
 
@@ -155,7 +157,10 @@ in {
       enable = true;
       port = 1984;
     };
-    copyparty.enable = true;
+    copyparty = {
+      enable = true;
+      openFirewall = true;
+    };
     syncthing = {
       enable = false;
       proxy.enable = true;
