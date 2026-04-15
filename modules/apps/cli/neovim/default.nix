@@ -30,7 +30,7 @@ in {
         keymaps = [
           {
             key = "<C-n>";
-            mode = ["n"];
+            mode = "n";
             action = ":Neotree toggle left<CR>";
             silent = true;
             unique = true;
@@ -48,6 +48,10 @@ in {
           }
         ];
 
+        utility.surround = {
+          enable = true;
+          useVendoredKeybindings = false;
+        };
         utility.outline.aerial-nvim = {
           enable = true;
           #mappings.toggle = "<leader>s";
@@ -90,15 +94,20 @@ in {
         #  };
         #};
 
-        binds.hardtime-nvim = {
-          enable = true;
-          setupOpts = {
-            # key repetition
-            max_time = 1000;
-            max_count = 3;
+        binds = {
+          hardtime-nvim = {
+            enable = true;
+            setupOpts = {
+              # key repetition
+              max_time = 1000;
+              max_count = 3;
 
-            hint = true;
-            disable_mouse = true;
+              hint = true;
+              disable_mouse = true;
+            };
+          };
+          whichKey = {
+            enable = true;
           };
         };
 
@@ -114,7 +123,7 @@ in {
           #    typst = [
           #      {
           #        trigger = "table";
-          #        body = "#table(columns:$1, table.header($2))";
+          #        body = "#tablegcolumns:$1, table.header($2)g";
           #        description = "Generate a table";
           #      }
           #    ];

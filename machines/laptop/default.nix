@@ -8,6 +8,7 @@
   networking = {
     hostName = "laptop";
     networkmanager.enable = true;
+    wireless.enable = true;
   };
 
   #networking.wireless.networks = {
