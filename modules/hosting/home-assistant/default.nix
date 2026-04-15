@@ -51,12 +51,20 @@ in {
           #zlib compression
           "isal"
 
-          "vodafone_station"
+          #"vodafone_station"
+          # needed for spook
+          #"infrared"
+          #"recorder"
 
           "http"
           "zha"
 
           "default_config" # doesn't work like this in this case ig??
+        ];
+        customComponents = with pkgs.home-assistant-custom-components; [
+          #circadian_lighting
+          #spook
+          adaptive_lighting
         ];
         config =
           {
@@ -64,6 +72,31 @@ in {
             "automation ui" = "!include automations.yaml";
             "scene ui" = "!include scenes.yaml";
             "script ui" = "!include scripts.yaml";
+
+            #circadian_lighting = {
+            #  min_colortemp = 2000;
+            #  max_colortemp = 6535;
+            #};
+            adaptive_lighting = {
+              lights = ["light.innr_1" "light.innr_2" "light.innr_3" "light.innr_4"];
+              min_brightness = 45;
+              max_brightness = 100;
+              min_color_temp = 2000;
+              max_color_temp = 6535;
+              brightness_mode = "linear";
+              take_over_control = true;
+              skip_redundant_commands = true;
+            };
+
+            switch = let
+              affected_lights = ["light.innr_1" "light.innr_2" "light.innr_3" "light.innr_4"];
+            in [
+              #{
+              #  platform = "circadian_lighting";
+              #  name = "Toggle circadian lighting";
+              #  lights_ct = affected_lights;
+              #}
+            ];
           }
           // cfg.extraConfig;
       }
