@@ -252,7 +252,7 @@
     defaultGroup = "server";
 
     copyparty = {
-      enable = true;
+      enable = false;
       ip = "10.0.0.5";
       openFirewall = true;
     };
