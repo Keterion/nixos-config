@@ -8,6 +8,7 @@
   networking = {
     hostName = "laptop";
     networkmanager.enable = true;
+    wireless.enable = true;
   };
 
   #networking.wireless.networks = {
@@ -22,39 +23,39 @@
     HandleLidSwitchExternalPower = "lock";
   };
 
-  sops = {
-    secrets = {
-      "eduroam/password" = {};
-      "eduroam/identity" = {};
-    };
-    templates."uni_vpn" = {
-      content = ''
-        username=${config.sops.placeholder."eduroam/identity"}
-        password=${config.sops.placeholder."eduroam/password"}
-      '';
-    };
-  };
+  #sops = {
+  #  secrets = {
+  #    "eduroam/password" = {};
+  #    "eduroam/identity" = {};
+  #  };
+  #  templates."uni_vpn" = {
+  #    content = ''
+  #      username=${config.sops.placeholder."eduroam/identity"}
+  #      password=${config.sops.placeholder."eduroam/password"}
+  #    '';
+  #  };
+  #};
 
-  services.openvpn.servers = let
-    mullvad = "${pkgs.mullvad-vpn}/bin/mullvad";
-  in {
-    uni = {
-      config = ''config /home/${config.sys.users.default.name}/.cert/uni/vun.ovpn '';
-      autoStart = false;
-      authUserPass = config.sops.templates."uni_vpn".path;
-      updateResolvConf = false;
-      up =
-        lib.optionalString
-        config.apps.mullvad-vpn.enable ''
-          ${mullvad} disconnect
-          ${mullvad} lockdown-mode set off
-        '';
-      down = lib.optionalString config.apps.mullvad-vpn.enable ''
-        ${mullvad} reconnect
-        ${mullvad} lockdown-mode set on
-      '';
-    };
-  };
+  #services.openvpn.servers = let
+  #  mullvad = "${pkgs.mullvad-vpn}/bin/mullvad";
+  #in {
+  #  uni = {
+  #    config = ''config /home/${config.sys.users.default.name}/.cert/uni/vun.ovpn '';
+  #    autoStart = false;
+  #    authUserPass = config.sops.templates."uni_vpn".path;
+  #    updateResolvConf = false;
+  #    up =
+  #      lib.optionalString
+  #      config.apps.mullvad-vpn.enable ''
+  #        ${mullvad} disconnect
+  #        ${mullvad} lockdown-mode set off
+  #      '';
+  #    down = lib.optionalString config.apps.mullvad-vpn.enable ''
+  #      ${mullvad} reconnect
+  #      ${mullvad} lockdown-mode set on
+  #    '';
+  #  };
+  #};
 
   sys.users.default = {
     name = "etherion";
@@ -74,7 +75,10 @@
         setup.done = true;
         enable = true;
       };
-      firejail.enable = true;
+      firejail = {
+        enable = true;
+        defaultWraps.firefox = false;
+      };
     };
 
     audio.pipewire = {
