@@ -15,6 +15,7 @@
       example = /home/john/nixos;
     };
     keyboard = {
+      qwerty_dv = lib.mkEnableOption "Both standard qwerty as well as dvorak";
       layout = lib.mkOption {
         type = lib.types.str;
         default = "us";
