@@ -3,23 +3,30 @@
   lib,
   pkgs,
   ...
-}: {
-  #services.hyprpaper = lib.mkIf osConfig.system.de.hyprland.wallpaper.enable {
-  #  enable = true;
-  #  settings =
-  #    {
-  #      ipc = "on";
-  #      splash = false;
-  #    }
-  #    // lib.mkIf (!osConfig.system.de.hyprland.hyprpaper.wallhaven.enable) {
-  #      preload = ["~/Pictures/wallpaper.png"];
-  #      wallpaper = [",~/Pictures/wallpaper.png"];
-  #    };
-  #};
-  services.swww.enable = osConfig.sys.de.hyprland.wallpaper.enable;
-  wayland.windowManager.hyprland.settings.exec-once = [
-    "${pkgs.swww}/bin/swww img ${osConfig.sys.de.hyprland.wallpaper.path}"
-  ];
+}: let
+  wp_conf = osConfig.sys.de.hyprland.wallpaper;
+in {
+  services.hyprpaper = lib.mkIf wp_conf.enable {
+    enable = true;
+    settings =
+      {
+        ipc = "on";
+        splash = false;
+      }
+      // lib.mkIf (!wp_conf.wallhaven.enable) {
+        preload = ["~/Pictures/wallpaper.png"];
+        wallpaper = [
+          {
+            monitor = "";
+            path = "${wp_conf.path}";
+          }
+        ];
+      };
+  };
+  #services.awww.enable = osConfig.sys.de.hyprland.wallpaper.enable;
+  #wayland.windowManager.hyprland.settings.exec-once = [
+  #  "${pkgs.awww}/bin/awww img ${osConfig.sys.de.hyprland.wallpaper.path}"
+  #];
 }
 #// lib.mkIf osConfig.system.de.hyprland.hyprpaper.wallhaven.enable {
 #wayland.windowManager.hyprland.settings.exec-once = let
