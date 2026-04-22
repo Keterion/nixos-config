@@ -25,7 +25,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     hosting.enabledServices = ["jellyseerr"];
-    services.jellyseerr = {
+    services.seerr = {
       enable = true;
       port = cfg.port;
       openFirewall = cfg.openFirewall;
