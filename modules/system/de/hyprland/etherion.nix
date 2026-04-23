@@ -9,7 +9,6 @@
   systemctl = "${pkgs.systemd}/bin/systemctl";
 in {
   imports = [
-    ./hyprpaper.nix
   ];
   wayland.windowManager.hyprland = {
     enable = true;
