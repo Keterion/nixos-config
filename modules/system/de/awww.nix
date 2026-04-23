@@ -1,13 +1,13 @@
 {
   config,
-  lib,
+  pkgs,
   ...
 }: {
   services.awww = {
     enable = true;
-    extraArgs = {};
+    #extraArgs = {};
   };
   wayland.windowManager.hyprland.settings.exec-once = [
-    "awww img ${config.sys.de.hyprland.wallpaper.path}"
+    "${pkgs.awww}/bin/awww img ${config.sys.de.hyprland.wallpaper.path}"
   ];
 }

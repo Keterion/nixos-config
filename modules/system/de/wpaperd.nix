@@ -1,12 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}:
-lib.mkIf (
-  config.sys.de.hyprland.wallpaper.enable
-  && config.sys.de.hyprland.wallpaper.utility == "wpaperd"
-) {
+{config, ...}: {
   # We are in home-manager.users.<name>
   services.wpaperd = {
     enable = true;

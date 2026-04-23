@@ -106,7 +106,10 @@ in {
         styleProfile = "etherion";
         hypridle.enable = true;
         wlsunset.enable = true;
-        wallpaper.enable = true;
+        wallpaper = {
+          enable = true;
+          utility = "awww";
+        };
       };
       plasma.enable = true;
     };
@@ -269,7 +272,7 @@ in {
       proxy.enable = true;
     };
     mealie = {
-      enable = true;
+      enable = false;
       proxy.enable = true;
     };
     monit = {

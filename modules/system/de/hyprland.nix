@@ -1,4 +1,4 @@
-{
+args @ {
   pkgs,
   config,
   lib,
@@ -50,6 +50,11 @@ in {
     wlsunset.enable = lib.mkEnableOption "wlsunset";
     wallpaper = {
       enable = lib.mkEnableOption "wallpapers";
+      utility = lib.mkOption {
+        type = lib.types.enum ["wpaperd" "hyprpaper" "awww"];
+        default = "hyprpaper";
+        description = "Program to use for the wallpaper setting";
+      };
       path = lib.mkOption {
         type = lib.types.str;
         default = "/home/${config.sys.users.default.name}/Pictures/wallpaper.png";
@@ -91,39 +96,43 @@ in {
 
     #scripts.api.wallhaven.enable = cfg.hyprpaper.wallhaven.enable;
 
-    home-manager.users.${config.sys.users.default.name} = {
-      imports = [
-        ./hyprland/${cfg.styleProfile}.nix
-        ./hyprland/hyprpaper.nix
-      ];
-      services.hypridle = lib.mkIf cfg.hypridle.enable {
-        enable = true;
-        settings = cfg.hypridle.settings;
-      };
-      services.wlsunset = lib.mkIf cfg.wlsunset.enable {
-        enable = true;
-        systemdTarget = "graphical-session.target";
-
-        latitude = 52;
-        longitude = 8.5;
-
-        gamma = 1.0;
-
-        temperature = {
-          day = 6500;
-          night = 2500;
-        };
-      };
-
-      wayland.windowManager.hyprland.settings.exec-once = lib.optionals config.hosting.mpd.enable [
-        "${pkgs.mpdris2}/bin/mpDris2 --host=${config.hosting.mpd.ip} --port ${toString config.hosting.mpd.port}"
-      ];
-      home.packages = with pkgs;
-        lib.optionals cfg.utils.enable [
-          clipman
-          wl-clipboard
-          polkit_gnome
+    home-manager.users.${config.sys.users.default.name} = lib.mkMerge [
+      {
+        imports = [
+          ./hyprland/${cfg.styleProfile}.nix
         ];
-    };
+        services.hypridle = lib.mkIf cfg.hypridle.enable {
+          enable = true;
+          settings = cfg.hypridle.settings;
+        };
+        services.wlsunset = lib.mkIf cfg.wlsunset.enable {
+          enable = true;
+          systemdTarget = "graphical-session.target";
+
+          latitude = 52;
+          longitude = 8.5;
+
+          gamma = 1.0;
+
+          temperature = {
+            day = 6500;
+            night = 2500;
+          };
+        };
+
+        wayland.windowManager.hyprland.settings.exec-once = lib.optionals config.hosting.mpd.enable [
+          "${pkgs.mpdris2}/bin/mpDris2 --host=${config.hosting.mpd.ip} --port ${toString config.hosting.mpd.port}"
+        ];
+        home.packages = with pkgs;
+          lib.optionals cfg.utils.enable [
+            clipman
+            wl-clipboard
+            polkit_gnome
+          ];
+      }
+      (import
+        ./${cfg.wallpaper.utility}.nix
+        args)
+    ];
   };
 }
