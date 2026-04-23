@@ -31,7 +31,8 @@ in {
   config = lib.mkIf cfg.enable {
     hosting.enabledServices = ["mealie"];
     services.mealie = {
-      enable = builtins.trace "Mealie is currently broken" false;
+      #enable = builtins.trace "Mealie is currently broken" false;
+      enable = true;
       port = cfg.port;
       listenAddress = cfg.ip;
     };
