@@ -175,7 +175,9 @@ in {
     firefox = {
       arkenfox = true;
       vim.enable = false;
+      searchEngine = "ddg";
     };
+    strawberry.enable = false;
     neovim = {
       aliases.enable = true;
       defaultEditor = true;
@@ -185,6 +187,8 @@ in {
 
     feishin.enable = true;
     godot.enable = true;
+
+    logseq.enable = true;
 
     restic.enable = true;
     #thunderbird.enable = true; #TODO: protonmail-bridge
@@ -421,9 +425,11 @@ in {
 
     "/mnt/HDD" = {
       device = "/dev/mapper/HDD";
+      fsType = "ext4";
     };
     "/mnt/priv" = {
       device = "/dev/mapper/Priv";
+      fsType = "ext4";
     };
   };
 }

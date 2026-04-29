@@ -22,6 +22,7 @@ in {
     ./jellyfin-media-player
     ./keepassxc
     ./krita
+    ./logseq
     ./libreoffice
     ./meshroom
     ./mpv

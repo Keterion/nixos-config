@@ -26,7 +26,7 @@ in {
     arkenfox = lib.mkEnableOption "a profile configured with arkenfox";
     vim.enable = lib.mkEnableOption "vim navigation via tridactyl-vim";
     searchEngine = lib.mkOption {
-      type = lib.types.enum ["Brave"] ++ lib.optionals config.hosting.searxng.enable ["Searxng"];
+      type = lib.types.enum ["Brave" "ddg"] ++ lib.optionals config.hosting.searxng.enable ["Searxng"];
       default = "Brave";
     };
     syncserver.url = lib.mkOption {
@@ -38,6 +38,7 @@ in {
   config = lib.mkIf cfg.enable {
     home-manager.users.${config.sys.users.default.name} = {
       programs.firefox = {
+        #configPath = "${config.xdg.configHome}/mozilla/firefox";
         enable = true;
         package = ff_pkg;
 
@@ -53,6 +54,7 @@ in {
               "browser.eme.enabled" = true;
 
               "general.autoScroll" = true;
+              "browser.tabs.insertAfterCurrent" = true;
 
               "browser.link.open_newwindow.restriction" = 0; # Open popup windows as tabs
 
@@ -88,7 +90,7 @@ in {
               "sidebar.visibility" = "expand-on-hover";
             };
             search = {
-              default = "Brave";
+              default = "ddg";
               engines = {
                 "Brave" = {
                   urls = [{template = "https://search.brave.com/search?q={searchTerms}";}];
