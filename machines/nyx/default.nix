@@ -31,6 +31,13 @@ in {
 
   #nix.package = pkgs.lixPackageSets.stable.lix;
 
+  services.udev = {
+    extraHwdb = ''
+      evdev:input:b0003v4842p0001*
+        KEYBOARD_KEY_010081=esc
+    '';
+  };
+
   sys = {
     configDir = config_path;
     colorscheme = "tokyonight-moon";
@@ -158,8 +165,11 @@ in {
       port = 1984;
     };
     copyparty = {
-      enable = true;
+      enable = false;
       openFirewall = true;
+    };
+    mealie = {
+      enable = true;
     };
     syncthing = {
       enable = false;

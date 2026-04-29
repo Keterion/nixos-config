@@ -77,6 +77,21 @@ in {
             #  min_colortemp = 2000;
             #  max_colortemp = 6535;
             #};
+            keyboard_remote = let
+              keyboard_names = [];
+              keyboard_descriptors = ["/dev/input/event0" "/dev/input/event2" "/dev/input/event3"];
+            in
+              [
+                #{
+                #    device_descriptor = "/dev/input/event0";
+                #    type = "key_down";
+                #}
+              ]
+              ++ map (desc: {
+                device_descriptor = desc;
+                type = "key_down";
+              })
+              keyboard_descriptors;
             adaptive_lighting = {
               lights = ["light.innr_1" "light.innr_2" "light.innr_3" "light.innr_4"];
               min_brightness = 45;
@@ -84,10 +99,35 @@ in {
               min_color_temp = 2000;
               max_color_temp = 6535;
               brightness_mode = "linear";
+              sleep_brightness = 1;
+              sleep_color_temp = 6000;
               take_over_control = true;
               skip_redundant_commands = true;
             };
 
+            automation = [
+              {
+                alias = "Keyboard light toggle";
+                triggers = [
+                  {
+                    trigger = "event";
+                    event_type = "keyboard_remote_command_received";
+                    event_data = {
+                      key_code = 1;
+                      type = "key_down";
+                    };
+                  }
+                ];
+                actions = [
+                  {
+                    action = "light.toggle";
+                    target = {
+                      entity_id = "light.lr_ceiling";
+                    };
+                  }
+                ];
+              }
+            ];
             switch = let
               affected_lights = ["light.innr_1" "light.innr_2" "light.innr_3" "light.innr_4"];
             in [
