@@ -326,7 +326,7 @@ in {
       enable = true;
       port = 8081;
       defaultSavePath = "/mnt/priv/Media/qBittorrent";
-      vuetorrent.enable = true;
+      vuetorrent.enable = false;
     };
     radarr.enable = true;
     radicale = {
