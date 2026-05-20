@@ -52,7 +52,7 @@ in {
       enable = lib.mkEnableOption "wallpapers";
       utility = lib.mkOption {
         type = lib.types.enum ["wpaperd" "hyprpaper" "awww"];
-        default = "hyprpaper";
+        default = "awww";
         description = "Program to use for the wallpaper setting";
       };
       path = lib.mkOption {
