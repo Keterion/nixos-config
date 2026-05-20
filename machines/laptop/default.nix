@@ -116,19 +116,20 @@
     de = {
       hyprland = {
         enable = true;
-        autologin = true;
+        autologin = false;
         utils.enable = true;
         styleProfile = "etherion";
         hypridle.enable = true;
         wlsunset.enable = true;
         wallpaper.enable = true;
       };
-      plasma.enable = true;
+      plasma.enable = false;
     };
 
     screenlocker.hyprlock.enable = true;
 
-    dm.sddm.enable = true;
+    #dm.sddm.enable = true;
+    dm.ly.enable = true;
 
     runner = {
       tofi = {
