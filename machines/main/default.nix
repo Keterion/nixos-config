@@ -98,12 +98,14 @@ in {
       styleProfile = "jaesant";
     };
 
+    dm.ly.enable = true;
+
     de = {
       hyprland = {
         enable = true;
         autologin = false;
         utils.enable = true;
-        styleProfile = "etherion";
+        styleProfile = "newone";
         hypridle.enable = true;
         wlsunset.enable = true;
         wallpaper = {
@@ -115,8 +117,6 @@ in {
     };
 
     screenlocker.swaylock.enable = true;
-
-    dm.sddm.enable = true;
 
     runner = {
       tofi = {
