@@ -18,7 +18,7 @@ in {
       description = "Whether to enable utilities and compatibility packages for a smoother experience";
     };
     styleProfile = lib.mkOption {
-      type = lib.types.enum ["etherion"];
+      type = lib.types.enum ["etherion" "newone"];
       default = "etherion";
       description = "The settings profile to use";
     };

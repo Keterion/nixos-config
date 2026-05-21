@@ -16,26 +16,28 @@ in {
     plugins = [];
 
     settings = {
-      general = {
-        gaps_in = 5;
-        gaps_out = 20;
-        border_size = 2;
-        "col.active_border" = "rgb(${osConfig.sys.colors.magenta})";
-        "col.inactive_border" = "rgb(${osConfig.sys.colors.blue1})";
-        env =
-          [
-            "XDG_SESSION_TYPE,wayland"
-          ]
-          ++ lib.optionals
-          osConfig.sys.graphics.nvidia.enable [
-            "LIBVA_DRIVER_NAME,nvidia"
-            "GDM_BACKEND,nvidia-drm"
-            "__GLX_VENDOR_LIBRARY_NAME,nvidia"
-            "NVD_BACKEND,direct" # va-api hwaccel for nvidia
-            "ELECTRON_OZONE_PLATFORM_HINT,auto" # Flickering Electron/CEF apps
-          ];
-      };
-      decoration = {
+      config = {
+        general = {
+          gaps_in = 5;
+          gaps_out = 20;
+          border_size = 2;
+          "col.active_border" = "rgb(${osConfig.sys.colors.magenta})";
+          "col.inactive_border" = "rgb(${osConfig.sys.colors.blue1})";
+          env =
+            [
+              "XDG_SESSION_TYPE,wayland"
+            ]
+            ++ lib.optionals
+            osConfig.sys.graphics.nvidia.enable [
+              "LIBVA_DRIVER_NAME,nvidia"
+              "GDM_BACKEND,nvidia-drm"
+              "__GLX_VENDOR_LIBRARY_NAME,nvidia"
+              "NVD_BACKEND,direct" # va-api hwaccel for nvidia
+              "ELECTRON_OZONE_PLATFORM_HINT,auto" # Flickering Electron/CEF apps
+            ];
+        };
+        decoration = {
+        };
       };
       input =
         if osConfig.sys.keyboard.qwerty_dv
