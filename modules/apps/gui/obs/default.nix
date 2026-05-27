@@ -6,10 +6,7 @@
 }: let
   cfg = config.apps.obs;
 in {
-  options.apps.obs.enable = lib.mkOption {
-    type = lib.types.bool;
-    description = "Whether to enable obs.";
-  };
+  options.apps.obs.enable = lib.mkEnableOption "obs";
   config = lib.mkIf cfg.enable {
     home-manager.users.${config.sys.users.default.name}.programs.obs-studio = {
       enable = true;
