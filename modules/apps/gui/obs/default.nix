@@ -7,13 +7,19 @@
   cfg = config.apps.obs;
 in {
   options.apps.obs.enable = lib.mkOption {
-    default = config.apps.modules.gui.utils.enable;
     type = lib.types.bool;
     description = "Whether to enable obs.";
   };
   config = lib.mkIf cfg.enable {
-    home-manager.users.${config.sys.users.default.name}.home.packages = [
-      pkgs.obs-studio
-    ];
+    home-manager.users.${config.sys.users.default.name}.programs.obs-studio = {
+      enable = true;
+      package = pkgs.obs-studio.override {
+        cudaSupport = config.sys.graphics.nvidia.enable; # enable nvidia hardware acceleration if nvidia is enabled
+      };
+      plugins = with pkgs.obs-studio-plugins; [
+        input-overlay
+        obs-pipewire-audio-capture
+      ];
+    };
   };
 }

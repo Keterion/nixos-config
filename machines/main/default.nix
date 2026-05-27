@@ -187,6 +187,7 @@ in {
 
     feishin.enable = true;
     godot.enable = true;
+    obs.enable = true;
 
     logseq.enable = true;
 
