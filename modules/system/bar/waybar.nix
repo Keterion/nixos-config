@@ -16,6 +16,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     programs.dconf.enable = true;
+    services.playerctld.enable = true;
     home-manager.users.${config.sys.users.default.name}.imports = [
       ./waybar/${cfg.styleProfile}.nix
     ];
