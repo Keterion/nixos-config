@@ -13,7 +13,7 @@
       url = "github:Mic92/sops-nix";
     };
     lanzaboote = {
-      url = "github:nix-community/lanzaboote/v1.0.0";
+      url = "github:nix-community/lanzaboote/v1.1.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -106,7 +106,7 @@
         ];
       };
       Nyx = nixpkgs.lib.nixosSystem {
-	system = "x86_64-linux";
+        system = "x86_64-linux";
         specialArgs = {
           myUtils = import ./utils.nix {inherit inputs;};
           inherit inputs;
