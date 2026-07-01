@@ -34,6 +34,7 @@ in {
     };
     #// lib.mkIf mkConfig extraConfig;
   };
+
   # From https://codeberg.org/vaw/nixos-lib/src/branch/main/lib/firejail.nix
   # Example at https://discourse.nixos.org/t/automatic-firejail-of-home-managers-librewolf-does-not-work/22291/4
   wrapFirejailBinary = let
