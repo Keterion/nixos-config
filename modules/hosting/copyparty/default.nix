@@ -116,7 +116,10 @@ in {
       home = "/var/lib/copyparty";
       isSystemUser = true;
     };
-
+    systemd.services.copyparty = lib.mkIf config.apps.mullvad-vpn.enable {
+      after = ["mullvad-daemon.service"];
+      requires = ["mullvad-daemon.service"];
+    };
     environment.systemPackages = [
       pkgs.copyparty
     ];

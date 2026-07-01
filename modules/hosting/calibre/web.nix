@@ -41,6 +41,11 @@ in {
 
   config = lib.mkIf cfg.enable {
     hosting.enabledServices = ["calibre-web"];
+
+    systemd.services.calibre-web = lib.mkIf config.apps.mullvad-vpn.enable {
+      after = ["mullvad-daemon.service"];
+      requires = ["mullvad-daemon.service"];
+    };
     services.calibre-web = {
       enable = builtins.trace "Calibre-web currently broken" false;
       #package = pkgs.calibre-web;

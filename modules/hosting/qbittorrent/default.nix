@@ -36,6 +36,10 @@ in {
 
   config = lib.mkIf cfg.enable {
     hosting.enabledServices = ["qbittorrent"];
+    systemd.services.qbittorrent = lib.mkIf config.apps.mullvad-vpn.enable {
+      after = ["mullvad-daemon.service"];
+      requires = ["mullvad-daemon.service"];
+    };
     services.qbittorrent = {
       enable = true;
       group = cfg.group;

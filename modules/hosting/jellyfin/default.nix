@@ -47,7 +47,10 @@ in {
       openFirewall = cfg.openFirewall;
       user = "jellyfin";
     };
-
+    systemd.services.jellyfin = lib.mkIf config.apps.mullvad-vpn.enable {
+      after = ["mullvad-daemon.service"];
+      requires = ["mullvad-daemon.service"];
+    };
     #networking.firewall = lib.mkIf cfg.openFirewall {
     #  allowedTCPPorts = [
     #    cfg.port.http

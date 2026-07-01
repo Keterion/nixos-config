@@ -46,6 +46,10 @@ in {
       libraries = cfg.libraries;
       port = cfg.port;
     };
+    systemd.services.calibre-server = lib.mkIf config.apps.mullvad-vpn.enable {
+      after = ["mullvad-daemon.service"];
+      requires = ["mullvad-daemon.service"];
+    };
     networking.firewall.allowedTCPPorts = lib.optionals cfg.openFirewall [
       cfg.port
     ];
