@@ -13,12 +13,13 @@ in {
     ./brightnessctl
     ./carapace
     ./cava
-    ./encfs
+    #./encfs deprecated
     ./exiftool
     ./eza
     ./ffmpeg
     ./fzf
     ./git
+    ./gocryptfs
     ./lazygit
     ./mediainfo
     ./neovim
@@ -89,8 +90,6 @@ in {
       testssl.enable = lib.mkDefault cfg.utils.enable;
       tmux.enable = lib.mkDefault cfg.utils.enable;
       typst.enable = lib.mkDefault cfg.utils.enable;
-
-      encfs.enable = lib.mkDefault cfg.misc.enable;
 
       exiftool.enable = lib.mkDefault cfg.media.enable;
       ffmpeg.enable = lib.mkDefault cfg.media.enable;

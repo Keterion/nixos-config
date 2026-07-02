@@ -17,7 +17,7 @@
     "10" = "十";
   };
 in {
-  home.packages = [pkgs.jq];
+  home.packages = [pkgs.jq pkgs.playerctl];
   programs.waybar = {
     enable = true;
     style = ''

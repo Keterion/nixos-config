@@ -58,11 +58,19 @@ in {
     '';
 
     hosting.enabledServices = ["navidrome"];
-    systemd.services.navidrome = {
-      after = ["network-online.target"];
-      wants = ["network-online.target"];
-      serviceConfig.ProtectHome = lib.mkForce "read-only";
-    };
+    systemd.services.navidrome = lib.mkMerge [
+      {
+        after = ["network-online.target"];
+        wants = ["network-online.target"];
+        serviceConfig.ProtectHome = lib.mkForce "read-only";
+      }
+      (lib.mkIf
+        config.apps.mullvad-vpn.enable
+        {
+          after = ["mullvad-daemon.service"];
+          requires = ["mullvad-daemon.service"];
+        })
+    ];
     services.navidrome = {
       enable = true;
       group = cfg.group;

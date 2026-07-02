@@ -37,5 +37,9 @@ in {
       openFirewall = cfg.openFirewall;
       user = "bazarr";
     };
+    systemd.services.bazarr = lib.mkIf config.apps.mullvad-vpn.enable {
+      after = ["mullvad-daemon.service"];
+      requires = ["mullvad-daemon.service"];
+    };
   };
 }

@@ -189,9 +189,10 @@ in {
     godot.enable = true;
     obs.enable = true;
 
-    logseq.enable = true;
+    logseq.enable = false; #also electron 39.8.10 is EOL so I can't build
 
     restic.enable = true;
+    gocryptfs.enable = true;
     #thunderbird.enable = true; #TODO: protonmail-bridge
     discord = {
       vencord.enable = true;

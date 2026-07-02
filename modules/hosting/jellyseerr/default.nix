@@ -30,5 +30,9 @@ in {
       port = cfg.port;
       openFirewall = cfg.openFirewall;
     };
+    systemd.services.seerr = lib.mkIf config.apps.mullvad-vpn.enable {
+      after = ["mullvad-daemon.service"];
+      requires = ["mullvad-daemon.service"];
+    };
   };
 }
