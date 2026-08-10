@@ -19,7 +19,7 @@ in {
     };
     styleProfile = lib.mkOption {
       type = lib.types.enum ["etherion" "newone"];
-      default = "etherion";
+      default = "newone";
       description = "The settings profile to use";
     };
     hypridle = {

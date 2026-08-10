@@ -118,7 +118,6 @@
         enable = true;
         autologin = false;
         utils.enable = true;
-        styleProfile = "etherion";
         hypridle.enable = true;
         wlsunset.enable = true;
         wallpaper.enable = true;
