@@ -336,7 +336,7 @@ in {
       proxy.enable = true;
     };
     rustypaste = {
-      enable = true;
+      enable = false;
       proxy.enable = true;
     };
     searxng = {
