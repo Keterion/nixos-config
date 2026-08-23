@@ -13,6 +13,7 @@ in {
     ./brightnessctl
     ./carapace
     ./cava
+    ./cargo
     #./encfs deprecated
     ./exiftool
     ./eza
