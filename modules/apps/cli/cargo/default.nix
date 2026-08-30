@@ -1,12 +1,17 @@
 {
   pkgs,
   config,
-  myUtils,
+  lib,
   ...
-}:
-myUtils.mkSimpleOption {
-  tree = "apps";
-  name = "cargo";
-  package = pkgs.cargo;
-  inherit config;
+}: {
+  options.apps.cargo.enable = lib.mkEnableOption "cargo.";
+  config = lib.mkIf config.apps.cargo.enable {
+    environment.systemPackages = with pkgs; [
+      cargo
+      gcc
+      rustc
+      bacon
+      clippy
+    ];
+  };
 }

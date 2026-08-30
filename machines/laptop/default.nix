@@ -184,6 +184,7 @@
     modules.cli.all.enable = true;
     bat.enable = true;
     typst.enable = true;
+    cargo.enable = true;
     firefox = {
       enable = true;
       arkenfox = true;
