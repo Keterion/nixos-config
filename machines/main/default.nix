@@ -187,6 +187,7 @@ in {
 
     feishin.enable = true;
     godot.enable = true;
+    cargo.enable = true;
     obs.enable = true;
 
     logseq.enable = false; #also electron 39.8.10 is EOL so I can't build

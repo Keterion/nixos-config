@@ -13,6 +13,7 @@
     ./lockscreen
     ./mimetypes
     ./networking
+    ./notifications
     ./runner
     ./secrets
     ./security
