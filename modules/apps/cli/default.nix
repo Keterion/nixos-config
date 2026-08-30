@@ -14,6 +14,7 @@ in {
     ./carapace
     ./cava
     ./cargo
+    ./compression
     #./encfs deprecated
     ./exiftool
     ./eza

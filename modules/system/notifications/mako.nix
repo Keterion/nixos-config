@@ -10,9 +10,11 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    services.mako = {
-      enable = true;
-      #settings = {};
+    home-manager.users.${config.sys.users.default.name} = {
+      services.mako = {
+        enable = true;
+        #settings = {};
+      };
     };
   };
 }

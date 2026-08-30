@@ -116,6 +116,7 @@ in {
       plasma.enable = true;
     };
 
+    notifications.mako.enable = true;
     screenlocker.swaylock.enable = true;
 
     runner = {
