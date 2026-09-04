@@ -113,7 +113,7 @@ in {
         ["systemMod.. \"+ R\"" "hl.dsp.exec_cmd('${systemctl} reboot')"]
         ["systemMod.. \"+ H\"" "hl.dsp.exec_cmd('${pkgs.hyprland}/bin/hyprctl reload')"]
         ["systemMod.. \"+ L\"" "hl.dsp.exec_cmd('${osConfig.sys.screenlocker.command}')"]
-        ["systemMod.. \"+ S\"" "hl.dsp.exec_cmd('${osConfig.sys.screenlocker.command}')"]
+        ["systemMod.. \"+ S\"" "hl.dsp.exec_cmd('${systemctl} suspend')"]
 
         ["mod.. \"+ 1\"" "hl.dsp.focus({workspace = 1;})"]
         ["mod.. \"+ 2\"" "hl.dsp.focus({workspace = 2;})"]

@@ -29,8 +29,10 @@ in {
         description = "Hypridle settings";
         default = {
           general = {
-            after_sleep_cmd = "hyprctl dispatch dpms on";
+            after_sleep_cmd = "hyprctl dispatch 'hl.dsp.dpms({action=\"enable\"})'";
+            before_sleep_cmd = "${config.sys.screenlocker.command}";
             ignore_dbus_inhibit = false;
+            inhibit_sleep = 3;
             lock_cmd = "${config.sys.screenlocker.command}";
           };
           listener = [
@@ -40,8 +42,8 @@ in {
             }
             {
               timeout = 300;
-              on-timeout = "hyprctl dispatch dpms off";
-              on-resume = "hyprctl dispatch dpms on";
+              on-timeout = "hyprctl dispatch 'hl.dsp.dpms({action=\"disable\"})'";
+              on-resume = "hyprctl dispatch 'hl.dsp.dpms({action=\"enable\"})'";
             }
           ];
         };

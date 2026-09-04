@@ -172,6 +172,7 @@ in {
   apps = {
     modules.all.enable = true; # Enables all apps under modules/apps
     bat.enable = true;
+    compression.enable = true;
     audacity.enable = true;
     firefox = {
       arkenfox = true;
