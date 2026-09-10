@@ -224,6 +224,8 @@ in {
       };
     };
     games.lutris.enable = false;
+
+    qemu.enable = true;
   };
 
   apps.beets = {

@@ -30,6 +30,7 @@ in {
     ./nmap
     ./nmtui
     ./pueue
+    ./qemu
     ./restic
     ./ripgrep
     ./rmpc
