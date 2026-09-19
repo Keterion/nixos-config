@@ -108,7 +108,7 @@ in {
         ["windowMod.. \"+ F\"" "hl.dsp.window.fullscreen('fullscreen', 'toggle')"]
         ["windowMod.. \"+ Space\"" "hl.dsp.window.float('toggle')"]
 
-        ["systemMod.. \"+ E\"" "hl.dsp.exec_cmd('uwsm stop')"] #this is better than the exit dispatcher?
+        ["systemMod.. \"+ E\"" "hl.dsp.exit()"]
         ["systemMod.. \"+ P\"" "hl.dsp.exec_cmd('${systemctl} poweroff')"]
         ["systemMod.. \"+ R\"" "hl.dsp.exec_cmd('${systemctl} reboot')"]
         ["systemMod.. \"+ H\"" "hl.dsp.exec_cmd('${pkgs.hyprland}/bin/hyprctl reload')"]
