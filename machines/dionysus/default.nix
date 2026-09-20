@@ -36,6 +36,7 @@ in {
     };
 
     audio.pipewire = {
+      #TODO: Add low-latency stuff
       enable = true;
       rtkit.enable = true;
       loopback.enable = true;
@@ -55,7 +56,7 @@ in {
       enable = true;
       fail2ban = false;
     };
-    bluetooth.enable = true;
+    bluetooth.enable = false;
     fonts = with pkgs; [
       nerd-fonts.hack
       nerd-fonts.heavy-data
@@ -72,7 +73,7 @@ in {
     };
 
     bar.waybar = {
-      enable = true;
+      enable = false;
       styleProfile = "haides002";
     };
     # We need plasma bigscreen as DE, so get that to work :+1:
@@ -81,7 +82,6 @@ in {
         enable = true;
         autologin = false;
         utils.enable = true;
-        styleProfile = "etherion";
         hypridle.enable = true;
         wlsunset.enable = true;
         wallpaper = {
@@ -90,6 +90,9 @@ in {
         };
       };
       plasma.enable = true;
+      plasma-bigscreen = {
+        enable = true;
+      };
     };
 
     screenlocker.swaylock.enable = true;

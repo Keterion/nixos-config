@@ -13,16 +13,29 @@
     '';
   });
 in {
-  options.sys.de.plasma-bigscreen.enable = lib.mkEnableOption "plasma de for televisions";
+  options.sys.de.plasma-bigscreen = {
+    enable = lib.mkEnableOption "plasma de for televisions";
+    autologin = lib.mkEnableOption "automatically log into plasma bigscreen";
+  };
 
   config = lib.mkIf cfg.enable {
-    services.xserver.enable = true;
     xdg.portal.configPackages = [bs_pkg];
 
     networking.networkmanager = {
       enable = true;
     };
-
-    services.displayManager.sessionPackages = [bs_pkg];
+    services = {
+      xserver.enable = true;
+      displayManager = lib.mkMerge [
+        (lib.mkIf cfg.autologin {
+          autoLogin = {
+            enable = true;
+            user = config.sys.users.default.name;
+          };
+          defaultSession = "plasma-bigscreen";
+        })
+        {sessionPackages = [bs_pkg];}
+      ];
+    };
   };
 }
