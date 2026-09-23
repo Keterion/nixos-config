@@ -66,7 +66,10 @@ in {
     firewall.enable = true;
     network = {
       enable = true;
-      wireless.enable = true;
+      wireless = {
+        enable = true;
+        imperative = false;
+      };
       nftables.enable = false;
     };
     ssh = {
@@ -74,7 +77,7 @@ in {
       fail2ban = false;
       harden = true;
     };
-    bluetooth.enable = false; #need a dongle first
+    bluetooth.enable = true; #need a dongle first
     fonts = with pkgs; [
       nerd-fonts.hack
       nerd-fonts.heavy-data
@@ -122,6 +125,28 @@ in {
     };
   };
 
+  sops.secrets = {
+    "wifi/Doubleplusungood/pwd" = {
+    };
+  };
+
+  sops.templates."wireless.conf" = {
+    content = ''
+      dpu_pwd=${config.sops.placeholder."wifi/Doubleplusungood/pwd"}
+    '';
+    owner = "wpa_supplicant";
+    group = "wpa_supplicant";
+  };
+
+  #networking.wireless = {
+  #  secretsFile = config.sops.templates."wireless.conf".path;
+  #  networks = {
+  #    "Doubleplusungood" = {
+  #      pskRaw = "ext:dpu_pwd";
+  #    };
+  #  };
+  #};
+
   apps = {
     modules.all.enable = false; # Enables all apps under modules/apps
     modules.cli.all.enable = true;
@@ -144,7 +169,7 @@ in {
   };
   hosting = {
     openFirewall = true;
-    ip = "192.168.0.123";
+    ip = "192.168.0.178";
     #ip = "100.73.153.27";
     defaultGroup = "server";
 

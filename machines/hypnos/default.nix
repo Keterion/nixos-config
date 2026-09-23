@@ -88,7 +88,6 @@ in {
         enable = true;
         autologin = false;
         utils.enable = true;
-        styleProfile = "etherion";
         hypridle.enable = true;
         wlsunset.enable = true;
         wallpaper = {
@@ -96,8 +95,10 @@ in {
           wallhaven.enable = false;
         };
       };
+      plasma-bigscreen.enable = true;
       plasma.enable = true;
     };
+    notifications.mako.enable = true;
 
     screenlocker.swaylock.enable = true;
 
@@ -150,10 +151,12 @@ in {
   apps = {
     modules.all.enable = false; # Enables all apps under modules/apps
     modules.cli.all.enable = true;
+    logseq.enable = false;
     neovim = {
       enable = true;
       defaultEditor = true;
     };
+    cargo.enable = true;
     freecad.enable = true;
     mullvad-vpn.enable = false;
     keepassxc.enable = true;
@@ -169,6 +172,7 @@ in {
         millennium.enable = false;
       };
       minecraft.enable = true;
+      epicgames.enable = true;
     };
     blender.enable = true;
 
