@@ -226,6 +226,13 @@ in {
           };
           no_initial_focus = true;
         }
+        {
+          match = {
+            class = "^(steam)";
+            title = "^ Sign in to Steam";
+          };
+          no_initial_focus = true;
+        }
       ];
 
       curve = [
