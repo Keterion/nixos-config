@@ -29,21 +29,20 @@ in {
         description = "Hypridle settings";
         default = {
           general = {
-            after_sleep_cmd = "hyprctl dispatch 'hl.dsp.dpms({action=\"enable\"})'";
-            before_sleep_cmd = "${config.sys.screenlocker.command}";
+            before_sleep_cmd = "loginctl lock-session";
             ignore_dbus_inhibit = false;
-            inhibit_sleep = 3;
-            lock_cmd = "${config.sys.screenlocker.command}";
+            inhibit_sleep = 2;
+            lock_cmd = "loginctl lock-session";
           };
           listener = [
             {
               timeout = 330;
-              on-timeout = "${config.sys.screenlocker.command}";
+              on-timeout = "loginctl lock-session";
             }
             {
               timeout = 300;
-              on-timeout = "hyprctl dispatch 'hl.dsp.dpms({action=\"disable\"})'";
-              on-resume = "hyprctl dispatch 'hl.dsp.dpms({action=\"enable\"})'";
+              on-timeout = "hyprctl dispatch 'hl.dsp.dpms()'";
+              on-resume = "hyprctl dispatch 'hl.dsp.dpms()'";
             }
           ];
         };

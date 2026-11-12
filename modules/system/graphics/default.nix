@@ -30,7 +30,8 @@ in {
 
       nvidiaSettings = true;
 
-      package = pkgs.linuxPackages.nvidiaPackages.beta;
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
+      #package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
     };
     hardware.graphics.extraPackages = lib.optionals cfg.nvidia.enable [pkgs.nvidia-vaapi-driver];
   };

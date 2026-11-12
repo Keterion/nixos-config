@@ -105,8 +105,8 @@ in {
         ["launchMod.. \"+ Return\"" "hl.dsp.exec_cmd('kitty')"]
 
         ["windowMod.. \"+ C\"" "hl.dsp.window.close()"]
-        ["windowMod.. \"+ F\"" "hl.dsp.window.fullscreen('fullscreen', 'toggle')"]
-        ["windowMod.. \"+ Space\"" "hl.dsp.window.float('toggle')"]
+        ["windowMod.. \"+ F\"" "hl.dsp.window.fullscreen({ mode='fullscreen'; action='toggle'; })"]
+        ["windowMod.. \"+ Space\"" "hl.dsp.window.float({ action='toggle'; })"]
 
         ["systemMod.. \"+ E\"" "hl.dsp.exit()"]
         ["systemMod.. \"+ P\"" "hl.dsp.exec_cmd('${systemctl} poweroff')"]
@@ -218,6 +218,11 @@ in {
         {
           match.class = "(com.github.iwalton3.jellyfin-media-player)";
           idle_inhibit = "focus";
+        }
+        {
+          match.class = "^(org.prismlauncher.PrismLauncher)$";
+          match.title = "^(Prism Launcher)";
+          workspace = "3";
         }
         {
           match = {
