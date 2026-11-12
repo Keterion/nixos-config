@@ -16,7 +16,7 @@ in {
   config = lib.mkIf cfg.enable {
     home-manager.users.${config.sys.users.default.name}.programs.rofi = {
       enable = true;
-      modes = ["games"];
+      settings.modes = ["games"];
       plugins = with pkgs; [
         rofi-games
       ];

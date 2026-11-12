@@ -62,6 +62,7 @@ in {
           #tab_activity_symbol = "!";
 
           enabled_layouts = "splits:split_axis=splits";
+          remember_window_size = "no";
 
           allow_remote_control = lib.optionalString cfg.remoteControl "yes";
 

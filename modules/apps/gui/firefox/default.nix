@@ -13,7 +13,10 @@
         inherit pkgs lib;
         package = pkgs.firefox;
         profile = "${pkgs.firejail}/etc/firejail/firefox.profile";
-        extraArgs = [''--ignore='noexec ''${HOME}' '']; #sandboxing breaks drm
+        extraArgs = [
+          ''--ignore='noexec ''${HOME}' ''
+          #''--whitelist=$${XDG_RUNTIME_DIR}/org.keepassxc.KeePassXC.BrowserServer'' this does not work :(
+        ]; #sandboxing breaks drm
       }
     else pkgs.firefox;
 in {
@@ -38,7 +41,7 @@ in {
   config = lib.mkIf cfg.enable {
     home-manager.users.${config.sys.users.default.name} = {
       programs.firefox = {
-        #configPath = "${config.xdg.configHome}/mozilla/firefox";
+        configPath = ".mozilla/firefox";
         enable = true;
         package = ff_pkg;
 

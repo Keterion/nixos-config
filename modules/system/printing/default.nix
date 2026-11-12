@@ -24,10 +24,10 @@ in {
       enable = true;
       nssmdns4 = true;
       openFirewall = true;
-      publish = {
-        enable = true;
-        addresses = true;
-        workstation = true;
+      settings.publish = {
+        "publish-workstation" = true;
+        "publish-addresses" = true;
+        "disable-publishing" = false;
       };
     };
     hardware.sane = {

@@ -106,7 +106,7 @@ in {
         autologin = false;
         utils.enable = true;
         styleProfile = "newone";
-        hypridle.enable = true;
+        hypridle.enable = builtins.trace "dpms screen power off crashes hyprland. See https://github.com/hyprwm/Hyprland/discussions/16840 for updates" false;
         wlsunset.enable = true;
         wallpaper = {
           enable = true;
@@ -198,7 +198,7 @@ in {
     gocryptfs.enable = true;
     #thunderbird.enable = true; #TODO: protonmail-bridge
     discord = {
-      vencord.enable = true;
+      vencord.enable = false;
       moonlight.enable = false;
       openASAR.enable = false;
     };

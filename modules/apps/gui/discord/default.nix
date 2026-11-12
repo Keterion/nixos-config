@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  myUtils,
   ...
 }: let
   cfg = config.apps.discord;
