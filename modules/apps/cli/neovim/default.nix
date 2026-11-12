@@ -185,6 +185,14 @@ in {
               enable = true;
             };
           };
+          html = {
+            enable = true;
+            format = {
+              enable = true;
+            };
+            lsp.enable = true;
+          };
+          css.enable = true;
         };
       };
     };
