@@ -103,6 +103,7 @@ in {
         ["launchMod.. \" + R\"" "hl.dsp.exec_cmd('$(${osConfig.sys.runner.command})')"]
         ["launchMod.. \"+ E\"" "hl.dsp.exec_cmd('${pkgs.yazi}/bin/yazi')"]
         ["launchMod.. \"+ Return\"" "hl.dsp.exec_cmd('kitty')"]
+        ["launchMod.. \"+ S\"" "hl.dsp.exec_cmd('${pkgs.still}/bin/still -c \\'${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" ~/Pictures/Screenshots/Screenshot_\"$(date +%Y-%m-%d_%H-%M-%S).png\"\\'')"]
 
         ["windowMod.. \"+ C\"" "hl.dsp.window.close()"]
         ["windowMod.. \"+ F\"" "hl.dsp.window.fullscreen({ mode='fullscreen'; action='toggle'; })"]
