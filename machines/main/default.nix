@@ -103,7 +103,7 @@ in {
     de = {
       hyprland = {
         enable = true;
-        autologin = false;
+        autologin = true;
         utils.enable = true;
         styleProfile = "newone";
         hypridle.enable = builtins.trace "dpms screen power off crashes hyprland. See https://github.com/hyprwm/Hyprland/discussions/16840 for updates" false;

@@ -16,6 +16,7 @@ in {
       plugins = with pkgs.stable.obs-studio-plugins; [
         input-overlay
         obs-pipewire-audio-capture
+        obs-gstreamer
       ];
     };
   };

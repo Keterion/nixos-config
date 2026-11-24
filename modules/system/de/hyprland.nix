@@ -77,7 +77,8 @@ in {
     };
 
     #environment.systemPackages = with pkgs; [
-    #  playerctl
+    #  grim
+    #  slurp
     #];
 
     services.gnome.gnome-keyring.enable = cfg.utils.enable;
