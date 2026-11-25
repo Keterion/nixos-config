@@ -37,10 +37,16 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [libevdev];
     hosting.enabledServices = ["home-assistant"];
     services.home-assistant = lib.mkMerge [
       {
         enable = true;
+        customLovelaceModules = with pkgs.home-assistant-custom-lovelace-modules; [
+          mushroom
+          mini-graph-card
+          bubble-card
+        ];
         extraComponents = [
           # Needed to complete onboarding
           "analytics"
@@ -55,9 +61,12 @@ in {
           # needed for spook
           #"infrared"
           #"recorder"
+          "keyboard_remote"
 
           "http"
           "zha"
+
+          "mealie"
 
           "default_config" # doesn't work like this in this case ig??
         ];
@@ -77,21 +86,21 @@ in {
             #  min_colortemp = 2000;
             #  max_colortemp = 6535;
             #};
-            keyboard_remote = let
-              keyboard_names = [];
-              keyboard_descriptors = ["/dev/input/event0" "/dev/input/event2" "/dev/input/event3"];
-            in
-              [
-                #{
-                #    device_descriptor = "/dev/input/event0";
-                #    type = "key_down";
-                #}
-              ]
-              ++ map (desc: {
-                device_descriptor = desc;
-                type = "key_down";
-              })
-              keyboard_descriptors;
+            #keyboard_remote = let
+            #  keyboard_names = [];
+            #  keyboard_descriptors = ["/dev/input/event0" "/dev/input/event2" "/dev/input/event3"];
+            #in
+            #  [
+            #    #{
+            #    #    device_descriptor = "/dev/input/event0";
+            #    #    type = "key_down";
+            #    #}
+            #  ]
+            #  ++ map (desc: {
+            #    device_descriptor = desc;
+            #    type = "key_down";
+            #  })
+            #  keyboard_descriptors;
             adaptive_lighting = {
               lights = ["light.innr_1" "light.innr_2" "light.innr_3" "light.innr_4"];
               min_brightness = 45;
@@ -105,29 +114,6 @@ in {
               skip_redundant_commands = true;
             };
 
-            automation = [
-              {
-                alias = "Keyboard light toggle";
-                triggers = [
-                  {
-                    trigger = "event";
-                    event_type = "keyboard_remote_command_received";
-                    event_data = {
-                      key_code = 1;
-                      type = "key_down";
-                    };
-                  }
-                ];
-                actions = [
-                  {
-                    action = "light.toggle";
-                    target = {
-                      entity_id = "light.lr_ceiling";
-                    };
-                  }
-                ];
-              }
-            ];
             switch = let
               affected_lights = ["light.innr_1" "light.innr_2" "light.innr_3" "light.innr_4"];
             in [
@@ -140,14 +126,14 @@ in {
           }
           // cfg.extraConfig;
       }
-      (lib.mkIf
-        cfg.proxy.enable
-        {
-          config.http = {
-            trusted_proxies = ["::1" config.hosting.ip];
-            use_x_forwarded_for = true;
-          };
-        })
+      #(lib.mkIf
+      #  cfg.proxy.enable
+      #  {
+      #    config.http = {
+      #      trusted_proxies = ["::1" config.hosting.ip];
+      #      use_x_forwarded_for = true;
+      #    };
+      #  })
     ];
     networking.firewall.allowedTCPPorts = lib.optionals cfg.openFirewall [cfg.port];
   };
